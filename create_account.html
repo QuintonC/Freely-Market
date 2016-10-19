@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8">
+<title>Create Account</title></head>
+    <body>
+	<h1>Create Account</h1>
+	<form action="create_account.cgi" method="get">
+	<input type="hidden" value="add" name="choice">
+	<p>User Name: <input type="text" name ="user"></p>
+	<p>Password: <input type="text" name ="password"></p>
+	<p>First Name: <input type="text" name="fname"></p>
+	<p>Last Name: <input type="text" name="lname"></p>
+	<p>Birthday: <input type="text" name="bday"></p>
+	<p>Address: <input type="text" name="address"></p>
+	<p>Phone: <input type="text" name="phone"></p>
+	<input type="file" name="picture" accept="image/gif, image/jpeg, image/png">
+	<br />
+	<br />
+	<button type="submit">Create Account</button>
+	</form>
+    </body>
+</html>
