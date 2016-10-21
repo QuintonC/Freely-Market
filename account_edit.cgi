@@ -22,7 +22,6 @@ html = """<!doctype html>
     <body>
 	<h1>Create Account</h1>
 	<form action="create_account.cgi" method="get">
-	<input type="hidden" value="{Id}" name="id" />
 	<p>User Name: <input type="text" name ="user" value = "{Username}"></p>
 	<p>Password: <input type="text" name ="password" value = "{Password}"></p>
 	<p>First Name: <input type="text" name="fname" value = "{FirstName}"></p>
@@ -39,14 +38,15 @@ html = """<!doctype html>
     </body>
 </html>"""
 
-try:
-	sql = "select * from Accounts where Id = "+str(id)+";"
-	cursor.execute(sql)
-	results = cursor.fetchone()
-	Id, Username, Password, FirstName, LastName, Birthday, Address, Phone, Picture  = results
-	
-except Exception, e:
+def edit():
+	try:
+		sql = "select * from Accounts where Id = '"+id+"';"
+		cursor.execute(sql)
+		results = cursor.fetchone()
+		Id, Username, Password, FirstName, LastName, Birthday, Address, Phone, Picture  = results
+	except Exception, e:
 		print('<p>Something went wrong with the SQL!</p>')
         print(sql, "\nError:", e)
-else:
-`	print(html.format(Username = Username, Password = Password, FirstName = FirstName, LastName = LastName, Birthday = Birthday, Address = Address, Phone = Phone, Picture = Picture))
+	else:
+`		print(html.format(Username = Username, Password = Password, FirstName = FirstName, LastName = LastName, Birthday = Birthday, Address = Address, Phone = Phone, Picture = Picture))
+edit()
