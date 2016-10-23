@@ -30,7 +30,7 @@ cursor = db_con.cursor()
 html = """<!DOCTYPE html>
 <html>
 <body>
-<h1>Faculty Member Changes Saved!</h1>
+<h1>Account Changes Saved!</h1>
 <p><a href='show_account.cgi'>Go Back</a></p>
 </body>
 </html>"""
