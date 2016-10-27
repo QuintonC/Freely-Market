@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8">
+<title>Create Account</title>
+
+<script type="text/javascript">
+    function blank()
+    {
+    var a=document.forms["myForm"]["user"].value;
+    var b=document.forms["myForm"]["password"].value;
+    var c=document.forms["myForm"]["fname"].value;
+    var d=document.forms["myForm"]["lname"].value;
+	var e=document.forms["myForm"]["bday"].value;
+	var f=document.forms["myForm"]["address"].value;
+	var g=document.forms["myForm"]["phone"].value;
+	var h=document.forms["myForm"]["picture"].value;
+    if (a==null || a=="",b==null || b=="",c==null || c=="",d==null || d=="",e==null || e=="",f==null || f=="",g==null || g=="",h==null || h=="")
+      {
+      alert("Please Fill All Required Field");
+      return false;
+      }
+    }
+
+	function maxLength(char) {    
+    if (!('maxLength' in char)) {
+        var max = char.attributes.maxLength.value;
+        char.onkeypress = function () {
+            if (this.value.length >= max) return false;
+        };
+    }
+}
+
+maxLength(document.getElementById("text"));
+    </script>
+
+</head>
+
+    <body>
+	<h1>Create Account</h1>
+	<form name = "myForm" action="create_account.cgi" method="get" onsubmit = "return blank()">
+	<input type="hidden" value="add" name="choice">
+	<p>User Name: <input type="text" id = "user" name ="user" maxlength = "15"></p>
+	<p>Password: <input type="text" id = "password" name ="password"></p>
+	<p>First Name: <input type="text" id = "fname" name="fname" maxlength = "30"></p>
+	<p>Last Name: <input type="text" id ="lname" name="lname" maxlength = "30"></p>
+	<p>Birthday: <input type="text" id = "bday" name="bday" maxlength = "10"></p>
+	<p>Address: <input type="text" id = "address" name="address" maxlength = "20"></p>
+	<p>Phone: <input type="text" id = "phone" name="phone" pattern ='[0-9]{10}'></p>
+	<input type="file" id = "phone" name="picture" accept="image/gif, image/jpeg, image/png">
+	<br />
+	<br />
+	<button type="submit" value = "send data">Create Account</button>
+	</form>
+    </body>
+</html>
