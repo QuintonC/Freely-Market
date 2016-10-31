@@ -61,7 +61,6 @@ class ViewController: UIViewController {
         let lname:NSString = self.lname.text! as NSString
         let email:NSString = self.email.text! as NSString
         let phone:NSString = self.phone.text! as NSString
-        let defaults = UserDefaults.standard
         
         
         if (isValidEmail(email: email as String) == false) {
@@ -94,17 +93,17 @@ class ViewController: UIViewController {
             alertController.addAction(OKAction)
             self.present(alertController, animated: true, completion:nil)
             
-        } //else if (isValidName(name: fname as String) == false) ||  (isValidName(name: lname as String) == false) {
+        } else if (isValidName(name: fname as String) == false) ||  (isValidName(name: lname as String) == false) {
             
-            //let alertController = UIAlertController(title: "Error", message: "You've entered an incorrect first name or last name, please double check your inputs.", preferredStyle: .alert)
-            //let OKAction = UIAlertAction(title: "OK", style: .default) {
-            //    (action:UIAlertAction) in
-            //    print("Alert dismissed")
-            //}
-            //alertController.addAction(OKAction)
-            //self.present(alertController, animated: true, completion:nil)
+            let alertController = UIAlertController(title: "Error", message: "You've entered an incorrect first name or last name, please double check your inputs.", preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "OK", style: .default) {
+                (action:UIAlertAction) in
+                print("Alert dismissed")
+            }
+            alertController.addAction(OKAction)
+            self.present(alertController, animated: true, completion:nil)
             
-        //} 
+        }
         else {
             let defaults = UserDefaults.standard
             //remove old app data
