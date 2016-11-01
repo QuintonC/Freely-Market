@@ -43,7 +43,27 @@ class LoginViewController: UIViewController {
         // Authentication
         
         
-        if (username.isEqual(to: usernameV!) && password.isEqual(to: passwordV!)) {
+        if usernameV == nil || passwordV == nil {
+            
+            let alertController = UIAlertController(title: "Oops!", message: "It appears you have not registered, please register first and then proceed to logging in.", preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "OK", style: .default) {
+                (action:UIAlertAction) in
+                self.performSegue(withIdentifier: "registerRedirect", sender: self)
+            }
+            alertController.addAction(OKAction)
+            self.present(alertController, animated: true, completion:nil)
+            
+        } else if (username.isEqual(to: "") || password.isEqual(to: "")) {
+            
+            let alertController = UIAlertController(title: "Oops!", message: "Please be sure to enter login information before attempting to login.", preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "OK", style: .default) {
+                (action:UIAlertAction) in
+                print("Alert Dismissed")
+            }
+            alertController.addAction(OKAction)
+            self.present(alertController, animated: true, completion:nil)
+            
+        } else if (username.isEqual(to: usernameV!) && password.isEqual(to: passwordV!)) {
          
             let alertController = UIAlertController(title: "Success", message: "You have been logged in.", preferredStyle: .alert)
             let OKAction = UIAlertAction(title: "OK", style: .default) {
@@ -55,7 +75,7 @@ class LoginViewController: UIViewController {
 
         } else {
             
-            let alertController = UIAlertController(title: "Error", message: "Password and Username pair not found.", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Oops!", message: "Password and Username pair not found.", preferredStyle: .alert)
             let OKAction = UIAlertAction(title: "OK", style: .default) {
                 (action:UIAlertAction) in
                 print("Alert Dismissed")

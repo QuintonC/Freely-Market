@@ -65,7 +65,7 @@ class ViewController: UIViewController {
         
         if (isValidEmail(email: email as String) == false) {
             
-            let alertController = UIAlertController(title: "Error", message: "You've entered an incorrect email address", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Oops!", message: "You've entered an incorrect email address", preferredStyle: .alert)
             let OKAction = UIAlertAction(title: "OK", style: .default) {
                 (action:UIAlertAction) in
                 print("Alert dismissed")
@@ -75,7 +75,7 @@ class ViewController: UIViewController {
 
         } else if (isValidPassword(password: password as String) == false) {
             
-            let alertController = UIAlertController(title: "Error", message: "You've entered an incorrect password. Password must contain at least one letter, at least one number, and be at least 7 characters and no more than 20.", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Oops!", message: "You've entered an incorrect password. Password must contain at least one letter, at least one number, and be at least 7 characters and no more than 20.", preferredStyle: .alert)
             let OKAction = UIAlertAction(title: "OK", style: .default) {
                 (action:UIAlertAction) in
                 print("Alert dismissed")
@@ -85,7 +85,7 @@ class ViewController: UIViewController {
             
         } else if (isValidPhone(phone: phone as String) == false) {
             
-            let alertController = UIAlertController(title: "Error", message: "You've entered an incorrect phone number. Phone number should be structure as: xxx-xxx-xxxx", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Oops!", message: "You've entered an incorrect phone number. Phone number should be structure as: xxx-xxx-xxxx", preferredStyle: .alert)
             let OKAction = UIAlertAction(title: "OK", style: .default) {
                 (action:UIAlertAction) in
                 print("Alert dismissed")
@@ -95,7 +95,7 @@ class ViewController: UIViewController {
             
         } else if (isValidName(name: fname as String) == false) ||  (isValidName(name: lname as String) == false) {
             
-            let alertController = UIAlertController(title: "Error", message: "You've entered an incorrect first name or last name, please double check your inputs.", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Oops!", message: "You've entered an incorrect first name or last name, please double check your inputs.", preferredStyle: .alert)
             let OKAction = UIAlertAction(title: "OK", style: .default) {
                 (action:UIAlertAction) in
                 print("Alert dismissed")

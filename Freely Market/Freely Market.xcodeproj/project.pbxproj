@@ -10,6 +10,7 @@
 		5A2ED65D1DB8472500A75B2E /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5A2ED65B1DB8472500A75B2E /* DataModel.xcdatamodeld */; };
 		5A2ED6651DB8555200A75B2E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2ED6641DB8555200A75B2E /* LoginViewController.swift */; };
 		5A2ED6671DB8564F00A75B2E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2ED6661DB8564F00A75B2E /* RegisterViewController.swift */; };
+		5AD6B24B1DC95D440033E896 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AD6B24A1DC95D440033E896 /* MapKit.framework */; };
 		5AED3A761DB80B2200F3EA39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AED3A751DB80B2200F3EA39 /* AppDelegate.swift */; };
 		5AED3A781DB80B2200F3EA39 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AED3A771DB80B2200F3EA39 /* ViewController.swift */; };
 		5AED3A7B1DB80B2200F3EA39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AED3A791DB80B2200F3EA39 /* Main.storyboard */; };
@@ -40,6 +41,8 @@
 		5A2ED65C1DB8472500A75B2E /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		5A2ED6641DB8555200A75B2E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5A2ED6661DB8564F00A75B2E /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		5AD6B24A1DC95D440033E896 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		5AD6B24C1DC95D5A0033E896 /* Freely Market.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Freely Market.entitlements"; sourceTree = "<group>"; };
 		5AED3A721DB80B2200F3EA39 /* Freely Market.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Freely Market.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AED3A751DB80B2200F3EA39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AED3A771DB80B2200F3EA39 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AD6B24B1DC95D440033E896 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +84,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5AD6B2491DC95D440033E896 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5AD6B24A1DC95D440033E896 /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5AED3A691DB80B2200F3EA39 = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +100,7 @@
 				5AED3A891DB80B2200F3EA39 /* Freely MarketTests */,
 				5AED3A941DB80B2200F3EA39 /* Freely MarketUITests */,
 				5AED3A731DB80B2200F3EA39 /* Products */,
+				5AD6B2491DC95D440033E896 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,6 +117,7 @@
 		5AED3A741DB80B2200F3EA39 /* Freely Market */ = {
 			isa = PBXGroup;
 			children = (
+				5AD6B24C1DC95D5A0033E896 /* Freely Market.entitlements */,
 				5AED3A751DB80B2200F3EA39 /* AppDelegate.swift */,
 				5AED3A771DB80B2200F3EA39 /* ViewController.swift */,
 				5AED3A7E1DB80B2200F3EA39 /* LaunchScreen.storyboard */,
@@ -204,6 +218,17 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = G94LYLN76P;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.DataProtection = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					5AED3A851DB80B2200F3EA39 = {
 						CreatedOnToolsVersion = 8.0;
@@ -425,6 +450,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Freely Market/Freely Market.entitlements";
 				DEVELOPMENT_TEAM = G94LYLN76P;
 				INFOPLIST_FILE = "Freely Market/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -438,6 +464,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Freely Market/Freely Market.entitlements";
 				DEVELOPMENT_TEAM = G94LYLN76P;
 				INFOPLIST_FILE = "Freely Market/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
