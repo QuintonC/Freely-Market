@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -34,25 +35,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pexels-photo-59904Blur" translatesAutoresizingMaskIntoConstraints="NO" id="E8F-Dm-IeL">
-                                <frame key="frameInset" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GkH-gD-zRk">
-                                <frame key="frameInset" minY="597" width="375" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Log In">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="cP5-Bk-4dx" kind="show" id="lPD-PT-vHI"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="moQ-s1-uGz">
-                                <frame key="frameInset" minY="528" width="375" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pexels-photo-59904Blur" translatesAutoresizingMaskIntoConstraints="NO" id="E8F-Dm-IeL"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="moQ-s1-uGz">
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="q6h-DP-iwy"/>
+                                </constraints>
                                 <state key="normal" title="Register">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -60,12 +48,40 @@
                                     <segue destination="Jic-mq-bA6" kind="show" identifier="signUpView" id="ita-cW-69Q"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="freelyMarketLogo" translatesAutoresizingMaskIntoConstraints="NO" id="hjb-Rd-4gu">
-                                <frame key="frameInset" minX="67" minY="72" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="freelyMarketLogo" translatesAutoresizingMaskIntoConstraints="NO" id="hjb-Rd-4gu">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="hAp-mW-H7g"/>
+                                </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GkH-gD-zRk">
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="lJJ-ko-jMB"/>
+                                </constraints>
+                                <state key="normal" title="Log In">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="cP5-Bk-4dx" kind="show" id="lPD-PT-vHI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="hjb-Rd-4gu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0DL-Nu-yuJ"/>
+                            <constraint firstItem="hjb-Rd-4gu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="51" id="Tfq-OZ-UVc"/>
+                            <constraint firstItem="E8F-Dm-IeL" firstAttribute="leading" secondItem="moQ-s1-uGz" secondAttribute="leading" id="UWo-Nf-pUE"/>
+                            <constraint firstItem="GkH-gD-zRk" firstAttribute="leading" secondItem="moQ-s1-uGz" secondAttribute="leading" id="VwN-KN-fi4"/>
+                            <constraint firstItem="GkH-gD-zRk" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="XPc-hK-Ef6"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="moQ-s1-uGz" secondAttribute="bottom" constant="69" id="coi-YX-poe"/>
+                            <constraint firstItem="hjb-Rd-4gu" firstAttribute="centerX" secondItem="moQ-s1-uGz" secondAttribute="centerX" id="okB-KA-WDe"/>
+                            <constraint firstItem="GkH-gD-zRk" firstAttribute="trailing" secondItem="moQ-s1-uGz" secondAttribute="trailing" id="pQL-nU-mKC"/>
+                            <constraint firstItem="E8F-Dm-IeL" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="qB6-DS-LiD"/>
+                            <constraint firstItem="hjb-Rd-4gu" firstAttribute="centerX" secondItem="E8F-Dm-IeL" secondAttribute="centerX" id="ry3-tX-wrq"/>
+                            <constraint firstItem="E8F-Dm-IeL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wUW-J2-imB"/>
+                            <constraint firstItem="E8F-Dm-IeL" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="x9z-G2-XgK"/>
+                            <constraint firstItem="hjb-Rd-4gu" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="zeb-NZ-OpC"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Freely Market" id="9tx-0O-iHX"/>
                 </viewController>
@@ -336,6 +352,6 @@
         <image name="summer-ray-of-sunshine-bikes-bicycles" width="3000" height="2000"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aCG-b2-n3e"/>
+        <segue reference="lPD-PT-vHI"/>
     </inferredMetricsTieBreakers>
 </document>
