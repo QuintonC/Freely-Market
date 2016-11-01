@@ -101,14 +101,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="summer-ray-of-sunshine-bikes-bicycles" translatesAutoresizingMaskIntoConstraints="NO" id="PEa-Tl-NDi">
-                                <frame key="frameInset" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="faQ-eU-czF">
-                                <frame key="frameInset" minY="597" width="375" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="summer-ray-of-sunshine-bikes-bicycles" translatesAutoresizingMaskIntoConstraints="NO" id="PEa-Tl-NDi"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="faQ-eU-czF">
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="ipe-Dg-vzX"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Register">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -117,55 +115,99 @@
                                     <action selector="registerTapped:" destination="Jic-mq-bA6" eventType="touchUpInside" id="2yY-mC-OEH"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JsB-WP-2cD">
-                                <frame key="frameInset" minX="112" minY="299" width="150" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JsB-WP-2cD">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Ass-rE-25O"/>
+                                    <constraint firstAttribute="height" constant="30" id="xjU-ZE-ajA"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qMS-Dy-q6D">
-                                <frame key="frameInset" minX="112" minY="337" width="150" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qMS-Dy-q6D">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="4HY-Kr-mmW"/>
+                                    <constraint firstAttribute="width" constant="150" id="zDY-9w-WhR"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iN5-pw-Rjj">
-                                <frame key="frameInset" minX="112" minY="375" width="150" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iN5-pw-Rjj">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="GG4-E4-sdq"/>
+                                    <constraint firstAttribute="height" constant="30" id="UsN-6r-e7e"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OMQ-SE-hiN">
-                                <frame key="frameInset" minX="112" minY="413" width="150" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OMQ-SE-hiN">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="2HA-FY-3Mw"/>
+                                    <constraint firstAttribute="width" constant="150" id="iYv-xV-Hyu"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="continue"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KQh-Kk-ICI">
-                                <frame key="frameInset" minX="112" minY="223" width="150" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KQh-Kk-ICI">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="1aq-pb-bGT"/>
+                                    <constraint firstAttribute="width" constant="150" id="m5c-id-VIe"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LTp-f4-tnt">
-                                <frame key="frameInset" minX="112" minY="261" width="150" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LTp-f4-tnt">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="DvL-wu-YNF"/>
+                                    <constraint firstAttribute="height" constant="30" id="reL-u0-k3j"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" secureTextEntry="YES"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="freelyMarketLogo" translatesAutoresizingMaskIntoConstraints="NO" id="0Ln-LV-nfy">
-                                <frame key="frameInset" minX="67" minY="72" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="freelyMarketLogo" translatesAutoresizingMaskIntoConstraints="NO" id="0Ln-LV-nfy">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="VNu-Aq-Cev"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OMQ-SE-hiN" firstAttribute="centerX" secondItem="0Ln-LV-nfy" secondAttribute="centerX" id="0Ry-Xf-TGt"/>
+                            <constraint firstItem="JsB-WP-2cD" firstAttribute="top" secondItem="LTp-f4-tnt" secondAttribute="bottom" constant="8" symbolic="YES" id="1kq-EE-V2d"/>
+                            <constraint firstItem="JsB-WP-2cD" firstAttribute="centerX" secondItem="0Ln-LV-nfy" secondAttribute="centerX" id="4wS-MP-b0F"/>
+                            <constraint firstItem="KQh-Kk-ICI" firstAttribute="top" secondItem="0Ln-LV-nfy" secondAttribute="bottom" constant="23" id="6qT-64-MuS"/>
+                            <constraint firstItem="JsB-WP-2cD" firstAttribute="leading" secondItem="jTN-Qv-0r8" secondAttribute="leadingMargin" constant="96" id="8KY-4u-HsK"/>
+                            <constraint firstItem="0Ln-LV-nfy" firstAttribute="centerX" secondItem="jTN-Qv-0r8" secondAttribute="centerX" id="CXp-XH-Dh8"/>
+                            <constraint firstItem="JsB-WP-2cD" firstAttribute="leading" secondItem="iN5-pw-Rjj" secondAttribute="leading" id="D9Z-Sy-g2t"/>
+                            <constraint firstItem="iN5-pw-Rjj" firstAttribute="top" secondItem="qMS-Dy-q6D" secondAttribute="bottom" constant="8" symbolic="YES" id="EwC-w8-UX6"/>
+                            <constraint firstItem="0Ln-LV-nfy" firstAttribute="top" secondItem="rb0-s9-O2s" secondAttribute="bottom" constant="8" symbolic="YES" id="Gmp-66-GEf"/>
+                            <constraint firstItem="faQ-eU-czF" firstAttribute="bottom" secondItem="z7Z-1x-hnI" secondAttribute="top" id="I3n-lv-MEf"/>
+                            <constraint firstItem="PEa-Tl-NDi" firstAttribute="bottom" secondItem="z7Z-1x-hnI" secondAttribute="top" id="IcL-bt-TwV"/>
+                            <constraint firstItem="KQh-Kk-ICI" firstAttribute="centerX" secondItem="0Ln-LV-nfy" secondAttribute="centerX" id="Jk2-2a-6fv"/>
+                            <constraint firstItem="OMQ-SE-hiN" firstAttribute="top" secondItem="iN5-pw-Rjj" secondAttribute="bottom" constant="8" symbolic="YES" id="JqY-2q-rlW"/>
+                            <constraint firstItem="JsB-WP-2cD" firstAttribute="leading" secondItem="LTp-f4-tnt" secondAttribute="leading" id="LT9-Kw-a5l"/>
+                            <constraint firstItem="JsB-WP-2cD" firstAttribute="leading" secondItem="KQh-Kk-ICI" secondAttribute="leading" id="OvT-ws-18Y"/>
+                            <constraint firstItem="qMS-Dy-q6D" firstAttribute="top" secondItem="JsB-WP-2cD" secondAttribute="bottom" constant="8" symbolic="YES" id="XyT-8J-5w3"/>
+                            <constraint firstItem="faQ-eU-czF" firstAttribute="trailing" secondItem="PEa-Tl-NDi" secondAttribute="trailing" id="YxY-NE-rfh"/>
+                            <constraint firstItem="LTp-f4-tnt" firstAttribute="top" secondItem="KQh-Kk-ICI" secondAttribute="bottom" constant="8" symbolic="YES" id="a5u-UY-Lxf"/>
+                            <constraint firstItem="JsB-WP-2cD" firstAttribute="trailing" secondItem="LTp-f4-tnt" secondAttribute="trailing" id="ap4-MR-cdp"/>
+                            <constraint firstItem="LTp-f4-tnt" firstAttribute="centerX" secondItem="0Ln-LV-nfy" secondAttribute="centerX" id="ctC-lW-Gov"/>
+                            <constraint firstItem="faQ-eU-czF" firstAttribute="leading" secondItem="PEa-Tl-NDi" secondAttribute="leading" id="dnW-ed-4db"/>
+                            <constraint firstItem="iN5-pw-Rjj" firstAttribute="centerX" secondItem="0Ln-LV-nfy" secondAttribute="centerX" id="fPu-48-QoU"/>
+                            <constraint firstItem="qMS-Dy-q6D" firstAttribute="centerX" secondItem="0Ln-LV-nfy" secondAttribute="centerX" id="fjI-hw-Zbl"/>
+                            <constraint firstItem="0Ln-LV-nfy" firstAttribute="leading" secondItem="jTN-Qv-0r8" secondAttribute="leadingMargin" constant="51" id="ncc-GD-aq3"/>
+                            <constraint firstItem="0Ln-LV-nfy" firstAttribute="centerX" secondItem="PEa-Tl-NDi" secondAttribute="centerX" id="rP6-Cf-pfZ"/>
+                            <constraint firstItem="PEa-Tl-NDi" firstAttribute="leading" secondItem="jTN-Qv-0r8" secondAttribute="leading" id="s2n-l0-LQ3"/>
+                            <constraint firstItem="JsB-WP-2cD" firstAttribute="leading" secondItem="OMQ-SE-hiN" secondAttribute="leading" id="s57-Yo-pqD"/>
+                            <constraint firstItem="JsB-WP-2cD" firstAttribute="leading" secondItem="qMS-Dy-q6D" secondAttribute="leading" id="wUB-ii-vLF"/>
+                            <constraint firstItem="PEa-Tl-NDi" firstAttribute="top" secondItem="jTN-Qv-0r8" secondAttribute="top" id="zLt-On-Hjm"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="email" destination="iN5-pw-Rjj" id="J6U-CR-qdX"/>
@@ -352,6 +394,6 @@
         <image name="summer-ray-of-sunshine-bikes-bicycles" width="3000" height="2000"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lPD-PT-vHI"/>
+        <segue reference="aCG-b2-n3e"/>
     </inferredMetricsTieBreakers>
 </document>
