@@ -247,7 +247,7 @@
                                 </state>
                                 <connections>
                                     <action selector="loginTapped:" destination="cP5-Bk-4dx" eventType="touchUpInside" id="wGg-bg-uaK"/>
-                                    <segue destination="Jic-mq-bA6" kind="presentation" identifier="registerRedirect" id="KbC-2t-UPb"/>
+                                    <segue destination="Xvb-ge-GZi" kind="presentation" identifier="loginSuccess" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="q1g-Kc-UtQ"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mo7-r2-nwh">
@@ -434,7 +434,6 @@
         <image name="summer-ray-of-sunshine-bikes-bicycles" width="3000" height="2000"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Rht-jy-aao"/>
-        <segue reference="KbC-2t-UPb"/>
+        <segue reference="aCG-b2-n3e"/>
     </inferredMetricsTieBreakers>
 </document>
