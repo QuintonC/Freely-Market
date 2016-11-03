@@ -10,6 +10,7 @@
 		5A2ED65D1DB8472500A75B2E /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5A2ED65B1DB8472500A75B2E /* DataModel.xcdatamodeld */; };
 		5A2ED6651DB8555200A75B2E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2ED6641DB8555200A75B2E /* LoginViewController.swift */; };
 		5A2ED6671DB8564F00A75B2E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2ED6661DB8564F00A75B2E /* RegisterViewController.swift */; };
+		5AC30E3D1DCBD1DE00C502B2 /* ForgottenPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC30E3C1DCBD1DE00C502B2 /* ForgottenPassViewController.swift */; };
 		5AD6B24B1DC95D440033E896 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AD6B24A1DC95D440033E896 /* MapKit.framework */; };
 		5AED3A761DB80B2200F3EA39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AED3A751DB80B2200F3EA39 /* AppDelegate.swift */; };
 		5AED3A781DB80B2200F3EA39 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AED3A771DB80B2200F3EA39 /* ViewController.swift */; };
@@ -41,6 +42,7 @@
 		5A2ED65C1DB8472500A75B2E /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		5A2ED6641DB8555200A75B2E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5A2ED6661DB8564F00A75B2E /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		5AC30E3C1DCBD1DE00C502B2 /* ForgottenPassViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgottenPassViewController.swift; sourceTree = "<group>"; };
 		5AD6B24A1DC95D440033E896 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		5AD6B24C1DC95D5A0033E896 /* Freely Market.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Freely Market.entitlements"; sourceTree = "<group>"; };
 		5AED3A721DB80B2200F3EA39 /* Freely Market.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Freely Market.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,12 +121,13 @@
 			children = (
 				5AD6B24C1DC95D5A0033E896 /* Freely Market.entitlements */,
 				5AED3A751DB80B2200F3EA39 /* AppDelegate.swift */,
-				5AED3A771DB80B2200F3EA39 /* ViewController.swift */,
 				5AED3A7E1DB80B2200F3EA39 /* LaunchScreen.storyboard */,
 				5AED3A791DB80B2200F3EA39 /* Main.storyboard */,
 				5AED3A7C1DB80B2200F3EA39 /* Assets.xcassets */,
 				5AED3A811DB80B2200F3EA39 /* Info.plist */,
+				5AED3A771DB80B2200F3EA39 /* ViewController.swift */,
 				5A2ED6641DB8555200A75B2E /* LoginViewController.swift */,
+				5AC30E3C1DCBD1DE00C502B2 /* ForgottenPassViewController.swift */,
 				5A2ED6661DB8564F00A75B2E /* RegisterViewController.swift */,
 			);
 			path = "Freely Market";
@@ -296,6 +299,7 @@
 			files = (
 				5A2ED6651DB8555200A75B2E /* LoginViewController.swift in Sources */,
 				5A2ED6671DB8564F00A75B2E /* RegisterViewController.swift in Sources */,
+				5AC30E3D1DCBD1DE00C502B2 /* ForgottenPassViewController.swift in Sources */,
 				5A2ED65D1DB8472500A75B2E /* DataModel.xcdatamodeld in Sources */,
 				5AED3A781DB80B2200F3EA39 /* ViewController.swift in Sources */,
 				5AED3A761DB80B2200F3EA39 /* AppDelegate.swift in Sources */,
