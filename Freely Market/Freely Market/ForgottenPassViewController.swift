@@ -58,9 +58,11 @@ class ForgottenPassViewController: UIViewController {
             alertController.addAction(OKAction)
             self.present(alertController, animated: true, completion:nil)
             
+        } else if (email.isEqual(to: emailV!) && phone.isEqual(to: phoneV!)) {
+            
+            
+            
         } else {
-            
-            
             
         }
     
