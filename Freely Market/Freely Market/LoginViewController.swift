@@ -65,13 +65,7 @@ class LoginViewController: UIViewController {
             
         } else if (username.isEqual(to: usernameV!) && password.isEqual(to: passwordV!)) {
          
-            let alertController = UIAlertController(title: "Success", message: "You have been logged in.", preferredStyle: .alert)
-            let OKAction = UIAlertAction(title: "OK", style: .default) {
-                (action:UIAlertAction) in
-                self.performSegue(withIdentifier: "loginSuccess", sender: self)
-            }
-            alertController.addAction(OKAction)
-            self.present(alertController, animated: true, completion:nil)
+            self.performSegue(withIdentifier: "loginSuccess", sender: self)
 
         } else {
             

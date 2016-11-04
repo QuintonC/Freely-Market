@@ -498,7 +498,7 @@
                                 </state>
                                 <connections>
                                     <action selector="forgotPassPressed:" destination="0b6-aO-MC0" eventType="touchUpInside" id="PdH-a6-CYF"/>
-                                    <segue destination="Jic-mq-bA6" kind="presentation" identifier="registerRedirect" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="5eH-u9-dkW"/>
+                                    <segue destination="xmx-9A-sXa" kind="presentation" identifier="resetPassSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="rYY-ws-ajw"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1pW-VH-VGh">
@@ -508,7 +508,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="continue" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="continue"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -539,6 +539,100 @@
             </objects>
             <point key="canvasLocation" x="1345" y="1040"/>
         </scene>
+        <!--Set Password-->
+        <scene sceneID="zHO-4c-pwS">
+            <objects>
+                <viewController title="Set Password" id="xmx-9A-sXa" customClass="ForgottenPassViewController" customModule="Freely_Market" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hkc-tz-cO7"/>
+                        <viewControllerLayoutGuide type="bottom" id="2tZ-ii-BIk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="i4G-AT-KGc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="summer-ray-of-sunshine-bikes-bicycles" translatesAutoresizingMaskIntoConstraints="NO" id="HFL-al-Y8M"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cfC-ut-M5V">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="G5C-Pn-FNh"/>
+                                    <constraint firstAttribute="height" constant="30" id="pzb-Iz-5xC"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" secureTextEntry="YES"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="freelyMarketLogo" translatesAutoresizingMaskIntoConstraints="NO" id="d8D-3r-aBN">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="mtj-RW-q5G"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RVr-1K-AQ6">
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="Ptr-n8-vDh"/>
+                                    <constraint firstAttribute="width" constant="375" id="aiB-8l-VKO"/>
+                                </constraints>
+                                <state key="normal" title="Save Changes">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="savePassword:" destination="xmx-9A-sXa" eventType="touchUpInside" id="dAa-0T-blT"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Re-enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AdT-VY-847">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="B3E-Uu-Q4V"/>
+                                    <constraint firstAttribute="width" constant="150" id="BNV-iu-c3W"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" secureTextEntry="YES"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCd-Hd-1Qf">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="5i8-Lr-eao"/>
+                                    <constraint firstAttribute="width" constant="240" id="E9o-f1-ImR"/>
+                                </constraints>
+                                <string key="text">Password guidelines:  Password must contain at least one letter, at least one number, and be at least 7 characters and no more than 20.</string>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HFL-al-Y8M" firstAttribute="top" secondItem="i4G-AT-KGc" secondAttribute="top" id="01z-G9-Uzn"/>
+                            <constraint firstItem="cfC-ut-M5V" firstAttribute="centerX" secondItem="i4G-AT-KGc" secondAttribute="centerX" id="4Oc-HF-3sN"/>
+                            <constraint firstItem="AdT-VY-847" firstAttribute="top" secondItem="cfC-ut-M5V" secondAttribute="bottom" constant="8" id="DDh-Zw-CSP"/>
+                            <constraint firstItem="d8D-3r-aBN" firstAttribute="centerX" secondItem="HFL-al-Y8M" secondAttribute="centerX" id="GaT-GV-de8"/>
+                            <constraint firstItem="HFL-al-Y8M" firstAttribute="bottom" secondItem="2tZ-ii-BIk" secondAttribute="top" id="Mby-1w-1gY"/>
+                            <constraint firstItem="d8D-3r-aBN" firstAttribute="top" secondItem="hkc-tz-cO7" secondAttribute="bottom" constant="52" id="Qc9-aQ-IHV"/>
+                            <constraint firstItem="RVr-1K-AQ6" firstAttribute="leading" secondItem="i4G-AT-KGc" secondAttribute="leading" id="UNK-VS-uhb"/>
+                            <constraint firstItem="2tZ-ii-BIk" firstAttribute="top" secondItem="RVr-1K-AQ6" secondAttribute="bottom" id="aTx-WT-A7P"/>
+                            <constraint firstItem="cfC-ut-M5V" firstAttribute="centerY" secondItem="i4G-AT-KGc" secondAttribute="centerY" id="eci-VL-Wto"/>
+                            <constraint firstAttribute="trailing" secondItem="RVr-1K-AQ6" secondAttribute="trailing" id="fRg-q1-Ubh"/>
+                            <constraint firstItem="CCd-Hd-1Qf" firstAttribute="centerX" secondItem="i4G-AT-KGc" secondAttribute="centerX" id="fz7-qR-VRd"/>
+                            <constraint firstItem="HFL-al-Y8M" firstAttribute="leading" secondItem="i4G-AT-KGc" secondAttribute="leading" id="gYm-Do-eJi"/>
+                            <constraint firstItem="AdT-VY-847" firstAttribute="centerX" secondItem="i4G-AT-KGc" secondAttribute="centerX" id="gyN-ys-Zn9"/>
+                            <constraint firstItem="d8D-3r-aBN" firstAttribute="leading" secondItem="i4G-AT-KGc" secondAttribute="leadingMargin" constant="51" id="pUz-kZ-ada"/>
+                            <constraint firstItem="RVr-1K-AQ6" firstAttribute="centerX" secondItem="i4G-AT-KGc" secondAttribute="centerX" id="pYc-r3-fch"/>
+                            <constraint firstItem="cfC-ut-M5V" firstAttribute="top" secondItem="CCd-Hd-1Qf" secondAttribute="bottom" constant="8" id="pvi-Wd-J2H"/>
+                            <constraint firstAttribute="trailing" secondItem="HFL-al-Y8M" secondAttribute="trailing" id="q5L-rG-WdJ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="email" destination="cfC-ut-M5V" id="SOa-2c-IDi"/>
+                        <outlet property="password" destination="cfC-ut-M5V" id="Uhi-T3-ACI"/>
+                        <outlet property="passwordVerify" destination="AdT-VY-847" id="Uk3-Fh-x3g"/>
+                        <outlet property="phone" destination="AdT-VY-847" id="iew-Zy-GqV"/>
+                        <segue destination="cP5-Bk-4dx" kind="presentation" identifier="passwordChanged" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="86f-6k-nVh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dx2-4v-hSu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="961" y="1815"/>
+        </scene>
     </scenes>
     <resources>
         <image name="freelyMarketLogo" width="1200" height="300"/>
@@ -546,7 +640,7 @@
         <image name="summer-ray-of-sunshine-bikes-bicycles" width="3000" height="2000"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Rht-jy-aao"/>
-        <segue reference="5eH-u9-dkW"/>
+        <segue reference="86f-6k-nVh"/>
+        <segue reference="sbk-0s-6BX"/>
     </inferredMetricsTieBreakers>
 </document>
