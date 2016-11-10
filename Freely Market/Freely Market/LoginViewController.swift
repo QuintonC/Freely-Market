@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -24,6 +24,17 @@ class LoginViewController: UIViewController {
         
     }
     
+    // Changes which textfield is first responder
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == username {
+            password.becomeFirstResponder()
+        } else {
+            loginTapped(self)
+        }
+        return true
+    }
+    
+    
     func dismissKeyboard() {
         view.endEditing(true)
     }
@@ -33,7 +44,7 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func loginTapped(_ sender: UIButton) {
+    @IBAction func loginTapped(_ sender: AnyObject) {
         let username:NSString = self.username.text! as NSString
         let password:NSString = self.password.text! as NSString
         let defaults = UserDefaults.standard

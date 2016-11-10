@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ForgottenPassViewController: UIViewController {
+class ForgottenPassViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var phone: UITextField!
@@ -24,6 +24,24 @@ class ForgottenPassViewController: UIViewController {
         view.addGestureRecognizer(tap)
         
     }
+    
+    
+    // Changes which textfield is first responder for forgotten password page and set password page
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == email {
+            phone.becomeFirstResponder()
+        } else if textField == phone {
+            forgotPassPressed(self)
+        } else if textField == password {
+            passwordVerify.becomeFirstResponder()
+        } else {
+            savePassword(self)
+        }
+        return true
+    }
+    
+
+    
     
     func dismissKeyboard() {
         view.endEditing(true)
