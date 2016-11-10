@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -28,6 +28,25 @@ class RegisterViewController: UIViewController {
         view.addGestureRecognizer(tap)
         
     }
+    
+    // Changes which textfield is first responder
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == username {
+            password.becomeFirstResponder()
+        } else if textField == password {
+            fname.becomeFirstResponder()
+        } else if textField == fname {
+            lname.becomeFirstResponder()
+        } else if textField == lname {
+            email.becomeFirstResponder()
+        } else if textField == email {
+            phone.becomeFirstResponder()
+        } else if textField == phone {
+            registerTapped(self)
+        }
+        return true
+    }
+    
     
     func dismissKeyboard() {
         view.endEditing(true)
@@ -69,7 +88,7 @@ class RegisterViewController: UIViewController {
     }
     
     
-    @IBAction func registerTapped(_ sender: UIButton) {
+    @IBAction func registerTapped(_ sender: AnyObject) {
         let username:NSString = self.username.text! as NSString
         let password:NSString = self.password.text! as NSString
         let fname:NSString = self.fname.text! as NSString
