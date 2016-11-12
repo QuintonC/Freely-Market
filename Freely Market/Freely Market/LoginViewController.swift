@@ -76,7 +76,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
         } else if (username.isEqual(to: usernameV!) && password.isEqual(to: passwordV!)) {
          
-            self.performSegue(withIdentifier: "loginSuccess", sender: self)
+            self.performSegue(withIdentifier: "sw_front", sender: self)
 
         } else {
             

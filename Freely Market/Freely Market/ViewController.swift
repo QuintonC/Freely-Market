@@ -16,14 +16,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var lname: UITextField!
     @IBOutlet weak var fname: UITextField!
     @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RegisterViewController.dismissKeyboard))
-        
         view.addGestureRecognizer(tap)
+        
+        if self.revealViewController() != nil {
+            menuButton.target = self.revealViewController()
+            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
     }
     
     func dismissKeyboard() {
