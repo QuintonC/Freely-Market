@@ -1862,7 +1862,7 @@ NSString * const SWSegueRightIdentifier = @"sw_right";
         operation = SWRevealControllerOperationReplaceRightController;
     
     if ( operation != SWRevealControllerOperationNone )
-        [rvc _performTransitionOperation:operation withViewController:dvc animated:NO];
+        [rvc _performTransitionOperation:operation withViewController:dvc animated:YES];
 }
 
 @end

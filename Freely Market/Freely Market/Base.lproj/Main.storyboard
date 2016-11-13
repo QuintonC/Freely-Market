@@ -26,7 +26,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="azd-2p-dei" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-818" y="124"/>
+            <point key="canvasLocation" x="-338" y="124"/>
         </scene>
         <!--homeScreen-->
         <scene sceneID="tne-QT-ifu">
@@ -102,7 +102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
+            <point key="canvasLocation" x="466" y="124"/>
         </scene>
         <!--Register-->
         <scene sceneID="onL-rV-qq6">
@@ -258,7 +258,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KY2-QK-BFL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="960.79999999999995" y="123.68815592203899"/>
+            <point key="canvasLocation" x="1311" y="280"/>
         </scene>
         <!--Log In-->
         <scene sceneID="PKh-hS-WfG">
@@ -365,8 +365,7 @@
                     <connections>
                         <outlet property="password" destination="mo7-r2-nwh" id="l3A-3y-OqF"/>
                         <outlet property="username" destination="tCA-2N-jdj" id="Bfj-cO-d8u"/>
-                        <segue destination="5ey-W9-2cX" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="Lxe-Ts-wxO"/>
-                        <segue destination="ohL-Xz-yLF" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="rLg-sz-yZ6"/>
+                        <segue destination="rMq-Xu-Nkz" kind="presentation" identifier="loginSuccess" id="JpP-wA-QQM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bil-NS-LfA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -592,7 +591,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="huc-Gi-RrA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1345" y="1040"/>
+            <point key="canvasLocation" x="1449" y="1040"/>
         </scene>
         <!--Set Password-->
         <scene sceneID="zHO-4c-pwS">
@@ -701,6 +700,7 @@ Password must contain at least one letter, at least one number, and be at least 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dx2-4v-hSu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="2222" y="281"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="OCM-uk-neX">
@@ -720,7 +720,7 @@ Password must contain at least one letter, at least one number, and be at least 
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu Item 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMa-op-BKh">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMa-op-BKh">
                                                     <rect key="frame" x="8" y="8" width="359" height="27.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -742,7 +742,7 @@ Password must contain at least one letter, at least one number, and be at least 
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu Item 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YVe-Xh-Sfv">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YVe-Xh-Sfv">
                                                     <rect key="frame" x="8" y="8" width="359" height="27.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -764,7 +764,7 @@ Password must contain at least one letter, at least one number, and be at least 
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu Item 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0j-iY-q5e">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Listings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0j-iY-q5e">
                                                     <rect key="frame" x="8" y="8" width="359" height="27.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -786,7 +786,7 @@ Password must contain at least one letter, at least one number, and be at least 
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu Item 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Trs-O3-JEb">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Trs-O3-JEb">
                                                     <rect key="frame" x="8" y="8" width="359" height="27.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -808,7 +808,7 @@ Password must contain at least one letter, at least one number, and be at least 
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu Item 5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RXE-df-dCr">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log Out" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RXE-df-dCr">
                                                     <rect key="frame" x="8" y="8" width="359" height="27.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -834,7 +834,7 @@ Password must contain at least one letter, at least one number, and be at least 
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r3c-T3-XzV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1345" y="1807"/>
+            <point key="canvasLocation" x="1449" y="2499"/>
         </scene>
         <!--loggedInPrimary-->
         <scene sceneID="wYc-2I-RM3">
@@ -851,50 +851,17 @@ Password must contain at least one letter, at least one number, and be at least 
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pexels-photo-59904" translatesAutoresizingMaskIntoConstraints="NO" id="qRo-nz-iiK">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTQ-De-57w">
-                                <rect key="frame" x="0.0" y="597" width="188" height="70"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="dcz-N3-Nyw"/>
-                                </constraints>
-                                <state key="normal" title="Log Out">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="logout:" destination="Mc9-IO-7Jl" eventType="touchUpInside" id="zzR-Cf-XYY"/>
-                                    <segue destination="cP5-Bk-4dx" kind="presentation" identifier="logoutSegue" id="vNb-EB-zeW"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pj2-ob-S3h">
-                                <rect key="frame" x="187" y="597" width="188" height="70"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="0sK-g3-xx1"/>
-                                </constraints>
-                                <state key="normal" title="Save Information">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="updateInfo:" destination="Mc9-IO-7Jl" eventType="touchUpInside" id="9Cz-a4-Hgw"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="pj2-ob-S3h" firstAttribute="leading" secondItem="mTQ-De-57w" secondAttribute="trailing" constant="-1" id="9Sv-do-fQT"/>
-                            <constraint firstItem="0De-ey-bVa" firstAttribute="top" secondItem="mTQ-De-57w" secondAttribute="bottom" id="EjS-nj-Ym3"/>
-                            <constraint firstItem="pj2-ob-S3h" firstAttribute="width" secondItem="mTQ-De-57w" secondAttribute="width" id="IK7-56-MaR"/>
-                            <constraint firstAttribute="trailing" secondItem="pj2-ob-S3h" secondAttribute="trailing" id="Mua-ty-tJZ"/>
                             <constraint firstAttribute="trailing" secondItem="qRo-nz-iiK" secondAttribute="trailing" id="frb-I6-Gjw"/>
-                            <constraint firstItem="0De-ey-bVa" firstAttribute="top" secondItem="pj2-ob-S3h" secondAttribute="bottom" id="gWo-b2-TJD"/>
                             <constraint firstItem="qRo-nz-iiK" firstAttribute="leading" secondItem="YVG-en-Cf0" secondAttribute="leading" id="joV-1F-CRk"/>
                             <constraint firstItem="0De-ey-bVa" firstAttribute="top" secondItem="qRo-nz-iiK" secondAttribute="bottom" id="pyG-IH-O3n"/>
-                            <constraint firstItem="mTQ-De-57w" firstAttribute="leading" secondItem="YVG-en-Cf0" secondAttribute="leading" id="qKo-23-jCM"/>
                             <constraint firstItem="qRo-nz-iiK" firstAttribute="top" secondItem="YVG-en-Cf0" secondAttribute="top" id="qx7-1Q-fnc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="a7e-T2-CH3">
-                        <barButtonItem key="rightBarButtonItem" image="menu" id="zef-pl-5Ch"/>
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="zef-pl-5Ch"/>
                     </navigationItem>
                     <connections>
                         <outlet property="menuButton" destination="zef-pl-5Ch" id="Bz3-PV-QOM"/>
@@ -902,7 +869,29 @@ Password must contain at least one letter, at least one number, and be at least 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zM8-yE-kWf" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="545" y="1807"/>
+            <point key="canvasLocation" x="545" y="2500"/>
+        </scene>
+        <!--Reveal View Controller-->
+        <scene sceneID="HtY-io-xNO">
+            <objects>
+                <viewController id="rMq-Xu-Nkz" customClass="SWRevealViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="m08-UA-1Pi"/>
+                        <viewControllerLayoutGuide type="bottom" id="GQD-mh-yBR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BXD-xg-O5l">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="5ey-W9-2cX" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="Ytu-rK-ivD"/>
+                        <segue destination="ohL-Xz-yLF" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="Qpe-n7-jtD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cc8-Yd-sJx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="545" y="1737"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Wrm-yc-wq0">
@@ -920,7 +909,7 @@ Password must contain at least one letter, at least one number, and be at least 
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GoK-p5-6Rj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-338" y="1807"/>
+            <point key="canvasLocation" x="-338" y="2499"/>
         </scene>
     </scenes>
     <resources>
@@ -931,7 +920,7 @@ Password must contain at least one letter, at least one number, and be at least 
         <image name="summer-ray-of-sunshine-bikes-bicycles" width="3000" height="2000"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vNb-EB-zeW"/>
+        <segue reference="lPD-PT-vHI"/>
         <segue reference="sbk-0s-6BX"/>
     </inferredMetricsTieBreakers>
 </document>
