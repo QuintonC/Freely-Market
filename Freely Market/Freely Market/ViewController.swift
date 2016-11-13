@@ -10,13 +10,14 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet weak var unameLabel: UILabel!
+    
     @IBOutlet weak var phone: UITextField!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var lname: UITextField!
     @IBOutlet weak var fname: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var menuButton: UIBarButtonItem!
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +31,26 @@ class ViewController: UIViewController, UITextFieldDelegate {
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
+        
     }
     
     func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+//    func populateFields(_: UITextField) {
+//        if defaults.string(forKey: "phone") != nil {
+//            phone.text = defaults.string(forKey: "phone")
+//        } else {
+//            phone.text = ""
+//        }
+//        
+//        if defaults.string(forKey: "fname") != nil {
+//            fname.text = defaults.string(forKey: "fname")
+//        } else {
+//            fname.text = ""
+//        }
+//    }
     
     func isValidEmail(email:String) -> Bool {
         let emailRegEx = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
@@ -111,7 +127,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
         }
         else {
-            let defaults = UserDefaults.standard
             //remove old app data
             defaults.removeObject(forKey: "password")
             defaults.removeObject(forKey: "firstName")
@@ -132,6 +147,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             let OKAction = UIAlertAction(title: "OK", style: .default) {
                 (action:UIAlertAction) in
                 print("Alert Dismissed")
+                self.performSegue(withIdentifier: "editSuccess", sender: self)
             }
             alertController.addAction(OKAction)
             self.present(alertController, animated: true, completion:nil)
