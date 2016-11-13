@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class MessageViewController: UIViewController {
+class MessageViewController: UIViewController, UITextViewDelegate, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var subjectTitle: UITextField!
@@ -16,7 +17,9 @@ class MessageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        messageBody.delegate = self
+        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RegisterViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
@@ -27,7 +30,7 @@ class MessageViewController: UIViewController {
         }
         
         self.messageBody.layer.cornerRadius = 5.0
-        messageBody.text = "Placeholder"
+        messageBody.text = "What can we help you with?"
         messageBody.textColor = UIColor.lightGray
     }
     
@@ -35,18 +38,55 @@ class MessageViewController: UIViewController {
         view.endEditing(true)
     }
     
-    func textViewDidBeginEditing(textView: UITextView) {
+    func textViewDidBeginEditing(_ textView: UITextView) {
         if messageBody.textColor == UIColor.lightGray {
             messageBody.text = nil
             messageBody.textColor = UIColor.black
         }
     }
     
-    func textViewDidEndEditing(textView: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {
         if messageBody.text.isEmpty {
-            messageBody.text = "Placeholder"
+            messageBody.text = "What can we help you with?"
             messageBody.textColor = UIColor.lightGray
         }
+    }
+
+    @IBAction func sendMessage(_ sender: Any) {
+        let mailComposeViewController = configuredMailComposeViewController()
+        if MFMailComposeViewController.canSendMail() {
+            self.present(mailComposeViewController, animated: true, completion: nil)
+        } else {
+            self.showSendMailErrorAlert()
+        }
+    }
+    
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        let subj:String = subjectTitle.text!
+        let body:String = messageBody.text
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self
+        
+        mailComposerVC.setToRecipients(["quintonchester@gmail.com"])
+        mailComposerVC.setSubject(subj)
+        mailComposerVC.setMessageBody(body, isHTML: false)
+        
+        return mailComposerVC
+    }
+    
+    func showSendMailErrorAlert() {
+        let alertController = UIAlertController(title: "Error", message: "Your email could not be sent, check your devices internet connectivity and please try again.", preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default) {
+            (action:UIAlertAction) in
+            print("Alert Dismissed")
+        }
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion:nil)
+
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

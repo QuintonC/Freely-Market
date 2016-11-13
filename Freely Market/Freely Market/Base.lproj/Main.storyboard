@@ -535,6 +535,9 @@
                                 <state key="normal" title="Send Message">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="sendMessage:" destination="xSA-yv-pg3" eventType="touchUpInside" id="viY-aN-E10"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="freelyMarketLogo" translatesAutoresizingMaskIntoConstraints="NO" id="LZ1-0Y-oQh">
                                 <rect key="frame" x="67" y="28" width="241" height="128"/>
@@ -575,7 +578,7 @@
                         <outlet property="menuButton" destination="tLb-5s-mQa" id="abM-W6-2jA"/>
                         <outlet property="messageBody" destination="25o-6t-vpD" id="DTT-dK-vfS"/>
                         <outlet property="subjectTitle" destination="4lO-NL-ckk" id="ipW-nx-7vG"/>
-                        <segue destination="5ey-W9-2cX" kind="custom" identifier="emailSuccess" customClass="SWRevealViewControllerSeguePushController" id="SfX-Z1-hJ0"/>
+                        <segue destination="5ey-W9-2cX" kind="custom" identifier="emailSuccess" customClass="SWRevealViewControllerSeguePushController" id="E9Y-g8-bxw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PFQ-LN-oVk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1090,8 +1093,8 @@ Password must contain at least one letter, at least one number, and be at least 
         <image name="summer-ray-of-sunshine-bikes-bicycles" width="3000" height="2000"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SfX-Z1-hJ0"/>
         <segue reference="cKi-KO-eLK"/>
+        <segue reference="E9Y-g8-bxw"/>
         <segue reference="sbk-0s-6BX"/>
     </inferredMetricsTieBreakers>
 </document>
