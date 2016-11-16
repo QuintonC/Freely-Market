@@ -6,6 +6,8 @@
 //  Copyright © 2016 Freely Creative. All rights reserved.
 //
 
+// messaging (user to user)
+
 import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
