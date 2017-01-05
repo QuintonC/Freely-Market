@@ -156,6 +156,31 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     }
     
+    @IBAction func deleteAccount(_ sender: UIButton) {
+        
+        let alertController = UIAlertController(title: "Are you sure?", message: "Your account will be deleted permanently.", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
+            (action:UIAlertAction) in
+            print("Delete Account Cancelled")
+        }
+        let OKAction = UIAlertAction(title: "OK", style: .default) {
+            (action:UIAlertAction) in
+            print("Account Deleted")
+            
+            //delete account data
+            self.defaults.removeObject(forKey: "username")
+            self.defaults.removeObject(forKey: "password")
+            self.defaults.removeObject(forKey: "firstName")
+            self.defaults.removeObject(forKey: "lastName")
+            self.defaults.removeObject(forKey: "phone")
+            self.defaults.removeObject(forKey: "email")
+            self.logout(self)
+        }
+        alertController.addAction(OKAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion:nil)
+    }
+    
     @IBAction func logout(_ sender: AnyObject) {
         
         let alertController = UIAlertController(title: "Success", message: "You have been logged out.", preferredStyle: .alert)
