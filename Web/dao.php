@@ -15,18 +15,18 @@
 		}
 
 		public function openConnection() {
-			$this->conn = new mysqli($this->dbhost, $this->dbuser, $this->dbpass, $this->dbname);
+			$this->connect = new mysqli($this->dbhost, $this->dbuser, $this->dbpass, $this->dbname);
 			if (mysqli_connect_errno())
 			echo new Exception("Could not establish connection with database");
 		}
 
 		public function getConnection() {
-			return $this->conn;
+			return $this->connect;
 		}
 
 		public function closeConnection() {
-			if ($this->conn != null)
-			$this->conn->close();
+			if ($this->connect != null)
+			$this->connect->close();
 		}
 
 		public function getUserDetails($username) {
@@ -59,13 +59,13 @@
 		}
 
 		public function registerUser($username, $password) {
-			$sql = "insert into users set user_email=?, user_password=?";
+			$sql = "insert into User_Accounts set username=?, password=?";
 			$statement = $this->conn->prepare($sql);
 
 			if (!$statement)
 			throw new Exception($statement->error);
 
-			$statement->bind_param("ss", $email, $password);
+			$statement->bind_param("ss", $username, $password);
 			$returnValue = $statement->execute();
 
 			return $returnValue;

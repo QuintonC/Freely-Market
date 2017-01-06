@@ -230,22 +230,80 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             self.present(alertController, animated: true, completion:nil)
             
         } else {
-            let defaults = UserDefaults.standard
+            
+
+            /* let defaults = UserDefaults.standard
             defaults.set(username, forKey: "username")
             defaults.set(password, forKey: "password")
             defaults.set(fname, forKey: "firstName")
             defaults.set(lname, forKey: "lastName")
             defaults.set(email, forKey: "email")
             defaults.set(phone, forKey: "phone")
-            print(UserDefaults.standard.dictionaryRepresentation());
+            print(UserDefaults.standard.dictionaryRepresentation()); */
             
-            let alertController = UIAlertController(title: "Success", message: "You've successfully registered for Freely Market. Press OK to go to the login screen.", preferredStyle: .alert)
+
+            // database registration here
+            let myURL = URL(string: "http://cgi.soic.indiana.edu/~team12/register.php")
+            var request = URLRequest(url:myURL!)
+            request.httpMethod = "POST"
+            
+            let postString = "username=\(username)&password=\(password)"
+            request.httpBody = postString.data(using: String.Encoding.utf8)
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {
+                (data, response, error) in
+                
+                if error != nil {
+                    print("error=\(error)")
+                    return
+                }
+            
+                var err: NSError?
+                
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+            
+                
+                    if let parseJSON = json {
+                        let resultValue = parseJSON["status"] as! String
+                        print("result: \(resultValue)")
+                        
+                        var isUserRegisterd:Bool = false
+                        if (resultValue == "Success") {
+                            isUserRegisterd = true
+                        }
+                        
+                        var messageToDisplay:String = parseJSON["message"] as! String
+                        if (!isUserRegisterd) {
+                            messageToDisplay = parseJSON["message"] as! String
+                        }
+                        
+                        DispatchQueue.main.async {
+                            let myAlert = UIAlertController(title: "Alert", message:messageToDisplay, preferredStyle: .alert)
+                            let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                (action:UIAlertAction) in
+                                self.performSegue(withIdentifier: "registerSuccess", sender: self)
+                            }
+                            myAlert.addAction(OKAction)
+                            self.present(myAlert, animated: true, completion: nil)
+                        }
+                    }
+                } catch let error as NSError {
+                    err = error
+                }
+            }
+            
+            task.resume()
+            
+            
+            
+            /* let alertController = UIAlertController(title: "Success", message: "You've successfully registered for Freely Market. Press OK to go to the login screen.", preferredStyle: .alert)
             let OKAction = UIAlertAction(title: "OK", style: .default) {
                 (action:UIAlertAction) in
                 self.performSegue(withIdentifier: "registerSuccess", sender: self)
             }
             alertController.addAction(OKAction)
-            self.present(alertController, animated: true, completion:nil)
+            self.present(alertController, animated: true, completion:nil) */
         }
         
     }
