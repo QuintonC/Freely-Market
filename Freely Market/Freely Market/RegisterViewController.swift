@@ -243,11 +243,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             
 
             // database registration here
-            let myURL = URL(string: "http://cgi.soic.indiana.edu/~team12/register.php")
+            let myURL = URL(string: "http://cgi.soic.indiana.edu/~team12/fm_create_account.php")
             var request = URLRequest(url:myURL!)
             request.httpMethod = "POST"
             
-            let postString = "username=\(username)&password=\(password)"
+            let postString = "username=\(username)&password=\(password)&first_name=\(fname)&last_name=\(lname)&email=\(email)&phone=\(phone)"
             request.httpBody = postString.data(using: String.Encoding.utf8)
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {
