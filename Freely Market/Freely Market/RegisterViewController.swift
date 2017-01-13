@@ -243,18 +243,19 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             
 
             // database registration here
-            let myURL = URL(string: "http://cgi.soic.indiana.edu/~team12/fm_create_account.php")
+            let myURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/createUser.php")
             var request = URLRequest(url:myURL!)
             request.httpMethod = "POST"
             
-            let postString = "username=\(username)&password=\(password)&first_name=\(fname)&last_name=\(lname)&email=\(email)&phone=\(phone)"
+            let postString = "username=\(username)&password=\(password)&fname=\(fname)&lname=\(lname)&email=\(email)&phone=\(phone)"
+            
             request.httpBody = postString.data(using: String.Encoding.utf8)
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {
                 (data, response, error) in
                 
                 if error != nil {
-                    print("error=\(error)")
+                    print("error is \(error)")
                     return
                 }
             
@@ -265,18 +266,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             
                 
                     if let parseJSON = json {
-                        let resultValue = parseJSON["status"] as! String
-                        print("result: \(resultValue)")
                         
-                        var isUserRegisterd:Bool = false
-                        if (resultValue == "Success") {
-                            isUserRegisterd = true
-                        }
-                        
-                        var messageToDisplay:String = parseJSON["message"] as! String
-                        if (!isUserRegisterd) {
-                            messageToDisplay = parseJSON["message"] as! String
-                        }
+                        let messageToDisplay:String = parseJSON["message"] as! String
                         
                         DispatchQueue.main.async {
                             let myAlert = UIAlertController(title: "Alert", message:messageToDisplay, preferredStyle: .alert)
@@ -289,7 +280,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                         }
                     }
                 } catch let error as NSError {
-                    err = error
+                    print(err = error)
                 }
             }
             
