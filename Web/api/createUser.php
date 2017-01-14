@@ -13,27 +13,29 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
     $email = $_POST['email'];
     $phone = $_POST['phone'];
 
+    $encpw = md5($password);
 
     //including the db operation file
     require_once '../includes/DbOperation.php';
 
     $db = new DbOperation();
 
-    //inserting values 
-
-    $result = $db->createUser($username, $password, $first_name, $last_name, $email, $phone);
-    if (!$result) {
+    //Insert user into database after confirming if user exists or not
+    $userCheck = $db->checkAvail($username);
+    if ($userCheck == true) {
         $response['error']=true;
-        
-        $response['password']=$password;
-        $response['message']='Could not create user';
-        
+        $response['message']='User already exists';
     } else {
-        $response['error']=false;
-        $response['message']='User created successfully';
+        $result = $db->createUser($username, $encpw, $first_name, $last_name, $email, $phone);
+        if (!$result) {
+            $response['error']=true;
+            $response['message']='Could not create user';
+        } else {
+            $response['error']=false;
+            $response['message']='User created successfully';
+        }
     }
-
-}else{
+} else {
     $response['error']=true;
     $response['message']='You are not authorized';
 }

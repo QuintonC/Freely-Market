@@ -14,7 +14,9 @@ $last_name = $_POST['lname'];
 $email = $_POST['email'];
 $phone = $_POST['phone'];
 
-$stmt = "INSERT INTO User_Accounts(username, password, first_name, last_name, email, phone) VALUES ($username, $password, $first_name, $last_name, $email, $phone)";
+$encpw = md5($password);
+
+$stmt = "INSERT INTO User_Accounts(username, password, first_name, last_name, email, phone) VALUES ($username, $encpw, $first_name, $last_name, $email, $phone)";
 
 
 if (mysqli_query($link, $stmt)) {
