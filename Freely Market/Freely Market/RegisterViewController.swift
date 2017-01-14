@@ -231,17 +231,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             
         } else {
             
-
-            /* let defaults = UserDefaults.standard
-            defaults.set(username, forKey: "username")
-            defaults.set(password, forKey: "password")
-            defaults.set(fname, forKey: "firstName")
-            defaults.set(lname, forKey: "lastName")
-            defaults.set(email, forKey: "email")
-            defaults.set(phone, forKey: "phone")
-            print(UserDefaults.standard.dictionaryRepresentation()); */
-            
-
             // database registration here
             let myURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/createUser.php")
             var request = URLRequest(url:myURL!)
@@ -283,18 +272,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                     print(err = error)
                 }
             }
-            
             task.resume()
-            
-            
-            
-            /* let alertController = UIAlertController(title: "Success", message: "You've successfully registered for Freely Market. Press OK to go to the login screen.", preferredStyle: .alert)
-            let OKAction = UIAlertAction(title: "OK", style: .default) {
-                (action:UIAlertAction) in
-                self.performSegue(withIdentifier: "registerSuccess", sender: self)
-            }
-            alertController.addAction(OKAction)
-            self.present(alertController, animated: true, completion:nil) */
         }
         
     }
