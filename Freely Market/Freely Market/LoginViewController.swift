@@ -91,15 +91,33 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     if let parseJSON = json {
                         
                         let messageToDisplay:String = parseJSON["message"] as! String
+                        let myAlert = UIAlertController(title: "Alert", message:messageToDisplay, preferredStyle: .alert)
                         
-                        DispatchQueue.main.async {
-                            let myAlert = UIAlertController(title: "Alert", message:messageToDisplay, preferredStyle: .alert)
-                            let OKAction = UIAlertAction(title: "OK", style: .default) {
-                                (action:UIAlertAction) in
-                                self.performSegue(withIdentifier: "loginSuccess", sender: self)
+                        if messageToDisplay == "Incorrect password or username combination." {
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
                             }
-                            myAlert.addAction(OKAction)
-                            self.present(myAlert, animated: true, completion: nil)
+                        } else if messageToDisplay == "Success, you are being logged in." {
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                    self.performSegue(withIdentifier: "loginSuccess", sender: self)
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                        } else { //user is not authorized
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
                         }
                     }
                 } catch let error as NSError {

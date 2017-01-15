@@ -257,15 +257,33 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                     if let parseJSON = json {
                         
                         let messageToDisplay:String = parseJSON["message"] as! String
+                        let myAlert = UIAlertController(title: "Alert", message:messageToDisplay, preferredStyle: .alert)
                         
-                        DispatchQueue.main.async {
-                            let myAlert = UIAlertController(title: "Alert", message:messageToDisplay, preferredStyle: .alert)
-                            let OKAction = UIAlertAction(title: "OK", style: .default) {
-                                (action:UIAlertAction) in
-                                self.performSegue(withIdentifier: "registerSuccess", sender: self)
+                        if messageToDisplay == "User already exists" {
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
                             }
-                            myAlert.addAction(OKAction)
-                            self.present(myAlert, animated: true, completion: nil)
+                        } else if messageToDisplay == "User created successfully" {
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                    self.performSegue(withIdentifier: "registerSuccess", sender: self)
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                        } else { //User has successfully registered
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
                         }
                     }
                 } catch let error as NSError {
