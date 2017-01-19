@@ -12,6 +12,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var password2: UITextField!
     @IBOutlet weak var fname: UITextField!
     @IBOutlet weak var lname: UITextField!
     @IBOutlet weak var email: UITextField!
@@ -24,6 +25,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
         self.username.delegate = self
         self.password.delegate = self
+        self.password2.delegate = self
         self.fname.delegate = self
         self.lname.delegate = self
         self.email.delegate = self
@@ -97,6 +99,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         if textField == username {
             password.becomeFirstResponder()
         } else if textField == password {
+            password2.becomeFirstResponder()
+        } else if textField == password2 {
             fname.becomeFirstResponder()
         } else if textField == fname {
             lname.becomeFirstResponder()
@@ -138,6 +142,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         return passwordTest.evaluate(with: password)
     }
     
+    func matchingPasswords(password:String, password2:String) -> Bool {
+        return password == password2
+    }
+    
     func isValidPhone(phone:String) -> Bool {
         let phoneRegex = "^[2-9]\\d{2}-\\d{3}-\\d{4}$"
         let phoneTest = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
@@ -154,6 +162,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     @IBAction func registerTapped(_ sender: AnyObject) {
         let username:NSString = self.username.text! as NSString
         let password:NSString = self.password.text! as NSString
+        let password2:NSString = self.password2.text! as NSString
         let fname:NSString = self.fname.text! as NSString
         let lname:NSString = self.lname.text! as NSString
         let email:NSString = self.email.text! as NSString
@@ -202,6 +211,16 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         } else if (isValidPassword(password: password as String) == false) {
             
             let alertController = UIAlertController(title: "Oops!", message: "It appears that you've entered an incorrect password. Password must contain at least one letter, at least one number, and be at least 7 characters and no more than 20.", preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "OK", style: .default) {
+                (action:UIAlertAction) in
+                print("Alert dismissed")
+            }
+            alertController.addAction(OKAction)
+            self.present(alertController, animated: true, completion:nil)
+            
+        } else if (matchingPasswords(password: password as String, password2: password2 as String) == false) {
+            
+            let alertController = UIAlertController(title: "Oops!", message: "It appears that your passwords do not match. Please try again.", preferredStyle: .alert)
             let OKAction = UIAlertAction(title: "OK", style: .default) {
                 (action:UIAlertAction) in
                 print("Alert dismissed")

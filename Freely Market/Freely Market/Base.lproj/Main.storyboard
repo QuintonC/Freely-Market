@@ -128,7 +128,7 @@
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xYu-xP-kIE">
-                                <rect key="frame" x="113" y="383" width="150" height="30"/>
+                                <rect key="frame" x="113" y="421" width="150" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="W6T-gS-8uU"/>
                                     <constraint firstAttribute="width" constant="150" id="Wge-oU-yaQ"/>
@@ -180,8 +180,18 @@
                                     <outlet property="delegate" destination="Jic-mq-bA6" id="LnA-mB-cGC"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q76-bh-bBl">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Re-type Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EJg-gJ-e1Y">
                                 <rect key="frame" x="113" y="307" width="150" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="wAT-HD-sxc"/>
+                                    <constraint firstAttribute="height" constant="30" id="zIB-xS-Ynw"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q76-bh-bBl">
+                                <rect key="frame" x="113" y="345" width="150" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="B8v-jV-NZM"/>
                                     <constraint firstAttribute="width" constant="150" id="YkC-ko-zmx"/>
@@ -194,7 +204,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xyj-YG-p01">
-                                <rect key="frame" x="113" y="345" width="150" height="30"/>
+                                <rect key="frame" x="113" y="383" width="150" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="R4f-Jl-b5a"/>
                                     <constraint firstAttribute="width" constant="150" id="eue-4k-tQf"/>
@@ -207,7 +217,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A6w-du-TcW">
-                                <rect key="frame" x="112" y="421" width="150" height="30"/>
+                                <rect key="frame" x="112" y="459" width="150" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="7mY-Kb-h6X"/>
                                     <constraint firstAttribute="width" constant="150" id="EQu-1r-wCW"/>
@@ -226,16 +236,18 @@
                             <constraint firstItem="A6w-du-TcW" firstAttribute="top" secondItem="xYu-xP-kIE" secondAttribute="bottom" constant="8" id="AIW-Dh-zeD"/>
                             <constraint firstItem="ta4-vB-cvQ" firstAttribute="centerX" secondItem="jTN-Qv-0r8" secondAttribute="centerX" id="Bql-ra-uij"/>
                             <constraint firstItem="Q76-bh-bBl" firstAttribute="centerX" secondItem="jTN-Qv-0r8" secondAttribute="centerX" id="KdD-bF-zma"/>
+                            <constraint firstItem="EJg-gJ-e1Y" firstAttribute="top" secondItem="5fe-qZ-a3G" secondAttribute="bottom" constant="8" id="SWK-J7-ed1"/>
                             <constraint firstItem="Fbf-r1-fE2" firstAttribute="top" secondItem="ta4-vB-cvQ" secondAttribute="bottom" constant="31" id="URE-b2-It4"/>
                             <constraint firstItem="xYu-xP-kIE" firstAttribute="centerX" secondItem="jTN-Qv-0r8" secondAttribute="centerX" id="Vog-Ww-8UO"/>
+                            <constraint firstItem="Q76-bh-bBl" firstAttribute="top" secondItem="EJg-gJ-e1Y" secondAttribute="bottom" constant="8" id="WSC-Eh-5CI"/>
                             <constraint firstItem="xYu-xP-kIE" firstAttribute="top" secondItem="xyj-YG-p01" secondAttribute="bottom" constant="8" id="XZI-Dq-BLO"/>
                             <constraint firstItem="5fe-qZ-a3G" firstAttribute="centerX" secondItem="jTN-Qv-0r8" secondAttribute="centerX" id="azG-bh-5V6"/>
                             <constraint firstItem="ta4-vB-cvQ" firstAttribute="top" secondItem="rb0-s9-O2s" secondAttribute="bottom" constant="52" id="bqH-nv-Zw4"/>
                             <constraint firstItem="5fe-qZ-a3G" firstAttribute="top" secondItem="Fbf-r1-fE2" secondAttribute="bottom" constant="8" id="cB9-xP-hf7"/>
                             <constraint firstItem="z7Z-1x-hnI" firstAttribute="top" secondItem="F7Q-Mm-BDw" secondAttribute="bottom" id="fN9-2n-xsy"/>
                             <constraint firstItem="Fbf-r1-fE2" firstAttribute="centerX" secondItem="jTN-Qv-0r8" secondAttribute="centerX" id="fxo-bg-zRh"/>
+                            <constraint firstItem="EJg-gJ-e1Y" firstAttribute="centerX" secondItem="jTN-Qv-0r8" secondAttribute="centerX" id="ig5-WC-9UA"/>
                             <constraint firstItem="xyj-YG-p01" firstAttribute="centerX" secondItem="jTN-Qv-0r8" secondAttribute="centerX" id="pbe-Hm-mw8"/>
-                            <constraint firstItem="Q76-bh-bBl" firstAttribute="top" secondItem="5fe-qZ-a3G" secondAttribute="bottom" constant="8" id="q5L-br-F5h"/>
                             <constraint firstItem="F7Q-Mm-BDw" firstAttribute="centerX" secondItem="jTN-Qv-0r8" secondAttribute="centerX" id="yIO-63-9Ca"/>
                             <constraint firstItem="A6w-du-TcW" firstAttribute="centerX" secondItem="jTN-Qv-0r8" secondAttribute="centerX" id="znY-Kh-1PB"/>
                         </constraints>
@@ -245,6 +257,7 @@
                         <outlet property="fname" destination="Q76-bh-bBl" id="jxi-DC-YYC"/>
                         <outlet property="lname" destination="xyj-YG-p01" id="Fdz-0J-N08"/>
                         <outlet property="password" destination="5fe-qZ-a3G" id="skJ-QT-Bzo"/>
+                        <outlet property="password2" destination="EJg-gJ-e1Y" id="h88-sL-Ud9"/>
                         <outlet property="phone" destination="A6w-du-TcW" id="kob-MZ-Q1i"/>
                         <outlet property="username" destination="Fbf-r1-fE2" id="rW0-8l-7HD"/>
                         <segue destination="cP5-Bk-4dx" kind="presentation" identifier="registerSuccess" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="aCG-b2-n3e"/>

@@ -110,6 +110,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                 myAlert.addAction(OKAction)
                                 self.present(myAlert, animated: true, completion: nil)
                             }
+                            
                         } else { //user is not authorized
                             DispatchQueue.main.async {
                                 let OKAction = UIAlertAction(title: "OK", style: .default) {

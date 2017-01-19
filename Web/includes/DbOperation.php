@@ -51,17 +51,17 @@ class DbOperation {
     }
 
     //Function for checking login credentials
-    public function checkCredentials($username, $password) {
-        $stmt = $this->conn->prepare("SELECT username, password FROM User_Accounts WHERE username='$username' AND password='$password'");
+    public function checkCredentials($username, $authpass) {
+        $stmt = $this->conn->prepare("SELECT username, password FROM User_Accounts WHERE username='$username'");
         $stmt->bind_param("ss", $username, $password);
         
         if ($stmt->execute()) {
             $stmt->store_result();
             $credCheck = false;
-            $stmt->bind_result($credCheck);
+            $stmt->bind_result($username, $password);
             $stmt->fetch();
 
-            if ($stmt->num_rows == 1) {
+            if (password_verify($authpass, $password)) {
                 return true;
                 exit;
             } else {
@@ -71,6 +71,21 @@ class DbOperation {
         }
         $stmt->close();
     }
+
+    /* public function getUserID() {
+
+    } */
+
+    /*public function editUserInfo($password, $first_name, $last_name, $email, $phone) {
+        $stmt = $this->conn->prepare("UPDATE User_Accounts SET password=$password, first_name=$first_name, last_name=$last_name, email=$email, phone=$phone WHERE username=$username ");
+        $stmt->bind_param("sssss", $password, $first_name, $last_name, $email, $phone);
+        
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }       
+    } */
 }
 
 ?>

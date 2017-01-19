@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
     $email = $_POST['email'];
     $phone = $_POST['phone'];
 
-    $encpw = md5($password);
+    $encpw = password_hash($password, PASSWORD_BCRYPT);
 
     //including the db operation file
     require_once '../includes/DbOperation.php';
