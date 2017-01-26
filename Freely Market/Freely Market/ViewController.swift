@@ -125,35 +125,94 @@ class ViewController: UIViewController, UITextFieldDelegate {
             alertController.addAction(OKAction)
             self.present(alertController, animated: true, completion:nil)
             
-        }
-        else {
-            //remove old app data
-            defaults.removeObject(forKey: "password")
-            defaults.removeObject(forKey: "firstName")
-            defaults.removeObject(forKey: "lastName")
-            defaults.removeObject(forKey: "email")
-            defaults.removeObject(forKey: "phone")
+        } else {
             
-            // Set New Data
-            defaults.set(password, forKey: "password")
-            defaults.set(fname, forKey: "firstName")
-            defaults.set(lname, forKey: "lastName")
-            defaults.set(email, forKey: "email")
-            defaults.set(phone, forKey: "phone")
-            defaults.synchronize()
-            print(UserDefaults.standard.dictionaryRepresentation())
+            // edit user information here
+            let myURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/editCreds.php")
+            var request = URLRequest(url:myURL!)
+            request.httpMethod = "POST"
             
-            let alertController = UIAlertController(title: "Success", message: "You've successfully edited your information for Freely Market.", preferredStyle: .alert)
-            let OKAction = UIAlertAction(title: "OK", style: .default) {
-                (action:UIAlertAction) in
-                print("Alert Dismissed")
-                self.performSegue(withIdentifier: "editSuccess", sender: self)
+            let postString = "password=\(password)&first_name=\(fname)&last_name=\(lname)&email=\(email)&phone=\(phone)"
+            
+            request.httpBody = postString.data(using: String.Encoding.utf8)
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {
+                (data, response, error) in
+                
+                if error != nil {
+                    print("error is \(error)")
+                    return
+                }
+                
+                var err: NSError?
+                
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                    
+                    
+                    if let parseJSON = json {
+                        
+                        let messageToDisplay:String = parseJSON["message"] as! String
+                        let myAlert = UIAlertController(title: "Alert", message:messageToDisplay, preferredStyle: .alert)
+                        
+                        if messageToDisplay == "Could not edit information." {
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                        } else if messageToDisplay == "Information has been edited successfully." {
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                        } else { //User has successfully registered
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                        }
+                    }
+                } catch let error as NSError {
+                    print(err = error)
+                }
             }
-            alertController.addAction(OKAction)
-            self.present(alertController, animated: true, completion:nil)
+            task.resume()
         }
-        
     
+    }
+    
+    @IBAction func deleteAccount(_ sender: UIButton) {
+        
+        let alertController = UIAlertController(title: "Are you sure?", message: "Your account will be deleted permanently.", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
+            (action:UIAlertAction) in
+            print("Delete Account Cancelled")
+        }
+        let OKAction = UIAlertAction(title: "OK", style: .default) {
+            (action:UIAlertAction) in
+            print("Account Deleted")
+            
+            //delete account data
+            self.defaults.removeObject(forKey: "username")
+            self.defaults.removeObject(forKey: "password")
+            self.defaults.removeObject(forKey: "firstName")
+            self.defaults.removeObject(forKey: "lastName")
+            self.defaults.removeObject(forKey: "phone")
+            self.defaults.removeObject(forKey: "email")
+            self.logout(self)
+        }
+        alertController.addAction(OKAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion:nil)
     }
     
     @IBAction func logout(_ sender: AnyObject) {

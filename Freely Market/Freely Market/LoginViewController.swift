@@ -47,24 +47,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func loginTapped(_ sender: AnyObject) {
         let username:NSString = self.username.text! as NSString
         let password:NSString = self.password.text! as NSString
-        let defaults = UserDefaults.standard
-        let usernameV = defaults.string(forKey: "username")
-        let passwordV = defaults.string(forKey: "password")
         
         // Authentication
         
         
-        if usernameV == nil || passwordV == nil {
-            
-            let alertController = UIAlertController(title: "Oops!", message: "It appears you have not registered, please register first and then proceed to logging in.", preferredStyle: .alert)
-            let OKAction = UIAlertAction(title: "OK", style: .default) {
-                (action:UIAlertAction) in
-                self.performSegue(withIdentifier: "registerRedirect", sender: self)
-            }
-            alertController.addAction(OKAction)
-            self.present(alertController, animated: true, completion:nil)
-            
-        } else if (username.isEqual(to: "") || password.isEqual(to: "")) {
+        if (username.isEqual(to: "") || password.isEqual(to: "")) {
             
             let alertController = UIAlertController(title: "Oops!", message: "Please be sure to enter login information before attempting to login.", preferredStyle: .alert)
             let OKAction = UIAlertAction(title: "OK", style: .default) {
@@ -74,19 +61,72 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             alertController.addAction(OKAction)
             self.present(alertController, animated: true, completion:nil)
             
-        } else if (username.isEqual(to: usernameV!) && password.isEqual(to: passwordV!)) {
-         
-            self.performSegue(withIdentifier: "loginSuccess", sender: self)
-
         } else {
+         
+            //self.performSegue(withIdentifier: "loginSuccess", sender: self)
             
-            let alertController = UIAlertController(title: "Oops!", message: "Password and Username pair not found.", preferredStyle: .alert)
-            let OKAction = UIAlertAction(title: "OK", style: .default) {
-                (action:UIAlertAction) in
-                print("Alert Dismissed")
+            // database registration here
+            let myURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/login.php")
+            var request = URLRequest(url:myURL!)
+            request.httpMethod = "POST"
+            
+            let postString = "username=\(username)&password=\(password)"
+            
+            request.httpBody = postString.data(using: String.Encoding.utf8)
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {
+                (data, response, error) in
+                
+                if error != nil {
+                    print("error is \(error)")
+                    return
+                }
+                
+                var err: NSError?
+                
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                    
+                    
+                    if let parseJSON = json {
+                        
+                        let messageToDisplay:String = parseJSON["message"] as! String
+                        let myAlert = UIAlertController(title: "Alert", message:messageToDisplay, preferredStyle: .alert)
+                        
+                        if messageToDisplay == "Incorrect password or username combination." {
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                        } else if messageToDisplay == "Success, you are being logged in." {
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                    self.performSegue(withIdentifier: "loginSuccess", sender: self)
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                            
+                        } else { //user is not authorized
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                        }
+                    }
+                } catch let error as NSError {
+                    print(err = error)
+                }
             }
-            alertController.addAction(OKAction)
-            self.present(alertController, animated: true, completion:nil)
+            task.resume()
+            
         }
     }
 
