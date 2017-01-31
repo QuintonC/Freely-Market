@@ -12,14 +12,24 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var password2: UITextField!
     @IBOutlet weak var fname: UITextField!
     @IBOutlet weak var lname: UITextField!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var phone: UITextField!
-    
+    @IBOutlet weak var scrollView: UIScrollView!
+    var activeField: UITextField?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.username.delegate = self
+        self.password.delegate = self
+        self.password2.delegate = self
+        self.fname.delegate = self
+        self.lname.delegate = self
+        self.email.delegate = self
+        self.phone.delegate = self
         
         // Do any additional setup after loading the view.
         
@@ -29,11 +39,68 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    // EDIT THE LINES BELOW THIS FOR SCROLLVIEW / CHANGING VIEW
+    
+    func registerForKeyboardNotifications(){
+        //Adding notifies on keyboard appearing
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func deregisterFromKeyboardNotifications(){
+        //Removing notifies on keyboard appearing
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func keyboardWasShown(notification: NSNotification){
+        //Need to calculate keyboard exact size due to Apple suggestions
+        self.scrollView.isScrollEnabled = true
+        var info = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height, 0.0)
+        
+        self.scrollView.contentInset = contentInsets
+        self.scrollView.scrollIndicatorInsets = contentInsets
+        
+        var aRect : CGRect = self.view.frame
+        aRect.size.height -= keyboardSize!.height
+        if let activeField = self.activeField {
+            if (!aRect.contains(activeField.frame.origin)){
+                self.scrollView.scrollRectToVisible(activeField.frame, animated: true)
+            }
+        }
+    }
+    
+    func keyboardWillBeHidden(notification: NSNotification){
+        //Once keyboard disappears, restore original positions
+        var info = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, -keyboardSize!.height, 0.0)
+        self.scrollView.contentInset = contentInsets
+        self.scrollView.scrollIndicatorInsets = contentInsets
+        self.view.endEditing(true)
+        self.scrollView.isScrollEnabled = false
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField){
+        activeField = textField
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField){
+        activeField = nil
+    }
+    
+    // EDIT THE LINES ABOVE THIS
+    
+    
     // Changes which textfield is first responder
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == username {
             password.becomeFirstResponder()
         } else if textField == password {
+            password2.becomeFirstResponder()
+        } else if textField == password2 {
             fname.becomeFirstResponder()
         } else if textField == fname {
             lname.becomeFirstResponder()
@@ -75,6 +142,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         return passwordTest.evaluate(with: password)
     }
     
+    func matchingPasswords(password:String, password2:String) -> Bool {
+        return password == password2
+    }
+    
     func isValidPhone(phone:String) -> Bool {
         let phoneRegex = "^[2-9]\\d{2}-\\d{3}-\\d{4}$"
         let phoneTest = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
@@ -91,6 +162,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     @IBAction func registerTapped(_ sender: AnyObject) {
         let username:NSString = self.username.text! as NSString
         let password:NSString = self.password.text! as NSString
+        let password2:NSString = self.password2.text! as NSString
         let fname:NSString = self.fname.text! as NSString
         let lname:NSString = self.lname.text! as NSString
         let email:NSString = self.email.text! as NSString
@@ -146,6 +218,16 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             alertController.addAction(OKAction)
             self.present(alertController, animated: true, completion:nil)
             
+        } else if (matchingPasswords(password: password as String, password2: password2 as String) == false) {
+            
+            let alertController = UIAlertController(title: "Oops!", message: "It appears that your passwords do not match. Please try again.", preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "OK", style: .default) {
+                (action:UIAlertAction) in
+                print("Alert dismissed")
+            }
+            alertController.addAction(OKAction)
+            self.present(alertController, animated: true, completion:nil)
+            
         } else if (isValidPhone(phone: phone as String) == false) {
             
             let alertController = UIAlertController(title: "Oops!", message: "It appears that you've entered an incorrect phone number. Phone number should be structure as: xxx-xxx-xxxx", preferredStyle: .alert)
@@ -167,22 +249,67 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             self.present(alertController, animated: true, completion:nil)
             
         } else {
-            let defaults = UserDefaults.standard
-            defaults.set(username, forKey: "username")
-            defaults.set(password, forKey: "password")
-            defaults.set(fname, forKey: "firstName")
-            defaults.set(lname, forKey: "lastName")
-            defaults.set(email, forKey: "email")
-            defaults.set(phone, forKey: "phone")
-            print(UserDefaults.standard.dictionaryRepresentation());
             
-            let alertController = UIAlertController(title: "Success", message: "You've successfully registered for Freely Market. Press OK to go to the login screen.", preferredStyle: .alert)
-            let OKAction = UIAlertAction(title: "OK", style: .default) {
-                (action:UIAlertAction) in
-                self.performSegue(withIdentifier: "registerSuccess", sender: self)
+            // database registration here
+            let myURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/createUser.php")
+            var request = URLRequest(url:myURL!)
+            request.httpMethod = "POST"
+            
+            let postString = "username=\(username)&password=\(password)&fname=\(fname)&lname=\(lname)&email=\(email)&phone=\(phone)"
+            
+            request.httpBody = postString.data(using: String.Encoding.utf8)
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {
+                (data, response, error) in
+                
+                if error != nil {
+                    print("error is \(error)")
+                    return
+                }
+            
+                var err: NSError?
+                
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+            
+                
+                    if let parseJSON = json {
+                        
+                        let messageToDisplay:String = parseJSON["message"] as! String
+                        let myAlert = UIAlertController(title: "Alert", message:messageToDisplay, preferredStyle: .alert)
+                        
+                        if messageToDisplay == "User already exists" {
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                        } else if messageToDisplay == "User created successfully" {
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                    self.performSegue(withIdentifier: "registerSuccess", sender: self)
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                        } else { //User has successfully registered
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                        }
+                    }
+                } catch let error as NSError {
+                    print(err = error)
+                }
             }
-            alertController.addAction(OKAction)
-            self.present(alertController, animated: true, completion:nil)
+            task.resume()
         }
         
     }
