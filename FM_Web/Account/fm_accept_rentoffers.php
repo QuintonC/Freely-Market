@@ -30,18 +30,25 @@ $set = mysqli_fetch_array($content);
 $cid = $set['cid'];
 $aid = $set['aid'];
 
-#Delete listing from pending table
-$sql1 = "delete from Pending_Rental where rid = '$rid'";
-$conn->query($sql1);
-
-#Insert into trsnactions table to finalize
+#Insert into tranactions table to finalize
 $sql2 = "insert into R_Transactions (renter, seller, rid, cid, aid) values ('$renter','$seller','$rid','$cid','$aid')";
+$conn->query($sql2);
 
-if ($conn->query($sql2) === TRUE) {
+$accept = "rentoffer_accept";
+$date = date("Y-m-d H:i:s");
+
+#Create Notification
+$sql3 = "INSERT INTO Notifications(recipient,sender,types,created,prid) VALUES('$renter','$seller','$accept','$date','$prid')";
+$conn->query($sql3);
+
+#Delete listing from pending table
+$sql4 = "delete from Pending_Rental where rid = '$rid'";
+
+if ($conn->query($sql4) === TRUE) {
 	header("Location: fm_account.php");
 	exit;
 } else {
-	echo "Error: " . $sql . "<br>" . $conn->error;
+	echo "Error: " . $sql4 . "<br>" . $conn->error;
 }
 
 

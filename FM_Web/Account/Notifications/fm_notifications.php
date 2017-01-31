@@ -242,8 +242,12 @@ top: 650px;
 		<td><?php echo $row['sender']; ?></td>
 		<td><?php echo $row['types']; ?></td>
 		<td><?php echo $row['created']; ?></td>
-		<td><a href = "fm_view_notif.php?id=<?php echo $row['msgid'];?>"><?php echo $row['msgid'];?></a></td>
-		<td><a href = "fm_delete_notif.php?id=<?php echo $row['msgid'];?>"><?php echo $row['msgid'];?></a></td>
+		<td><a href = "fm_view_msg_notif.php?id=<?php echo $row['msgid'];?>"><?php echo $row['msgid'];?></a></td>
+		<td><a href = "fm_delete_msg_notif.php?id=<?php echo $row['msgid'];?>"><?php echo $row['msgid'];?></a></td>
+		<td><a href = "fm_view_sale_notif.php?id=<?php echo $row['psid'];?>"><?php echo $row['psid'];?></a></td>
+		<td><a href = "fm_delete_sale_notif.php?id=<?php echo $row['psid'];?>"><?php echo $row['psid'];?></a></td>
+		<td><a href = "fm_view_rent_notif.php?id=<?php echo $row['prid'];?>"><?php echo $row['prid'];?></a></td>
+		<td><a href = "fm_delete_rent_notif.php?id=<?php echo $row['prid'];?>"><?php echo $row['prid'];?></a></td>
 	</tr>
 <?php } ?>
 </table>
