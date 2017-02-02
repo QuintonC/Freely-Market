@@ -186,10 +186,10 @@ top: 650px;
 
 <form name = "myForm" action="fm_post_rental.php" method="post" onsubmit = "return blank()">
 	<input type="hidden" value="add" name="choice">
-	<p>Item Name: <input type="text" id = "item" name ="item" maxlength = "15"></p>
-	<p>Price: <input type="text" id = "price" name ="price"></p>
+	<p>Item Name: <input type="text" id = "item" name ="item" maxlength = "15" pattern = '[a-zA-Z0-9]+'></p>
+	<p>Price: $ <input type="text" id = "price" name ="price" pattern = '\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2})'></p>
 	<p>Duration: <input type="text" id = "dur" name ="dur" maxlength = "15"></p>
-	<p>Description: <input type="text" id = "descr" name="descr" maxlength = "30"></p>
+	<p>Description: <input type="text" id = "descr" name="descr" maxlength = "30" pattern = '[a-zA-Z0-9]+'></p>
 	<input type="file" id = "picture" name="picture" accept="image/gif, image/jpeg, image/png">
 	<br />
 	<br />

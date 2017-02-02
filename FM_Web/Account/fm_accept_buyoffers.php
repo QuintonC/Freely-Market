@@ -30,40 +30,26 @@ $set = mysqli_fetch_array($content);
 $cid = $set['cid'];
 $aid = $set['aid'];
 
-#Delete listing from pending table
-$sql1 = "delete from Pending_Sale where bid = '$bid'";
-$conn->query($sql1);
-
 #Insert into trsnactions table to finalize
 $sql2 = "insert into B_Transactions (buyer, seller, bid, cid, aid) values ('$buyer','$seller','$bid','$cid','$aid')";
+$conn->query($sql2);
 
-if ($conn->query($sql2) === TRUE) {
+$accept = "buyoffer_accept";
+$date = date("Y-m-d H:i:s");
+
+#Create Notification
+$sql3 = "INSERT INTO Notifications(recipient,sender,types,created,psid) VALUES('$buyer','$seller','$accept','$date','$psid')";
+$conn->query($sql3);
+
+#Delete listing from pending table
+$sql4 = "delete from Pending_Sale where bid = '$bid'";
+
+if ($conn->query($sql4) === TRUE) {
 	header("Location: fm_account.php");
 	exit;
 } else {
-	echo "Error: " . $sql2 . "<br>" . $conn->error;
-	
+	echo "Error: " . $sql4 . "<br>" . $conn->error;
 }
-
-
-#$accept = "buyoffer_accept";
-#$date = date("Y-m-d H:i:s");
-
-#$sql3 = "select username from Pending_Sale where psid = '$psid'";
-#$record = $conn->query($sql3);
-#$item - mysqli_fetch_array($record);
-#$username = $item['username'];
-
-#Create Notification
-#$sql4 = "INSERT INTO Notifications(recipient,sender,types,created,psid) VALUES('$username','$seller','$accept','$date','$psid')";
-
-#if ($conn->query($sql4) === TRUE) {
-#	header("Location: fm_account.php");
-#	exit;
-#} else {
-#	echo "Error: " . $sql4 . "<br>" . $conn->error;
-	
-#}
 
 
 ?>

@@ -126,10 +126,7 @@ created datetime NOT NULL,
 msgid int,
 psid int,
 prid int,
-PRIMARY KEY(nid),
-FOREIGN KEY(msgid) REFERENCES Messages(msgid),
-FOREIGN KEY(psid) REFERENCES Pending_Sale(psid),
-FOREIGN KEY(prid) REFERENCES Pending_Rental(prid))
+PRIMARY KEY(nid))
 engine=innodb;
 
 
