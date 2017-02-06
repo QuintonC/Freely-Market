@@ -13,7 +13,6 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 $msgid = $_GET['id'];
 
-
 $sql = "delete from Notifications where msgid = '$msgid'";
 
 

@@ -34,7 +34,7 @@ $aid = $set['aid'];
 $sql2 = "insert into B_Transactions (buyer, seller, bid, cid, aid) values ('$buyer','$seller','$bid','$cid','$aid')";
 $conn->query($sql2);
 
-$accept = "buyoffer_accept";
+$accept = "Your offer has been accepted";
 $date = date("Y-m-d H:i:s");
 
 #Create Notification

@@ -39,6 +39,12 @@ $data = $conn->query($sql2);
 
 $reciever = $_GET['reciever'];
 
+#Get number of notifications
+$sql3 = "select count(*) from Notifications where recipient = '$username'";
+$num = $conn->query($sql3);
+$set = mysqli_fetch_array($num);
+$number = $set['count(*)'];
+
 ?>
 
 <html>
@@ -193,9 +199,18 @@ background-color: #808080;
     color: white;
 }
 
+.leftsidebar .menu li a:hover {
+    background-color: #555;
+    color: white;
+}
+
 .leftsidebar .menu .active {
     background-color: #4CAF50;
     color: white;
+}
+
+.num {
+	color: red;
 }
 
 .center {
@@ -335,7 +350,7 @@ top: 1350px;
 <li><a href = "fm_buyorder_history.php">Purchase Order History</a></li>
 <li><a href = "fm_sellrentorder_history.php">Sell/Rent Order History</a></li>
 <li><a href = "fm_messager1.php">Messager</a></li>
-<li><a href = "fm_notifications.php">Notifications</a></li>
+<li><a href = "fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
 </ul>
 </div>
 

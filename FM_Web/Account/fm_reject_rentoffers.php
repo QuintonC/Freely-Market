@@ -36,6 +36,7 @@ $conn->query($sql1);
 $reject = "Your offer has been rejected";
 $date = date("Y-m-d H:i:s");
 
+#Create Notification
 $sql2 = "insert into Notifications(recipient,sender,types,created,psid) values('$borrower','$renter','$reject','$date','$prid')";
 
 if ($conn->query($sql2) === TRUE) {

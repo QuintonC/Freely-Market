@@ -34,7 +34,7 @@ $aid = $set['aid'];
 $sql2 = "insert into R_Transactions (renter, seller, rid, cid, aid) values ('$renter','$seller','$rid','$cid','$aid')";
 $conn->query($sql2);
 
-$accept = "rentoffer_accept";
+$accept = "Your offer has been accepted";
 $date = date("Y-m-d H:i:s");
 
 #Create Notification

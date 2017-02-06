@@ -34,8 +34,8 @@ $data = $conn->query($sql2);
 $set = mysqli_fetch_array($data);
 $seller = $set['username'];
 
-#Create notification
 
+#Create notification
 $sql3 = "INSERT INTO Notifications(recipient,sender,types,created,psid) VALUES('$seller','$username','$place','$date','$psid')";
 
 if ($conn->query($sql3) === TRUE) {
