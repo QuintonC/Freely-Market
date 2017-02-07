@@ -347,8 +347,6 @@ top: 1350px;
 <ul>
 <li><a href = "fm_edit_account.php">Edit Account</a></li>
 <li><a href = "fm_edit_card.php">Edit Card Info</a></li>
-<li><a href = "fm_buyorder_history.php">Purchase Order History</a></li>
-<li><a href = "fm_sellrentorder_history.php">Sell/Rent Order History</a></li>
 <li><a href = "fm_messager1.php">Messager</a></li>
 <li><a href = "fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
 </ul>

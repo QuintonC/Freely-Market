@@ -3,6 +3,7 @@ create table B_Transactions(
 tid int NOT NULL AUTO_INCREMENT,
 buyer varchar(30) NOT NULL,
 seller varchar(30) NOT NULL,
+occured datetime NOT NULL,
 bid int NOT NULL,
 cid int NOT NULL,
 aid int NOT NULL,
@@ -14,8 +15,9 @@ engine=innodb;
 
 create table R_Transactions(
 tid int NOT NULL AUTO_INCREMENT,
+borrower varchar(30) NOT NULL,
 renter varchar(30) NOT NULL,
-seller varchar(30) NOT NULL,
+occured datetime NOT NULL,
 rid int NOT NULL,
 cid int NOT NULL,
 aid int NOT NULL,
@@ -124,8 +126,8 @@ sender varchar(30) NOT NULL,
 types varchar(30) NOT NULL,
 created datetime NOT NULL,
 msgid int,
-psid int,
-prid int,
+bid int,
+rid int,
 PRIMARY KEY(nid))
 engine=innodb;
 

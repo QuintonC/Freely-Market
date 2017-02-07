@@ -13,15 +13,23 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	# check connection
 	if ($mysqli->connect_errno) {
 		echo "<p>MySQL error no {$mysqli->connect_errno} : {$mysqli->connect_error}</p>";
+		exit();
 	}
-	
-$sender = $_SESSION['username'];
 
-$mysql = "select * from Notifications where recipient = '$sender'";
+#Get id from url
+$bid = $_GET['id'];
+#Diaplay the Listing
+$mysql = "select * from Buy_Listing where bid = '$bid'";
 $result = $conn->query($mysql);
 
+#Display accounts of offers made for listing
+$sql1 = "select psid, username from Pending_Sale where bid = '$bid'";
+$records = $conn->query($sql1);
 
-	
+#Delete Notification
+$sql2 = "delete from Notifications where bid = '$bid'";
+$conn->query($sql2);
+
 ?>
 
 <html>
@@ -33,6 +41,27 @@ $result = $conn->query($mysql);
 body {
 padding: 0px;
 margin: 0px;
+}
+
+table, th, td {
+	margin-left: auto;
+	margin-right: auto;
+	border-bottom: 1px solid #ddd;
+	padding: 15px;
+    text-align: left;
+}
+
+th {
+    background-color: 	#00008B;
+    color: white;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+tr:hover {
+	background-color: #f5f5f5;
 }
 
 ul {
@@ -63,28 +92,6 @@ li a:hover {
 .active {
     background-color: 	#00008B;
 }
-
-table, th, td {
-	margin-left: auto;
-	margin-right: auto;
-	border-bottom: 1px solid #ddd;
-	padding: 15px;
-    text-align: left;
-}
-
-th {
-    background-color: 	#00008B;
-    color: white;
-}
-
-tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-
-tr:hover {
-	background-color: #f5f5f5;
-}
-
 
 .title {
 margin: auto;
@@ -118,7 +125,7 @@ font-family: Arial, Helvetica, sans-serif;
 
 .leftsidebar {
 position: absolute;
-height: 500px;
+height: 800px;
 left: 0%;
 width: 15%;
 background-color: #808080;
@@ -126,15 +133,29 @@ background-color: #808080;
 
 .center {
 position: absolute;
-height: 500px;
+height: 800px;
 left: 15%;
 width: 70%;
 background-image: url("tree.jpg");
 }
 
-.center .list{
+.center .listing {
 position: absolute;
 top: 50px;
+left: 200px;
+height: 200px;
+width: 500px;
+background-color: #FFFFFF;
+border-style: solid;
+border-width: 2px;
+padding: 15px;
+position: absolute;
+overflow: scroll;
+}
+
+.center .offers {
+position: absolute;
+top: 350px;
 left: 200px;
 height: 300px;
 width: 500px;
@@ -148,7 +169,7 @@ overflow: scroll;
 
 .rightsidebar {
 position: absolute;
-height: 500px;
+height: 800px;
 left: 85%;
 width: 15%;
 background-color: #808080;
@@ -160,7 +181,7 @@ width: 100%;
 background-color: #000000;
 color: #FFFAF0;
 position: absolute;
-top: 650px;
+top: 950px;
 }
 
 .footer ul {
@@ -186,7 +207,7 @@ top: 650px;
 
 </style>
 
-	<title>Notifications Page</title>
+	<title>View Offers Page</title>
 	
 </head>
 
@@ -201,16 +222,16 @@ top: 650px;
 </div>
 
 <div class = "header">
-<h1>Notifications</h1>
+<h1>View Offers</h1>
 </div>
 
 <div class = "navbar">
 
 <ul>
 <li><a href = "fm_listings.php">Listings</a></li>
-<li><a href="fm_account.php" class = "active">My Account</a></li>
+<li><a href="fm_account.php"  class = "active">My Account</a></li>
 <li><a href = "fm_transactions.php">Transactions</a></li>
-<li><a href = "fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
+<li><a href = 'fm_homepage.html'>Logged In: <?php echo $log; ?></a></li>
 </ul>
 
 </div>
@@ -228,28 +249,37 @@ top: 650px;
 <!-- Block 3 -->
 <div class = "center">
 
-<div class = "list">
+<div class = "listing">
+<center><h3>Listing</h3></center>
 <table>
 	<tr>
-		<th>From</th>
-		<th>Type</th>
-		<th>Date/Time</th>
-		<th>View</th>
-		<th>Delete</th>
+		<th>Item</th>
+		<th>Price</th>
+		<th>Description</th>
+		<th>Picture</th>
 	</tr>
-<?php while ($row = mysqli_fetch_array($result)) { ?>
+	<?php while ($row = mysqli_fetch_array($result)) { ?>
 	<tr>
-		<td><?php echo $row['sender']; ?></td>
-		<td><?php echo $row['types']; ?></td>
-		<td><?php echo $row['created']; ?></td>
-		<td><a href = "fm_view_msg_notif.php?id=<?php echo $row['msgid'];?>"><?php echo $row['msgid'];?></a></td>
-		<td><a href = "fm_delete_msg_notif.php?id=<?php echo $row['msgid'];?>"><?php echo $row['msgid'];?></a></td>
-		<td><a href = "fm_view_sale_notif.php?id=<?php echo $row['bid'];?>"><?php echo $row['bid'];?></a></td>
-		<td><a href = "fm_delete_sale_notif.php?id=<?php echo $row['bid'];?>"><?php echo $row['bid'];?></a></td>
-		<td><a href = "fm_view_rent_notif.php?id=<?php echo $row['rid'];?>"><?php echo $row['rid'];?></a></td>
-		<td><a href = "fm_delete_rent_notif.php?id=<?php echo $row['rid'];?>"><?php echo $row['rid'];?></a></td>
+		<td><?php echo $row['item']; ?></td>
+		<td><?php echo $row['price']; ?></td>
+		<td><?php echo $row['descr']; ?></td> 
+		<td><?php echo $row['picture']; ?></td> 
 	</tr>
-<?php } ?>
+	<?php } ?>
+</table>
+</div>
+
+<div class = "offers">
+<center><h3>Offers</h3></center>
+<table>
+	<?php while ($set = mysqli_fetch_array($records)) { ?>
+	<tr>
+		<td><?php echo $set['psid']; ?></td>
+		<td><?php echo $set['username']; ?></td>
+		<td><a href = "fm_accept_buyoffers.php?id=<?php echo $set['psid']; ?>">Accept</a></td>
+		<td><a href = "fm_reject_buyoffers.php?id=<?php echo $set['psid']; ?>">Reject</a></td>
+	</tr>
+	<?php } ?>
 </table>
 </div>
 
@@ -269,6 +299,7 @@ top: 650px;
 <li><a href = "">Contact</a></li>
 <li style = "float:left"><a href = "">Social Links</a></li>
 </ul>
+
 
 </div>
 

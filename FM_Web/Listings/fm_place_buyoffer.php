@@ -36,7 +36,7 @@ $seller = $set['username'];
 
 
 #Create notification
-$sql3 = "INSERT INTO Notifications(recipient,sender,types,created,psid) VALUES('$seller','$username','$place','$date','$psid')";
+$sql3 = "INSERT INTO Notifications(recipient,sender,types,created,bid) VALUES('$seller','$username','$place','$date','$bid')";
 
 if ($conn->query($sql3) === TRUE) {
 	header("Location: fm_account.php");

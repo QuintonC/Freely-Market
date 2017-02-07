@@ -30,15 +30,17 @@ $set = mysqli_fetch_array($content);
 $cid = $set['cid'];
 $aid = $set['aid'];
 
-#Insert into trsnactions table to finalize
-$sql2 = "insert into B_Transactions (buyer, seller, bid, cid, aid) values ('$buyer','$seller','$bid','$cid','$aid')";
-$conn->query($sql2);
 
 $accept = "Your offer has been accepted";
 $date = date("Y-m-d H:i:s");
 
+#Insert into trsnactions table to finalize
+$sql2 = "insert into B_Transactions (buyer, seller, occured, bid, cid, aid) values ('$buyer','$seller','$date','$bid','$cid','$aid')";
+$conn->query($sql2);
+
+
 #Create Notification
-$sql3 = "INSERT INTO Notifications(recipient,sender,types,created,psid) VALUES('$buyer','$seller','$accept','$date','$psid')";
+$sql3 = "INSERT INTO Notifications(recipient,sender,types,created,bid) VALUES('$buyer','$seller','$accept','$date','$bid')";
 $conn->query($sql3);
 
 #Delete listing from pending table

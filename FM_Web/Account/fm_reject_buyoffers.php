@@ -36,7 +36,7 @@ $reject = "Your offer has been rejected";
 $date = date("Y-m-d H:i:s");
 
 #Create Notification
-$sql2 = "insert into Notifications(recipient,sender,types,created,psid) values('$buyer','$seller','$reject','$date','$psid')";
+$sql2 = "insert into Notifications(recipient,sender,types,created,bid) values('$buyer','$seller','$reject','$date','$bid')";
 
 if ($conn->query($sql2) === TRUE) {
 	header("Location: fm_account.php");
