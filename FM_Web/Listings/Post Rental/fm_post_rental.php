@@ -32,8 +32,10 @@ $dur = stripslashes($dur);
 $descr = stripslashes($descr);
 $picture = stripslashes($picture);
 
+$status = "Active";
+
 #Create rental listing
-$sql = "insert into Rental_Listing (item,price,duration,descr,picture,aid) values('$item','$price','$dur','$descr','$picture','$aid')";
+$sql = "insert into Rental_Listing (item,price,duration,descr,picture,status,aid) values('$item','$price','$dur','$descr','$picture','$status','$aid')";
 
 
 if ($conn->query($sql) === TRUE) {

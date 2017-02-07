@@ -22,19 +22,19 @@ $username = $_SESSION['username'];
 $aid = $_SESSION['uid'];
 
 #Show purchase listings that belong to the user logged in
-$mysql = "select * from Buy_Listing where aid = '$aid'";
+$mysql = "select * from Buy_Listing where aid = '$aid' AND status = 'Active'";
 $result = $conn->query($mysql);
 
 #Show rental listings that belong to the user logged in
-$sql = "select * from Rental_Listing where aid = '$aid'";
+$sql = "select * from Rental_Listing where aid = '$aid' AND status = 'Active'";
 $content = $conn->query($sql);
 
 #Show purchase listings the user has made an offer for
-$sql1 = "SELECT b.item, b.price, b.descr, b.picture FROM Buy_Listing AS b, Pending_Sale AS s WHERE b.bid = s.bid AND s.username = '$username'";
+$sql1 = "SELECT b.item, b.price, b.descr, b.picture FROM Buy_Listing AS b, Pending_Sale AS s WHERE b.bid = s.bid AND s.username = '$username' AND status = 'Active'";
 $records = $conn->query($sql1);
 
 #Show rental listings the user has made an offer for
-$sql2 = "SELECT r.item, r.price, r.duration, r.descr, r.picture FROM Rental_Listing AS r, Pending_Rental AS rs WHERE r.rid = rs.rid AND rs.username = '$username'";
+$sql2 = "SELECT r.item, r.price, r.duration, r.descr, r.picture FROM Rental_Listing AS r, Pending_Rental AS rs WHERE r.rid = rs.rid AND rs.username = '$username' AND status = 'Active'";
 $data = $conn->query($sql2);
 
 $reciever = $_GET['reciever'];

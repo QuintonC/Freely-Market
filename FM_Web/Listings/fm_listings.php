@@ -20,11 +20,11 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 $username = $_SESSION['username'];
 
 #Show Sales Listed
-$sql = "SELECT * FROM Buy_Listing AS b, User_Accounts AS a WHERE a.aid = b.aid AND a.username != '$username' limit 20";
+$sql = "SELECT * FROM Buy_Listing AS b, User_Accounts AS a WHERE a.aid = b.aid AND a.username != '$username' AND status = 'Active' limit 20";
 $result = $conn->query($sql);
 
 #Show Rentals listed
-$mysql = "SELECT * from Rental_Listing AS r, User_Accounts AS a WHERE a.aid = r.aid AND a.username != '$username' limit 20";
+$mysql = "SELECT * from Rental_Listing AS r, User_Accounts AS a WHERE a.aid = r.aid AND a.username != '$username' AND status = 'Active' limit 20";
 $content = $conn->query($mysql);
 
 

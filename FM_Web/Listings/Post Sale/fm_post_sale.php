@@ -29,8 +29,10 @@ $price = stripslashes($price);
 $descr = stripslashes($descr);
 $picture = stripslashes($picture);
 
+$status = "Active";
+
 #Create Sale Listing
-$sql = "insert into Buy_Listing (item,price,descr,picture,aid) values('$item','$price','$descr','$picture','$aid')";
+$sql = "insert into Buy_Listing (item,price,descr,picture,status,aid) values('$item','$price','$descr','$picture','$status','$aid')";
 
 
 if ($conn->query($sql) === TRUE) {

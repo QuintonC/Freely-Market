@@ -43,14 +43,20 @@ $conn->query($sql2);
 $sql3 = "INSERT INTO Notifications(recipient,sender,types,created,bid) VALUES('$buyer','$seller','$accept','$date','$bid')";
 $conn->query($sql3);
 
-#Delete listing from pending table
-$sql4 = "delete from Pending_Sale where bid = '$bid'";
+$status = 'Complete';
 
-if ($conn->query($sql4) === TRUE) {
+#Update Listing Status
+$sql4 = "UPDATE Buy_Listing SET status = '$status' WHERE bid = '$bid' AND status = 'Active'";
+$conn->query($sql4);
+
+#Delete listing from pending table
+$sql5 = "delete from Pending_Sale where bid = '$bid'";
+
+if ($conn->query($sql5) === TRUE) {
 	header("Location: fm_account.php");
 	exit;
 } else {
-	echo "Error: " . $sql4 . "<br>" . $conn->error;
+	echo "Error: " . $sql5 . "<br>" . $conn->error;
 }
 
 
