@@ -66,13 +66,6 @@ PRIMARY KEY(bid),
 FOREIGN KEY(aid) REFERENCES User_Accounts(aid))
 engine=innodb;
 
-create table View_Buylisting(
-vbid int NOT NULL AUTO_INCREMENT,
-bid int NOT NULL,
-PRIMARY KEY(vbid),
-FOREIGN KEY(bid) REFERENCES Buy_Listing(bid))
-engine=innodb;
-)
 
 create table Rental_Listing(
 rid int NOT NULL AUTO_INCREMENT,
@@ -86,13 +79,6 @@ PRIMARY KEY(rid),
 FOREIGN KEY(aid) REFERENCES User_Accounts(aid))
 engine=innodb;
 
-create table View_Rentlisting(
-vrid int NOT NULL AUTO_INCREMENT,
-rid int NOT NULL,
-PRIMARY KEY(vrid),
-FOREIGN KEY(rid) REFERENCES Rental_Listing(rid))
-engine=innodb;
-)
 
 create table Messages(
 msgid int NOT NULL AUTO_INCREMENT,
