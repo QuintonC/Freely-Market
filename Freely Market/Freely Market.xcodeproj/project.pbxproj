@@ -23,6 +23,8 @@
 		5AED3A801DB80B2200F3EA39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AED3A7E1DB80B2200F3EA39 /* LaunchScreen.storyboard */; };
 		5AED3A8B1DB80B2200F3EA39 /* Freely_MarketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AED3A8A1DB80B2200F3EA39 /* Freely_MarketTests.swift */; };
 		5AED3A961DB80B2200F3EA39 /* Freely_MarketUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AED3A951DB80B2200F3EA39 /* Freely_MarketUITests.swift */; };
+		D9C8945F1E3F965A00393D83 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C8945E1E3F965A00393D83 /* ChatViewController.swift */; };
+		D9C894611E3F977100393D83 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C894601E3F977100393D83 /* ContactCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,8 @@
 		5AED3A911DB80B2200F3EA39 /* Freely MarketUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Freely MarketUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AED3A951DB80B2200F3EA39 /* Freely_MarketUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Freely_MarketUITests.swift; sourceTree = "<group>"; };
 		5AED3A971DB80B2200F3EA39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9C8945E1E3F965A00393D83 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = ../ChatViewController.swift; sourceTree = "<group>"; };
+		D9C894601E3F977100393D83 /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +148,9 @@
 				5AED3A751DB80B2200F3EA39 /* AppDelegate.swift */,
 				5AED3A7E1DB80B2200F3EA39 /* LaunchScreen.storyboard */,
 				5AED3A791DB80B2200F3EA39 /* Main.storyboard */,
+				D9C894601E3F977100393D83 /* ContactCell.swift */,
 				5AED3A7C1DB80B2200F3EA39 /* Assets.xcassets */,
+				D9C8945E1E3F965A00393D83 /* ChatViewController.swift */,
 				5AED3A811DB80B2200F3EA39 /* Info.plist */,
 				5A65E4DA1E3A9F1E009733D5 /* ListingViewController.swift */,
 				5A65E4DC1E3AAEC3009733D5 /* CellData.swift */,
@@ -322,8 +328,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9C894611E3F977100393D83 /* ContactCell.swift in Sources */,
 				5A65E4DB1E3A9F1E009733D5 /* ListingViewController.swift in Sources */,
 				5A6FB8741DD7823100D58436 /* SWRevealViewController.m in Sources */,
+				D9C8945F1E3F965A00393D83 /* ChatViewController.swift in Sources */,
 				5A2ED6651DB8555200A75B2E /* LoginViewController.swift in Sources */,
 				5A65E4DD1E3AAEC3009733D5 /* CellData.swift in Sources */,
 				5A6FB8761DD9025500D58436 /* MessageViewController.swift in Sources */,

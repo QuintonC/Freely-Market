@@ -71,6 +71,65 @@ class DbOperation {
         }
         $stmt->close();
     }
+    
+    //Function for getting contacts
+    public function getContacts($user) {
+    	$stmt = $this->conn->prepare("SELECT sender, reciever FROM Messages WHERE sender ='$user' OR reciever ='$user'");
+    	$stmt->bind_param("sss", $sender, $reciever)
+    	$result = $stmt->execute();
+    	
+    	$contacts = array();
+    	
+    	$num=mysql_numrows($result);
+    	
+    	$i=0;
+    	
+    	while ($i < $num) {
+    		$sender=mysql_result($result,$i,"sender");
+			$reciever=mysql_result($result,$i,"reciever");
+			if ($user == $sender) {
+				$contacts[] = $reciever;
+			} else {
+				$contacts[] = $sender;
+			}
+			$i = $i + 1;
+    	}
+    	return $contacts;
+    	$stmt->close();
+    }
+    
+    
+    //Function for getting messages
+    public function getMessages($id1, $id2) {
+    	$stmt = $this->conn->prepare("SELECT message FROM Messages WHERE (sender='$id1' OR sender='$id2') AND (reciever='$id1' OR reciever='$id2') ORDER BY recieved");
+    	$stmt->bind_param("ssss", $id1, $id2)
+    	$result = $stmt->execute();
+
+		//$query="SELECT message FROM Messages WHERE (sender='$id1' OR sender='$id2') AND (reciever='$id1' OR reciever='$id2') ORDER BY recieved";
+		//$result=mysql_query($query);
+
+		$num=mysql_numrows($result);
+
+		
+
+		$i=0;
+		$messages = array();
+		
+		while ($i < $num) {
+
+		$sender=mysql_result($result,$i,"sender");
+		$reciever=mysql_result($result,$i,"reciever");
+		$message=mysql_result($result,$i,"message");
+
+		$messages[]=array($sender, $reciever, $message);
+		
+		$i++;
+		}
+		return $messages;
+		$stmt->close();
+    }
+    
+    
 
     /* public function getUserID() {
 
