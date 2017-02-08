@@ -23,7 +23,7 @@ $message = $_GET['message'];
 #Today's date
 $date = date("Y-m-d H:i:s");
 
-$type = "message";
+$type = "You have recieved a message";
 
 #Creates Message
 $mysql = "INSERT INTO Messages(sender,reciever,message,recieved) VALUES('$sender','$reciever','$message','$date')";

@@ -3,6 +3,7 @@ create table B_Transactions(
 tid int NOT NULL AUTO_INCREMENT,
 buyer varchar(30) NOT NULL,
 seller varchar(30) NOT NULL,
+occured datetime NOT NULL,
 bid int NOT NULL,
 cid int NOT NULL,
 aid int NOT NULL,
@@ -14,8 +15,9 @@ engine=innodb;
 
 create table R_Transactions(
 tid int NOT NULL AUTO_INCREMENT,
+borrower varchar(30) NOT NULL,
 renter varchar(30) NOT NULL,
-seller varchar(30) NOT NULL,
+occured datetime NOT NULL,
 rid int NOT NULL,
 cid int NOT NULL,
 aid int NOT NULL,
@@ -59,18 +61,12 @@ item varchar(30) NOT NULL,
 price varchar(8) NOT NULL,
 descr varchar(100) NOT NULL,
 picture LONGBLOB NOT NULL,
+status varchar(30),
 aid int NOT NULL,
 PRIMARY KEY(bid),
 FOREIGN KEY(aid) REFERENCES User_Accounts(aid))
 engine=innodb;
 
-create table View_Buylisting(
-vbid int NOT NULL AUTO_INCREMENT,
-bid int NOT NULL,
-PRIMARY KEY(vbid),
-FOREIGN KEY(bid) REFERENCES Buy_Listing(bid))
-engine=innodb;
-)
 
 create table Rental_Listing(
 rid int NOT NULL AUTO_INCREMENT,
@@ -79,18 +75,12 @@ price varchar(8) NOT NULL,
 duration varchar(10) NOT NULL,
 descr varchar(100) NOT NULL,
 picture LONGBLOB NOT NULL,
+status varchar(30),
 aid int NOT NULL,
 PRIMARY KEY(rid),
 FOREIGN KEY(aid) REFERENCES User_Accounts(aid))
 engine=innodb;
 
-create table View_Rentlisting(
-vrid int NOT NULL AUTO_INCREMENT,
-rid int NOT NULL,
-PRIMARY KEY(vrid),
-FOREIGN KEY(rid) REFERENCES Rental_Listing(rid))
-engine=innodb;
-)
 
 create table Messages(
 msgid int NOT NULL AUTO_INCREMENT,
@@ -124,12 +114,9 @@ sender varchar(30) NOT NULL,
 types varchar(30) NOT NULL,
 created datetime NOT NULL,
 msgid int,
-psid int,
-prid int,
-PRIMARY KEY(nid),
-FOREIGN KEY(msgid) REFERENCES Messages(msgid),
-FOREIGN KEY(psid) REFERENCES Pending_Sale(psid),
-FOREIGN KEY(prid) REFERENCES Pending_Rental(prid))
+bid int,
+rid int,
+PRIMARY KEY(nid))
 engine=innodb;
 
 

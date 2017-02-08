@@ -22,22 +22,28 @@ $username = $_SESSION['username'];
 $aid = $_SESSION['uid'];
 
 #Show purchase listings that belong to the user logged in
-$mysql = "select * from Buy_Listing where aid = '$aid'";
+$mysql = "select * from Buy_Listing where aid = '$aid' AND status = 'Active'";
 $result = $conn->query($mysql);
 
 #Show rental listings that belong to the user logged in
-$sql = "select * from Rental_Listing where aid = '$aid'";
+$sql = "select * from Rental_Listing where aid = '$aid' AND status = 'Active'";
 $content = $conn->query($sql);
 
 #Show purchase listings the user has made an offer for
-$sql1 = "SELECT b.item, b.price, b.descr, b.picture FROM Buy_Listing AS b, Pending_Sale AS s WHERE b.bid = s.bid AND s.username = '$username'";
+$sql1 = "SELECT b.item, b.price, b.descr, b.picture FROM Buy_Listing AS b, Pending_Sale AS s WHERE b.bid = s.bid AND s.username = '$username' AND status = 'Active'";
 $records = $conn->query($sql1);
 
 #Show rental listings the user has made an offer for
-$sql2 = "SELECT r.item, r.price, r.duration, r.descr, r.picture FROM Rental_Listing AS r, Pending_Rental AS rs WHERE r.rid = rs.rid AND rs.username = '$username'";
+$sql2 = "SELECT r.item, r.price, r.duration, r.descr, r.picture FROM Rental_Listing AS r, Pending_Rental AS rs WHERE r.rid = rs.rid AND rs.username = '$username' AND status = 'Active'";
 $data = $conn->query($sql2);
 
 $reciever = $_GET['reciever'];
+
+#Get number of notifications
+$sql3 = "select count(*) from Notifications where recipient = '$username'";
+$num = $conn->query($sql3);
+$set = mysqli_fetch_array($num);
+$number = $set['count(*)'];
 
 ?>
 
@@ -193,9 +199,18 @@ background-color: #808080;
     color: white;
 }
 
+.leftsidebar .menu li a:hover {
+    background-color: #555;
+    color: white;
+}
+
 .leftsidebar .menu .active {
     background-color: #4CAF50;
     color: white;
+}
+
+.num {
+	color: red;
 }
 
 .center {
@@ -332,10 +347,8 @@ top: 1350px;
 <ul>
 <li><a href = "fm_edit_account.php">Edit Account</a></li>
 <li><a href = "fm_edit_card.php">Edit Card Info</a></li>
-<li><a href = "fm_buyorder_history.php">Purchase Order History</a></li>
-<li><a href = "fm_sellrentorder_history.php">Sell/Rent Order History</a></li>
 <li><a href = "fm_messager1.php">Messager</a></li>
-<li><a href = "fm_notifications.php">Notifications</a></li>
+<li><a href = "fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
 </ul>
 </div>
 

@@ -30,18 +30,32 @@ $set = mysqli_fetch_array($content);
 $cid = $set['cid'];
 $aid = $set['aid'];
 
+$accept = "Your offer has been accepted";
+$date = date("Y-m-d H:i:s");
+
+#Insert into tranactions table to finalize
+$sql2 = "insert into R_Transactions (borrower, renter, occured, rid, cid, aid) values ('$renter','$seller','$date','$rid','$cid','$aid')";
+$conn->query($sql2);
+
+
+#Create Notification
+$sql3 = "INSERT INTO Notifications(recipient,sender,types,created,rid) VALUES('$renter','$seller','$accept','$date','$rid')";
+$conn->query($sql3);
+
+$status = 'Complete';
+
+#Update Listing Status
+$sql4 = "UPDATE Rental_Listing SET status = '$status' WHERE rid = '$rid' AND status = 'Active'";
+$conn->query($sql4);
+
 #Delete listing from pending table
-$sql1 = "delete from Pending_Rental where rid = '$rid'";
-$conn->query($sql1);
+$sql5 = "delete from Pending_Rental where rid = '$rid'";
 
-#Insert into trsnactions table to finalize
-$sql2 = "insert into R_Transactions (renter, seller, rid, cid, aid) values ('$renter','$seller','$rid','$cid','$aid')";
-
-if ($conn->query($sql2) === TRUE) {
+if ($conn->query($sql5) === TRUE) {
 	header("Location: fm_account.php");
 	exit;
 } else {
-	echo "Error: " . $sql . "<br>" . $conn->error;
+	echo "Error: " . $sql5 . "<br>" . $conn->error;
 }
 
 

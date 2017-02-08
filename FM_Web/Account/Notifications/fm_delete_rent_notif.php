@@ -11,10 +11,9 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 		exit();
 	}
 
-$msgid = $_GET['id'];
+$rid = $_GET['id'];
 
-
-$sql = "delete from Notifications where msgid = '$msgid'";
+$sql = "delete from Notifications where rid = '$rid'";
 
 
 if ($conn->query($sql) === TRUE) {

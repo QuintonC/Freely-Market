@@ -65,7 +65,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
          
             //self.performSegue(withIdentifier: "loginSuccess", sender: self)
             
-            // database registration here
+            // database login here
             let myURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/login.php")
             var request = URLRequest(url:myURL!)
             request.httpMethod = "POST"

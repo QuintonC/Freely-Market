@@ -8,11 +8,12 @@
 
 import UIKit
 
-class ListingViewController: UIViewController, UITextFieldDelegate {
+class ListingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    
+    var values:NSArray = []
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,35 @@ class ListingViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
     
+    func get(){
+        let url = NSURL(string: "http://cgi.soic.indiana.edu/~team12/api/listings.php")
+        let data = NSData(contentsOf: url! as URL)
+        var err: NSError?
+        do {
+            values = try JSONSerialization.jsonObject(with: data! as Data, options: .mutableContainers) as! NSArray
+        } catch let error as NSError {
+            print(err = error)
+        }
+        tableView.reloadData()
+        
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return values.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CellData
+        
+        let maindata = values[indexPath.row] as! [String:Any]
+        
+        cell.listingTitle.text = (maindata["title"] as AnyObject) as? String
+        cell.listingPrice.text = (maindata["price"] as AnyObject) as? String
+        cell.listingImage.image = (maindata["picture"] as AnyObject) as? UIImage
+        
+        return cell
+    }
+
     @IBAction func logout(_ sender: AnyObject) {
         
         let alertController = UIAlertController(title: "Success", message: "You have been logged out.", preferredStyle: .alert)
