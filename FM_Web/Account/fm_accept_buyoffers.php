@@ -31,32 +31,38 @@ $cid = $set['cid'];
 $aid = $set['aid'];
 
 
-$accept = "Your offer has been accepted";
+$type = "Your buy offer has been accepted";
 $date = date("Y-m-d H:i:s");
 
-#Insert into trsnactions table to finalize
+#Insert into transactions table to finalize
 $sql2 = "insert into B_Transactions (buyer, seller, occured, bid, cid, aid) values ('$buyer','$seller','$date','$bid','$cid','$aid')";
 $conn->query($sql2);
 
+#Get Transactions ID
+$sql3 = "select tid from B_Transactions where bid = '$bid'";
+$record = $conn->query($sql3);
+$batch = mysqli_fetch_array($record);
+$tid = $batch['tid'];
+
 
 #Create Notification
-$sql3 = "INSERT INTO Notifications(recipient,sender,types,created,bid) VALUES('$buyer','$seller','$accept','$date','$bid')";
-$conn->query($sql3);
+$sql4 = "INSERT INTO Notifications(recipient,sender,types,created,tid) VALUES('$buyer','$seller','$type','$date','$tid')";
+$conn->query($sql4);
 
 $status = 'Complete';
 
 #Update Listing Status
-$sql4 = "UPDATE Buy_Listing SET status = '$status' WHERE bid = '$bid' AND status = 'Active'";
-$conn->query($sql4);
+$sql5 = "UPDATE Buy_Listing SET status = '$status' WHERE bid = '$bid' AND status = 'Active'";
+$conn->query($sql5);
 
 #Delete listing from pending table
-$sql5 = "delete from Pending_Sale where bid = '$bid'";
+$sql6 = "delete from Pending_Sale where bid = '$bid'";
 
-if ($conn->query($sql5) === TRUE) {
+if ($conn->query($sql6) === TRUE) {
 	header("Location: fm_account.php");
 	exit;
 } else {
-	echo "Error: " . $sql5 . "<br>" . $conn->error;
+	echo "Error: " . $sql6 . "<br>" . $conn->error;
 }
 
 

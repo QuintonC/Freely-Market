@@ -21,7 +21,7 @@ $bid = $_GET['id'];
 $mysql = "insert into Pending_Sale (username,bid) values ('$username','$bid')";
 $conn->query($mysql);
 
-$place = "You have recieved an offer";
+$type = "You have recieved a buy offer";
 $date = date("Y-m-d H:i:s");
 
 $sql = "select psid from Pending_Sale where username = '$username' and bid = '$bid' limit 1";
@@ -36,7 +36,7 @@ $seller = $set['username'];
 
 
 #Create notification
-$sql3 = "INSERT INTO Notifications(recipient,sender,types,created,bid) VALUES('$seller','$username','$place','$date','$bid')";
+$sql3 = "INSERT INTO Notifications(recipient,sender,types,created,bid) VALUES('$seller','$username','$type','$date','$bid')";
 
 if ($conn->query($sql3) === TRUE) {
 	header("Location: fm_account.php");
