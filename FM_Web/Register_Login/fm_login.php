@@ -35,7 +35,7 @@ $formpass = stripslashes($formpass);
 $mysql = "select aid from User_Accounts where username = '$username' limit 1";
 $result = $conn->query($mysql);
 $row = mysqli_fetch_array($result);
-$ids = $row['aid'];
+$id = $row['aid'];
 
 
 #Selects the combination where the entered form password matches the stored hash
