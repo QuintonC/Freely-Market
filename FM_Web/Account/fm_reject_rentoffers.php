@@ -33,11 +33,11 @@ $borrower = $set['username'];
 $sql1 = "delete from Pending_Rental where rid = '$rid'";
 $conn->query($sql1);
 
-$reject = "Your offer has been rejected";
+$type = "Your rent offer has been rejected";
 $date = date("Y-m-d H:i:s");
 
 #Create Notification
-$sql2 = "insert into Notifications(recipient,sender,types,created,rid) values('$borrower','$renter','$reject','$date','$rid')";
+$sql2 = "insert into Notifications(recipient,sender,types,created,rid) values('$borrower','$renter','$type','$date','$rid')";
 
 if ($conn->query($sql2) === TRUE) {
 	header("Location: fm_account.php");

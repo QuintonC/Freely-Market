@@ -113,6 +113,11 @@ font-family: "Brush Script MT", cursive;
 font-size: 24px;
 }
 
+.title .search {
+top: 15px;
+left: 2%;
+position: absolute;
+}
 
 .center {
 position: absolute;

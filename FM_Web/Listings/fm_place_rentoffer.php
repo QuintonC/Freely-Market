@@ -20,7 +20,7 @@ $rid = $_GET['id'];
 $mysql = "insert into Pending_Rental (username,rid) values ('$username','$rid')";
 $conn->query($mysql);
 
-$place = "You have recieved an offer";
+$type = "You have recieved an offer";
 $date = date("Y-m-d H:i:s");
 
 $sql = "select prid from Pending_Rental where username = '$username' and rid = '$rid' limit 1";
@@ -35,7 +35,7 @@ $seller = $set['username'];
 
 
 #Create notification
-$sql3 = "INSERT INTO Notifications(recipient,sender,types,created,rid) VALUES('$seller','$username','$place','$date','$rid')";
+$sql3 = "INSERT INTO Notifications(recipient,sender,types,created,rid) VALUES('$seller','$username','$type','$date','$rid')";
 
 if ($conn->query($sql3) === TRUE) {
 	header("Location: fm_account.php");
