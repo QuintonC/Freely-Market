@@ -17,9 +17,15 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 		exit();
 	}
 
+
 #Call session variables
 $username = $_SESSION['username'];
 $aid = $_SESSION['uid'];
+
+#Check if user is admin
+$adminsql = "select admin from User_Accounts where aid = '$aid' AND status = 'Active'";
+$adminCheck = $conn->query($adminsql);
+
 
 #Show purchase listings that belong to the user logged in
 $mysql = "select * from Buy_Listing where aid = '$aid' AND status = 'Active'";
@@ -349,6 +355,9 @@ top: 1350px;
 <li><a href = "fm_edit_card.php">Edit Card Info</a></li>
 <li><a href = "fm_messager1.php">Messager</a></li>
 <li><a href = "fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
+<?php if ($adminCheck['admin'] == 'y'): ?>
+	<span><li><a href = "fm_messager1.php">Messager</a></li></span>} 
+<?php endif;?>
 </ul>
 </div>
 
