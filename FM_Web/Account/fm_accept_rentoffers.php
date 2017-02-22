@@ -30,32 +30,37 @@ $set = mysqli_fetch_array($content);
 $cid = $set['cid'];
 $aid = $set['aid'];
 
-$accept = "Your offer has been accepted";
+$type = "Your rent offer has been accepted";
 $date = date("Y-m-d H:i:s");
 
 #Insert into tranactions table to finalize
 $sql2 = "insert into R_Transactions (borrower, renter, occured, rid, cid, aid) values ('$renter','$seller','$date','$rid','$cid','$aid')";
 $conn->query($sql2);
 
+#Get Transactions ID
+$sql3 = "select tid from R_Transactions where rid = '$rid'";
+$record = $conn->query($sql3);
+$batch = mysqli_fetch_array($record);
+$tid = $batch['tid'];
 
 #Create Notification
-$sql3 = "INSERT INTO Notifications(recipient,sender,types,created,rid) VALUES('$renter','$seller','$accept','$date','$rid')";
-$conn->query($sql3);
+$sql4 = "INSERT INTO Notifications(recipient,sender,types,created,tid) VALUES('$renter','$seller','$type','$date','$tid')";
+$conn->query($sql4);
 
 $status = 'Complete';
 
 #Update Listing Status
-$sql4 = "UPDATE Rental_Listing SET status = '$status' WHERE rid = '$rid' AND status = 'Active'";
-$conn->query($sql4);
+$sql5 = "UPDATE Rental_Listing SET status = '$status' WHERE rid = '$rid' AND status = 'Active'";
+$conn->query($sql5);
 
 #Delete listing from pending table
-$sql5 = "delete from Pending_Rental where rid = '$rid'";
+$sql6 = "delete from Pending_Rental where rid = '$rid'";
 
-if ($conn->query($sql5) === TRUE) {
+if ($conn->query($sql6) === TRUE) {
 	header("Location: fm_account.php");
 	exit;
 } else {
-	echo "Error: " . $sql5 . "<br>" . $conn->error;
+	echo "Error: " . $sql6 . "<br>" . $conn->error;
 }
 
 

@@ -43,8 +43,8 @@ $picture = stripslashes($picture);
 #$username = mysqli_real_escape_string($username);
 #$password = mysqli_real_escape_string($password);
 
-$password = md5($password);
-
+#Hashes entered form password
+$encpw = password_hash($password, PASSWORD_BCRYPT);
 
 #
 $sql1 = "select * from User_Accounts where username = '$username'";
@@ -57,7 +57,7 @@ if ($count > 0) {
 	echo "Sorry this username already exists!";
 }
 else {
-	$sql = "INSERT INTO User_Accounts (username,password,first_name,last_name,email,phone,picture) VALUES ('$username','$password','$fname','$lname','$email','$phone','$picture')";
+	$sql = "INSERT INTO User_Accounts (username,password,first_name,last_name,email,phone,picture) VALUES ('$username','$encpw','$fname','$lname','$email','$phone','$picture')";
 }
 
 if (!$conn->query($sql) === TRUE) {

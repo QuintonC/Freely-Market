@@ -128,7 +128,7 @@ background-color: #808080;
 position: absolute;
 height: 500px;
 left: 15%;
-width: 70%;
+width: 85%;
 background-image: url("tree.jpg");
 }
 
@@ -137,7 +137,7 @@ position: absolute;
 top: 50px;
 left: 200px;
 height: 300px;
-width: 500px;
+width: 700px;
 background-color: #FFFFFF;
 border-style: solid;
 border-width: 2px;
@@ -146,13 +146,7 @@ position: absolute;
 overflow: scroll;
 }
 
-.rightsidebar {
-position: absolute;
-height: 500px;
-left: 85%;
-width: 15%;
-background-color: #808080;
-}
+
 
 .footer {
 margin: auto;
@@ -234,8 +228,14 @@ top: 650px;
 		<th>From</th>
 		<th>Type</th>
 		<th>Date/Time</th>
-		<th>View</th>
-		<th>Delete</th>
+		<th>View (msgid)</th>
+		<th>Delete (msgid)</th>
+		<th>View (bid)</th>
+		<th>Delete (bid)</th>
+		<th>View (rid)</th>
+		<th>Delete (rid)</th>
+		<th>View (tid)</th>
+		<th>Delete (tid)</th>
 	</tr>
 <?php while ($row = mysqli_fetch_array($result)) { ?>
 	<tr>
@@ -248,6 +248,8 @@ top: 650px;
 		<td><a href = "fm_delete_sale_notif.php?id=<?php echo $row['bid'];?>"><?php echo $row['bid'];?></a></td>
 		<td><a href = "fm_view_rent_notif.php?id=<?php echo $row['rid'];?>"><?php echo $row['rid'];?></a></td>
 		<td><a href = "fm_delete_rent_notif.php?id=<?php echo $row['rid'];?>"><?php echo $row['rid'];?></a></td>
+		<td><a href = "fm_saleoffer_status.php?id=<?php echo $row['tid'];?>"><?php echo $row['tid'];?></a></td>
+		<td><a href = "fm_rentoffer_status.php?id=<?php echo $row['tid'];?>"><?php echo $row['tid'];?></a></td>
 	</tr>
 <?php } ?>
 </table>

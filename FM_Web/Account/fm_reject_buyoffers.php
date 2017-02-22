@@ -32,11 +32,11 @@ $buyer = $set['username'];
 $sql1 = "delete from Pending_Sale where bid = '$bid'";
 $conn->query($sql1);
 
-$reject = "Your offer has been rejected";
+$type = "Your buy offer has been rejected";
 $date = date("Y-m-d H:i:s");
 
 #Create Notification
-$sql2 = "insert into Notifications(recipient,sender,types,created,bid) values('$buyer','$seller','$reject','$date','$bid')";
+$sql2 = "insert into Notifications(recipient,sender,types,created,bid) values('$buyer','$seller','$type','$date','$bid')";
 
 if ($conn->query($sql2) === TRUE) {
 	header("Location: fm_account.php");

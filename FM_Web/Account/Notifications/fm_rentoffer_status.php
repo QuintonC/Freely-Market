@@ -16,16 +16,14 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 		echo "<p>MySQL error no {$mysqli->connect_errno} : {$mysqli->connect_error}</p>";
 		exit();
 	}
+	
+$tid = $_GET['id'];
 
-#Get id from url
-$rid = $_GET['id'];		
+$mysql = "SELECT t.renter, t.occured, r.item, r.price, r.duration, r.descr, r.picture FROM R_Transactions AS t, Rental_Listing AS r WHERE t.rid = r.rid AND tid = '$tid'";
+$content = $conn->query($mysql);
 
-#Display Account information of the account who posted the listing
-$mysql = "SELECT u.username, u.first_name, u.last_name, u.email, u.phone FROM User_Accounts AS u, Rental_Listing AS r WHERE u.aid = r.aid AND r.rid = '$rid' limit 1";
-$result = $conn->query($mysql);
-#Display the Rental Listing
-$sql = "select * from Rental_Listing where rid = '$rid' limit 1";
-$content = $conn->query($sql);
+$sql = "delete from Notifications where tid = '$tid'";
+$conn->query($sql);
 
 ?>
 
@@ -33,7 +31,7 @@ $content = $conn->query($sql);
 
 <head>
 
-<title>View Rental Page</title>
+<title>Completed Rental Offer</title>
 <style>
 
 body {
@@ -67,7 +65,7 @@ li a:hover {
 }
 
 .active {
-    background-color:	#00008B;
+    background-color: 	#00008B;
 }
 
 table, th, td {
@@ -119,16 +117,20 @@ left: 2%;
 position: absolute;
 }
 
+
 .center {
 position: absolute;
-height: 360px;
-left: 15%;
-width: 70%;
+height: 400px;
+left: 0%;
+width: 100%;
 top: 150px;
 }
 
+
 .center .form {
 text-align: center;
+position: relative;
+top: 50px;
 }
 
 
@@ -138,7 +140,7 @@ width: 100%;
 background-color: #000000;
 color: #FFFAF0;
 position: absolute;
-top: 610px;
+top: 450px;
 }
 
 .footer ul {
@@ -164,7 +166,7 @@ top: 610px;
 
 </style>
 <head>
-	<title>View Sale Page</title>
+	<title>Completed Rental Offer</title>
 </head>
 
 <body>
@@ -176,9 +178,9 @@ top: 610px;
 <div class = "navbar">
 
 <ul>
-<li><a href = "fm_listings.php" class = "active">Listings</a></li>
+<li><a href = "fm_listings.php">Listings</a></li>
 <li><a href="fm_account.php">My Account</a></li>
-<li><a href = "fm_transactions.php">Transactions</a></li>
+<li><a href = "fm_transactions.php" class = "active">Transactions</a></li>
 <li><a href = 'fm_homepage.html'>Logged In: <?php echo $log; ?></a></li>
 </ul>
 
@@ -191,58 +193,38 @@ top: 610px;
 </div>
 
 <div class = "header">
-<h1>Rental</h1>
+<h1>Sale</h1>
 </div>
 
 
 <!-- Block 2 -->
 <div class = "center">
 
-<div class = "form">
-<table>
+<div class = "form"
+><table>
 	<tr>
-		<th>Username</th>
-		<th>First Name</th>
-		<th>Last Name</th>
-		<th>Email</th>
-		<th>Phone</th>
-	</tr>
-	<?php while ($row = mysqli_fetch_array($result)) { ?>
-	<tr>
-		<td><?php echo $row['username']; ?></td>
-		<td><?php echo $row['first_name']; ?></td>
-		<td><?php echo $row['last_name']; ?></td> 
-		<td><?php echo $row['email']; ?></td> 
-		<td><?php echo $row['phone']; ?></td>
-	</tr>
-	<?php } ?>
-</table>
-
-
-<table>
-	<tr>
+		<th>Renter</th>
+		<th>Occured</th>
 		<th>Item</th>
 		<th>Price</th>
 		<th>Duration</th>
 		<th>Description</th>
 		<th>Picture</th>
-		<th>Make Offer</th>
 	</tr>
-	<?php while ($set = mysqli_fetch_array($content)) { ?>
+	<?php while ($row = mysqli_fetch_array($content)) { ?>
 	<tr>
-		<td><?php echo $set['item']; ?></td>
-		<td><?php echo $set['price']; ?></td>
-		<td><?php echo $set['duration']; ?></td>
-		<td><?php echo $set['descr']; ?></td> 
-		<td><?php echo $set['picture']; ?></td>
-		<td><a href = "fm_place_rentoffer.php?id=<?php echo $set['rid']; ?>">Place Offer</a></td>
+		<td><?php echo $row['renter']; ?></td>
+		<td><?php echo $row['occured']; ?></td>
+		<td><?php echo $row['item']; ?></td> 
+		<td><?php echo $row['price']; ?></td> 
+		<td><?php echo $row['duration']; ?></td>
+		<td><?php echo $row['descr']; ?></td>
+		<td><?php echo $row['picture']; ?></td>
 	</tr>
 	<?php } ?>
 </table>
 
-<a href = "fm_messager.php">Message User</a> 
 
-</div>
 </div>
 
 <!-- Block 3 -->

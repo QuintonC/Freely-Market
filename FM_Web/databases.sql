@@ -116,6 +116,7 @@ created datetime NOT NULL,
 msgid int,
 bid int,
 rid int,
+tid int,
 PRIMARY KEY(nid))
 engine=innodb;
 
