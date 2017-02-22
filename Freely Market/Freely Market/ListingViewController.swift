@@ -47,8 +47,6 @@ class ListingViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     
-    /**/
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return values.count
     }
