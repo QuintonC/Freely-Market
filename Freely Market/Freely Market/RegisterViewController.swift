@@ -53,14 +53,18 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
     
     func keyboardUp(notification: NSNotification) {
-        if let activeField = self.activeField {
-            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-                if (activeField.frame.origin.y < keyboardSize.height) {
-                    self.view.frame.origin.y = 0
-                } else {
-                    self.view.frame.origin.y = 0
-                    self.view.frame.origin.y = -keyboardSize.height
-                }
+        let absoluteFrame: CGRect = (activeField?.convert(activeField!.frame, to: UIApplication.shared.keyWindow))!
+        let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
+        
+        
+        if self.activeField != nil {
+            print(absoluteFrame.origin.y)
+            print((keyboardSize?.height)!)
+            //if (absoluteFrame.origin.y < (keyboardSize?.height)!) {
+            if (activeField == username || activeField == password || activeField == password2) {
+                self.view.frame.origin.y = 0
+            } else {
+                self.view.frame.origin.y = -(keyboardSize?.height)!
             }
         }
     }
