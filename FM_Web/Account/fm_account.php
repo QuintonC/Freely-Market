@@ -355,6 +355,7 @@ top: 1350px;
 <li><a href = "fm_edit_card.php">Edit Card Info</a></li>
 <li><a href = "fm_messager1.php">Messager</a></li>
 <li><a href = "fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
+<li><a href = 'fm_admin_vendor_requests.php'>Vendor Requests</a></li>
 <?php if ($adminCheck['admin'] == "y"): ?>
 	<span><li><a href = "fm_messager1.php">Messager</a></li></span>
 <?php endif;?>
