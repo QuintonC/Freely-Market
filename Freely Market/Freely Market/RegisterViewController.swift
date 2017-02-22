@@ -42,6 +42,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    // KEYBOARD VIEW EDITING START
+    
     func textFieldDidBeginEditing(_ textField: UITextField){
         activeField = textField
     }
@@ -68,6 +70,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             self.view.frame.origin.y = 0
         }
     }
+    
+    // END KEYBOARD VIEW SHIFTING
     
     // Changes which textfield is first responder
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
