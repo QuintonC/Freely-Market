@@ -22,8 +22,8 @@ $tid = $_GET['id'];
 $mysql = "SELECT t.renter, t.occured, r.item, r.price, r.duration, r.descr, r.picture FROM R_Transactions AS t, Rental_Listing AS r WHERE t.rid = r.rid AND tid = '$tid'";
 $content = $conn->query($mysql);
 
-#$sql = "delete from Notifications where tid = '$tid'";
-#$conn->query($sql);
+$sql = "delete from Notifications where tid = '$tid'";
+$conn->query($sql);
 
 ?>
 
