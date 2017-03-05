@@ -20,13 +20,31 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 $username = $_SESSION['username'];
 
 
+$pagenum = $_GET['pagenum'];
+
+$sql = "SELECT count(*) FROM B_Transactions AS t, Buy_Listing AS b WHERE b.bid = t.bid AND t.seller = '$username'";
+$content = $conn->query($sql);
+$val = mysqli_fetch_array($content);
+$total = $val['count(*)'];
+
+$limit = 8;
+
+$lastpage = ceil($total / $limit);
+$nextpage = $pagenum + 1;
+$prevpage = $pagenum - 1;
+$offset = ($pagenum - 1)  * $limit;
+
+
+$mysql = "SELECT t.buyer, t.occured, b.item, b.price FROM B_Transactions AS t, Buy_Listing AS b WHERE b.bid = t.bid AND t.seller = '$username' LIMIT $limit OFFSET $offset";
+$result = $conn->query($mysql);
+
 ?>
 
 <html>
 
 <head>
 
-<title>Transactions Page</title>
+<title>Past Sales Page</title>
 <style>
 
 body {
@@ -67,7 +85,10 @@ table, th, td {
 	margin-left: auto;
 	margin-right: auto;
 	border-bottom: 1px solid #ddd;
-	padding: 15px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 50px;
+	padding-right: 50px;
     text-align: left;
 }
 
@@ -113,26 +134,58 @@ position: absolute;
 font-family: Arial, Helvetica, sans-serif;
 }
 
-.center {
+
+.leftsidebar {
 position: absolute;
-height: 450px;
+height: 1100px;
 left: 0%;
-width: 100%;
+width: 15%;
+background-color: #808080;
 }
 
-.center ul {
-	list-style-type: none;
+.leftsidebar ul {
+    list-style-type: none;
     margin: 0;
     padding: 0;
-	background-color: #333;
+    width: 200px;
+    background-color: #f1f1f1;
 }
 
-.center li {
-	display: block;
+
+.leftsidebar li a {
+   display: block;
+    color: #000;
+    padding: 8px 16px;
     text-decoration: none;
-	width: 100%;
+	width: 200px;
     text-align: left;
-	color: white;
+}
+
+.leftsidebar li a:hover {
+    background-color: #555;
+    color: white;
+}
+
+.leftsidebar .active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.center {
+position: absolute;
+height: 1100px;
+left: 15%;
+width: 70%;
+text-align: center;
+}
+
+
+.rightsidebar {
+position: absolute;
+height: 1100px;
+left: 85%;
+width: 15%;
+background-color: #808080;
 }
 
 .footer {
@@ -141,7 +194,7 @@ width: 100%;
 background-color: #000000;
 color: #FFFAF0;
 position: absolute;
-top: 600px;
+top: 1250px;
 }
 
 .footer ul {
@@ -197,20 +250,55 @@ top: 600px;
 
 </div>
 
-
 <!-- Block 2 -->
-<div class = "center">
-
-<ul>
-<li><a href = "fm_past_sales.php?pagenum=1">My Sales</a></li>
-<li><a href = "fm_past_rentals.php?pagenum=1">My Rentals</a></li>
-<li><a href = "fm_past_purchases.php?pagenum=1">My Purchases</a></li>
-<li><a href = "fm_past_borrows.php?pagenum=1">My Borrows</a></li>
-</ul>
+<div class = "leftsidebar">
 
 </div>
 
 <!-- Block 3 -->
+<div class = "center">
+
+<center><h2>Past Sales</h2></center>
+<?php echo "Page " . $pagenum . "of " . $lastpage;?><br />
+<?php if ($pagenum == 1) { ?>
+<a href="fm_past_sales.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
+<a href="fm_past_sales.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+<?php } elseif ($pagenum == $lastpage) { ?>
+<a href="fm_past_sales.php?pagenum=1">FIRST</a>
+<a href="fm_past_sales.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+<?php } else { ?>
+<a href="fm_past_sales.php?pagenum=1">FIRST</a>
+<a href="fm_past_sales.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+<a href="fm_past_sales.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
+<a href="fm_past_sales.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+<?php } ?>
+
+<table>
+	<tr>
+		<th>Sold To</th>
+		<th>Occured</th>
+		<th>Item</th>
+		<th>Price</th>
+	</tr>
+	<?php while ($row = mysqli_fetch_array($result)) { ?>
+	<tr>
+		<td><?php echo $row['buyer']; ?></td>
+		<td><?php echo $row['occured']; ?></td>
+		<td><?php echo $row['item']; ?></td> 
+		<td><?php echo $row['price']; ?></td> 
+	</tr>
+	<?php } ?>
+</table>
+
+
+</div>
+
+<!-- Block 4 -->
+<div class = "rightsidebar">
+
+</div>
+
+<!-- Block 5 -->
 <div class = "footer">
 
 <ul>
