@@ -210,6 +210,7 @@ top: 600px;
 
 </div>
 
+
 <!-- Block 3 -->
 <div class = "footer">
 
