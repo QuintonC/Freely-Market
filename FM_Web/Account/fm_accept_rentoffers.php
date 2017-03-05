@@ -32,9 +32,10 @@ $aid = $set['aid'];
 
 $type = "Your rent offer has been accepted";
 $date = date("Y-m-d H:i:s");
+$payment = "pending";
 
 #Insert into tranactions table to finalize
-$sql2 = "insert into R_Transactions (borrower, renter, occured, rid, cid, aid) values ('$renter','$seller','$date','$rid','$cid','$aid')";
+$sql2 = "insert into R_Transactions (borrower, renter, occured, rid, cid, aid, payment) values ('$renter','$seller','$date','$rid','$cid','$aid','$payment')";
 $conn->query($sql2);
 
 #Get Transactions ID

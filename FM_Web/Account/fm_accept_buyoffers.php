@@ -33,9 +33,10 @@ $aid = $set['aid'];
 
 $type = "Your buy offer has been accepted";
 $date = date("Y-m-d H:i:s");
+$payment = "pending";
 
 #Insert into transactions table to finalize
-$sql2 = "insert into B_Transactions (buyer, seller, occured, bid, cid, aid) values ('$buyer','$seller','$date','$bid','$cid','$aid')";
+$sql2 = "insert into B_Transactions (buyer, seller, occured, bid, cid, aid, payment) values ('$buyer','$seller','$date','$bid','$cid','$aid','$payment')";
 $conn->query($sql2);
 
 #Get Transactions ID

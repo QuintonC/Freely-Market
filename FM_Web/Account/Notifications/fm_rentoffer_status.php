@@ -22,8 +22,8 @@ $tid = $_GET['id'];
 $mysql = "SELECT t.renter, t.occured, r.item, r.price, r.duration, r.descr, r.picture FROM R_Transactions AS t, Rental_Listing AS r WHERE t.rid = r.rid AND tid = '$tid'";
 $content = $conn->query($mysql);
 
-$sql = "delete from Notifications where tid = '$tid'";
-$conn->query($sql);
+#$sql = "delete from Notifications where tid = '$tid'";
+#$conn->query($sql);
 
 ?>
 
@@ -210,6 +210,8 @@ top: 450px;
 		<th>Duration</th>
 		<th>Description</th>
 		<th>Picture</th>
+		<th></th>
+		<th></th>
 	</tr>
 	<?php while ($row = mysqli_fetch_array($content)) { ?>
 	<tr>
@@ -220,6 +222,13 @@ top: 450px;
 		<td><?php echo $row['duration']; ?></td>
 		<td><?php echo $row['descr']; ?></td>
 		<td><?php echo $row['picture']; ?></td>
+		<td><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="5ND29PM888ZWL">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form></td>
+		<td><a href = "fm_abandon_rental.php">Abandon Transaction</a></td>
 	</tr>
 	<?php } ?>
 </table>
