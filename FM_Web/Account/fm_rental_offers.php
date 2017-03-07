@@ -26,6 +26,25 @@ $sql3 = "select count(*) from Notifications where recipient = '$username'";
 $num = $conn->query($sql3);
 $set = mysqli_fetch_array($num);
 $number = $set['count(*)'];
+
+$pagenum = $_GET['pagenum'];
+
+$sql = "SELECT count(*) FROM Rental_Listing AS r, Pending_Rental AS rs WHERE r.rid = rs.rid AND rs.username = '$username' AND status = 'Active'";
+$content = $conn->query($sql);
+$val = mysqli_fetch_array($content);
+$total = $val['count(*)'];
+
+$limit = 8;
+
+$lastpage = ceil($total / $limit);
+$nextpage = $pagenum + 1;
+$prevpage = $pagenum - 1;
+$offset = ($pagenum - 1)  * $limit;
+
+#Show Sales Listed
+$mysql = "SELECT r.item, r.price, r.duration, r.descr, r.picture FROM Rental_Listing AS r, Pending_Rental AS rs WHERE r.rid = rs.rid AND rs.username = '$username' AND status = 'Active' LIMIT $limit OFFSET $offset";
+$result = $conn->query($mysql);
+
 ?>
 
 <html>
@@ -128,7 +147,7 @@ font-family: Arial, Helvetica, sans-serif;
 }
 .leftsidebar {
 position: absolute;
-height: 450px;
+height: 650px;
 left: 0%;
 width: 15%;
 background-color: #808080;
@@ -165,25 +184,10 @@ background-color: #808080;
 }
 .center {
 position: absolute;
-height: 450px;
+height: 650px;
 left: 15%;
 width: 85%;
 text-align: center;
-}
-
-.center ul {
-	list-style-type: none;
-    margin: 0;
-    padding: 0;
-	background-color: #333;
-}
-
-.center li {
-	display: block;
-    text-decoration: none;
-	width: 100%;
-    text-align: left;
-	color: white;
 }
 
 .footer {
@@ -192,7 +196,7 @@ width: 100%;
 background-color: #000000;
 color: #FFFAF0;
 position: absolute;
-top: 600px;
+top: 800px;
 }
 .footer ul {
     list-style-type: none;
@@ -266,14 +270,43 @@ top: 600px;
 <!-- Block 3 -->
 <div class = "center">
 
-<ul>
-<li><a href = "fm_listed_sales.php?pagenum=1">My Listed Sales</a></li>
-<li><a href = "fm_listed_rentals.php?pagenum=1">My Listed Rentals</a></li>
-<li><a href = "fm_purchase_offers.php?pagenum=1">My Active Purchase Offers</a></li>
-<li><a href = "fm_rental_offers.php?pagenum=1">My Active Rental Offers</a></li>
-</ul>
+<center><h3>Sales</h3></center>
 
-</div>
+<?php echo "Page " . $pagenum . "of " . $lastpage;?><br />
+<?php if ($pagenum == 1) { ?>
+<a href="fm_rental_offers.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
+<a href="fm_rental_offers.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+<?php } elseif ($pagenum == $lastpage) { ?>
+<a href="fm_rental_offers.php?pagenum=1">FIRST</a>
+<a href="fm_rental_offers.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+<?php } else { ?>
+<a href="fm_rental_offers.php?pagenum=1">FIRST</a>
+<a href="fm_rental_offers.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+<a href="fm_rental_offers.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
+<a href="fm_rental_offers.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+<?php } ?>
+
+<center><h3>My Pending Rentals</h3></center>
+<table>
+	<tr>
+		<th>Item</th>
+		<th>Price</th>
+		<th>Duration</th>
+		<th>Description</th>
+		<th>Picture</th>
+		<th>View</th>
+	</tr>
+	<?php while ($area = mysqli_fetch_array($result)) { ?>
+	<tr>
+		<td><?php echo $area['item']; ?></td>
+		<td><?php echo $area['price']; ?></td>
+		<td><?php echo $area['duration']; ?></td>
+		<td><?php echo $area['descr']; ?></td> 
+		<td><?php echo $area['picture']; ?></td> 
+		<td></td>
+	</tr>
+	<?php } ?>
+</table>
 
 <!-- Block 4 -->
 <div class = "footer">

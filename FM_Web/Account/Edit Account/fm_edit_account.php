@@ -218,12 +218,6 @@ top: 1000px;
 <table>
 	<?php while ($row = mysqli_fetch_array($result)) { ?>
 	<tr>
-		<td><?php echo "Username: " . $row['username']; ?></td>
-	</tr>
-	<tr>
-		<td><?php echo "Password: " . $row['password']; ?></td>
-	</tr>
-	<tr>
 		<td><?php echo "First Name: " . $row['first_name']; ?></td>
 	</tr>
 	<tr>
@@ -234,9 +228,6 @@ top: 1000px;
 	</tr>
 	<tr>
 		<td><?php echo "Phone: " . $row['phone']; ?></td>
-	</tr>
-	<tr>
-		<td><?php echo "Type: " . $row['type']; ?></td>
 	</tr>
 	<tr>
 		<td><img src ="<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></td> 
@@ -254,8 +245,6 @@ top: 1000px;
 	<p>Last Name: <input type="text" id ="lname" name="lname" maxlength = "30"></p>
 	<p>Email: <input type="text" id = "email" name="email" maxlength = "30"></p>
 	<p>Phone: <input type="text" id = "phone" name="phone" pattern ='[0-9]{10}'></p>
-	<p>Common users looking to purchase/borrow and sell/rent:<input type="radio" name="user" value="user"> User<br></p>
-    <p>Companies looking to sell inventory:<input type="radio" name="vendor" value="vendor"> Vendor<br></p>
 	<input type="file" id = "picture" name="picture" accept="image/gif, image/jpeg, image/png">
 	<br />
 	<br />

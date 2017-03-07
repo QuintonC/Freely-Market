@@ -47,6 +47,7 @@ $password = $set['password'];
 
 if (password_verify($formpass,$password)) {
 	$_SESSION['username'] = $username;
+	$_SESSION['password'] = $password;
 	$_SESSION['uid'] = $id;
 	$_SESSION['loggedin'] = true;
 	header("Location: fm_account.php");

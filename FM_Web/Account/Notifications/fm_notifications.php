@@ -228,14 +228,13 @@ top: 650px;
 		<th>From</th>
 		<th>Type</th>
 		<th>Date/Time</th>
-		<th>View (msgid)</th>
-		<th>Delete (msgid)</th>
-		<th>View (bid)</th>
-		<th>Delete (bid)</th>
-		<th>View (rid)</th>
-		<th>Delete (rid)</th>
-		<th>View (tid)</th>
-		<th>Delete (tid)</th>
+		<th>View</th>
+		<th>Delete</th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
 	</tr>
 <?php while ($row = mysqli_fetch_array($result)) { ?>
 	<tr>

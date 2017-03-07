@@ -209,6 +209,8 @@ top: 450px;
 		<th>Price</th>
 		<th>Description</th>
 		<th>Picture</th>
+		<th></th>
+		<th></th>
 	</tr>
 	<?php while ($row = mysqli_fetch_array($content)) { ?>
 	<tr>
@@ -218,9 +220,18 @@ top: 450px;
 		<td><?php echo $row['price']; ?></td> 
 		<td><?php echo $row['descr']; ?></td>
 		<td><?php echo $row['picture']; ?></td>
+		<td><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="5ND29PM888ZWL">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form></td>
+		<td><a href = "fm_abandon_sale.php">Abandon Transaction</a></td>
 	</tr>
 	<?php } ?>
 </table>
+
+
 
 
 </div>
