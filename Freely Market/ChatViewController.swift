@@ -14,29 +14,36 @@ import WebKit
 class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
-    
     @IBOutlet weak var tableView: UITableView!
 
     
     
-    
-    
     var values:NSArray = []
-    var names = ["Paul", "Nancy", "Carlos"]
+    var NAMES = [String]()
     var user = "oklightning"
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         //get()
         
-        
-        
-        
-        
-        
+    }
+
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    func getContacts() {
+        var myContacts = [String]()
         let myURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/getContacts.php")
-        var request = URLRequest(url:myURL!)
+        let request = NSMutableURLRequest(url: myURL! as URL)
         request.httpMethod = "POST"
         
         let postString = "user=\(user)"
@@ -45,35 +52,37 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let task = URLSession.shared.dataTask(with: myURL!) { (data, response, error) in
             if error != nil {
                 print("ERROR")
-            } else {
-                if let content = data {
-                    do {
-                        let myJson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
-                        
-                        if let sender = myJson["sender"] as! NSArray? {
-                            print(sender)
-                        }
-
-                        
-                        
-                        
-                        
-                    }
-                    catch {
-                        
-                    }
+            }
+            
+            do {
+                //converting response to NSDictionary
+                var contactJSON: NSDictionary!
+                contactJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                
+                //getting the JSON array contacts from the response
+                let contacts: NSArray = contactJSON["contacts"] as! NSArray
+                
+                //looping through all the json objects in the array contacts
+                for i in 0 ..< contacts.count{
+                    
+                    //getting the data at each index
+                    let contact:String = contacts[i] as! String
+                    
+                    
+                    //adding the data to the return array
+                    print(contact)
+                    myContacts.append(contact)
+                    
                 }
+                
+            } catch {
+                print(error)
             }
         }
         task.resume()
+        NAMES = myContacts
+    }
     
-    }
-
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     
 //    @IBAction func send(_ sender: Any) {
@@ -86,16 +95,22 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
+        getContacts()
+        
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContactCell
         
-        cell.name.text = names[indexPath.row]
+        
+        cell.name.text = NAMES[indexPath.row]
         
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return names.count
+        return NAMES.count
     }
     
 }
