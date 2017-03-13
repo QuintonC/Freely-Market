@@ -301,7 +301,7 @@ top: 800px;
 		<td><?php echo $row['item']; ?></td>
 		<td><?php echo $row['price']; ?></td>
 		<td><?php echo $row['descr']; ?></td> 
-		<td><?php echo $row['picture']; ?></td> 
+		<td><img src ="<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></td> 
 		<td><a href = "fm_edit_sale.php?id=<?php echo $row['bid']; ?>"><?php echo $row['bid'];?></a></td>
 		<td><a href = "fm_delete_sale.php?id=<?php echo $row['bid']; ?>"><?php echo $row['bid'];?></a></td>
 		<td><a href = "fm_view_buyoffers.php?id=<?php echo $row['bid']; ?>"><?php echo $row['bid'];?></a></td>

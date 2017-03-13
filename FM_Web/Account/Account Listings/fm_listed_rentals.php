@@ -286,7 +286,6 @@ top: 800px;
 <a href="fm_listed_rentals.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
 <?php } ?>
 
-<center><h3>Rentals</h3></center>
 <table>
 	<tr>
 		<th>Item</th>
@@ -304,7 +303,7 @@ top: 800px;
 		<td><?php echo $set['price']; ?></td>
 		<td><?php echo $set['duration']; ?></td>
 		<td><?php echo $set['descr']; ?></td> 
-		<td><?php echo $set['picture']; ?></td> 
+		<td><img src ="<?php echo $set['picture']; ?>" height = '75px' width = '75px' /></td> 
 		<td><a href = "fm_edit_rental.php?id=<?php echo $set['rid']; ?>"><?php echo $set['rid'];?></a></td>
 		<td><a href = "fm_delete_rental.php?id=<?php echo $set['rid']; ?>"><?php echo $set['rid'];?></a></td>
 		<td><a href = "fm_view_rentoffers.php?id=<?php echo $set['rid']; ?>"><?php echo $set['rid'];?></a></td>

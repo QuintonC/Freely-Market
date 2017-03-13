@@ -300,7 +300,7 @@ top: 800px;
 		<td><?php echo $batch['item']; ?></td>
 		<td><?php echo $batch['price']; ?></td>
 		<td><?php echo $batch['descr']; ?></td> 
-		<td><?php echo $batch['picture']; ?></td> 
+		<td><img src ="<?php echo $batch['picture']; ?>" height = '75px' width = '75px' /></td> 
 		<td></td>
 	</tr>
 	<?php } ?>

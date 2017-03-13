@@ -257,7 +257,7 @@ top: 950px;
 		<td><?php echo $row['item']; ?></td>
 		<td><?php echo $row['price']; ?></td>
 		<td><?php echo $row['descr']; ?></td> 
-		<td><?php echo $row['picture']; ?></td> 
+		<td><img src ="<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></td> 
 	</tr>
 	<?php } ?>
 </table>

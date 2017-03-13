@@ -302,7 +302,7 @@ top: 800px;
 		<td><?php echo $area['price']; ?></td>
 		<td><?php echo $area['duration']; ?></td>
 		<td><?php echo $area['descr']; ?></td> 
-		<td><?php echo $area['picture']; ?></td> 
+		<td><img src ="<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></td> 
 		<td></td>
 	</tr>
 	<?php } ?>
