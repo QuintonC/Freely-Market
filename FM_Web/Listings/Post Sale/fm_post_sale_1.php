@@ -183,7 +183,7 @@ top: 650px;
 
 <div class = "forms">
 
-<form name = "myForm" action="fm_post_sale.php" method="post" onsubmit = "return blank()">
+<form name = "myForm" action="fm_post_sale.php" method="post" enctype="multipart/form-data" onsubmit = "return blank()">
 	<input type="hidden" value="add" name="choice">
 	<p>Item Name: <input type="text" id = "item" name ="item" maxlength = "15" pattern = '[a-zA-Z0-9]+'></p>
 	<p>Price: $ <input type="text" id = "price" name ="price" pattern = '\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2})'></p>

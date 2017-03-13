@@ -169,6 +169,7 @@ height: 450px;
 left: 15%;
 width: 85%;
 text-align: center;
+background-image: url("shop.jpg");
 }
 
 .center ul {

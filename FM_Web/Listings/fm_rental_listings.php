@@ -22,7 +22,7 @@ $username = $_SESSION['username'];
 
 $pagenum = $_GET['pagenum'];
 
-$sql = "SELECT count(*) FROM Rental_Listing WHERE status = 'Active'";
+$sql = "SELECT count(*) FROM Rental_Listing WHERE owner != '$username' AND status = 'Active'";
 $content = $conn->query($sql);
 $val = mysqli_fetch_array($content);
 $total = $val['count(*)'];
@@ -35,7 +35,7 @@ $prevpage = $pagenum - 1;
 $offset = ($pagenum - 1)  * $limit;
 
 #Show Sales Listed
-$mysql = "SELECT * FROM Rental_Listing AS r, User_Accounts AS a WHERE a.aid = r.aid AND a.username != '$username' AND status = 'Active' LIMIT $limit OFFSET $offset";
+$mysql = "SELECT r.item, r.price, r.descr, r.duration, r.picture, r.rid FROM Rental_Listing AS r, User_Accounts AS a WHERE a.aid = r.aid AND a.username != '$username' AND status = 'Active' LIMIT $limit OFFSET $offset";
 $result = $conn->query($mysql);
 
 ?>
@@ -287,7 +287,7 @@ top: 1250px;
 		<td><?php echo $row['price']; ?></td>
 		<td><?php echo $row['duration']; ?></td>
 		<td><?php echo $row['descr']; ?></td> 
-		<td><?php echo "<img src =" . $row['picture'] . " height = '75px' width = '75px' />"; ?></td> 
+		<td><img src ="<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></td>
 		<td><a href = "fm_viewrental.php?id=<?php echo $row['rid'];?>"><?php echo $row['rid'];?></a></td>
 	</tr>
 	<?php } ?>

@@ -17,7 +17,7 @@ $sql = "delete from Notifications where msgid = '$msgid'";
 
 
 if ($conn->query($sql) === TRUE) {
-	header("Location: fm_notifications.php");
+	header("Location: fm_message_notif.php");
 	exit;
 } else {
 	echo "Error: " . $sql . "<br>" . $conn->error;

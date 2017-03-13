@@ -118,6 +118,7 @@ position: absolute;
 height: 450px;
 left: 0%;
 width: 100%;
+background-image: url("bw_rack.jpg");
 }
 
 .center ul {

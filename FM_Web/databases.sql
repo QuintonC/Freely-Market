@@ -64,6 +64,7 @@ price varchar(8) NOT NULL,
 descr varchar(100) NOT NULL,
 picture LONGBLOB NOT NULL,
 status varchar(30),
+owner varchar(50),
 aid int NOT NULL,
 PRIMARY KEY(bid),
 FOREIGN KEY(aid) REFERENCES User_Accounts(aid))
@@ -78,6 +79,7 @@ duration varchar(10) NOT NULL,
 descr varchar(100) NOT NULL,
 picture LONGBLOB NOT NULL,
 status varchar(30),
+owner varchar(50),
 aid int NOT NULL,
 PRIMARY KEY(rid),
 FOREIGN KEY(aid) REFERENCES User_Accounts(aid))
@@ -111,6 +113,7 @@ engine=innodb;
 
 create table Notifications(
 nid int NOT NULL AUTO_INCREMENT,
+message varchar(100) NOT NULL,
 recipient varchar(30) NOT NULL,
 sender varchar(30) NOT NULL,
 types varchar(30) NOT NULL,
@@ -121,6 +124,5 @@ rid int,
 tid int,
 PRIMARY KEY(nid))
 engine=innodb;
-
 
 

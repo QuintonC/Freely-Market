@@ -30,9 +30,10 @@ $set = mysqli_fetch_array($content);
 $cid = $set['cid'];
 $aid = $set['aid'];
 
-$type = "Your rent offer has been accepted";
+$type = "rentaccept";
 $date = date("Y-m-d H:i:s");
 $payment = "pending";
+$message = "Your offer for a rental listing has been accepted!";
 
 #Insert into tranactions table to finalize
 $sql2 = "insert into R_Transactions (borrower, renter, occured, rid, cid, aid, payment) values ('$renter','$seller','$date','$rid','$cid','$aid','$payment')";
@@ -45,7 +46,7 @@ $batch = mysqli_fetch_array($record);
 $tid = $batch['tid'];
 
 #Create Notification
-$sql4 = "INSERT INTO Notifications(recipient,sender,types,created,tid) VALUES('$renter','$seller','$type','$date','$tid')";
+$sql4 = "INSERT INTO Notifications(message,recipient,sender,types,created,tid) VALUES('$message','$renter','$seller','$type','$date','$tid')";
 $conn->query($sql4);
 
 $status = 'Complete';

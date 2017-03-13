@@ -47,6 +47,7 @@ $data = $conn->query($sql2);
 $tup = mysqli_fetch_array($data);
 $msgid = $tup['msgid'];
 
+$message = 'You have recieved a message!';
 
 #Create Notification
 $sql3 = "INSERT INTO Notifications(recipient,sender,types,created,msgid) VALUES('$reciever','$sender','$type','$date','$msgid')";
@@ -161,6 +162,37 @@ height: 800px;
 left: 0%;
 width: 15%;
 background-color: #808080;
+}
+
+.leftsidebar .menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+}
+.leftsidebar .menu li a {
+   display: block;
+   color: #000;
+   padding: 8px 16px;
+   text-decoration: none;
+   width: 200px;
+   text-align: left;
+}
+.leftsidebar .menu li a:hover {
+    background-color: #555;
+    color: white;
+}
+.leftsidebar .menu li a:hover {
+    background-color: #555;
+    color: white;
+}
+.leftsidebar .menu .active {
+    background-color: #4CAF50;
+    color: white;
+}
+.num {
+	color: red;
 }
 
 .center {
@@ -306,7 +338,18 @@ top: 950px;
 <!-- Block 2 -->
 <div class = "leftsidebar">
 
-
+<div class = "menu">
+<ul>
+<li><a href = "fm_edit_account.php">Edit Account</a></li>
+<li><a href = "fm_edit_card.php">Edit Card Info</a></li>
+<li><a href = "fm_messager1.php">Messager</a></li>
+<li><a href = "fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
+<li><a href = 'fm_admin_vendor_requests.php'>Vendor Requests</a></li>
+<?php if ($adminCheck['admin'] == "y"): ?>
+	<span><li><a href = "fm_messager1.php">Messager</a></li></span>
+<?php endif;?>
+</ul>
+</div>
 
 </div>
 

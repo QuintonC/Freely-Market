@@ -31,9 +31,10 @@ $cid = $set['cid'];
 $aid = $set['aid'];
 
 
-$type = "Your buy offer has been accepted";
+$type = "buyaccept";
 $date = date("Y-m-d H:i:s");
 $payment = "pending";
+$message = "Your offer for a sale listing has been accepted!";
 
 #Insert into transactions table to finalize
 $sql2 = "insert into B_Transactions (buyer, seller, occured, bid, cid, aid, payment) values ('$buyer','$seller','$date','$bid','$cid','$aid','$payment')";
@@ -47,7 +48,7 @@ $tid = $batch['tid'];
 
 
 #Create Notification
-$sql4 = "INSERT INTO Notifications(recipient,sender,types,created,tid) VALUES('$buyer','$seller','$type','$date','$tid')";
+$sql4 = "INSERT INTO Notifications(message,recipient,sender,types,created,tid) VALUES('$message','$buyer','$seller','$type','$date','$tid')";
 $conn->query($sql4);
 
 $status = 'Complete';

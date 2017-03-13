@@ -17,7 +17,7 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	}
 
 #Get id from url
-$bid = $_GET['id'];
+$bid = $_GET['ron'];
 #Diaplay the Listing
 $mysql = "select * from Buy_Listing where bid = '$bid'";
 $result = $conn->query($mysql);

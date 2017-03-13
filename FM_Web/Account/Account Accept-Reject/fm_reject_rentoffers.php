@@ -10,33 +10,35 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 		echo "<p>MySQL error no {$mysqli->connect_errno} : {$mysqli->connect_error}</p>";
 		exit();
 	}
-
-$seller = $_SESSION['username'];
 	
-#Get from url
-$psid = $_GET['id'];
+	
+$renter = $_SESSION['username'];
 
-#Get sale listing id 
-$mysql = "select bid from Pending_Sale where psid = '$psid'";
+#Get from url
+$prid = $_GET['id'];
+
+#Get rental listing id 
+$mysql = "select rid from Pending_Rental where prid = '$prid'";
 $result = $conn->query($mysql);
 $row = mysqli_fetch_array($result);
-$bid = $row['bid'];
+$rid = $row['rid'];
 
 #Get username that belongs to the listing
-$sql = "select username from Pending_Sale where psid = '$psid'";
+$sql = "select username from Pending_Rental where prid = '$prid'";
 $content = $conn->query($sql);
 $set = mysqli_fetch_array($content);
-$buyer = $set['username'];
+$borrower = $set['username'];
 
-#Delete listing from pending sale
-$sql1 = "delete from Pending_Sale where bid = '$bid'";
+#Delete listing from pending rental
+$sql1 = "delete from Pending_Rental where rid = '$rid'";
 $conn->query($sql1);
 
-$type = "Your buy offer has been rejected";
+$type = "rentreject";
 $date = date("Y-m-d H:i:s");
+$message = "Your offer for a rental listing has been rejected!";
 
 #Create Notification
-$sql2 = "insert into Notifications(recipient,sender,types,created,bid) values('$buyer','$seller','$type','$date','$bid')";
+$sql2 = "insert into Notifications(message,recipient,sender,types,created,rid) values('$message','$borrower','$renter','$type','$date','$rid')";
 
 if ($conn->query($sql2) === TRUE) {
 	header("Location: fm_account.php");
@@ -44,5 +46,7 @@ if ($conn->query($sql2) === TRUE) {
 } else {
 	echo "Error: " . $sql2 . "<br>" . $conn->error;
 }
+
+
 
 ?>

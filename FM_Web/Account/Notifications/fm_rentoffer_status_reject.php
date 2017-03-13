@@ -17,8 +17,13 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 		exit();
 	}
 	
-$username = $_SESSION['username'];
+$rid = $_GET['id'];
 
+$mysql = "SELECT owner, item, price, duration, descr, picture FROM Rental_Listing AS r WHERE rid = '$rid'";
+$content = $conn->query($mysql);
+
+$sql = "delete from Notifications where rid = '$rid'";
+$conn->query($sql);
 
 ?>
 
@@ -26,7 +31,7 @@ $username = $_SESSION['username'];
 
 <head>
 
-<title>Transactions Page</title>
+<title>Completed Rental Offer</title>
 <style>
 
 body {
@@ -91,6 +96,12 @@ height: 150px;
 background-color: #ff4d4d;
 }
 
+.title .navbar{
+top: 15px;
+right: 2%;
+position: absolute;
+font-family: Arial, Helvetica, sans-serif;
+}
 
 .title .header {
 top: 10px;
@@ -106,35 +117,22 @@ left: 2%;
 position: absolute;
 }
 
-.title .navbar{
-top: 15px;
-right: 2%;
-position: absolute;
-font-family: Arial, Helvetica, sans-serif;
-}
 
 .center {
 position: absolute;
-height: 450px;
+height: 400px;
 left: 0%;
 width: 100%;
-background-image: url("tree.jpg");
+top: 150px;
 }
 
-.center ul {
-	list-style-type: none;
-    margin: 0;
-    padding: 0;
-	background-color: #333;
+
+.center .form {
+text-align: center;
+position: relative;
+top: 50px;
 }
 
-.center li {
-	display: block;
-    text-decoration: none;
-	width: 100%;
-    text-align: left;
-	color: white;
-}
 
 .footer {
 margin: auto;
@@ -142,7 +140,7 @@ width: 100%;
 background-color: #000000;
 color: #FFFAF0;
 position: absolute;
-top: 600px;
+top: 450px;
 }
 
 .footer ul {
@@ -167,23 +165,15 @@ top: 600px;
 }
 
 </style>
-
-
+<head>
+	<title>Completed Rental Offer</title>
 </head>
 
 <body>
 
+
 <!-- Block 1 -->
 <div class = "title">
-
-<div class = "search">
-<img src = "logo.png" height = "100px" width = "200px" /><br />
-<input type="text" name="search" placeholder="Search..">
-</div>
-
-<div class = "header">
-<h1>Transactions</h1>
-</div>
 
 <div class = "navbar">
 
@@ -193,24 +183,51 @@ top: 600px;
 <li><a href = "fm_transactions.php" class = "active">Transactions</a></li>
 <li><a href = 'fm_homepage.html'>Logged In: <?php echo $log; ?></a></li>
 </ul>
+
 </div>
 
 
+<div class = "search">
+<img src = "logo.png" height = "100px" width = "200px" /><br />
+<input type="text" name="search" placeholder="Search..">
+</div>
+
+<div class = "header">
+<h1>Sale</h1>
 </div>
 
 
 <!-- Block 2 -->
 <div class = "center">
 
-<ul>
-<li><a href = "fm_past_sales.php?pagenum=1">My Sales</a></li>
-<li><a href = "fm_past_rentals.php?pagenum=1">My Rentals</a></li>
-<li><a href = "fm_past_purchases.php?pagenum=1">My Purchases</a></li>
-<li><a href = "fm_past_borrows.php?pagenum=1">My Borrows</a></li>
-</ul>
+<div class = "form"
+><table>
+	<tr>
+		<th>Renter</th>
+		<th>Occured</th>
+		<th>Item</th>
+		<th>Price</th>
+		<th>Duration</th>
+		<th>Description</th>
+		<th>Picture</th>
+		<th></th>
+		<th></th>
+	</tr>
+	<?php while ($row = mysqli_fetch_array($content)) { ?>
+	<tr>
+		<td><?php echo $row['renter']; ?></td>
+		<td><?php echo $row['occured']; ?></td>
+		<td><?php echo $row['item']; ?></td> 
+		<td><?php echo $row['price']; ?></td> 
+		<td><?php echo $row['duration']; ?></td>
+		<td><?php echo $row['descr']; ?></td>
+		<td><?php echo $row['picture']; ?></td>
+	</tr>
+	<?php } ?>
+</table>
+
 
 </div>
-
 
 <!-- Block 3 -->
 <div class = "footer">

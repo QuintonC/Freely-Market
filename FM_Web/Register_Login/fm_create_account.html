@@ -4,11 +4,9 @@
 	<title>Create Account</title>
 	
 <script type="text/javascript">
-
-<!-- Ensures forms are not blank -->
     function blank()
     {
-    var a=document.forms["myForm"]["user"].value;
+    var a=document.forms["myForm"]["username"].value;
     var b=document.forms["myForm"]["password"].value;
     var c=document.forms["myForm"]["fname"].value;
     var d=document.forms["myForm"]["lname"].value;
@@ -129,7 +127,7 @@ top: 725px;
 <div class = "center">
 <div class = "forms">
 
-<form name = "myForm" action="fm_create_account.php" method="post" onsubmit = "return blank()">
+<form name = "myForm" action="fm_create_account.php" method="post" enctype="multipart/form-data" onsubmit = "return blank()">
 	<input type="hidden" value="add" name="choice">
 	<p>User Name: <input type="text" id = "username" name ="username" maxlength = "15"></p>
 	<p>Password: <input type="password" id = "password" name ="password"></p>
