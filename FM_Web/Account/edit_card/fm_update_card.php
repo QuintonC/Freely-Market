@@ -1,10 +1,9 @@
 <?php
 
-#Initiates session variables
 session_start();
+require_once("../../db_constant.php");
 
-#References data base connection variables
-require_once("../db_constant.php");
+
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	# check connection
 	if ($mysqli->connect_errno) {
@@ -12,12 +11,12 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 		exit();
 	}
 
-#Gets form entries
-$name = $_POST['name'];
-$number = $_POST['number'];
+
+$cname = $_POST['cname'];
+$cnum = $_POST['cnum'];
 $expr = $_POST['expr'];
 $cvv = $_POST['cvv'];
-$aid = $_SESSION['aid'];
+$aid = $_SESSION['uid'];
 
 #Prevent MySQL Injection
 $name = strip_tags($name);
@@ -30,24 +29,14 @@ $number = stripslashes($number);
 $expr = stripslashes($expr);
 $cvv = stripslashes($cvv);
 
-#query creates card info for user account
-$sql = "INSERT INTO CardInfo (card_name,card_number,expr,cvv,aid) VALUES ('$name','$number','$expr','$cvv','$aid')";
-
+$sql = "update CardInfo set card_name = '$cname', card_number = '$cnum', expr = '$expr', cvv = '$cvv' where aid = '$aid'";
 
 if ($conn->query($sql) === TRUE) {
-	#If query is successful then the user is redirected to the log in page
-	header("Location: fm_login.html");
-	exit;
+	echo "New record updated successfully";
 } else {
 	echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
-
+header("Location: ../fm_account.php");
+exit;
 ?>
-
-
-
-
-
-
-

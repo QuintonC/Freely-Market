@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once("../db_constant.php");
+require_once("../../../db_constant.php");
 
 if (isset($_SESSION['loggedin']) and $_SESSION['loggedin'] == true) {
     $log = $_SESSION['username'];
@@ -9,16 +9,8 @@ if (isset($_SESSION['loggedin']) and $_SESSION['loggedin'] == true) {
     echo "Please log in first to see this page.";
 }
 
-
-$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-	# check connection
-	if ($mysqli->connect_errno) {
-		echo "<p>MySQL error no {$mysqli->connect_errno} : {$mysqli->connect_error}</p>";
-		exit();
-	}
-	
-$username = $_SESSION['username'];
-
+#Gathers Buy_Listing ID from the URL
+$bid = $_GET['id'];
 
 ?>
 
@@ -26,7 +18,34 @@ $username = $_SESSION['username'];
 
 <head>
 
-<title>Transactions Page</title>
+<title>Edit Sale Page</title>
+
+<script type="text/javascript">
+    function blank()
+    {
+    var a=document.forms["myForm"]["item"].value;
+    var b=document.forms["myForm"]["price"].value;
+	var c=document.forms["myForm"]["descr"].value;
+	var d=document.forms["myForm"]["picture"].value;
+    if (a==null || a=="",b==null || b=="",c==null || c=="",d==null || d=="")
+      {
+      alert("Please Fill All Required Field");
+      return false;
+      }
+    }
+
+	function maxLength(char) {    
+    if (!('maxLength' in char)) {
+        var max = char.attributes.maxLength.value;
+        char.onkeypress = function () {
+            if (this.value.length >= max) return false;
+        };
+    }
+}
+
+maxLength(document.getElementById("text"));
+</script>
+
 <style>
 
 body {
@@ -63,27 +82,6 @@ li a:hover {
     background-color: 	#00008B;
 }
 
-table, th, td {
-	margin-left: auto;
-	margin-right: auto;
-	border-bottom: 1px solid #ddd;
-	padding: 15px;
-    text-align: left;
-}
-
-th {
-    background-color: 	#00008B;
-    color: white;
-}
-
-tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-
-tr:hover {
-	background-color: #f5f5f5;
-}
-
 .title {
 margin: auto;
 width: 100%;
@@ -115,25 +113,21 @@ font-family: Arial, Helvetica, sans-serif;
 
 .center {
 position: absolute;
-height: 450px;
-left: 0%;
+height: 500px;
 width: 100%;
 background-image: url("tree.jpg");
 }
 
-.center ul {
-	list-style-type: none;
-    margin: 0;
-    padding: 0;
-	background-color: #333;
-}
-
-.center li {
-	display: block;
-    text-decoration: none;
-	width: 100%;
-    text-align: left;
-	color: white;
+.center .forms {
+position: relative;
+top: 90px;
+left: 400px;
+height: 200px;
+width: 500px;
+background-color: #FFFFFF;
+border-style: solid;
+border-width: 2px;
+padding: 15px;	
 }
 
 .footer {
@@ -142,7 +136,7 @@ width: 100%;
 background-color: #000000;
 color: #FFFAF0;
 position: absolute;
-top: 600px;
+top: 650px;
 }
 
 .footer ul {
@@ -167,8 +161,10 @@ top: 600px;
 }
 
 </style>
+</head>
 
-
+	<title>Edit Sale Page</title>
+	
 </head>
 
 <body>
@@ -182,35 +178,39 @@ top: 600px;
 </div>
 
 <div class = "header">
-<h1>Transactions</h1>
+<h1>Edit Sale</h1>
 </div>
 
 <div class = "navbar">
-
 <ul>
-<li><a href = "../listings/fm_listings.php">Listings</a></li>
-<li><a href="../account/fm_account.php">My Account</a></li>
-<li><a href = "../transactions/fm_transactions.php" class = "active">Transactions</a></li>
-<li><a href = "../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
+<li><a href = "fm_listings.php">Listings</a></li>
+<li><a href="fm_account.php" class = "active">My Account</a></li>
+<li><a href = "fm_transactions.php">Transactions</a></li>
+<li><a href = 'fm_homepage.html'>Logged In: <?php echo $log; ?></a></li>
 </ul>
 </div>
 
 
 </div>
-
 
 <!-- Block 2 -->
 <div class = "center">
 
-<ul>
-<li><a href = "fm_past_sales.php?pagenum=1">My Sales</a></li>
-<li><a href = "fm_past_rentals.php?pagenum=1">My Rentals</a></li>
-<li><a href = "fm_past_purchases.php?pagenum=1">My Purchases</a></li>
-<li><a href = "fm_past_borrows.php?pagenum=1">My Borrows</a></li>
-</ul>
+<div class = "forms">
+
+<form name = "myForm" action="fm_update_sale.php?id=<?php echo $bid ?>;" method="post" onsubmit = "return blank()">
+	<input type="hidden" value="add" name="choice">
+	<p>Item Name: <input type="text" id = "item" name ="item" maxlength = "15"></p>
+	<p>Price: <input type="text" id = "price" name ="price"></p>
+	<p>Description: <input type="text" id = "descr" name="descr" maxlength = "30"></p>
+	<input type="file" id = "picture" name="picture" accept="image/gif, image/jpeg, image/png">
+	<br />
+	<br />
+	<button type="submit" name = "submit">Update Sale</button>
+	</form>
 
 </div>
-
+</div>
 
 <!-- Block 3 -->
 <div class = "footer">
@@ -221,6 +221,7 @@ top: 600px;
 <li><a href = "">Contact</a></li>
 <li style = "float:left"><a href = "">Social Links</a></li>
 </ul>
+
 
 </div>
 

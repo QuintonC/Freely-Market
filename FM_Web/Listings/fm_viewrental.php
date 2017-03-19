@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once("db_constant.php");
+require_once("../db_constant.php");
 
 if (isset($_SESSION['loggedin']) and $_SESSION['loggedin'] == true) {
     $log = $_SESSION['username'];
@@ -176,10 +176,10 @@ top: 610px;
 <div class = "navbar">
 
 <ul>
-<li><a href = "fm_listings.php" class = "active">Listings</a></li>
-<li><a href="fm_account.php">My Account</a></li>
-<li><a href = "fm_transactions.php">Transactions</a></li>
-<li><a href = 'fm_homepage.html'>Logged In: <?php echo $log; ?></a></li>
+<li><a href = "../listings/fm_listings.php" class = "active">Listings</a></li>
+<li><a href="../account/fm_account.php">My Account</a></li>
+<li><a href = "../transactions/fm_transactions.php">Transactions</a></li>
+<li><a href = "../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
 </ul>
 
 </div>

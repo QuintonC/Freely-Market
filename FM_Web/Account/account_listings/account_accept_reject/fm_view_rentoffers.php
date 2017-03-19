@@ -1,14 +1,13 @@
 <?php
 
 session_start();
-require_once("../db_constant.php");
+require_once("../../../db_constant.php");
 
 if (isset($_SESSION['loggedin']) and $_SESSION['loggedin'] == true) {
-    $log = $_SESSION['username'];
+     $log = $_SESSION['username'];
 } else {
     echo "Please log in first to see this page.";
 }
-
 
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	# check connection
@@ -16,40 +15,47 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 		echo "<p>MySQL error no {$mysqli->connect_errno} : {$mysqli->connect_error}</p>";
 		exit();
 	}
-	
-$username = $_SESSION['username'];
 
-
-$pagenum = $_GET['pagenum'];
-
-$sql = "SELECT count(*) FROM Buy_Listing WHERE owner != '$username' AND status = 'Active'";
-$content = $conn->query($sql);
-$val = mysqli_fetch_array($content);
-$total = $val['count(*)'];
-
-$limit = 8;
-
-$lastpage = ceil($total / $limit);
-$nextpage = $pagenum + 1;
-$prevpage = $pagenum - 1;
-$offset = ($pagenum - 1)  * $limit;
-
-#Show Sales Listed
-$mysql = "SELECT b.item, b.price, b.descr, b.picture, b.bid FROM Buy_Listing AS b, User_Accounts AS a WHERE a.aid = b.aid AND a.username != '$username' AND status = 'Active' LIMIT $limit OFFSET $offset";
+#Get id from url
+$id = $_GET['id'];
+#Diaplay the Listing
+$mysql = "select * from Rental_Listing where rid = '$id'";
 $result = $conn->query($mysql);
-
+#Diplay accounts of offers made for listing
+$sql1 = "select prid, username from Pending_Rental where rid = '$id'";
+$records = $conn->query($sql1);
 ?>
 
 <html>
 
 <head>
 
-<title>Listings Page</title>
 <style>
 
 body {
 padding: 0px;
 margin: 0px;
+}
+
+table, th, td {
+	margin-left: auto;
+	margin-right: auto;
+	border-bottom: 1px solid #ddd;
+	padding: 15px;
+    text-align: left;
+}
+
+th {
+    background-color: 	#00008B;
+    color: white;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+tr:hover {
+	background-color: #f5f5f5;
 }
 
 ul {
@@ -79,30 +85,6 @@ li a:hover {
 
 .active {
     background-color: 	#00008B;
-}
-
-table, th, td {
-	margin-left: auto;
-	margin-right: auto;
-	border-bottom: 1px solid #ddd;
-	padding-top: 15px;
-	padding-bottom: 15px;
-	padding-left: 50px;
-	padding-right: 50px;
-    text-align: left;
-}
-
-th {
-    background-color: 	#00008B;
-    color: white;
-}
-
-tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-
-tr:hover {
-	background-color: #f5f5f5;
 }
 
 .title {
@@ -137,52 +119,51 @@ font-family: Arial, Helvetica, sans-serif;
 
 .leftsidebar {
 position: absolute;
-height: 1100px;
+height: 800px;
 left: 0%;
 width: 15%;
 background-color: #808080;
 }
 
-.leftsidebar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 200px;
-    background-color: #f1f1f1;
-}
-
-
-.leftsidebar li a {
-   display: block;
-    color: #000;
-    padding: 8px 16px;
-    text-decoration: none;
-	width: 200px;
-    text-align: left;
-}
-
-.leftsidebar li a:hover {
-    background-color: #555;
-    color: white;
-}
-
-.leftsidebar .active {
-    background-color: #4CAF50;
-    color: white;
-}
-
 .center {
 position: absolute;
-height: 1100px;
+height: 800px;
 left: 15%;
 width: 70%;
-text-align: center;
+background-image: url("tree.jpg");
 }
 
+.center .listing {
+position: absolute;
+top: 50px;
+left: 200px;
+height: 200px;
+width: 500px;
+background-color: #FFFFFF;
+border-style: solid;
+border-width: 2px;
+padding: 15px;
+position: absolute;
+overflow: scroll;
+}
+
+.center .offers {
+position: absolute;
+top: 350px;
+left: 200px;
+height: 300px;
+width: 500px;
+background-color: #FFFFFF;
+border-style: solid;
+border-width: 2px;
+padding: 15px;
+position: absolute;
+overflow: scroll;
+}
 
 .rightsidebar {
 position: absolute;
-height: 1100px;
+height: 800px;
 left: 85%;
 width: 15%;
 background-color: #808080;
@@ -194,7 +175,7 @@ width: 100%;
 background-color: #000000;
 color: #FFFAF0;
 position: absolute;
-top: 1250px;
+top: 950px;
 }
 
 .footer ul {
@@ -220,7 +201,8 @@ top: 1250px;
 
 </style>
 
-
+	<title>View Offers Page</title>
+	
 </head>
 
 <body>
@@ -234,17 +216,18 @@ top: 1250px;
 </div>
 
 <div class = "header">
-<h1>Listings</h1>
+<h1>View Offers</h1>
 </div>
 
 <div class = "navbar">
 
 <ul>
-<li><a href = "../listings/fm_listings.php" class = "active">Listings</a></li>
-<li><a href="../account/fm_account.php">My Account</a></li>
-<li><a href = "../transactions/fm_transactions.php">Transactions</a></li>
-<li><a href = "../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
+<li><a href = "../../../listings/fm_listings.php">Listings</a></li>
+<li><a href="../../fm_account.php"  class = "active">My Account</a></li>
+<li><a href = "../../../transactions/fm_transactions.php">Transactions</a></li>
+<li><a href = "../../../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
 </ul>
+
 </div>
 
 
@@ -253,44 +236,48 @@ top: 1250px;
 <!-- Block 2 -->
 <div class = "leftsidebar">
 
+
+
 </div>
 
 <!-- Block 3 -->
 <div class = "center">
 
-<center><h2>Sales</h2></center>
-<?php echo "Page " . $pagenum . "of " . $lastpage;?><br />
-<?php if ($pagenum == 1) { ?>
-<a href="fm_sale_listings.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_sale_listings.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
-<?php } elseif ($pagenum == $lastpage) { ?>
-<a href="fm_sale_listings.php?pagenum=1">FIRST</a>
-<a href="fm_sale_listings.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
-<?php } else { ?>
-<a href="fm_sale_listings.php?pagenum=1">FIRST</a>
-<a href="fm_sale_listings.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
-<a href="fm_sale_listings.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_sale_listings.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
-<?php } ?>
+<div class = "listing">
+<center><h3>Listing</h3></center>
 <table>
 	<tr>
 		<th>Item</th>
 		<th>Price</th>
+		<th>Duration</th>
 		<th>Description</th>
 		<th>Picture</th>
-		<th>Id</th>
 	</tr>
 	<?php while ($row = mysqli_fetch_array($result)) { ?>
 	<tr>
 		<td><?php echo $row['item']; ?></td>
 		<td><?php echo $row['price']; ?></td>
-		<td><?php echo $row['descr']; ?></td>
+		<td><?php echo $row['duration']; ?></td>
+		<td><?php echo $row['descr']; ?></td> 
 		<td><img src ="<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></td> 
-		<td><a href = "fm_viewsale.php?id=<?php echo $row['bid'];?>"><?php echo $row['bid'];?></a></td>
 	</tr>
 	<?php } ?>
 </table>
+</div>
 
+<div class = "offers">
+<center><h3>Offers</h3></center>
+<table>
+	<?php while ($set = mysqli_fetch_array($records)) { ?>
+	<tr>
+		<td><?php echo $set['prid']; ?></td>
+		<td><?php echo $set['username']; ?></td>
+		<td><a href = "fm_accept_rentoffers.php?id=<?php echo $set['prid']; ?>">Accept</a></td>
+		<td><a href = "fm_reject_rentoffers.php?id=<?php echo $set['prid']; ?>">Reject</a></td>
+	</tr>
+	<?php } ?>
+</table>
+</div>
 
 </div>
 
@@ -299,7 +286,7 @@ top: 1250px;
 
 </div>
 
-<!-- Block 5 -->
+<!-- Block 4 -->
 <div class = "footer">
 
 <ul>
@@ -308,6 +295,7 @@ top: 1250px;
 <li><a href = "">Contact</a></li>
 <li style = "float:left"><a href = "">Social Links</a></li>
 </ul>
+
 
 </div>
 

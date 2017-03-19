@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("db_constant.php");
+require_once("../db_constant.php");
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	# check connection
 	if ($mysqli->connect_errno) {
@@ -34,7 +34,7 @@ $seller = $set['username'];
 #Create notification
 $sql3 = "INSERT INTO Notifications(message,recipient,sender,types,created,rid) VALUES('$message','$seller','$username','$type','$date','$rid')";
 if ($conn->query($sql3) === TRUE) {
-	header("Location: fm_account.php");
+	header("Location: ../account/fm_account.php");
 	exit;
 } else {
 	echo "Error: " . $sql3 . "<br>" . $conn->error;

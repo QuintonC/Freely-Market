@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once("db_constant.php");
+require_once("../../db_constant.php");
 
 if (isset($_SESSION['loggedin']) and $_SESSION['loggedin'] == true) {
      $log = $_SESSION['username'];
@@ -254,10 +254,10 @@ top: 950px;
 <div class = "navbar">
 
 <ul>
-<li><a href = "fm_listings.php">Listings</a></li>
-<li><a href="fm_account.php" class = "active">My Account</a></li>
-<li><a href = "fm_transactions.php">Transactions</a></li>
-<li><a href = 'fm_homepage.html'>Logged In: <?php echo $log; ?></a></li>
+<li><a href = "../../listings/fm_listings.php">Listings</a></li>
+<li><a href="../../account/fm_account.php" class = "active">My Account</a></li>
+<li><a href = "../../transactions/fm_transactions.php">Transactions</a></li>
+<li><a href = "../../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
 </ul>
 
 </div>
@@ -270,10 +270,10 @@ top: 950px;
 
 <div class = "menu">
 <ul>
-<li><a href = "fm_edit_account.php">Edit Account</a></li>
-<li><a href = "fm_edit_card.php">Edit Card Info</a></li>
-<li><a href = "fm_messager1.php">Messager</a></li>
-<li><a href = "fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
+<li><a href = "../edit_account/fm_edit_account.php">Edit Account</a></li>
+<li><a href = "../edit_card/fm_edit_card.php">Edit Card Info</a></li>
+<li><a href = "../messager/fm_messager1.php">Messager</a></li>
+<li><a href = "../notifications/fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
 <li><a href = 'fm_admin_vendor_requests.php'>Vendor Requests</a></li>
 <?php if ($adminCheck['admin'] == "y"): ?>
 	<span><li><a href = "fm_messager1.php">Messager</a></li></span>
