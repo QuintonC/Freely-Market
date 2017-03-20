@@ -123,7 +123,7 @@ font-size: 24px;
 width: 100%;
 height: 700;
 background-color: #ffe6e6;
-background-image: url("river.jpg");
+background-image: url("../../images/river.jpg");
 position: absolute;
 }
 

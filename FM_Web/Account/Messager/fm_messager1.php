@@ -150,7 +150,7 @@ position: absolute;
 height: 800px;
 left: 15%;
 width: 70%;
-background-image: url("shop.jpg");
+background-image: url("../../images/shop.jpg");
 }
 
 .center .reciever{

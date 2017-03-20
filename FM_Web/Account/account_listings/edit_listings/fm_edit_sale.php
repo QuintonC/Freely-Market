@@ -115,7 +115,7 @@ font-family: Arial, Helvetica, sans-serif;
 position: absolute;
 height: 500px;
 width: 100%;
-background-image: url("tree.jpg");
+background-image: url("../../../images/tree.jpg");
 }
 
 .center .forms {
@@ -173,7 +173,7 @@ top: 650px;
 <div class = "title">
 
 <div class = "search">
-<img src = "logo.png" height = "100px" width = "200px" /><br />
+<img src = "../../../images/logo.png" height = "100px" width = "200px" /><br />
 <input type="text" name="search" placeholder="Search..">
 </div>
 
@@ -183,10 +183,10 @@ top: 650px;
 
 <div class = "navbar">
 <ul>
-<li><a href = "fm_listings.php">Listings</a></li>
-<li><a href="fm_account.php" class = "active">My Account</a></li>
-<li><a href = "fm_transactions.php">Transactions</a></li>
-<li><a href = 'fm_homepage.html'>Logged In: <?php echo $log; ?></a></li>
+<li><a href = "../../../listings/fm_listings.php">Listings</a></li>
+<li><a href="../../../account/fm_account.php" class = "active">My Account</a></li>
+<li><a href = "../../../transactions/fm_transactions.php">Transactions</a></li>
+<li><a href = "../../../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
 </ul>
 </div>
 
@@ -198,7 +198,7 @@ top: 650px;
 
 <div class = "forms">
 
-<form name = "myForm" action="fm_update_sale.php?id=<?php echo $bid ?>;" method="post" onsubmit = "return blank()">
+<form name = "myForm" action="fm_update_sale.php?id=<?php echo $bid ?>;" method="post" enctype="multipart/form-data" onsubmit = "return blank()">
 	<input type="hidden" value="add" name="choice">
 	<p>Item Name: <input type="text" id = "item" name ="item" maxlength = "15"></p>
 	<p>Price: <input type="text" id = "price" name ="price"></p>

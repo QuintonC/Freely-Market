@@ -187,7 +187,7 @@ top: 610px;
 
 
 <div class = "search">
-<img src = "logo.png" height = "100px" width = "200px" /><br />
+<img src = "../images/logo.png" height = "100px" width = "200px" /><br />
 <input type="text" name="search" placeholder="Search..">
 </div>
 
@@ -232,7 +232,7 @@ top: 610px;
 		<td><?php echo $set['item']; ?></td>
 		<td><?php echo $set['price']; ?></td>
 		<td><?php echo $set['descr']; ?></td> 
-		<td><img src ="<?php echo $set['picture']; ?>" height = '75px' width = '75px' /></td>
+		<td><img src ="../images/<?php echo $set['picture']; ?>" height = '75px' width = '75px' /></td>
 		<td><a href = "fm_place_buyoffer.php?id=<?php echo $set['bid']; ?>">Place Offer</a></td>
 	</tr>
 	<?php } ?>

@@ -19,7 +19,7 @@ $size = $_FILES['picture']['size'];
 $type = $_FILES['picture']['type'];
 
 if ($size <= 3000000) {
-	move_uploaded_file($temp_name,$name);
+	move_uploaded_file($temp_name,'../../images/' . $name);
 } else {
 	echo 'The file is too large';
 	echo 'The file is ' . $size . ' and needs to be less than 500KB';
@@ -136,7 +136,7 @@ position: absolute;
 width: 100%;
 height: 480px;
 background-color: #ffe6e6;
-background-image: url("tree.jpg");
+background-image: url("../images/tree.jpg");
 }
 
 .center .forms {
@@ -191,7 +191,7 @@ top: 605px;
 <div class = "title">
 
 <div class = "logo">
-<img src = "logo.png" height = "100px" width = "200px" />
+<img src = "../images/logo.png" height = "100px" width = "200px" />
 </div>
 
 <div class = "header">

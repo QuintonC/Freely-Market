@@ -37,6 +37,9 @@ $total = $val['count(*)'];
 $limit = 8;
 
 $lastpage = ceil($total / $limit);
+if ($lastpage == 0) {
+	$lastpage = 1;
+}
 $nextpage = $pagenum + 1;
 $prevpage = $pagenum - 1;
 $offset = ($pagenum - 1)  * $limit;
@@ -228,7 +231,7 @@ top: 800px;
 <div class = "title">
 
 <div class = "search">
-<img src = "logo.png" height = "100px" width = "200px" /><br />
+<img src = "../../images/logo.png" height = "100px" width = "200px" /><br />
 <input type="text" name="search" placeholder="Search..">
 </div>
 
@@ -273,13 +276,13 @@ top: 800px;
 <center><h3>Sales</h3></center>
 
 <?php echo "Page " . $pagenum . "of " . $lastpage;?><br />
-<?php if ($pagenum == 1) { ?>
+<?php if ($pagenum == 1 and $lastpage != 1) { ?>
 <a href="fm_purchase_offers.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
 <a href="fm_purchase_offers.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
-<?php } elseif ($pagenum == $lastpage) { ?>
+<?php } elseif ($pagenum == $lastpage and $pagenum != 1) { ?>
 <a href="fm_purchase_offers.php?pagenum=1">FIRST</a>
 <a href="fm_purchase_offers.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
-<?php } else { ?>
+<?php } elseif ($pagenum != 1 and $lastpage != 1) { ?>
 <a href="fm_purchase_offers.php?pagenum=1">FIRST</a>
 <a href="fm_purchase_offers.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
 <a href="fm_purchase_offers.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
@@ -300,7 +303,7 @@ top: 800px;
 		<td><?php echo $batch['item']; ?></td>
 		<td><?php echo $batch['price']; ?></td>
 		<td><?php echo $batch['descr']; ?></td> 
-		<td><img src ="<?php echo $batch['picture']; ?>" height = '75px' width = '75px' /></td> 
+		<td><img src ="../../images/<?php echo $batch['picture']; ?>" height = '75px' width = '75px' /></td> 
 		<td></td>
 	</tr>
 	<?php } ?>

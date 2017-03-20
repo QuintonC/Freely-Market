@@ -124,7 +124,7 @@ font-size: 24px;
 width: 100%;
 height: 850px;
 background-color: #ffe6e6;
-background-image: url("tower.jpg");
+background-image: url("../../images/tower.jpg");
 position: absolute;
 }
 
@@ -193,7 +193,7 @@ top: 1000px;
 </div>
 
 <div class = "search">
-<img src = "logo.png" height = "100px" width = "200px" /><br />
+<img src = "../../images/logo.png" height = "100px" width = "200px" /><br />
 </div>
 
 
@@ -230,7 +230,7 @@ top: 1000px;
 		<td><?php echo "Phone: " . $row['phone']; ?></td>
 	</tr>
 	<tr>
-		<td><img src ="<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></td> 
+		<td><img src ="../../images/<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></td> 
 	</tr>
 	<?php } ?>
 </table>
@@ -239,7 +239,7 @@ top: 1000px;
 
 
 <div class = "forms">
-<form name = "myForm" action="fm_update_account.php" method="post" onsubmit = "return blank()">
+<form name = "myForm" action="fm_update_account.php" method="post" enctype="multipart/form-data" onsubmit = "return blank()">
 	<input type="hidden" value="add" name="choice">
 	<p>First Name: <input type="text" id = "fname" name="fname" maxlength = "30"></p>
 	<p>Last Name: <input type="text" id ="lname" name="lname" maxlength = "30"></p>

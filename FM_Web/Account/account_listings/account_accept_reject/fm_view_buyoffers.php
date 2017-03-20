@@ -130,26 +130,25 @@ position: absolute;
 height: 800px;
 left: 15%;
 width: 70%;
-background-image: url("tree.jpg");
+background-image: url("../../../images/tree.jpg");
 }
 
 .center .listing {
 position: absolute;
 top: 50px;
 left: 200px;
-height: 200px;
+height: 300px;
 width: 500px;
 background-color: #FFFFFF;
 border-style: solid;
 border-width: 2px;
 padding: 15px;
 position: absolute;
-overflow: scroll;
 }
 
 .center .offers {
 position: absolute;
-top: 350px;
+top: 450px;
 left: 200px;
 height: 300px;
 width: 500px;
@@ -211,7 +210,7 @@ top: 950px;
 <div class = "title">
 
 <div class = "search">
-<img src = "logo.png" height = "100px" width = "200px" /><br />
+<img src = "../../../images/logo.png" height = "100px" width = "200px" /><br />
 <input type="text" name="search" placeholder="Search..">
 </div>
 
@@ -257,7 +256,7 @@ top: 950px;
 		<td><?php echo $row['item']; ?></td>
 		<td><?php echo $row['price']; ?></td>
 		<td><?php echo $row['descr']; ?></td> 
-		<td><img src ="<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></td> 
+		<td><img src ="../../../images/<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></td> 
 	</tr>
 	<?php } ?>
 </table>

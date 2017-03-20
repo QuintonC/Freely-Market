@@ -11,17 +11,27 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 		exit();
 	}
 
+$name = $_FILES['picture']['name'];
+$temp_name = $_FILES['picture']['tmp_name'];
+$size = $_FILES['picture']['size'];
+$type = $_FILES['picture']['type'];
+
+if ($size <= 3000000) {
+	move_uploaded_file($temp_name,'../../images/' . $name);
+} else {
+	echo 'The file is too large';
+	echo 'The file is ' . $size . ' and needs to be less than 500KB';
+}
 
 $fname = $_POST['fname'];
 $lname = $_POST['lname'];
 $email = $_POST['email'];
 $phone = $_POST['phone'];
-$picture = $_POST['picture'];
 $aid = $_SESSION['uid'];
 
 
 
-$sql = "update User_Accounts set first_name = '$fname', last_name = '$lname', email = '$email', phone = '$phone', picture = '$picture' where aid = '$aid'";
+$sql = "update User_Accounts set first_name = '$fname', last_name = '$lname', email = '$email', phone = '$phone', picture = '$name' where aid = '$aid'";
 
 if ($conn->query($sql) === TRUE) {
 	echo "New record updated successfully";

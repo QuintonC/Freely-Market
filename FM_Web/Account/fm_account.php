@@ -169,7 +169,7 @@ height: 450px;
 left: 15%;
 width: 85%;
 text-align: center;
-background-image: url("shop.jpg");
+background-image: url("../images/shop.jpg");
 }
 
 .center ul {
@@ -225,7 +225,7 @@ top: 600px;
 <div class = "title">
 
 <div class = "search">
-<img src = "logo.png" height = "100px" width = "200px" /><br />
+<img src = "../images/logo.png" height = "100px" width = "200px" /><br />
 <input type="text" name="search" placeholder="Search..">
 </div>
 

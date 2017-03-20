@@ -172,7 +172,7 @@ top: 650px;
 </div>
 
 <div class = "search">
-<img src = "logo.png" height = "100px" width = "200px" /><br />
+<img src = "../../images/logo.png" height = "100px" width = "200px" /><br />
 </div>
 
 </div>

@@ -15,7 +15,7 @@ $size = $_FILES['picture']['size'];
 $type = $_FILES['picture']['type'];
 
 if ($size <= 3000000) {
-	move_uploaded_file($temp_name,$name);
+	move_uploaded_file($temp_name,'../../images/' . $name);
 } else {
 	echo 'The file is too large';
 	echo 'The file is ' . $size . ' and needs to be less than 500KB';

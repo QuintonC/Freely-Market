@@ -200,7 +200,7 @@ position: absolute;
 height: 800px;
 left: 15%;
 width: 70%;
-background-image: url("shop.jpg");
+background-image: url("../../images/shop.jpg");
 }
 
 .center .reciever{
@@ -313,7 +313,7 @@ top: 950px;
 <div class = "title">
 
 <div class = "search">
-<img src = "logo.png" height = "100px" width = "200px" /><br />
+<img src = "../../images/logo.png" height = "100px" width = "200px" /><br />
 <input type="text" name="search" placeholder="Search..">
 </div>
 
