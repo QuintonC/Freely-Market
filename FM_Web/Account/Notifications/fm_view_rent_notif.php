@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once("db_constant.php");
+require_once("../../db_constant.php");
 
 if (isset($_SESSION['loggedin']) and $_SESSION['loggedin'] == true) {
      $log = $_SESSION['username'];
@@ -276,8 +276,8 @@ top: 950px;
 	<tr>
 		<td><?php echo $set['prid']; ?></td>
 		<td><?php echo $set['username']; ?></td>
-		<td><a href = "fm_accept_rentoffers.php?id=<?php echo $set['prid']; ?>">Accept</a></td>
-		<td><a href = "fm_reject_rentoffers.php?id=<?php echo $set['prid']; ?>">Reject</a></td>
+		<td><a href = "../account_listings/account_accept_reject/fm_accept_rentoffers.php?id=<?php echo $set['prid']; ?>">Accept</a></td>
+		<td><a href = "../account_listings/account_accept_reject/fm_reject_rentoffers.php?id=<?php echo $set['prid']; ?>">Reject</a></td>
 	</tr>
 	<?php } ?>
 </table>

@@ -47,15 +47,18 @@ $data = $conn->query($sql2);
 $tup = mysqli_fetch_array($data);
 $msgid = $tup['msgid'];
 
-$message = 'You have recieved a message!';
+$message = 'You have recieved a message from ' . $sender . '!';
 
 #Create Notification
-$sql3 = "INSERT INTO Notifications(recipient,sender,types,created,msgid) VALUES('$reciever','$sender','$type','$date','$msgid')";
+$sql3 = "INSERT INTO Msg_Notifications(message,recipient,sender,created,msgid) VALUES('$message','$reciever','$sender','$date','$msgid')";
 
 if (!$conn->query($sql3) === TRUE) {
 	echo "Error: " . $sql3 . "<br>" . $conn->error;
 	exit;
 }
+
+$sql4 = "select distinct sender from Messages where reciever = '$sender'";
+$contacts = $conn->query($sql4);
 
 
 ?>
@@ -273,6 +276,10 @@ width: 15%;
 background-color: #808080;
 }
 
+.rightsidebar .contacts{
+	
+}
+
 .footer {
 margin: auto;
 width: 100%;
@@ -394,6 +401,16 @@ top: 950px;
 
 <!-- Block 4 -->
 <div class = "rightsidebar">
+
+<div class = "contacts">
+<table>
+<?php while ($nam = mysqli_fetch_array($contacts)) { ?>
+	<tr>
+		<td><a href = "fm_conversation.php?contact=<?php echo $nam['sender']; ?>"><?php echo $nam['sender']; ?></a></td>
+	</tr>
+<?php }?>
+</table>
+</div>
 
 </div>
 

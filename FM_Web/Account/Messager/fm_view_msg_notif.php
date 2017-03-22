@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once("db_constant.php");
+require_once("../../db_constant.php");
 
 
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -35,8 +35,11 @@ $sql2 = "select * from Messages where reciever = '$sender' and sender = '$reciev
 $records = $conn->query($sql2);
 
 #Deletes the notification once it is viewed
-$sql3 = "delete from Notifications where msgid = '$msgid'";
+$sql3 = "delete from Msg_Notifications where msgid = '$msgid'";
 $conn->query($sql3);
+
+$sql4 = "select distinct sender from Messages where reciever = '$sender'";
+$cont = $conn->query($sql4);
 
 ?>
 
@@ -143,6 +146,37 @@ width: 15%;
 background-color: #808080;
 }
 
+.leftsidebar .menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+}
+.leftsidebar .menu li a {
+   display: block;
+   color: #000;
+   padding: 8px 16px;
+   text-decoration: none;
+   width: 200px;
+   text-align: left;
+}
+.leftsidebar .menu li a:hover {
+    background-color: #555;
+    color: white;
+}
+.leftsidebar .menu li a:hover {
+    background-color: #555;
+    color: white;
+}
+.leftsidebar .menu .active {
+    background-color: #4CAF50;
+    color: white;
+}
+.num {
+	color: red;
+}
+
 .center {
 position: absolute;
 height: 800px;
@@ -221,6 +255,10 @@ width: 15%;
 background-color: #808080;
 }
 
+.rightsidebar .contacts {
+	
+}
+
 .footer {
 margin: auto;
 width: 100%;
@@ -288,7 +326,18 @@ top: 950px;
 <!-- Block 2 -->
 <div class = "leftsidebar">
 
-
+<div class = "menu">
+<ul>
+<li><a href = "../edit_account/fm_edit_account.php">Edit Account</a></li>
+<li><a href = "../edit_card/fm_edit_card.php">Edit Card Info</a></li>
+<li><a href = "../messager/fm_messager1.php">Messager</a></li>
+<li><a href = "../notifications/fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
+<li><a href = 'fm_admin_vendor_requests.php'>Vendor Requests</a></li>
+<?php if ($adminCheck['admin'] == "y"): ?>
+	<span><li><a href = "fm_messager1.php">Messager</a></li></span>
+<?php endif;?>
+</ul>
+</div>
 
 </div>
 
@@ -335,6 +384,16 @@ top: 950px;
 
 <!-- Block 4 -->
 <div class = "rightsidebar">
+
+<div class = "contacts">
+<table>
+<?php while ($nam = mysqli_fetch_array($cont)) { ?>
+	<tr>
+		<td><a href = "fm_conversation.php?contact=<?php echo $nam['sender']; ?>"><?php echo $nam['sender']; ?></a></td>
+	</tr>
+<?php }?>
+</table>
+</div>
 
 </div>
 

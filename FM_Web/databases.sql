@@ -118,11 +118,24 @@ recipient varchar(30) NOT NULL,
 sender varchar(30) NOT NULL,
 types varchar(30) NOT NULL,
 created datetime NOT NULL,
-msgid int,
 bid int,
 rid int,
 tid int,
 PRIMARY KEY(nid))
 engine=innodb;
+
+create table Msg_Notifications(
+mnid int NOT NULL AUTO_INCREMENT,
+message varchar(100) NOT NULL,
+recipient varchar(30) NOT NULL,
+sender varchar(30) NOT NULL,
+created datetime NOT NULL,
+msgid int,
+PRIMARY KEY(mnid))
+engine=innodb;
+
+
+
+
 
 

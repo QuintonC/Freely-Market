@@ -14,14 +14,20 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	if ($mysqli->connect_errno) {
 		echo "<p>MySQL error no {$mysqli->connect_errno} : {$mysqli->connect_error}</p>";
 	}
-	
+
+$reciever = $_GET['contact'];
 $sender = $_SESSION['username'];
 
-$mysql = "select * from Msg_Notifications where recipient = '$sender'";
-$result = $conn->query($mysql);
+#Selects messages the current logged in user has sent
+$sql = "select * from Messages where sender = '$sender' and reciever = '$reciever'";
+$result = $conn->query($sql);
 
-$sql = "select distinct sender from Messages where reciever = '$sender'";
-$content = $conn->query($sql);
+#Selects messages the current logged in user has recieved
+$sql1 = "select * from Messages where reciever = '$sender' and sender = '$reciever'";
+$content = $conn->query($sql1);
+
+$sql2 = "select distinct sender from Messages where reciever = '$sender'";
+$record = $conn->query($sql2);
 
 ?>
 
@@ -62,6 +68,7 @@ padding: 0px;
 margin: 0px;
 }
 
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -90,7 +97,6 @@ li a:hover {
 .active {
     background-color: 	#00008B;
 }
-
 
 .title {
 margin: auto;
@@ -165,15 +171,15 @@ position: absolute;
 height: 800px;
 left: 15%;
 width: 70%;
+background-image: url("../../images/shop.jpg");
 }
 
-
-.center .notif {
+.center .reciever{
 position: absolute;
 top: 100px;
-left: 100px;
+left: 500px;
 height: 300px;
-width: 700px;
+width: 200px;
 background-color: #FFFFFF;
 border-style: solid;
 border-width: 2px;
@@ -182,37 +188,50 @@ position: absolute;
 overflow: scroll;
 }
 
-.center .notif table, th, td {
-	margin-left: auto;
-	margin-right: auto;
-	border-bottom: 1px solid #ddd;
-	padding: 15px;
-    text-align: left;
+.rTable td{
+text-align: center;
+color: #000000;
+font-weight: bold;
+background: #FFD700;
+border: 1px solid #f55;
+padding: 15px;
+margin-bottom: 25px;
 }
 
-.center .notif th {
-    background-color: 	#00008B;
-    color: white;
+.center .sender {
+position: absolute;
+top: 100px;
+left: 200px;
+height: 300px;
+width: 200px;
+background-color: #FFFFFF;
+border-style: solid;
+border-width: 2px;
+padding: 15px;
+position: absolute;
+overflow: scroll;
 }
 
-.center .notif tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-
-.center .notif tr:hover {
-	background-color: #f5f5f5;
+.sTable td{
+text-align: center;
+color: #000000;
+font-weight: bold;
+background: #00BFFF;
+border: 1px solid #f55;
+padding: 10px;
+margin-bottom: 25px;
 }
 
 .center .mess {
 position: absolute;
 top: 500px;
-left: 100px;
+left: 200px;
 height: 200px;
-width: 700px;
+width: 500px;
 background-color: #FFFFFF;
 border-style: solid;
 border-width: 2px;
-padding: 15px;
+padding: 10px;
 position: absolute;
 }
 
@@ -225,7 +244,7 @@ width: 15%;
 background-color: #808080;
 }
 
-.rightsidebar .contacts {
+.rightsidebar .contact{
 	
 }
 
@@ -269,7 +288,7 @@ top: 950px;
 <div class = "title">
 
 <div class = "search">
-<img src = "logo.png" height = "100px" width = "200px" /><br />
+<img src = "../../images/logo.png" height = "100px" width = "200px" /><br />
 <input type="text" name="search" placeholder="Search..">
 </div>
 
@@ -299,7 +318,7 @@ top: 950px;
 <li><a href = "../edit_account/fm_edit_account.php">Edit Account</a></li>
 <li><a href = "../edit_card/fm_edit_card.php">Edit Card Info</a></li>
 <li><a href = "../messager/fm_messager1.php">Messager</a></li>
-<li><a href = "../notifications/fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
+<li><a href = "../notification/fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
 <li><a href = 'fm_admin_vendor_requests.php'>Vendor Requests</a></li>
 <?php if ($adminCheck['admin'] == "y"): ?>
 	<span><li><a href = "fm_messager1.php">Messager</a></li></span>
@@ -312,30 +331,32 @@ top: 950px;
 <!-- Block 3 -->
 <div class = "center">
 
-<div class = "notif">
-<table>
-	<tr>
-		<th>Message</th>
-		<th>From</th>
-		<th>Date/Time</th>
-		<th>View</th>
-		<th>Delete</th>
-	</tr>
+<div class = "reciever">
+<h2><?php echo $sender; ?></h2>
+<table class = "sTable">
 <?php while ($row = mysqli_fetch_array($result)) { ?>
 	<tr>
 		<td><?php echo $row['message']; ?></td>
-		<td><?php echo $row['sender']; ?></td>
-		<td><?php echo $row['created']; ?></td>
-		<td><a href = "fm_view_msg_notif.php?id=<?php echo $row['msgid']; ?>">View</a></td>
-		<td><a href = "fm_delete_msg_notif.php?id=<?php echo $row['msgid']; ?>">Delete</a></td>
 	</tr>
-<?php }?>
+<?php } ?>
 </table>
 </div>
 
+<div class = "sender">
+<h2><?php echo $reciever; ?></h2>
+<table class = "rTable">
+<?php while ($set = mysqli_fetch_array($content)) { ?>
+	<tr>
+		<td><?php echo $set['message']; ?></td>
+	</tr>
+<?php } ?>
+</table>
+
+</div>
+
 <div class ="mess">
-<form name = "messager" action = "fm_messager.php" method="get" onsubmit = "return blank()" >
-<p>To: <input type="text" id = "reciever" name ="reciever" maxlength = "15"></p>
+<form name = "messager" action = "fm_messager.php?id=<?php echo $reciever ?>" method="get" onsubmit = "return blank()" >
+<p>To: <input type="text" id = "reciever" name ="reciever" maxlength = "15"></p
 <p>Message: </p>
 <textarea rows = "4" cols = "50" id = "message" name = "message"></textarea>
 <br />
@@ -351,9 +372,9 @@ top: 950px;
 
 <div class = "contacts">
 <table>
-<?php while ($set = mysqli_fetch_array($content)) { ?>
+<?php while ($nam = mysqli_fetch_array($record)) { ?>
 	<tr>
-		<td><a href = "fm_conversation.php?contact=<?php echo $set['sender']; ?>"><?php echo $set['sender']; ?></a></td>
+		<td><a href = "fm_conversation.php?contact=<?php echo $nam['sender']; ?>"><?php echo $nam['sender']; ?></a></td>
 	</tr>
 <?php }?>
 </table>

@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once("db_constant.php");
+require_once("../../db_constant.php");
 
 if (isset($_SESSION['loggedin']) and $_SESSION['loggedin'] == true) {
      $log = $_SESSION['username'];
@@ -17,7 +17,7 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	}
 
 #Get id from url
-$bid = $_GET['ron'];
+$bid = $_GET['id'];
 #Diaplay the Listing
 $mysql = "select * from Buy_Listing where bid = '$bid'";
 $result = $conn->query($mysql);
@@ -276,8 +276,8 @@ top: 950px;
 	<tr>
 		<td><?php echo $set['psid']; ?></td>
 		<td><?php echo $set['username']; ?></td>
-		<td><a href = "fm_accept_buyoffers.php?id=<?php echo $set['psid']; ?>">Accept</a></td>
-		<td><a href = "fm_reject_buyoffers.php?id=<?php echo $set['psid']; ?>">Reject</a></td>
+		<td><a href = "../account_listings/account_accept_reject/fm_accept_buyoffers.php?id=<?php echo $set['psid']; ?>">Accept</a></td>
+		<td><a href = "../account_listings/account_accept_reject/fm_reject_buyoffers.php?id=<?php echo $set['psid']; ?>">Reject</a></td>
 	</tr>
 	<?php } ?>
 </table>

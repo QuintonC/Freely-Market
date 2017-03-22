@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once("db_constant.php");
+require_once("../../db_constant.php");
 
 
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -13,11 +13,11 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 $msgid = $_GET['id'];
 
-$sql = "delete from Notifications where msgid = '$msgid'";
+$sql = "delete from Msg_Notifications where msgid = '$msgid'";
 
 
 if ($conn->query($sql) === TRUE) {
-	header("Location: fm_message_notif.php");
+	header("Location: fm_messager1.php");
 	exit;
 } else {
 	echo "Error: " . $sql . "<br>" . $conn->error;

@@ -262,16 +262,12 @@ top: 600px;
 		<td><?php echo $row['message']; ?></td>
 		<td><?php echo $row['sender']; ?></td>
 		<td><?php echo $row['created']; ?></td>
-		<td><a href = "fm_view_msg_notif.php?id=<?php echo $row['msgid'] . $row['types'];?>"><?php echo $row['msgid'];?></a></td>
-		<td><a href = "fm_delete_msg_notif.php?id=<?php echo $row['msgid'] . $row['types'];?>"><?php echo $row['msgid'];?></a></td>
-		<td><a href = "fm_view_sale_notif.php?id=<?php echo $row['bid'] . $row['types'];?>"><?php echo $row['bid'];?></a></td>
-		<td><a href = "fm_delete_sale_notif.php?id=<?php echo $row['bid'] . $row['types'];?>"><?php echo $row['bid'];?></a></td>
-		<td><a href = "fm_view_rent_notif.php?id=<?php echo $row['rid'] . $row['types'];?>"><?php echo $row['rid'];?></a></td>
-		<td><a href = "fm_delete_rent_notif.php?id=<?php echo $row['rid'] . $row['types'];?>"><?php echo $row['rid'];?></a></td>
-		<td><a href = "fm_saleoffer_status_accept.php?id=<?php echo $row['tid'] . $row['types'];?>"><?php echo $row['tid'];?></a></td>
-		<td><a href = "fm_rentoffer_status_accept.php?id=<?php echo $row['tid'] . $row['types'];?>"><?php echo $row['tid'];?></a></td>
-		<td><a href = "fm_saleoffer_status_reject.php?id=<?php echo $row['bid'] . $row['types'];?>"><?php echo $row['bid'];?></a></td>
-		<td><a href = "fm_rentoffer_status_reject.php?id=<?php echo $row['rid'] . $row['types'];?>"><?php echo $row['rid'];?></a></td>
+		<td><a href = "fm_view_sale_notif.php?id=<?php echo $row['bid']; ?>"><?php echo $row['bid'];?></a></td>
+		<td><a href = "fm_delete_sale_notif.php?id=<?php echo $row['bid']; ?>"><?php echo $row['bid'];?></a></td>
+		<td><a href = "fm_view_rent_notif.php?id=<?php echo $row['rid']; ?>"><?php echo $row['rid'];?></a></td>
+		<td><a href = "fm_delete_rent_notif.php?id=<?php echo $row['rid']; ?>"><?php echo $row['rid'];?></a></td>
+		<td><a href = "fm_saleoffer_status_accept.php?id=<?php echo $row['tid']; ?>"><?php echo $row['tid'];?></a></td>
+		<td><a href = "fm_rentoffer_status_accept.php?id=<?php echo $row['tid']; ?>"><?php echo $row['tid'];?></a></td> 
 	</tr>
 <?php } ?>
 </table>

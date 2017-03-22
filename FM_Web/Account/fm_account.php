@@ -26,6 +26,11 @@ $sql3 = "select count(*) from Notifications where recipient = '$username'";
 $num = $conn->query($sql3);
 $set = mysqli_fetch_array($num);
 $number = $set['count(*)'];
+
+$sql4 = "select count(*) from Msg_Notifications where recipient = '$username'";
+$dig = $conn->query($sql4);
+$set = mysqli_fetch_array($dig);
+$digit = $set['count(*)'];
 ?>
 
 <html>
@@ -160,9 +165,15 @@ background-color: #808080;
     background-color: #4CAF50;
     color: white;
 }
+
 .num {
 	color: red;
 }
+
+.dig {
+	color: red;
+}
+
 .center {
 position: absolute;
 height: 450px;
@@ -252,7 +263,7 @@ top: 600px;
 <ul>
 <li><a href = "edit_account/fm_edit_account.php">Edit Account</a></li>
 <li><a href = "edit_card/fm_edit_card.php">Edit Card Info</a></li>
-<li><a href = "messager/fm_messager1.php">Messager</a></li>
+<li><a href = "messager/fm_messager1.php">Messager <div class = "dig"><?php if ($digit != 0) { echo $digit;}?></div></a></li>
 <li><a href = "notifications/fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
 <li><a href = "fm_admin_vendor_requests.php">Vendor Requests</a></li>
 <?php if ($adminCheck['admin'] == "y"): ?>

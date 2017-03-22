@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once("db_constant.php");
+require_once("../../db_constant.php");
 
 if (isset($_SESSION['loggedin']) and $_SESSION['loggedin'] == true) {
     $log = $_SESSION['username'];
