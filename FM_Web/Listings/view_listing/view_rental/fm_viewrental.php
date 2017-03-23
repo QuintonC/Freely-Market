@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once("../db_constant.php");
+require_once("../../../db_constant.php");
 
 if (isset($_SESSION['loggedin']) and $_SESSION['loggedin'] == true) {
     $log = $_SESSION['username'];
@@ -176,17 +176,17 @@ top: 610px;
 <div class = "navbar">
 
 <ul>
-<li><a href = "../listings/fm_listings.php" class = "active">Listings</a></li>
-<li><a href="../account/fm_account.php">My Account</a></li>
-<li><a href = "../transactions/fm_transactions.php">Transactions</a></li>
-<li><a href = "../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
+<li><a href = "../../../listings/fm_listings.php" class = "active">Listings</a></li>
+<li><a href="../../../account/fm_account.php">My Account</a></li>
+<li><a href = "../../../transactions/fm_transactions.php">Transactions</a></li>
+<li><a href = "../../../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
 </ul>
 
 </div>
 
 
 <div class = "search">
-<img src = "../images/logo.png" height = "100px" width = "200px" /><br />
+<img src = "../../../images/logo.png" height = "100px" width = "200px" /><br />
 <form name = "searchbar" action = "fm_rental_search_results.php?pagenum=1" method="post">
 <input type="text" name="search" placeholder="Search for a Listing...">
 <button type="submit" value="search">Search</button>
@@ -237,7 +237,7 @@ top: 610px;
 		<td><?php echo $set['price']; ?></td>
 		<td><?php echo $set['duration']; ?></td>
 		<td><?php echo $set['descr']; ?></td> 
-		<td><img src ="../images/<?php echo $set['picture']; ?>" height = '75px' width = '75px' /></td>
+		<td><img src ="../../../images/<?php echo $set['picture']; ?>" height = '75px' width = '75px' /></td>
 		<td><a href = "fm_place_rentoffer.php?id=<?php echo $set['rid']; ?>">Place Offer</a></td>
 	</tr>
 	<?php } ?>

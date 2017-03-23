@@ -178,10 +178,7 @@ top: 600px;
 
 <div class = "search">
 <img src = "../images/logo.png" height = "100px" width = "200px" /><br />
-<form name = "searchbar" action = "fm_search.php" method="get">
 <input type="text" name="search" placeholder="Search..">
-<button type="submit" value="search">Search</button>
-</form>
 </div>
 
 <div class = "header">
@@ -206,8 +203,9 @@ top: 600px;
 <div class = "center">
 
 <ul>
-<li><a href = "fm_post_listing.php">Post Listings</a></li>
-<li><a href = "fm_view_listings.php">View Listings</a></li>
+<li><a href = "post_listing/post_bike_sale/fm_post_sale_1.php">Post Bike</a></li>
+<li><a href = "post_listing/post_equipment_sale/fm_post_equipment_1.php">Post Equipment</a></li>
+<li><a href = "post_listing/post_bike_rental/fm_post_rental_1.php">Post Rental</a></li>
 </ul>
 
 </div>

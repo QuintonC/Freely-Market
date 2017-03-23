@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once("../../db_constant.php");
+require_once("../../../db_constant.php");
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	# check connection
 	if ($mysqli->connect_errno) {
@@ -15,7 +15,7 @@ $size = $_FILES['picture']['size'];
 $type = $_FILES['picture']['type'];
 
 if ($size <= 5000000) {
-	move_uploaded_file($temp_name,'../../images/' . $name);
+	move_uploaded_file($temp_name,'../../../images/' . $name);
 } else {
 	echo 'The file is too large';
 	echo 'The file is ' . $size . ' and needs to be less than 500KB';
@@ -40,8 +40,8 @@ $descr = stripslashes($descr);
 $status = "Active";
 $username = $_SESSION['username'];
 
-#Create Sale Listing
-$sql = "insert into Buy_Listing (item,price,descr,picture,status,aid,owner) values('$item','$price','$descr','$name','$status','$aid','$username')";
+#Create Equipment Listing
+$sql = "insert into Equipment_Listing (item,price,descr,picture,status,aid,owner) values('$item','$price','$descr','$name','$status','$aid','$username')";
 if ($conn->query($sql) === TRUE) {
 	header("Location: ../../account/fm_account.php");
 	exit;

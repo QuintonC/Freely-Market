@@ -1,7 +1,7 @@
 <?php 
 
 session_start();
-require_once("../../db_constant.php");
+require_once("../../../db_constant.php");
 
 if (isset($_SESSION['loggedin']) and $_SESSION['loggedin'] == true) {
     $log = $_SESSION['username'];
@@ -104,7 +104,7 @@ font-family: Arial, Helvetica, sans-serif;
 width: 100%;
 height: 500px;
 background-color: #ffe6e6;
-background-image: url("lake.jpg");
+background-image: url("../../../lake.jpg");
 }
 
 .center .forms {
@@ -164,15 +164,15 @@ top: 650px;
 
 <div class = "navbar">
 <ul>
-<li><a href = "../../listings/fm_listings.php" class = "active">Listings</a></li>
-<li><a href="../../account/fm_account.php">My Account</a></li>
-<li><a href = "../../transactions/fm_transactions.php">Transactions</a></li>
-<li><a href = "../../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
+<li><a href = "../../../listings/fm_listings.php" class = "active">Listings</a></li>
+<li><a href="../../../account/fm_account.php">My Account</a></li>
+<li><a href = "../../../transactions/fm_transactions.php">Transactions</a></li>
+<li><a href = "../../../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
 </ul>
 </div>
 
 <div class = "search">
-<img src = "../../images/logo.png" height = "100px" width = "200px" /><br />
+<img src = "../../../images/logo.png" height = "100px" width = "200px" /><br />
 </div>
 
 </div>

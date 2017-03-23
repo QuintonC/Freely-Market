@@ -70,6 +70,19 @@ PRIMARY KEY(bid),
 FOREIGN KEY(aid) REFERENCES User_Accounts(aid))
 engine=innodb;
 
+create table Equipment_Listing(
+eid int NOT NULL AUTO_INCREMENT,
+item varchar(30) NOT NULL,
+price varchar(8) NOT NULL,
+descr varchar(100) NOT NULL,
+picture LONGBLOB NOT NULL,
+status varchar(30),
+owner varchar(50),
+aid int NOT NULL,
+PRIMARY KEY(eid),
+FOREIGN KEY(aid) REFERENCES User_Accounts(aid))
+engine=innodb;
+
 
 create table Rental_Listing(
 rid int NOT NULL AUTO_INCREMENT,

@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once("../db_constant.php");
+require_once("../../../db_constant.php");
 
 if (isset($_SESSION['loggedin']) and $_SESSION['loggedin'] == true) {
     $log = $_SESSION['username'];
@@ -196,7 +196,7 @@ top: 1250px;
 <div class = "title">
 
 <div class = "search">
-<img src = "../images/logo.png" height = "100px" width = "200px" /><br />
+<img src = "../../../images/logo.png" height = "100px" width = "200px" /><br />
 <form name = "searchbar" action = "fm_rental_search_results.php?pagenum=1" method="post">
 <input type="text" name="search" placeholder="Search for a Listing...">
 <button type="submit" value="search">Search</button>
@@ -210,10 +210,10 @@ top: 1250px;
 <div class = "navbar">
 
 <ul>
-<li><a href = "../listings/fm_listings.php" class = "active">Listings</a></li>
-<li><a href="../account/fm_account.php">My Account</a></li>
-<li><a href = "../transactions/fm_transactions.php">Transactions</a></li>
-<li><a href = "../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
+<li><a href = "../../../listings/fm_listings.php" class = "active">Listings</a></li>
+<li><a href="../../../account/fm_account.php">My Account</a></li>
+<li><a href = "../../../transactions/fm_transactions.php">Transactions</a></li>
+<li><a href = "../../../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
 </ul>
 </div>
 
@@ -258,7 +258,7 @@ top: 1250px;
 		<td><?php echo $row['price']; ?></td>
 		<td><?php echo $row['duration']; ?></td>
 		<td><?php echo $row['descr']; ?></td>
-		<td><img src ="../images/<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></td> 
+		<td><img src ="../../../images/<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></td> 
 		<td><a href = "fm_viewrental.php?id=<?php echo $row['rid'];?>"><?php echo $row['rid'];?></a></td>
 	</tr>
 	<?php } ?>
