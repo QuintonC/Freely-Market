@@ -183,14 +183,6 @@ text-align: center;
 }
 
 
-.rightsidebar {
-position: absolute;
-height: 1100px;
-left: 85%;
-width: 15%;
-background-color: #808080;
-}
-
 .footer {
 margin: auto;
 width: 100%;
@@ -233,7 +225,10 @@ top: 1250px;
 
 <div class = "search">
 <img src = "../images/logo.png" height = "100px" width = "200px" /><br />
-<input type="text" name="search" placeholder="Search..">
+<form name = "searchbar" action = "fm_rental_search_results.php?pagenum=1" method="post">
+<input type="text" name="search" placeholder="Search for a Listing...">
+<button type="submit" value="search">Search</button>
+</form>
 </div>
 
 <div class = "header">
@@ -299,12 +294,8 @@ top: 1250px;
 
 </div>
 
+
 <!-- Block 4 -->
-<div class = "rightsidebar">
-
-</div>
-
-<!-- Block 5 -->
 <div class = "footer">
 
 <ul>

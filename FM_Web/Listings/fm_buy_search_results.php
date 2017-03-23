@@ -19,14 +19,15 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	
 $username = $_SESSION['username'];
 
+$item = $_POST['search'];
 
-$pagenum = $_GET['pagenum'];
 
-$sql = "SELECT count(*) FROM Buy_Listing WHERE owner != '$username' AND status = 'Active'";
-$content = $conn->query($sql);
-$val = mysqli_fetch_array($content);
+$mysql = "SELECT count(*) FROM Buy_Listing WHERE item LIKE '%".$item."%'";
+$result = $conn->query($mysql);
+$val = mysqli_fetch_array($result);
 $total = $val['count(*)'];
 
+$pagenum = $_GET['pagenum'];
 $limit = 8;
 
 $lastpage = ceil($total / $limit);
@@ -37,9 +38,8 @@ $nextpage = $pagenum + 1;
 $prevpage = $pagenum - 1;
 $offset = ($pagenum - 1)  * $limit;
 
-#Show Sales Listed
-$mysql = "SELECT b.item, b.price, b.descr, b.picture, b.bid FROM Buy_Listing AS b, User_Accounts AS a WHERE a.aid = b.aid AND a.username != '$username' AND status = 'Active' LIMIT $limit OFFSET $offset";
-$result = $conn->query($mysql);
+$sql = "SELECT * FROM Buy_Listing WHERE item LIKE '%".$item."%' AND status = 'Active' AND owner != '$username' LIMIT $limit OFFSET $offset";
+$content = $conn->query($sql);
 
 ?>
 
@@ -146,7 +146,6 @@ width: 15%;
 background-color: #808080;
 }
 
-
 .center {
 position: absolute;
 height: 1100px;
@@ -232,6 +231,7 @@ top: 1250px;
 <!-- Block 2 -->
 <div class = "leftsidebar">
 
+
 </div>
 
 <!-- Block 3 -->
@@ -240,16 +240,16 @@ top: 1250px;
 <center><h2>Sales</h2></center>
 <?php echo "Page " . $pagenum . "of " . $lastpage;?><br />
 <?php if ($pagenum == 1 and $lastpage != 1) { ?>
-<a href="fm_sale_listings.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_sale_listings.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+<a href="fm_buy_search_results.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
+<a href="fm_buy_search_results.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
 <?php } elseif ($pagenum == $lastpage and $pagenum != 1) { ?>
-<a href="fm_sale_listings.php?pagenum=1">FIRST</a>
-<a href="fm_sale_listings.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+<a href="fm_buy_search_results.php?pagenum=1">FIRST</a>
+<a href="fm_buy_search_results.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
 <?php } elseif ($pagenum != 1 and $lastpage != 1) { ?>
-<a href="fm_sale_listings.php?pagenum=1">FIRST</a>
-<a href="fm_sale_listings.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
-<a href="fm_sale_listings.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_sale_listings.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+<a href="fm_buy_search_results.php?pagenum=1">FIRST</a>
+<a href="fm_buy_search_results.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+<a href="fm_buy_search_results.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
+<a href="fm_buy_search_results.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
 <?php } ?>
 <table>
 	<tr>
@@ -259,7 +259,7 @@ top: 1250px;
 		<th>Picture</th>
 		<th>Id</th>
 	</tr>
-	<?php while ($row = mysqli_fetch_array($result)) { ?>
+	<?php while ($row = mysqli_fetch_array($content)) { ?>
 	<tr>
 		<td><?php echo $row['item']; ?></td>
 		<td><?php echo $row['price']; ?></td>

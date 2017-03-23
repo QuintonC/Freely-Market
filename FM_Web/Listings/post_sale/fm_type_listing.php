@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once("../db_constant.php");
+require_once("../../db_constant.php");
 
 if (isset($_SESSION['loggedin']) and $_SESSION['loggedin'] == true) {
     $log = $_SESSION['username'];
@@ -118,7 +118,7 @@ position: absolute;
 height: 450px;
 left: 0%;
 width: 100%;
-background-image: url("../images/bw_rack.jpg");
+background-image: url("../../images/bw_rack.jpg");
 }
 
 .center ul {
@@ -177,11 +177,8 @@ top: 600px;
 <div class = "title">
 
 <div class = "search">
-<img src = "../images/logo.png" height = "100px" width = "200px" /><br />
-<form name = "searchbar" action = "fm_search.php" method="get">
+<img src = "../../images/logo.png" height = "100px" width = "200px" /><br />
 <input type="text" name="search" placeholder="Search..">
-<button type="submit" value="search">Search</button>
-</form>
 </div>
 
 <div class = "header">
@@ -191,10 +188,10 @@ top: 600px;
 <div class = "navbar">
 
 <ul>
-<li><a href = "../listings/fm_listings.php" class = "active">Listings</a></li>
-<li><a href="../account/fm_account.php">My Account</a></li>
-<li><a href = "../transactions/fm_transactions.php">Transactions</a></li>
-<li><a href = "../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
+<li><a href = "../../listings/fm_listings.php" class = "active">Listings</a></li>
+<li><a href="../../account/fm_account.php">My Account</a></li>
+<li><a href = "../../transactions/fm_transactions.php">Transactions</a></li>
+<li><a href = "../../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
 </ul>
 </div>
 
@@ -206,10 +203,8 @@ top: 600px;
 <div class = "center">
 
 <ul>
-<li><a href = "post_sale/fm_type_listing.php">Post Sale</a></li>
-<li><a href = "post_rental/fm_post_rental_1.php">Post Rental</a></li>
-<li><a href = "fm_sale_listings.php?pagenum=1">View Sales</a></li>
-<li><a href = "fm_rental_listings.php?pagenum=1">View Rentals</a></li>
+<li><a href = "fm_post_sale_1.php">Post Bike</a></li>
+<li><a href = "fm_post_equipment.php">Post Equipment</a></li>
 </ul>
 
 </div>

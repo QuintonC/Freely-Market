@@ -150,7 +150,7 @@ font-family: Arial, Helvetica, sans-serif;
 }
 .leftsidebar {
 position: absolute;
-height: 650px;
+height: 1100px;
 left: 0%;
 width: 15%;
 background-color: #808080;
@@ -187,7 +187,7 @@ background-color: #808080;
 }
 .center {
 position: absolute;
-height: 650px;
+height: 1100px;
 left: 15%;
 width: 85%;
 text-align: center;
@@ -199,7 +199,7 @@ width: 100%;
 background-color: #000000;
 color: #FFFAF0;
 position: absolute;
-top: 800px;
+top: 1250px;
 }
 .footer ul {
     list-style-type: none;
