@@ -4,7 +4,7 @@
 session_start();
 
 #References data base connection variables
-require_once("db_constant.php");
+require_once("../db_constant.php");
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	# check connection
 	if ($mysqli->connect_errno) {

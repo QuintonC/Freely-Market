@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once("db_constant.php");
+require_once("../db_constant.php");
 
 if (isset($_SESSION['loggedin']) and $_SESSION['loggedin'] == true) {
     $log = $_SESSION['username'];
@@ -30,6 +30,9 @@ $total = $val['count(*)'];
 $limit = 8;
 
 $lastpage = ceil($total / $limit);
+if ($lastpage == 0) {
+	$lastpage = 1;
+}
 $nextpage = $pagenum + 1;
 $prevpage = $pagenum - 1;
 $offset = ($pagenum - 1)  * $limit;
@@ -229,7 +232,7 @@ top: 1250px;
 <div class = "title">
 
 <div class = "search">
-<img src = "logo.png" height = "100px" width = "200px" /><br />
+<img src = "../images/logo.png" height = "100px" width = "200px" /><br />
 <input type="text" name="search" placeholder="Search..">
 </div>
 
@@ -240,10 +243,10 @@ top: 1250px;
 <div class = "navbar">
 
 <ul>
-<li><a href = "fm_listings.php">Listings</a></li>
-<li><a href="fm_account.php">My Account</a></li>
-<li><a href = "fm_transactions.php" class = "active">Transactions</a></li>
-<li><a href = 'fm_homepage.html'>Logged In: <?php echo $log; ?></a></li>
+<li><a href = "../listings/fm_listings.php">Listings</a></li>
+<li><a href="../account/fm_account.php">My Account</a></li>
+<li><a href = "../transactions/fm_transactions.php" class = "active">Transactions</a></li>
+<li><a href = "../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
 </ul>
 </div>
 
@@ -260,13 +263,13 @@ top: 1250px;
 
 <center><h2>Past Sales</h2></center>
 <?php echo "Page " . $pagenum . "of " . $lastpage;?><br />
-<?php if ($pagenum == 1) { ?>
+<?php if ($pagenum == 1 and $lastpage != 1) { ?>
 <a href="fm_past_sales.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
 <a href="fm_past_sales.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
-<?php } elseif ($pagenum == $lastpage) { ?>
+<?php } elseif ($pagenum == $lastpage and $pagenum != 1) { ?>
 <a href="fm_past_sales.php?pagenum=1">FIRST</a>
 <a href="fm_past_sales.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
-<?php } else { ?>
+<?php } elseif ($pagenum != 1 and $lastpage != 1) { ?>
 <a href="fm_past_sales.php?pagenum=1">FIRST</a>
 <a href="fm_past_sales.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
 <a href="fm_past_sales.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>

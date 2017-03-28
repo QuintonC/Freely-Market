@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once("db_constant.php");
+require_once("../db_constant.php");
 
 if (isset($_SESSION['loggedin']) and $_SESSION['loggedin'] == true) {
     $log = $_SESSION['username'];
@@ -22,7 +22,7 @@ $username = $_SESSION['username'];
 
 $pagenum = $_GET['pagenum'];
 
-$sql = "SELECT count(*) FROM Rental_Listing WHERE status = 'Active'";
+$sql = "SELECT count(*) FROM Rental_Listing WHERE owner != '$username' AND status = 'Active'";
 $content = $conn->query($sql);
 $val = mysqli_fetch_array($content);
 $total = $val['count(*)'];
@@ -30,12 +30,15 @@ $total = $val['count(*)'];
 $limit = 8;
 
 $lastpage = ceil($total / $limit);
+if ($lastpage == 0) {
+	$lastpage = 1;
+}
 $nextpage = $pagenum + 1;
 $prevpage = $pagenum - 1;
 $offset = ($pagenum - 1)  * $limit;
 
 #Show Sales Listed
-$mysql = "SELECT * FROM Rental_Listing AS r, User_Accounts AS a WHERE a.aid = r.aid AND a.username != '$username' AND status = 'Active' LIMIT $limit OFFSET $offset";
+$mysql = "SELECT r.item, r.price, r.descr, r.duration, r.picture, r.rid FROM Rental_Listing AS r, User_Accounts AS a WHERE a.aid = r.aid AND a.username != '$username' AND status = 'Active' LIMIT $limit OFFSET $offset";
 $result = $conn->query($mysql);
 
 ?>
@@ -180,14 +183,6 @@ text-align: center;
 }
 
 
-.rightsidebar {
-position: absolute;
-height: 1100px;
-left: 85%;
-width: 15%;
-background-color: #808080;
-}
-
 .footer {
 margin: auto;
 width: 100%;
@@ -229,8 +224,11 @@ top: 1250px;
 <div class = "title">
 
 <div class = "search">
-<img src = "logo.png" height = "100px" width = "200px" /><br />
-<input type="text" name="search" placeholder="Search..">
+<img src = "../images/logo.png" height = "100px" width = "200px" /><br />
+<form name = "searchbar" action = "fm_rental_search_results.php?pagenum=1" method="post">
+<input type="text" name="search" placeholder="Search for a Listing...">
+<button type="submit" value="search">Search</button>
+</form>
 </div>
 
 <div class = "header">
@@ -240,10 +238,10 @@ top: 1250px;
 <div class = "navbar">
 
 <ul>
-<li><a href = "fm_listings.php" class = "active">Listings</a></li>
-<li><a href="fm_account.php">My Account</a></li>
-<li><a href = "fm_transactions.php">Transactions</a></li>
-<li><a href = 'fm_homepage.html'>Logged In: <?php echo $log; ?></a></li>
+<li><a href = "../listings/fm_listings.php" class = "active">Listings</a></li>
+<li><a href="../account/fm_account.php">My Account</a></li>
+<li><a href = "../transactions/fm_transactions.php">Transactions</a></li>
+<li><a href = "../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
 </ul>
 </div>
 
@@ -260,13 +258,13 @@ top: 1250px;
 
 <center><h2>Rentals</h2></center>
 <?php echo "Page " . $pagenum . "of " . $lastpage;?><br />
-<?php if ($pagenum == 1) { ?>
+<?php if ($pagenum == 1 and $lastpage != 1) { ?>
 <a href="fm_rental_listings.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
 <a href="fm_rental_listings.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
-<?php } elseif ($pagenum == $lastpage) { ?>
+<?php } elseif ($pagenum == $lastpage and $pagenum != 1) { ?>
 <a href="fm_rental_listings.php?pagenum=1">FIRST</a>
 <a href="fm_rental_listings.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
-<?php } else { ?>
+<?php } elseif ($pagenum != 1 and $lastpage != 1) { ?>
 <a href="fm_rental_listings.php?pagenum=1">FIRST</a>
 <a href="fm_rental_listings.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
 <a href="fm_rental_listings.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
@@ -287,7 +285,7 @@ top: 1250px;
 		<td><?php echo $row['price']; ?></td>
 		<td><?php echo $row['duration']; ?></td>
 		<td><?php echo $row['descr']; ?></td> 
-		<td><?php echo "<img src =" . $row['picture'] . " height = '75px' width = '75px' />"; ?></td> 
+		<td><img src ="../images/<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></td>
 		<td><a href = "fm_viewrental.php?id=<?php echo $row['rid'];?>"><?php echo $row['rid'];?></a></td>
 	</tr>
 	<?php } ?>
@@ -296,12 +294,8 @@ top: 1250px;
 
 </div>
 
+
 <!-- Block 4 -->
-<div class = "rightsidebar">
-
-</div>
-
-<!-- Block 5 -->
 <div class = "footer">
 
 <ul>

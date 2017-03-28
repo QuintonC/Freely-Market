@@ -5,7 +5,7 @@
 session_start();
 
 #References data base connection variables
-require_once("db_constant.php");
+require_once("../db_constant.php");
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	# check connection
 	if ($mysqli->connect_errno) {
@@ -13,6 +13,18 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 		exit();
 	}
 
+$name = $_FILES['picture']['name'];
+$temp_name = $_FILES['picture']['tmp_name'];
+$size = $_FILES['picture']['size'];
+$type = $_FILES['picture']['type'];
+
+if ($size <= 5000000) {
+	move_uploaded_file($temp_name,'../../images/' . $name);
+} else {
+	echo 'The file is too large';
+	echo 'The file is ' . $size . ' and needs to be less than 500KB';
+}
+	
 #Gets form entries
 $username = $_POST['username'];
 $password = $_POST['password'];
@@ -20,7 +32,6 @@ $fname = $_POST['fname'];
 $lname = $_POST['lname'];
 $email = $_POST['email'];
 $phone = $_POST['phone'];
-$picture = $_POST['picture'];
 
 //  Prevent MySQL injection 
 $username = strip_tags($username);
@@ -29,7 +40,6 @@ $fname = strip_tags($fname);
 $lname = strip_tags($lname);
 $email = strip_tags($email);
 $phone = strip_tags($phone);
-$picture = strip_tags($picture);
 
 $username = stripslashes($username);
 $password = stripslashes($password);
@@ -37,7 +47,6 @@ $fname = stripslashes($fname);
 $lname = stripslashes($lname);
 $email = stripslashes($email);
 $phone = stripslashes($phone);
-$picture = stripslashes($picture);
 
 
 #$username = mysqli_real_escape_string($username);
@@ -58,7 +67,7 @@ if ($count > 0) {
 	echo "Sorry this username already exists!";
 }
 else {
-	$sql = "INSERT INTO User_Accounts (username,password,first_name,last_name,email,phone,typ,picture) VALUES ('$username','$encpw','$fname','$lname','$email','$phone','$type','$picture')";
+	$sql = "INSERT INTO User_Accounts (username,password,first_name,last_name,email,phone,typ,picture) VALUES ('$username','$encpw','$fname','$lname','$email','$phone','$type','$name')";
 }
 
 if (!$conn->query($sql) === TRUE) {
@@ -127,7 +136,7 @@ position: absolute;
 width: 100%;
 height: 480px;
 background-color: #ffe6e6;
-background-image: url("tree.jpg");
+background-image: url("../images/tree.jpg");
 }
 
 .center .forms {
@@ -182,7 +191,7 @@ top: 605px;
 <div class = "title">
 
 <div class = "logo">
-<img src = "logo.png" height = "100px" width = "200px" />
+<img src = "../images/logo.png" height = "100px" width = "200px" />
 </div>
 
 <div class = "header">

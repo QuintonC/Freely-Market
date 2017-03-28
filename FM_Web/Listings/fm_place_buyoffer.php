@@ -1,19 +1,13 @@
 <?php
-
 session_start();
-require_once("db_constant.php");
-
-
+require_once("../db_constant.php");
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	# check connection
 	if ($mysqli->connect_errno) {
 		echo "<p>MySQL error no {$mysqli->connect_errno} : {$mysqli->connect_error}</p>";
 		exit();
 	}
-
-
 $username = $_SESSION['username'];
-
 #Get id from url
 $bid = $_GET['id'];
 
@@ -21,8 +15,9 @@ $bid = $_GET['id'];
 $mysql = "insert into Pending_Sale (username,bid) values ('$username','$bid')";
 $conn->query($mysql);
 
-$type = "You have recieved a buy offer";
+$type = "buybid";
 $date = date("Y-m-d H:i:s");
+$message = "You have recieved an offer for one of your sale listings!";
 
 $sql = "select psid from Pending_Sale where username = '$username' and bid = '$bid' limit 1";
 $content = $conn->query($sql);
@@ -34,16 +29,12 @@ $data = $conn->query($sql2);
 $set = mysqli_fetch_array($data);
 $seller = $set['username'];
 
-
 #Create notification
-$sql3 = "INSERT INTO Notifications(recipient,sender,types,created,bid) VALUES('$seller','$username','$type','$date','$bid')";
-
+$sql3 = "INSERT INTO Notifications(message,recipient,sender,types,created,bid) VALUES('$message','$seller','$username','$type','$date','$bid')";
 if ($conn->query($sql3) === TRUE) {
-	header("Location: fm_account.php");
+	header("Location: ../account/fm_account.php");
 	exit;
 } else {
 	echo "Error: " . $sql3 . "<br>" . $conn->error;
 }
-
-
 ?>

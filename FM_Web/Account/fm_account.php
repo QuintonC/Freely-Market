@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("db_constant.php");
+require_once("../db_constant.php");
 #If logged in the username of the account will be displayed in the top right corner
 if (isset($_SESSION['loggedin']) and $_SESSION['loggedin'] == true) {
     $log = $_SESSION['username'];
@@ -26,6 +26,11 @@ $sql3 = "select count(*) from Notifications where recipient = '$username'";
 $num = $conn->query($sql3);
 $set = mysqli_fetch_array($num);
 $number = $set['count(*)'];
+
+$sql4 = "select count(*) from Msg_Notifications where recipient = '$username'";
+$dig = $conn->query($sql4);
+$set = mysqli_fetch_array($dig);
+$digit = $set['count(*)'];
 ?>
 
 <html>
@@ -160,15 +165,22 @@ background-color: #808080;
     background-color: #4CAF50;
     color: white;
 }
+
 .num {
 	color: red;
 }
+
+.dig {
+	color: red;
+}
+
 .center {
 position: absolute;
 height: 450px;
 left: 15%;
 width: 85%;
 text-align: center;
+background-image: url("../images/shop.jpg");
 }
 
 .center ul {
@@ -224,7 +236,7 @@ top: 600px;
 <div class = "title">
 
 <div class = "search">
-<img src = "logo.png" height = "100px" width = "200px" /><br />
+<img src = "../images/logo.png" height = "100px" width = "200px" /><br />
 <input type="text" name="search" placeholder="Search..">
 </div>
 
@@ -234,10 +246,10 @@ top: 600px;
 
 <div class = "navbar">
 <ul>
-<li><a href = "fm_listings.php">Listings</a></li>
-<li><a href="fm_account.php"  class = "active">My Account</a></li>
-<li><a href = "fm_transactions.php">Transactions</a></li>
-<li><a href = 'fm_homepage.html'>Logged In: <?php echo $log; ?></a></li>
+<li><a href = "../listings/fm_listings.php">Listings</a></li>
+<li><a href="../account/fm_account.php"  class = "active">My Account</a></li>
+<li><a href = "../transactions/fm_transactions.php">Transactions</a></li>
+<li><a href = "../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
 </ul>
 </div>
 
@@ -249,11 +261,11 @@ top: 600px;
 
 <div class = "menu">
 <ul>
-<li><a href = "fm_edit_account.php">Edit Account</a></li>
-<li><a href = "fm_edit_card.php">Edit Card Info</a></li>
-<li><a href = "fm_messager1.php">Messager</a></li>
-<li><a href = "fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
-<li><a href = 'fm_admin_vendor_requests.php'>Vendor Requests</a></li>
+<li><a href = "edit_account/fm_edit_account.php">Edit Account</a></li>
+<li><a href = "edit_card/fm_edit_card.php">Edit Card Info</a></li>
+<li><a href = "messager/fm_messager1.php">Messager <div class = "dig"><?php if ($digit != 0) { echo $digit;}?></div></a></li>
+<li><a href = "notifications/fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
+<li><a href = "fm_admin_vendor_requests.php">Vendor Requests</a></li>
 <?php if ($adminCheck['admin'] == "y"): ?>
 	<span><li><a href = "fm_messager1.php">Messager</a></li></span>
 <?php endif;?>
@@ -267,10 +279,10 @@ top: 600px;
 <div class = "center">
 
 <ul>
-<li><a href = "fm_listed_sales.php?pagenum=1">My Listed Sales</a></li>
-<li><a href = "fm_listed_rentals.php?pagenum=1">My Listed Rentals</a></li>
-<li><a href = "fm_purchase_offers.php?pagenum=1">My Active Purchase Offers</a></li>
-<li><a href = "fm_rental_offers.php?pagenum=1">My Active Rental Offers</a></li>
+<li><a href = "account_listings/fm_listed_sales.php?pagenum=1">My Listed Sales</a></li>
+<li><a href = "account_listings/fm_listed_rentals.php?pagenum=1">My Listed Rentals</a></li>
+<li><a href = "account_listings/fm_purchase_offers.php?pagenum=1">My Active Purchase Offers</a></li>
+<li><a href = "account_listings/fm_rental_offers.php?pagenum=1">My Active Rental Offers</a></li>
 </ul>
 
 </div>
