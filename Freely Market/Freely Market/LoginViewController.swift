@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+var USER = String()
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var username: UITextField!
@@ -23,6 +23,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         view.addGestureRecognizer(tap)
         
     }
+    
     
     // Changes which textfield is first responder
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -47,6 +48,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func loginTapped(_ sender: AnyObject) {
         let username:NSString = self.username.text! as NSString
         let password:NSString = self.password.text! as NSString
+        USER = username as String
         
         // Authentication
         
@@ -110,6 +112,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                 myAlert.addAction(OKAction)
                                 self.present(myAlert, animated: true, completion: nil)
                             }
+                            
                             
                         } else { //user is not authorized
                             DispatchQueue.main.async {

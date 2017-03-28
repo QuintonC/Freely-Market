@@ -19,37 +19,25 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     var values:NSArray = []
-    var NAMES = [String]()
-    var user = "oklightning"
+    var names = [String]()
+    var user = USER
     
-    
-    
-    
+        
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         //get()
-        
-    }
-
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    func getContacts() {
-        var myContacts = [String]()
+        names = []
+        var myContacts:[String] = []
         let myURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/getContacts.php")
-        let request = NSMutableURLRequest(url: myURL! as URL)
+        var request = URLRequest(url:myURL!)
         request.httpMethod = "POST"
         
         let postString = "user=\(user)"
         request.httpBody = postString.data(using: String.Encoding.utf8)
         
-        let task = URLSession.shared.dataTask(with: myURL!) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
             if error != nil {
                 print("ERROR")
             }
@@ -70,9 +58,15 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     
                     
                     //adding the data to the return array
-                    print(contact)
+                    //print(contact)
+                    //myContacts.append(contact)
                     myContacts.append(contact)
+                    self.names.append(contact)
                     
+                }
+                //reload tableView
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
                 }
                 
             } catch {
@@ -80,37 +74,26 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
         task.resume()
-        NAMES = myContacts
+    }
+
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     
     
-//    @IBAction func send(_ sender: Any) {
-//        let message = txtMessage.text
-//        txtMessage.text = ""
-//        var temp = txtDisplay.text
-//        temp = temp! + "\n"+message!
-//        txtDisplay.text = temp
-//    }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        
-        getContacts()
-        
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContactCell
-        
-        
-        cell.name.text = NAMES[indexPath.row]
-        
+        cell.name.text = names[indexPath.row]
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return NAMES.count
+        return names.count
     }
     
 }
