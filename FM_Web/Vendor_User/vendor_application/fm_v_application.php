@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("db_constant.php");
+require_once("../../db_constant.php");
 
 $con=mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
@@ -95,7 +95,7 @@ $sql = "INSERT INTO Vendor_Application (vendor, fname, mname, lname, email, owne
 VALUES ('$vendor', '$first', '$middle', '$last', '$email', '$owner', '$ofirst', '$omiddle', '$olast', '$oemail', '$street', '$city', '$state', '$zip', '$years', '$whyjoin', '$futureproj', '$random')";
 
 if ($con->query($sql) === TRUE) {
-	header("Location: vendor/fm_v_submission.html");
+	header("Location: fm_v_submission.html");
 	mail($to, $subject, $msg, $headers);
 	exit;
 } else {
