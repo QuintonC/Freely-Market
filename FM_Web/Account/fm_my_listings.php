@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("../../db_constant.php");
+require_once("../db_constant.php");
 #If logged in the username of the account will be displayed in the top right corner
 if (isset($_SESSION['loggedin']) and $_SESSION['loggedin'] == true) {
     $log = $_SESSION['username'];
@@ -27,27 +27,10 @@ $num = $conn->query($sql3);
 $set = mysqli_fetch_array($num);
 $number = $set['count(*)'];
 
-$pagenum = $_GET['pagenum'];
-
-$sql = "SELECT count(*) FROM Buy_Listing AS b, Pending_Sale AS s WHERE b.bid = s.bid AND s.username = '$username' AND status = 'Active'";
-$content = $conn->query($sql);
-$val = mysqli_fetch_array($content);
-$total = $val['count(*)'];
-
-$limit = 8;
-
-$lastpage = ceil($total / $limit);
-if ($lastpage == 0) {
-	$lastpage = 1;
-}
-$nextpage = $pagenum + 1;
-$prevpage = $pagenum - 1;
-$offset = ($pagenum - 1)  * $limit;
-
-#Show Sales Listed
-$mysql = "SELECT b.item, b.price, b.descr, b.picture FROM Buy_Listing AS b, Pending_Sale AS s WHERE b.bid = s.bid AND s.username = '$username' AND status = 'Active' LIMIT $limit OFFSET $offset";
-$result = $conn->query($mysql);
-
+$sql4 = "select count(*) from Msg_Notifications where recipient = '$username'";
+$dig = $conn->query($sql4);
+$set = mysqli_fetch_array($dig);
+$digit = $set['count(*)'];
 ?>
 
 <html>
@@ -150,7 +133,7 @@ font-family: Arial, Helvetica, sans-serif;
 }
 .leftsidebar {
 position: absolute;
-height: 1100px;
+height: 450px;
 left: 0%;
 width: 15%;
 background-color: #808080;
@@ -182,15 +165,37 @@ background-color: #808080;
     background-color: #4CAF50;
     color: white;
 }
+
 .num {
 	color: red;
 }
+
+.dig {
+	color: red;
+}
+
 .center {
 position: absolute;
-height: 1100px;
+height: 450px;
 left: 15%;
 width: 85%;
 text-align: center;
+background-image: url("../images/shop.jpg");
+}
+
+.center ul {
+	list-style-type: none;
+    margin: 0;
+    padding: 0;
+	background-color: #333;
+}
+
+.center li {
+	display: block;
+    text-decoration: none;
+	width: 100%;
+    text-align: left;
+	color: white;
 }
 
 .footer {
@@ -199,7 +204,7 @@ width: 100%;
 background-color: #000000;
 color: #FFFAF0;
 position: absolute;
-top: 1250px;
+top: 600px;
 }
 .footer ul {
     list-style-type: none;
@@ -231,7 +236,7 @@ top: 1250px;
 <div class = "title">
 
 <div class = "search">
-<img src = "../../images/logo.png" height = "100px" width = "200px" /><br />
+<img src = "../images/logo.png" height = "100px" width = "200px" /><br />
 <input type="text" name="search" placeholder="Search..">
 </div>
 
@@ -241,10 +246,10 @@ top: 1250px;
 
 <div class = "navbar">
 <ul>
-<li><a href = "../../listings/fm_listings.php">Listings</a></li>
-<li><a href="../fm_account.php"  class = "active">My Account</a></li>
-<li><a href = "../../transactions/fm_transactions.php">Transactions</a></li>
-<li><a href = "../../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
+<li><a href = "../listings/fm_listings.php">Listings</a></li>
+<li><a href="../account/fm_account.php"  class = "active">My Account</a></li>
+<li><a href = "../transactions/fm_transactions.php">Transactions</a></li>
+<li><a href = "../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
 </ul>
 </div>
 
@@ -256,11 +261,11 @@ top: 1250px;
 
 <div class = "menu">
 <ul>
-<li><a href = "../edit_account/fm_edit_account.php">Edit Account</a></li>
-<li><a href = "../edit_card/fm_edit_card.php">Edit Card Info</a></li>
-<li><a href = "../messager/fm_messager1.php">Messager</a></li>
-<li><a href = "../notifications/fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
-<li><a href = 'fm_admin_vendor_requests.php'>Vendor Requests</a></li>
+<li><a href = "edit_account/fm_edit_account.php">Edit Account</a></li>
+<li><a href = "edit_card/fm_edit_card.php">Edit Card Info</a></li>
+<li><a href = "messager/fm_messager1.php">Messager <div class = "dig"><?php if ($digit != 0) { echo $digit;}?></div></a></li>
+<li><a href = "notifications/fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
+<li><a href = "fm_admin_vendor_requests.php">Vendor Requests</a></li>
 <?php if ($adminCheck['admin'] == "y"): ?>
 	<span><li><a href = "fm_messager1.php">Messager</a></li></span>
 <?php endif;?>
@@ -273,41 +278,11 @@ top: 1250px;
 <!-- Block 3 -->
 <div class = "center">
 
-<center><h3>Sales</h3></center>
-
-<?php echo "Page " . $pagenum . "of " . $lastpage;?><br />
-<?php if ($pagenum == 1 and $lastpage != 1) { ?>
-<a href="fm_purchase_offers.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_purchase_offers.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
-<?php } elseif ($pagenum == $lastpage and $pagenum != 1) { ?>
-<a href="fm_purchase_offers.php?pagenum=1">FIRST</a>
-<a href="fm_purchase_offers.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
-<?php } elseif ($pagenum != 1 and $lastpage != 1) { ?>
-<a href="fm_purchase_offers.php?pagenum=1">FIRST</a>
-<a href="fm_purchase_offers.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
-<a href="fm_purchase_offers.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_purchase_offers.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
-<?php } ?>
-
-<center><h3>My Pending Purchases</h3></center>
-<table>
-	<tr>
-		<th>Item</th>
-		<th>Price</th>
-		<th>Description</th>
-		<th>Picture</th>
-		<th>View</th>
-	</tr>
-	<?php while ($batch = mysqli_fetch_array($result)) { ?>
-	<tr>
-		<td><?php echo $batch['item']; ?></td>
-		<td><?php echo $batch['price']; ?></td>
-		<td><?php echo $batch['descr']; ?></td> 
-		<td><img src ="../../images/<?php echo $batch['picture']; ?>" height = '75px' width = '75px' /></td> 
-		<td></td>
-	</tr>
-	<?php } ?>
-</table>
+<ul>
+<li><a href = "account_listings/fm_my_listed_bikes.php?pagenum=1">My Listed Bikes</a></li>
+<li><a href = "account_listings/fm_my_listed_equipment.php?pagenum=1">My Listed Equipment</a></li>
+<li><a href = "account_listings/fm_my_listed_rentals.php?pagenum=1">My Listed Rentals</a></li>
+</ul>
 
 </div>
 

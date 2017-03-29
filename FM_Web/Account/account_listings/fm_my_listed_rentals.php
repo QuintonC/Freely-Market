@@ -29,7 +29,7 @@ $number = $set['count(*)'];
 
 $pagenum = $_GET['pagenum'];
 
-$sql = "SELECT count(*) FROM Buy_Listing WHERE aid = '$aid' AND status = 'Active'";
+$sql = "SELECT count(*) FROM Rental_Listing WHERE aid = '$aid' AND status = 'Active'";
 $content = $conn->query($sql);
 $val = mysqli_fetch_array($content);
 $total = $val['count(*)'];
@@ -45,7 +45,7 @@ $prevpage = $pagenum - 1;
 $offset = ($pagenum - 1)  * $limit;
 
 #Show Sales Listed
-$mysql = "select * from Buy_Listing where aid = '$aid' AND status = 'Active' LIMIT $limit OFFSET $offset";
+$mysql = "SELECT * FROM Rental_Listing WHERE aid = '$aid' AND status = 'Active' LIMIT $limit OFFSET $offset";
 $result = $conn->query($mysql);
 
 ?>
@@ -273,41 +273,43 @@ top: 1250px;
 <!-- Block 3 -->
 <div class = "center">
 
-<center><h3>Sales</h3></center>
+<center><h3>Rentals</h3></center>
 
 <?php echo "Page " . $pagenum . "of " . $lastpage;?><br />
 <?php if ($pagenum == 1 and $lastpage != 1) { ?>
-<a href="fm_listed_sales.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_listed_sales.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+<a href="fm_my_listed_rentals.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
+<a href="fm_my_listed_rentals.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
 <?php } elseif ($pagenum == $lastpage and $pagenum != 1) { ?>
-<a href="fm_listed_sales.php?pagenum=1">FIRST</a>
-<a href="fm_listed_sales.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+<a href="fm_my_listed_rentals.php?pagenum=1">FIRST</a>
+<a href="fm_my_listed_rentals.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
 <?php } elseif ($pagenum != 1 and $lastpage != 1) { ?>
-<a href="fm_listed_sales.php?pagenum=1">FIRST</a>
-<a href="fm_listed_sales.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
-<a href="fm_listed_sales.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_listed_sales.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+<a href="fm_my_listed_rentals.php?pagenum=1">FIRST</a>
+<a href="fm_my_listed_rentals.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+<a href="fm_my_listed_rentals.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
+<a href="fm_my_listed_rentals.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
 <?php } ?>
 
 <table>
 	<tr>
 		<th>Item</th>
 		<th>Price</th>
+		<th>Duration</th>
 		<th>Description</th>
 		<th>Picture</th>
 		<th>Edit</th>
 		<th>Delete</th>
 		<th>View</th>
 	</tr>
-	<?php while ($row = mysqli_fetch_array($result)) { ?>
+	<?php while ($set = mysqli_fetch_array($result)) { ?>
 	<tr>
-		<td><?php echo $row['item']; ?></td>
-		<td><?php echo $row['price']; ?></td>
-		<td><?php echo $row['descr']; ?></td> 
-		<td><img src ="../../images/<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></td> 
-		<td><a href = "edit_listings/fm_edit_sale.php?id=<?php echo $row['bid']; ?>"><?php echo $row['bid'];?></a></td>
-		<td><a href = "edit_listings/fm_delete_sale.php?id=<?php echo $row['bid']; ?>"><?php echo $row['bid'];?></a></td>
-		<td><a href = "account_accept_reject/fm_view_buyoffers.php?id=<?php echo $row['bid']; ?>"><?php echo $row['bid'];?></a></td>
+		<td><?php echo $set['item']; ?></td>
+		<td><?php echo $set['price']; ?></td>
+		<td><?php echo $set['duration']; ?></td>
+		<td><?php echo $set['descr']; ?></td> 
+		<td><img src ="../../images/<?php echo $set['picture']; ?>" height = '75px' width = '75px' /></td> 
+		<td><a href = "edit_listings/fm_edit_rental.php?id=<?php echo $set['rid']; ?>"><?php echo $set['rid'];?></a></td>
+		<td><a href = "edit_listings/fm_delete_rental.php?id=<?php echo $set['rid']; ?>"><?php echo $set['rid'];?></a></td>
+		<td><a href = "account_accept_reject/fm_view_rentoffers.php?id=<?php echo $set['rid']; ?>"><?php echo $set['rid'];?></a></td>
 	</tr>
 	<?php } ?>
 </table>

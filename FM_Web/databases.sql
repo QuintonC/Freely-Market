@@ -1,6 +1,6 @@
 
-create table B_Transactions(
-tid int NOT NULL AUTO_INCREMENT,
+create table Bike_Transactions(
+btid int NOT NULL AUTO_INCREMENT,
 buyer varchar(30) NOT NULL,
 seller varchar(30) NOT NULL,
 occured datetime NOT NULL,
@@ -8,14 +8,14 @@ payment varchar(3) NOT NULL,
 bid int NOT NULL,
 cid int NOT NULL,
 aid int NOT NULL,
-PRIMARY KEY(tid),
+PRIMARY KEY(btid),
 FOREIGN KEY(bid) REFERENCES Buy_Listing(bid),
 FOREIGN KEY(cid) REFERENCES CardInfo(cid),
 FOREIGN KEY(aid) REFERENCES User_Accounts(aid))
 engine=innodb;
 
-create table R_Transactions(
-tid int NOT NULL AUTO_INCREMENT,
+create table Rental_Transactions(
+rtid int NOT NULL AUTO_INCREMENT,
 borrower varchar(30) NOT NULL,
 renter varchar(30) NOT NULL,
 occured datetime NOT NULL,
@@ -23,8 +23,23 @@ rid int NOT NULL,
 cid int NOT NULL,
 aid int NOT NULL,
 payment varchar(3) NOT NULL,
-PRIMARY KEY(tid),
+PRIMARY KEY(rtid),
 FOREIGN KEY(rid) REFERENCES Rental_Listing(rid),
+FOREIGN KEY(cid) REFERENCES CardInfo(cid),
+FOREIGN KEY(aid) REFERENCES User_Accounts(aid))
+engine=innodb;
+
+create table Equipment_Transactions(
+etid int NOT NULL AUTO_INCREMENT,
+buyer varchar(30) NOT NULL,
+seller varchar(30) NOT NULL,
+occured datetime NOT NULL,
+payment varchar(3) NOT NULL,
+eid int NOT NULL,
+cid int NOT NULL,
+aid int NOT NULL,
+PRIMARY KEY(etid),
+FOREIGN KEY(eid) REFERENCES Equipment_Listing(eid),
 FOREIGN KEY(cid) REFERENCES CardInfo(cid),
 FOREIGN KEY(aid) REFERENCES User_Accounts(aid))
 engine=innodb;
@@ -124,6 +139,14 @@ PRIMARY KEY(prid),
 FOREIGN KEY(rid) REFERENCES Rental_Listing(rid))
 engine=innodb;
 
+create table Pending_Equipment(
+peid int NOT NULL AUTO_INCREMENT,
+username varchar(30),
+eid int NOT NULL,
+PRIMARY KEY(peid),
+FOREIGN KEY(eid) REFERENCES Equipment_Listing(eid))
+engine=innodb;
+
 create table Notifications(
 nid int NOT NULL AUTO_INCREMENT,
 message varchar(100) NOT NULL,
@@ -133,7 +156,7 @@ types varchar(30) NOT NULL,
 created datetime NOT NULL,
 bid int,
 rid int,
-tid int,
+eid int,
 PRIMARY KEY(nid))
 engine=innodb;
 

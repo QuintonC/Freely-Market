@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once("../db_constant.php");
+require_once("../../../db_constant.php");
 
 if (isset($_SESSION['loggedin']) and $_SESSION['loggedin'] == true) {
     $log = $_SESSION['username'];
@@ -22,7 +22,7 @@ $username = $_SESSION['username'];
 
 $pagenum = $_GET['pagenum'];
 
-$sql = "SELECT count(*) FROM R_Transactions AS t, Rental_Listing AS r WHERE r.rid = t.rid AND t.renter = '$username'";
+$sql = "SELECT count(*) FROM Bike_Transactions AS t, Buy_Listing AS b WHERE b.bid = t.bid AND t.buyer = '$username'";
 $content = $conn->query($sql);
 $val = mysqli_fetch_array($content);
 $total = $val['count(*)'];
@@ -38,7 +38,7 @@ $prevpage = $pagenum - 1;
 $offset = ($pagenum - 1)  * $limit;
 
 
-$mysql = "SELECT t.borrower, t.occured, r.item, r.price, r.duration FROM R_Transactions AS t, Rental_Listing AS r WHERE r.rid = t.rid AND t.renter = '$username' LIMIT $limit OFFSET $offset";
+$mysql = "SELECT t.seller, t.occured, b.item, b.price FROM Bike_Transactions AS t, Buy_Listing AS b WHERE b.bid = t.bid AND t.buyer = '$username' LIMIT $limit OFFSET $offset";
 $result = $conn->query($mysql);
 
 ?>
@@ -232,7 +232,7 @@ top: 1250px;
 <div class = "title">
 
 <div class = "search">
-<img src = "../images/logo.png" height = "100px" width = "200px" /><br />
+<img src = "../../../images/logo.png" height = "100px" width = "200px" /><br />
 <input type="text" name="search" placeholder="Search..">
 </div>
 
@@ -243,10 +243,10 @@ top: 1250px;
 <div class = "navbar">
 
 <ul>
-<li><a href = "../listings/fm_listings.php">Listings</a></li>
-<li><a href="../account/fm_account.php">My Account</a></li>
-<li><a href = "../transactions/fm_transactions.php" class = "active">Transactions</a></li>
-<li><a href = "../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
+<li><a href = "../../../listings/fm_listings.php">Listings</a></li>
+<li><a href="../../../account/fm_account.php">My Account</a></li>
+<li><a href = "../../../transactions/fm_transactions.php" class = "active">Transactions</a></li>
+<li><a href = "../../../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
 </ul>
 </div>
 
@@ -261,36 +261,34 @@ top: 1250px;
 <!-- Block 3 -->
 <div class = "center">
 
-<center><h2>Past Rentals</h2></center>
+<center><h2>Past Bike Purchases</h2></center>
 <?php echo "Page " . $pagenum . "of " . $lastpage;?><br />
 <?php if ($pagenum == 1 and $lastpage != 1) { ?>
-<a href="fm_past_rentals.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_past_rentals.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+<a href="fm_past_purchases_bikes.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
+<a href="fm_past_purchases_bikes.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
 <?php } elseif ($pagenum == $lastpage and $pagenum != 1) { ?>
-<a href="fm_past_rentals.php?pagenum=1">FIRST</a>
-<a href="fm_past_rentals.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+<a href="fm_past_purchases_bikes.php?pagenum=1">FIRST</a>
+<a href="fm_past_purchases_bikes.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
 <?php } elseif ($pagenum != 1 and $lastpage != 1) { ?>
-<a href="fm_past_rentals.php?pagenum=1">FIRST</a>
-<a href="fm_past_rentals.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
-<a href="fm_past_rentals.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_past_rentals.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+<a href="fm_past_purchases_bikes.php?pagenum=1">FIRST</a>
+<a href="fm_past_purchases_bikes.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+<a href="fm_past_purchases_bikes.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
+<a href="fm_past_purchases_bikes.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
 <?php } ?>
 
 <table>
 	<tr>
-		<th>Rented To</th>
-		<th>Date</th>
+		<th>Bought From</th>
+		<th>Occured</th>
 		<th>Item</th>
 		<th>Price</th>
-		<th>Duration</th>
 	</tr>
 	<?php while ($row = mysqli_fetch_array($result)) { ?>
 	<tr>
-		<td><?php echo $row['borrower']; ?></td>
+		<td><?php echo $row['seller']; ?></td>
 		<td><?php echo $row['occured']; ?></td>
 		<td><?php echo $row['item']; ?></td> 
 		<td><?php echo $row['price']; ?></td>
-		<td><?php echo $row['duration']; ?></td>
 	</tr>
 	<?php } ?>
 </table>

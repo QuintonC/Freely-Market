@@ -178,10 +178,6 @@ top: 600px;
 
 <div class = "search">
 <img src = "../images/logo.png" height = "100px" width = "200px" /><br />
-<form name = "searchbar" action = "fm_search.php" method="get">
-<input type="text" name="search" placeholder="Search..">
-<button type="submit" value="search">Search</button>
-</form>
 </div>
 
 <div class = "header">

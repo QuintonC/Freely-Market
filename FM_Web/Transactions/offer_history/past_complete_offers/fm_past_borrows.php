@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once("../db_constant.php");
+require_once("../../../db_constant.php");
 
 if (isset($_SESSION['loggedin']) and $_SESSION['loggedin'] == true) {
     $log = $_SESSION['username'];
@@ -22,7 +22,7 @@ $username = $_SESSION['username'];
 
 $pagenum = $_GET['pagenum'];
 
-$sql = "SELECT count(*) FROM B_Transactions AS t, Buy_Listing AS b WHERE b.bid = t.bid AND t.seller = '$username'";
+$sql = "SELECT count(*) FROM Rental_Transactions AS t, Rental_Listing AS r WHERE r.rid = t.rid AND t.borrower = '$username'";
 $content = $conn->query($sql);
 $val = mysqli_fetch_array($content);
 $total = $val['count(*)'];
@@ -38,7 +38,7 @@ $prevpage = $pagenum - 1;
 $offset = ($pagenum - 1)  * $limit;
 
 
-$mysql = "SELECT t.buyer, t.occured, b.item, b.price FROM B_Transactions AS t, Buy_Listing AS b WHERE b.bid = t.bid AND t.seller = '$username' LIMIT $limit OFFSET $offset";
+$mysql = "SELECT t.renter, t.occured, r.item, r.price, r.duration FROM Rental_Transactions AS t, Rental_Listing AS r WHERE r.rid = t.rid AND t.borrower = '$username' LIMIT $limit OFFSET $offset";
 $result = $conn->query($mysql);
 
 ?>
@@ -47,7 +47,7 @@ $result = $conn->query($mysql);
 
 <head>
 
-<title>Past Sales Page</title>
+<title>Past Borrows Page</title>
 <style>
 
 body {
@@ -232,7 +232,7 @@ top: 1250px;
 <div class = "title">
 
 <div class = "search">
-<img src = "../images/logo.png" height = "100px" width = "200px" /><br />
+<img src = "../../../images/logo.png" height = "100px" width = "200px" /><br />
 <input type="text" name="search" placeholder="Search..">
 </div>
 
@@ -243,10 +243,10 @@ top: 1250px;
 <div class = "navbar">
 
 <ul>
-<li><a href = "../listings/fm_listings.php">Listings</a></li>
-<li><a href="../account/fm_account.php">My Account</a></li>
-<li><a href = "../transactions/fm_transactions.php" class = "active">Transactions</a></li>
-<li><a href = "../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
+<li><a href = "../../../listings/fm_listings.php">Listings</a></li>
+<li><a href="../../../account/fm_account.php">My Account</a></li>
+<li><a href = "../../../transactions/fm_transactions.php" class = "active">Transactions</a></li>
+<li><a href = "../../../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
 </ul>
 </div>
 
@@ -261,34 +261,36 @@ top: 1250px;
 <!-- Block 3 -->
 <div class = "center">
 
-<center><h2>Past Sales</h2></center>
+<center><h2>Past Borrows</h2></center>
 <?php echo "Page " . $pagenum . "of " . $lastpage;?><br />
 <?php if ($pagenum == 1 and $lastpage != 1) { ?>
-<a href="fm_past_sales.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_past_sales.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+<a href="fm_past_borrows.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
+<a href="fm_past_borrows.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
 <?php } elseif ($pagenum == $lastpage and $pagenum != 1) { ?>
-<a href="fm_past_sales.php?pagenum=1">FIRST</a>
-<a href="fm_past_sales.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+<a href="fm_past_borrows.php?pagenum=1">FIRST</a>
+<a href="fm_past_borrows.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
 <?php } elseif ($pagenum != 1 and $lastpage != 1) { ?>
-<a href="fm_past_sales.php?pagenum=1">FIRST</a>
-<a href="fm_past_sales.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
-<a href="fm_past_sales.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_past_sales.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+<a href="fm_past_borrows.php?pagenum=1">FIRST</a>
+<a href="fm_past_borrows.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+<a href="fm_past_borrows.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
+<a href="fm_past_borrows.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
 <?php } ?>
 
 <table>
 	<tr>
-		<th>Sold To</th>
+		<th>Borrowed From</th>
 		<th>Occured</th>
 		<th>Item</th>
 		<th>Price</th>
+		<th>Duration</th>
 	</tr>
 	<?php while ($row = mysqli_fetch_array($result)) { ?>
 	<tr>
-		<td><?php echo $row['buyer']; ?></td>
+		<td><?php echo $row['renter']; ?></td>
 		<td><?php echo $row['occured']; ?></td>
 		<td><?php echo $row['item']; ?></td> 
-		<td><?php echo $row['price']; ?></td> 
+		<td><?php echo $row['price']; ?></td>
+		<td><?php echo $row['duration']; ?></td>
 	</tr>
 	<?php } ?>
 </table>

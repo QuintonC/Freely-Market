@@ -27,7 +27,7 @@ if ($size <= 5000000) {
 	echo 'The file is ' . $size . ' and needs to be less than 500KB';
 }
 
-$bid = $_GET['id'];
+$eid = $_GET['id'];
 $item = $_POST['item'];
 $price = $_POST['price'];
 $descr = $_POST['descr'];
@@ -42,10 +42,10 @@ $price = stripslashes($price);
 $descr = stripslashes($descr);
 	
 #Updates Sale_Listing
-$sql = "update Buy_Listing set item = '$item', price = '$price', descr = '$descr', picture = '$name' where bid = '$bid'";	
+$sql = "update Equipment_Listing set item = '$item', price = '$price', descr = '$descr', picture = '$name' where eid = '$eid'";	
 
 if ($conn->query($sql) === TRUE) {
-	header("Location: ../fm_my_listed_bikes.php?pagenum=1.php");
+	header("Location: ../fm_my_listed_equipment.php?pagenum=1");
 	exit;
 } else {
 	echo "Error: " . $sql . "<br>" . $conn->error;

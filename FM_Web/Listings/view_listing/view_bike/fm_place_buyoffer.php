@@ -32,7 +32,7 @@ $seller = $set['username'];
 #Create notification
 $sql3 = "INSERT INTO Notifications(message,recipient,sender,types,created,bid) VALUES('$message','$seller','$username','$type','$date','$bid')";
 if ($conn->query($sql3) === TRUE) {
-	header("Location: ../account/fm_account.php");
+	header("Location: ../../../account/fm_account.php");
 	exit;
 } else {
 	echo "Error: " . $sql3 . "<br>" . $conn->error;

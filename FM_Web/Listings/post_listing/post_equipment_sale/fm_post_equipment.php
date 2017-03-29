@@ -43,7 +43,7 @@ $username = $_SESSION['username'];
 #Create Equipment Listing
 $sql = "insert into Equipment_Listing (item,price,descr,picture,status,aid,owner) values('$item','$price','$descr','$name','$status','$aid','$username')";
 if ($conn->query($sql) === TRUE) {
-	header("Location: ../../account/fm_account.php");
+	header("Location: ../../../account/fm_account.php");
 	exit;
 } else {
 	echo "Error: " . $sql . "<br>" . $conn->error;

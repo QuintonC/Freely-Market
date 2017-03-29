@@ -51,7 +51,7 @@ $sql = "insert into Rental_Listing (item,price,duration,descr,picture,status,own
 
 
 if ($conn->query($sql) === TRUE) {
-	header("Location: ../../account/fm_account.php");
+	header("Location: ../../../account/fm_account.php");
 	exit;
 } else {
 	echo "Error: " . $sql . "<br>" . $conn->error;

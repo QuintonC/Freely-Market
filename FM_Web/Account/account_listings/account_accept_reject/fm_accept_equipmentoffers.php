@@ -12,51 +12,53 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	}
 
 #Get from url
-$prid = $_GET['id'];
+$peid = $_GET['id'];
 
 $seller = $_SESSION['username'];
 
 #Get username and id that belongs to the listing
-$mysql = "select username, rid from Pending_Rental where prid = '$prid'";
+$mysql = "select username, eid from Pending_Equipment where peid = '$peid'";
 $result = $conn->query($mysql);
 $row = mysqli_fetch_array($result);
-$renter = $row['username'];
-$rid = $row['rid'];
+$buyer = $row['username'];
+$eid = $row['eid'];
 
 #Select card id and user id 
-$sql = "SELECT c.cid, r.aid FROM CardInfo AS c, Rental_Listing AS r, User_Accounts AS a WHERE r.rid = '$rid' AND r.aid = a.aid AND a.aid = c.aid";
+$sql = "SELECT c.cid, e.aid FROM CardInfo AS c, Equipment_Listing AS e, User_Accounts AS a WHERE e.eid = '$eid' AND e.aid = a.aid AND a.aid = c.aid";
 $content = $conn->query($sql);
 $set = mysqli_fetch_array($content);
 $cid = $set['cid'];
 $aid = $set['aid'];
 
-$type = "rentaccept";
+
+$type = "equipment accept";
 $date = date("Y-m-d H:i:s");
 $payment = "pending";
-$message = "Your offer for a rental listing has been accepted!";
+$message = "Your offer for an equipment listing has been accepted!";
 
-#Insert into tranactions table to finalize
-$sql2 = "insert into Rental_Transactions (borrower, renter, occured, rid, cid, aid, payment) values ('$renter','$seller','$date','$rid','$cid','$aid','$payment')";
+#Insert into transactions table to finalize
+$sql2 = "insert into Equipment_Transactions (buyer, seller, occured, eid, cid, aid, payment) values ('$buyer','$seller','$date','$eid','$cid','$aid','$payment')";
 $conn->query($sql2);
 
 #Get Transactions ID
-$sql3 = "select rtid from Rental_Transactions where rid = '$rid'";
+$sql3 = "select etid from Equipment_Transactions where eid = '$eid'";
 $record = $conn->query($sql3);
 $batch = mysqli_fetch_array($record);
-$rtid = $batch['rtid'];
+$etid = $batch['etid'];
+
 
 #Create Notification
-$sql4 = "INSERT INTO Notifications(message,recipient,sender,types,created,rid) VALUES('$message','$renter','$seller','$type','$date','$rid')";
+$sql4 = "INSERT INTO Notifications(message,recipient,sender,types,created,eid) VALUES('$message','$buyer','$seller','$type','$date','$eid')";
 $conn->query($sql4);
 
 $status = 'Complete';
 
 #Update Listing Status
-$sql5 = "UPDATE Rental_Listing SET status = '$status' WHERE rid = '$rid' AND status = 'Active'";
+$sql5 = "UPDATE Equipment_Listing SET status = '$status' WHERE eid = '$eid' AND status = 'Active'";
 $conn->query($sql5);
 
 #Delete listing from pending table
-$sql6 = "delete from Pending_Rental where rid = '$rid'";
+$sql6 = "delete from Pending_Equipment where eid = '$eid'";
 
 if ($conn->query($sql6) === TRUE) {
 	header("Location: ../../../account/fm_account.php");

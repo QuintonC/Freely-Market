@@ -8,31 +8,29 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 		exit();
 	}
 $username = $_SESSION['username'];
+#Get id from url
+$eid = $_GET['id'];
 
-#Get from url
-$rid = $_GET['id'];
-
-#Create offer for rental
-$mysql = "insert into Pending_Rental (username,rid) values ('$username','$rid')";
+#Create offer for sale
+$mysql = "insert into Pending_Equipment (username,eid) values ('$username','$eid')";
 $conn->query($mysql);
 
-$type = "rentalbid";
+$type = "equipmenteid";
 $date = date("Y-m-d H:i:s");
-$message = "You have recieved an offer for one of your rental listings!";
+$message = "You have recieved an offer for one of your equipment listings!";
 
-$sql = "select prid from Pending_Rental where username = '$username' and rid = '$rid' limit 1";
+$sql = "select peid from Pending_Equipment where username = '$username' and eid = '$eid' limit 1";
 $content = $conn->query($sql);
 $row = mysqli_fetch_array($content);
-$prid = $row['prid'];
+$peid = $row['peid'];
 
-$sql2 = "SELECT u.username FROM User_Accounts AS u, Rental_Listing AS r, Pending_Rental AS p WHERE p.rid = r.rid AND r.aid = u.aid AND prid = '$prid'";
+$sql2 = "SELECT u.username FROM User_Accounts AS u, Equipment_Listing AS e, Pending_Equipment AS p WHERE p.eid = e.eid AND e.aid = u.aid AND peid = '$peid'";
 $data = $conn->query($sql2);
 $set = mysqli_fetch_array($data);
-
 $seller = $set['username'];
 
 #Create notification
-$sql3 = "INSERT INTO Notifications(message,recipient,sender,types,created,rid) VALUES('$message','$seller','$username','$type','$date','$rid')";
+$sql3 = "INSERT INTO Notifications(message,recipient,sender,types,created,eid) VALUES('$message','$seller','$username','$type','$date','$eid')";
 if ($conn->query($sql3) === TRUE) {
 	header("Location: ../../../account/fm_account.php");
 	exit;

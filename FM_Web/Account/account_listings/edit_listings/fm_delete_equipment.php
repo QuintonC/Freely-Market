@@ -16,13 +16,13 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	}
 
 #Get ID from url
-$bid = $_GET['id'];
+$eid = $_GET['id'];
 	
 #Delete Sale Listing
-$sql = "delete from Buy_Listing where bid = '$bid'";	
+$sql = "delete from Equipment_Listing where eid = '$eid'";	
 
 if ($conn->query($sql) === TRUE) {
-	header("Location: ../fm_my_listed_bikes.php?pagenum=1.php");
+	header("Location: ../fm_my_listed_equipment.php?pagenum=1");
 	exit;
 } else {
 	echo "Error: " . $sql . "<br>" . $conn->error;

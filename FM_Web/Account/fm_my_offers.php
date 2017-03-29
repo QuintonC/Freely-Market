@@ -279,8 +279,9 @@ top: 600px;
 <div class = "center">
 
 <ul>
-<li><a href = "fm_my_listings.php">My Listings</a></li>
-<li><a href = "fm_my_offers.php">My Offers</a></li>
+<li><a href = "account_listings/fm_my_placed_bike_offers.php?pagenum=1">My Placed Offers Bikes</a></li>
+<li><a href = "account_listings/fm_my_placed_equipment_offers.php?pagenum=1">My Placed Offers Equipment</a></li>
+<li><a href = "account_listings/fm_my_placed_rental_offers.php?pagenum=1">My Placed Offers Rentals</a></li>
 </ul>
 
 </div>
