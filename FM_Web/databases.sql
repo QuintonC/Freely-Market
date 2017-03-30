@@ -157,6 +157,9 @@ created datetime NOT NULL,
 bid int,
 rid int,
 eid int,
+btid int,
+rtid int,
+etid int,
 PRIMARY KEY(nid))
 engine=innodb;
 

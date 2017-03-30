@@ -24,11 +24,12 @@ $renter = $row['username'];
 $rid = $row['rid'];
 
 #Select card id and user id 
-$sql = "SELECT c.cid, r.aid FROM CardInfo AS c, Rental_Listing AS r, User_Accounts AS a WHERE r.rid = '$rid' AND r.aid = a.aid AND a.aid = c.aid";
+$sql = "SELECT c.cid, r.aid, a.email FROM CardInfo AS c, Rental_Listing AS r, User_Accounts AS a WHERE r.rid = '$rid' AND r.aid = a.aid AND a.aid = c.aid";
 $content = $conn->query($sql);
 $set = mysqli_fetch_array($content);
 $cid = $set['cid'];
 $aid = $set['aid'];
+$email = $set['email'];
 
 $type = "rentaccept";
 $date = date("Y-m-d H:i:s");
@@ -58,7 +59,19 @@ $conn->query($sql5);
 #Delete listing from pending table
 $sql6 = "delete from Pending_Rental where rid = '$rid'";
 
+#Email Confirmation Message
+$to = $email;
+$subject = 'the subject';
+
+//Set content-type
+$headers = "MIME-Version: 1.0" . "\r\n";
+$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+//More headers
+$headers .= 'From: freelycreativecapstone@gmail.com' . "\r\n";
+
 if ($conn->query($sql6) === TRUE) {
+	mail($to, $subject, $message, $headers;
 	header("Location: ../../../account/fm_account.php");
 	exit;
 } else {

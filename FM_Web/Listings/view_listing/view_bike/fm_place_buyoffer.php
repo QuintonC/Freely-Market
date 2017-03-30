@@ -24,14 +24,28 @@ $content = $conn->query($sql);
 $row = mysqli_fetch_array($content);
 $psid = $row['psid'];
 
-$sql2 = "SELECT u.username FROM User_Accounts AS u, Buy_Listing AS b, Pending_Sale AS p WHERE p.bid = b.bid AND b.aid = u.aid AND psid = '$psid'";
+$sql2 = "SELECT u.username, u.email FROM User_Accounts AS u, Buy_Listing AS b, Pending_Sale AS p WHERE p.bid = b.bid AND b.aid = u.aid AND psid = '$psid'";
 $data = $conn->query($sql2);
 $set = mysqli_fetch_array($data);
 $seller = $set['username'];
+$email = $set['email'];
+
+#Email Confirmation Message
+$to = $email;
+$subject = 'the subject';
+
+//Set content-type
+$headers = "MIME-Version: 1.0" . "\r\n";
+$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+//More headers
+$headers .= 'From: freelycreativecapstone@gmail.com' . "\r\n";
+
 
 #Create notification
 $sql3 = "INSERT INTO Notifications(message,recipient,sender,types,created,bid) VALUES('$message','$seller','$username','$type','$date','$bid')";
 if ($conn->query($sql3) === TRUE) {
+	mail($to, $subject, $message, $headers);
 	header("Location: ../../../account/fm_account.php");
 	exit;
 } else {

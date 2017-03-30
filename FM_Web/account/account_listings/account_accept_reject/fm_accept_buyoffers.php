@@ -24,12 +24,12 @@ $buyer = $row['username'];
 $bid = $row['bid'];
 
 #Select card id and user id 
-$sql = "SELECT c.cid, b.aid FROM CardInfo AS c, Buy_Listing AS b, User_Accounts AS a WHERE b.bid = '$bid' AND b.aid = a.aid AND a.aid = c.aid";
+$sql = "SELECT c.cid, b.aid, a.email FROM CardInfo AS c, Buy_Listing AS b, User_Accounts AS a WHERE b.bid = '$bid' AND b.aid = a.aid AND a.aid = c.aid";
 $content = $conn->query($sql);
 $set = mysqli_fetch_array($content);
 $cid = $set['cid'];
 $aid = $set['aid'];
-
+$email = $set['email'];
 
 $type = "buyaccept";
 $date = date("Y-m-d H:i:s");
@@ -48,7 +48,7 @@ $btid = $batch['btid'];
 
 
 #Create Notification
-$sql4 = "INSERT INTO Notifications(message,recipient,sender,types,created,bid) VALUES('$message','$buyer','$seller','$type','$date','$bid')";
+$sql4 = "INSERT INTO Notifications(message,recipient,sender,types,created,btid) VALUES('$message','$buyer','$seller','$type','$date','$btid')";
 $conn->query($sql4);
 
 $status = 'Complete';
@@ -60,7 +60,19 @@ $conn->query($sql5);
 #Delete listing from pending table
 $sql6 = "delete from Pending_Sale where bid = '$bid'";
 
+#Email Confirmation Message
+$to = $email;
+$subject = 'the subject';
+
+//Set content-type
+$headers = "MIME-Version: 1.0" . "\r\n";
+$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+//More headers
+$headers .= 'From: freelycreativecapstone@gmail.com' . "\r\n";
+
 if ($conn->query($sql6) === TRUE) {
+	mail($to, $subject, $message, $headers);
 	header("Location: ../../../account/fm_account.php");
 	exit;
 } else {

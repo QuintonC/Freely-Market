@@ -17,12 +17,12 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 		exit();
 	}
 	
-$tid = $_GET['id'];
+$btid = $_GET['id'];
 
-$mysql = "SELECT t.seller, t.occured, b.item, b.price, b.descr, b.picture FROM B_Transactions AS t, Buy_Listing AS b WHERE t.bid = b.bid AND tid = '$tid'";
+$mysql = "SELECT t.seller, t.occured, b.item, b.price, b.descr, b.picture FROM Bike_Transactions AS t, Buy_Listing AS b WHERE t.bid = b.bid AND btid = '$btid'";
 $content = $conn->query($mysql);
 
-$sql = "delete from Notifications where tid = '$tid'";
+$sql = "delete from Notifications where stid = '$btid'";
 $conn->query($sql);
 	
 ?>

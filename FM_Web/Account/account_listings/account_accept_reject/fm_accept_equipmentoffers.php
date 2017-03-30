@@ -24,12 +24,12 @@ $buyer = $row['username'];
 $eid = $row['eid'];
 
 #Select card id and user id 
-$sql = "SELECT c.cid, e.aid FROM CardInfo AS c, Equipment_Listing AS e, User_Accounts AS a WHERE e.eid = '$eid' AND e.aid = a.aid AND a.aid = c.aid";
+$sql = "SELECT c.cid, e.aid, a.email FROM CardInfo AS c, Equipment_Listing AS e, User_Accounts AS a WHERE e.eid = '$eid' AND e.aid = a.aid AND a.aid = c.aid";
 $content = $conn->query($sql);
 $set = mysqli_fetch_array($content);
 $cid = $set['cid'];
 $aid = $set['aid'];
-
+$email = $set['email'];
 
 $type = "equipment accept";
 $date = date("Y-m-d H:i:s");
@@ -60,7 +60,19 @@ $conn->query($sql5);
 #Delete listing from pending table
 $sql6 = "delete from Pending_Equipment where eid = '$eid'";
 
+#Email Confirmation Message
+$to = $email;
+$subject = 'the subject';
+
+//Set content-type
+$headers = "MIME-Version: 1.0" . "\r\n";
+$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+//More headers
+$headers .= 'From: freelycreativecapstone@gmail.com' . "\r\n";
+
 if ($conn->query($sql6) === TRUE) {
+	mail($to, $subject, $message, $headers);
 	header("Location: ../../../account/fm_account.php");
 	exit;
 } else {

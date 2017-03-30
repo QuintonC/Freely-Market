@@ -29,22 +29,40 @@ $content = $conn->query($sql);
 $set = mysqli_fetch_array($content);
 $borrower = $set['username'];
 
+#Get bidder's email
+$sql1 = "select email from User_Accounts where username = '$borrower'";
+$product = $conn->query($sql1);
+$grp = mysqli_fetch_array($product);
+$email = $grp['email'];
+
 #Delete listing from pending rental
-$sql1 = "delete from Pending_Rental where rid = '$rid'";
-$conn->query($sql1);
+$sql2 = "delete from Pending_Rental where rid = '$rid'";
+$conn->query($sql2);
 
 $type = "rentreject";
 $date = date("Y-m-d H:i:s");
 $message = "Your offer for a rental listing has been rejected!";
 
 #Create Notification
-$sql2 = "insert into Notifications(message,recipient,sender,types,created,rid) values('$message','$borrower','$renter','$type','$date','$rid')";
+$sql3 = "insert into Notifications(message,recipient,sender,types,created,rid) values('$message','$borrower','$renter','$type','$date','$rid')";
 
-if ($conn->query($sql2) === TRUE) {
+#Email Confirmation Message
+$to = $email;
+$subject = 'the subject';
+
+//Set content-type
+$headers = "MIME-Version: 1.0" . "\r\n";
+$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+//More headers
+$headers .= 'From: freelycreativecapstone@gmail.com' . "\r\n";
+
+if ($conn->query($sql3) === TRUE) {
+	mail($to, $subject, $message, $headers);
 	header("Location: ../../../account/fm_account.php");
 	exit;
 } else {
-	echo "Error: " . $sql2 . "<br>" . $conn->error;
+	echo "Error: " . $sql3 . "<br>" . $conn->error;
 }
 
 
