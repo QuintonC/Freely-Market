@@ -14,8 +14,9 @@ import WebKit
 class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
-    @IBOutlet weak var tableView: UITableView!
+    //@IBOutlet weak var tableView: UITableView!
 
+    @IBOutlet var tableView: UITableView!
     
     
     var values:NSArray = []
@@ -26,6 +27,11 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
         //get()
         names = []
@@ -86,8 +92,14 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContactCell
-        cell.name.text = names[indexPath.row]
+        //Version 1
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContactCell
+        //cell.name.text = names[indexPath.row]
+        
+        //Version 2 (working)
+        let cell = UITableViewCell()
+        cell.textLabel?.text = names[indexPath.row]
+        
         return cell
     }
     
@@ -95,5 +107,22 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return names.count
     }
+    
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Perform segue showConversation with selected cell as sender
+        performSegue(withIdentifier: "showConversation", sender: names[indexPath.row])
+    }
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //Create instance of ConversationViewController
+        let destinationVC = segue.destination as! ConversationViewController
+        //Give ConversationViewController's variable contact a value
+        destinationVC.contact = sender as! String
+    }
+    
     
 }

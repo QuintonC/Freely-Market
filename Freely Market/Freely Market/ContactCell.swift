@@ -11,7 +11,7 @@ import UIKit
 
 class ContactCell: UITableViewCell {
     
-    @IBOutlet weak var name: UILabel!
+    //@IBOutlet weak var name: UILabel!
     
     
     

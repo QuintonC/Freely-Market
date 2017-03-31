@@ -23,6 +23,9 @@
 		5AED3A801DB80B2200F3EA39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AED3A7E1DB80B2200F3EA39 /* LaunchScreen.storyboard */; };
 		5AED3A8B1DB80B2200F3EA39 /* Freely_MarketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AED3A8A1DB80B2200F3EA39 /* Freely_MarketTests.swift */; };
 		5AED3A961DB80B2200F3EA39 /* Freely_MarketUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AED3A951DB80B2200F3EA39 /* Freely_MarketUITests.swift */; };
+		D981CB961E8C570D004BF8C9 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D981CB951E8C570D004BF8C9 /* ConversationViewController.swift */; };
+		D99D28CC1E8E02C200548082 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99D28CB1E8E02C200548082 /* MessageCell.swift */; };
+		D9A019B91E8E1C8F009A0A99 /* SenderMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A019B81E8E1C8F009A0A99 /* SenderMessageCell.swift */; };
 		D9C8945F1E3F965A00393D83 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C8945E1E3F965A00393D83 /* ChatViewController.swift */; };
 		D9C894611E3F977100393D83 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C894601E3F977100393D83 /* ContactCell.swift */; };
 /* End PBXBuildFile section */
@@ -70,6 +73,9 @@
 		5AED3A911DB80B2200F3EA39 /* Freely MarketUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Freely MarketUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AED3A951DB80B2200F3EA39 /* Freely_MarketUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Freely_MarketUITests.swift; sourceTree = "<group>"; };
 		5AED3A971DB80B2200F3EA39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D981CB951E8C570D004BF8C9 /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		D99D28CB1E8E02C200548082 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		D9A019B81E8E1C8F009A0A99 /* SenderMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SenderMessageCell.swift; sourceTree = "<group>"; };
 		D9C8945E1E3F965A00393D83 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = ../ChatViewController.swift; sourceTree = "<group>"; };
 		D9C894601E3F977100393D83 /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,7 +154,10 @@
 				5AED3A751DB80B2200F3EA39 /* AppDelegate.swift */,
 				5AED3A7E1DB80B2200F3EA39 /* LaunchScreen.storyboard */,
 				5AED3A791DB80B2200F3EA39 /* Main.storyboard */,
+				D9A019B81E8E1C8F009A0A99 /* SenderMessageCell.swift */,
+				D981CB951E8C570D004BF8C9 /* ConversationViewController.swift */,
 				D9C894601E3F977100393D83 /* ContactCell.swift */,
+				D99D28CB1E8E02C200548082 /* MessageCell.swift */,
 				5AED3A7C1DB80B2200F3EA39 /* Assets.xcassets */,
 				D9C8945E1E3F965A00393D83 /* ChatViewController.swift */,
 				5AED3A811DB80B2200F3EA39 /* Info.plist */,
@@ -331,15 +340,18 @@
 				D9C894611E3F977100393D83 /* ContactCell.swift in Sources */,
 				5A65E4DB1E3A9F1E009733D5 /* ListingViewController.swift in Sources */,
 				5A6FB8741DD7823100D58436 /* SWRevealViewController.m in Sources */,
+				D981CB961E8C570D004BF8C9 /* ConversationViewController.swift in Sources */,
 				D9C8945F1E3F965A00393D83 /* ChatViewController.swift in Sources */,
 				5A2ED6651DB8555200A75B2E /* LoginViewController.swift in Sources */,
 				5A65E4DD1E3AAEC3009733D5 /* CellData.swift in Sources */,
 				5A6FB8761DD9025500D58436 /* MessageViewController.swift in Sources */,
+				D9A019B91E8E1C8F009A0A99 /* SenderMessageCell.swift in Sources */,
 				5A2ED6671DB8564F00A75B2E /* RegisterViewController.swift in Sources */,
 				5AC30E3D1DCBD1DE00C502B2 /* ForgottenPassViewController.swift in Sources */,
 				5A2ED65D1DB8472500A75B2E /* DataModel.xcdatamodeld in Sources */,
 				5AED3A781DB80B2200F3EA39 /* ViewController.swift in Sources */,
 				5AED3A761DB80B2200F3EA39 /* AppDelegate.swift in Sources */,
+				D99D28CC1E8E02C200548082 /* MessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
