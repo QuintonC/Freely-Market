@@ -78,7 +78,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 (data, response, error) in
                 
                 if error != nil {
-                    print("error is \(error)")
+                    print("error is \(String(describing: error))")
                     return
                 }
                 
@@ -103,12 +103,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             }
                         } else if messageToDisplay == "Success, you are being logged in." {
                             DispatchQueue.main.async {
-                                let OKAction = UIAlertAction(title: "OK", style: .default) {
-                                    (action:UIAlertAction) in
-                                    self.performSegue(withIdentifier: "loginSuccess", sender: self)
-                                }
-                                myAlert.addAction(OKAction)
-                                self.present(myAlert, animated: true, completion: nil)
+                            self.performSegue(withIdentifier: "loginSuccess", sender: self)
                             }
                             
                         } else { //user is not authorized

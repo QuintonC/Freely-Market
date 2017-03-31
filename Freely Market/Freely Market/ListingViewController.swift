@@ -10,7 +10,7 @@ import UIKit
 
 class ListingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var values:NSArray = []
+    var values = NSArray()
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
@@ -28,14 +28,7 @@ class ListingViewController: UIViewController, UITableViewDataSource, UITableVie
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
-    }
-    
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    func get(){
-        let url = NSURL(string: "http://cgi.soic.indiana.edu/~team12/api/listings.php")
+        let url = NSURL(string: "http://cgi.soic.indiana.edu/~team12/api/buyListings.php")
         let data = NSData(contentsOf: url! as URL)
         var err: NSError?
         do {
@@ -44,14 +37,22 @@ class ListingViewController: UIViewController, UITableViewDataSource, UITableVie
             print(err = error)
         }
         tableView.reloadData()
+        print(values)
+        
         
     }
     
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(values.count)
         return values.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CellData
         
         let maindata = values[indexPath.row] as! [String:Any]
