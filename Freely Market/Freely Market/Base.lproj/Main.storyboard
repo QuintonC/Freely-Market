@@ -144,7 +144,6 @@
                                 <rect key="frame" x="0.0" y="597" width="375" height="70"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="Ifp-Bg-KPv"/>
                                     <constraint firstAttribute="height" constant="70" id="KGx-Vd-RLF"/>
                                 </constraints>
                                 <state key="normal" title="Register">
@@ -236,6 +235,7 @@
                             <constraint firstItem="A6w-du-TcW" firstAttribute="top" secondItem="xYu-xP-kIE" secondAttribute="bottom" constant="8" id="AIW-Dh-zeD"/>
                             <constraint firstItem="ta4-vB-cvQ" firstAttribute="centerX" secondItem="jTN-Qv-0r8" secondAttribute="centerX" id="Bql-ra-uij"/>
                             <constraint firstItem="Q76-bh-bBl" firstAttribute="centerX" secondItem="jTN-Qv-0r8" secondAttribute="centerX" id="KdD-bF-zma"/>
+                            <constraint firstItem="F7Q-Mm-BDw" firstAttribute="leading" secondItem="jTN-Qv-0r8" secondAttribute="leading" id="N04-hc-Ndu"/>
                             <constraint firstItem="EJg-gJ-e1Y" firstAttribute="top" secondItem="5fe-qZ-a3G" secondAttribute="bottom" constant="8" id="SWK-J7-ed1"/>
                             <constraint firstItem="Fbf-r1-fE2" firstAttribute="top" secondItem="ta4-vB-cvQ" secondAttribute="bottom" constant="31" id="URE-b2-It4"/>
                             <constraint firstItem="xYu-xP-kIE" firstAttribute="centerX" secondItem="jTN-Qv-0r8" secondAttribute="centerX" id="Vog-Ww-8UO"/>
@@ -248,6 +248,7 @@
                             <constraint firstItem="Fbf-r1-fE2" firstAttribute="centerX" secondItem="jTN-Qv-0r8" secondAttribute="centerX" id="fxo-bg-zRh"/>
                             <constraint firstItem="EJg-gJ-e1Y" firstAttribute="centerX" secondItem="jTN-Qv-0r8" secondAttribute="centerX" id="ig5-WC-9UA"/>
                             <constraint firstItem="xyj-YG-p01" firstAttribute="centerX" secondItem="jTN-Qv-0r8" secondAttribute="centerX" id="pbe-Hm-mw8"/>
+                            <constraint firstAttribute="trailing" secondItem="F7Q-Mm-BDw" secondAttribute="trailing" id="vxp-Gl-5x6"/>
                             <constraint firstItem="F7Q-Mm-BDw" firstAttribute="centerX" secondItem="jTN-Qv-0r8" secondAttribute="centerX" id="yIO-63-9Ca"/>
                             <constraint firstItem="A6w-du-TcW" firstAttribute="centerX" secondItem="jTN-Qv-0r8" secondAttribute="centerX" id="znY-Kh-1PB"/>
                         </constraints>
