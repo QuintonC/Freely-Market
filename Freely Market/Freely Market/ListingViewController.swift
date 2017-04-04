@@ -11,13 +11,16 @@ import UIKit
 class ListingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var values = NSArray()
-    var TableData:Array< String > = Array < String >()
+    var TableData: [[String]] = []
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        TableData = []
+        
         // Do any additional setup after loading the view, typically from a nib.
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RegisterViewController.dismissKeyboard))
@@ -29,25 +32,55 @@ class ListingViewController: UIViewController, UITableViewDataSource, UITableVie
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
-        get_data_from_url("http://cgi.soic.indiana.edu/~team12/api/buyListings.php")
+        let requestURL: NSURL = NSURL(string: "http://cgi.soic.indiana.edu/~team12/api/buyListings.php")!
+        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
+        let session = URLSession.shared
+        let task = session.dataTask(with: urlRequest as URLRequest) {
+            (data, response, error) -> Void in
+            
+            let httpResponse = response as! HTTPURLResponse
+            let statusCode = httpResponse.statusCode
+            
+            if (statusCode == 200) {
+                
+                do {
+                    
+                    let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
+                    
+                    if let listings = json["listing"] as? [[String: AnyObject]] {
+                        
+                        for listing in listings {
+                         
+                            if let title = listing["item"] as? String {
+                                
+                                if let price = listing["price"] as? String {
+                                    
+                                    self.TableData.append([title, "$" + price])
+                                    //print (title, price)
+                                    print(self.TableData)
+                                }
+                            }
+                            
+                        }
+                    }
+                    
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                } catch {
+                    print("Error with JSON: \(error)")
+                }
+        
+            }
+        }
+        
+        task.resume()
         
     }
     
     func dismissKeyboard() {
         view.endEditing(true)
     }
-    
-    
-    //let url = NSURL(string: "http://cgi.soic.indiana.edu/~team12/api/buyListings.php")
-    //let data = NSData(contentsOf: url! as URL)
-    //var err: NSError?
-    //do {
-    //values = try JSONSerialization.jsonObject(with: data! as Data, options: .mutableContainers) as! NSArray
-    //} catch let error as NSError {
-    //print(err = error)
-    //}
-    //tableView.reloadData()
-    //print(values)
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return TableData.count
@@ -57,70 +90,11 @@ class ListingViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CellData
         
-        cell.listingTitle.text = TableData[indexPath.row]
-        cell.listingPrice.text = TableData[indexPath.row]
-        cell.listingImage.image = UIImage(named: TableData[indexPath.row])
-        
-        //let maindata = values[indexPath.row] as! [String:Any]
-        
-        //cell.listingTitle.text = (maindata["title"] as AnyObject) as? String
-        //cell.listingPrice.text = (maindata["price"] as AnyObject) as? String
-        //cell.listingImage.image = (maindata["picture"] as AnyObject) as? UIImage
+        cell.listingTitle.text = TableData[indexPath.row][0]
+        cell.listingPrice.text = TableData[indexPath.row][1]
         
         return cell
     }
-    
-    func get_data_from_url(_ link:String) {
-        let url:URL = URL(string: link)!
-        let session = URLSession.shared
-        let request = NSMutableURLRequest(url: url)
-        request.httpMethod = "GET"
-        request.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData
-        
-        let task = session.dataTask(with: request as URLRequest, completionHandler: {(
-            data, response, error) in
-            
-            guard let _:Data = data, let _:URLResponse = response, error == nil else {
-                return
-            }
-            self.extract_json(data!)
-        })
-        task.resume()
-    }
-    
-    func extract_json(_ data:Data) {
-        
-        let json: Any?
-        
-        do {
-            json = try JSONSerialization.jsonObject(with: data, options: [])
-        } catch {
-            return
-        }
-        
-        guard let data_list = json as? NSArray else {
-            return
-        }
-        
-        if let listings = json as? NSArray {
-            for i in 0 ..< data_list.count {
-                if let listings_obj = listings[i] as? NSDictionary {
-                    if let title = listings_obj["title"] as? String {
-                        if let price = listings_obj["price"] as? String {
-                            TableData.append(title + " " + price)
-                        }
-                    }
-                    
-                }
-            }
-        }
-        DispatchQueue.main.async(execute: {self.do_table_refresh()})
-    }
-    
-    func do_table_refresh() {
-        self.tableView.reloadData()
-    }
-    
     
     @IBAction func logout(_ sender: AnyObject) {
         
