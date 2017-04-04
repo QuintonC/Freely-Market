@@ -10,10 +10,9 @@ import UIKit
 
 class ListingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var values = NSArray()
     var BuyData: [[String]] = []
-    var EquipmentData: [[String]] = []
     var RentalData: [[String]] = []
+//    var EquipmentData: [[String]] = []
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
@@ -22,13 +21,13 @@ class ListingViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         
         BuyData = []
-        EquipmentData = []
         RentalData = []
+//        EquipmentData = []
         
         // Do any additional setup after loading the view, typically from a nib.
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ListingViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
+        //let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ListingViewController.dismissKeyboard))
+        //view.addGestureRecognizer(tap)
         
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
@@ -37,15 +36,15 @@ class ListingViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
         buyListings()
-        rentListings()
-        equipmentListings()
+//        rentListings()
+//        equipmentListings()
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return BuyData.count
-        return EquipmentData.count
-        return RentalData.count
+//        return RentalData.count
+//        return EquipmentData.count
     }
     
     func buyListings() {
@@ -93,105 +92,105 @@ class ListingViewController: UIViewController, UITableViewDataSource, UITableVie
         task.resume()
     }
     
-    func rentListings() {
-        let requestURL: NSURL = NSURL(string: "http://cgi.soic.indiana.edu/~team12/api/rentalListings.php")!
-        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
-        let session = URLSession.shared
-        let task = session.dataTask(with: urlRequest as URLRequest) {
-            (data, response, error) -> Void in
-            
-            let httpResponse = response as! HTTPURLResponse
-            let statusCode = httpResponse.statusCode
-            
-            if (statusCode == 200) {
-                
-                do {
-                    
-                    let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
-                    
-                    if let listings = json["listing"] as? [[String: AnyObject]] {
-                        
-                        for listing in listings {
-                            
-                            if let title = listing["item"] as? String {
-                                
-                                if let price = listing["price"] as? String {
-                                    
-                                    self.RentalData.append([title, "$" + price])
-                                    
-                                }
-                            }
-                            
-                        }
-                    }
-                    
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                } catch {
-                    print("Error with JSON: \(error)")
-                }
-                
-            }
-        }
-        
-        task.resume()
-    }
-    
-    func equipmentListings() {
-            let requestURL: NSURL = NSURL(string: "http://cgi.soic.indiana.edu/~team12/api/equipmentListings.php")!
-            let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
-            let session = URLSession.shared
-            let task = session.dataTask(with: urlRequest as URLRequest) {
-                (data, response, error) -> Void in
-                
-                let httpResponse = response as! HTTPURLResponse
-                let statusCode = httpResponse.statusCode
-                
-                if (statusCode == 200) {
-                    
-                    do {
-                        
-                        let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
-                        
-                        if let listings = json["listing"] as? [[String: AnyObject]] {
-                            
-                            for listing in listings {
-                                
-                                if let title = listing["item"] as? String {
-                                    
-                                    if let price = listing["price"] as? String {
-                                        
-                                        self.EquipmentData.append([title, "$" + price])
-                                        
-                                    }
-                                }
-                                
-                            }
-                        }
-                        
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
-                    } catch {
-                        print("Error with JSON: \(error)")
-                    }
-                    
-                }
-            }
-            
-            task.resume()
-        }
+//    func rentListings() {
+//        let requestURL: NSURL = NSURL(string: "http://cgi.soic.indiana.edu/~team12/api/rentalListings.php")!
+//        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
+//        let session = URLSession.shared
+//        let task = session.dataTask(with: urlRequest as URLRequest) {
+//            (data, response, error) -> Void in
+//            
+//            let httpResponse = response as! HTTPURLResponse
+//            let statusCode = httpResponse.statusCode
+//            
+//            if (statusCode == 200) {
+//                
+//                do {
+//                    
+//                    let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
+//                    
+//                    if let listings = json["listing"] as? [[String: AnyObject]] {
+//                        
+//                        for listing in listings {
+//                            
+//                            if let title = listing["item"] as? String {
+//                                
+//                                if let price = listing["price"] as? String {
+//                                    
+//                                    self.RentalData.append([title, "$" + price])
+//                                    
+//                                }
+//                            }
+//                            
+//                        }
+//                    }
+//                    
+//                    DispatchQueue.main.async {
+//                        self.tableView.reloadData()
+//                    }
+//                } catch {
+//                    print("Error with JSON: \(error)")
+//                }
+//                
+//            }
+//        }
+//        
+//        task.resume()
+//    }
+//
+//    func equipmentListings() {
+//            let requestURL: NSURL = NSURL(string: "http://cgi.soic.indiana.edu/~team12/api/equipmentListings.php")!
+//            let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
+//            let session = URLSession.shared
+//            let task = session.dataTask(with: urlRequest as URLRequest) {
+//                (data, response, error) -> Void in
+//                
+//                let httpResponse = response as! HTTPURLResponse
+//                let statusCode = httpResponse.statusCode
+//                
+//                if (statusCode == 200) {
+//                    
+//                    do {
+//                        
+//                        let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
+//                        
+//                        if let listings = json["listing"] as? [[String: AnyObject]] {
+//                            
+//                            for listing in listings {
+//                                
+//                                if let title = listing["item"] as? String {
+//                                    
+//                                    if let price = listing["price"] as? String {
+//                                        
+//                                        self.EquipmentData.append([title, "$" + price])
+//                                        
+//                                    }
+//                                }
+//                                
+//                            }
+//                        }
+//                        
+//                        DispatchQueue.main.async {
+//                            self.tableView.reloadData()
+//                        }
+//                    } catch {
+//                        print("Error with JSON: \(error)")
+//                    }
+//                    
+//                }
+//            }
+//            
+//            task.resume()
+//        }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let buy = tableView.dequeueReusableCell(withIdentifier: "buy", for: indexPath) as! CellData
-        let rent = tableView.dequeueReusableCell(withIdentifier: "rent", for: indexPath) as! CellData
-        let equipment = tableView.dequeueReusableCell(withIdentifier: "equipment", for: indexPath) as! CellData
+        let buy = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CellData
+//        let rent = tableView.dequeueReusableCell(withIdentifier: "celll", for: indexPath) as! CellData
+//        let equipment = tableView.dequeueReusableCell(withIdentifier: "equipmentListing", for: indexPath) as! CellData
         
         buy.contentView.backgroundColor = UIColor.clear
-        rent.contentView.backgroundColor = UIColor.clear
-        equipment.contentView.backgroundColor = UIColor.clear
+//        rent.contentView.backgroundColor = UIColor.clear
+//        equipment.contentView.backgroundColor = UIColor.clear
         
         let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 85))
         
@@ -203,21 +202,21 @@ class ListingViewController: UIViewController, UITableViewDataSource, UITableVie
         
         buy.contentView.addSubview(whiteRoundedView)
         buy.contentView.sendSubview(toBack: whiteRoundedView)
-        rent.contentView.addSubview(whiteRoundedView)
-        rent.contentView.sendSubview(toBack: whiteRoundedView)
-        equipment.contentView.addSubview(whiteRoundedView)
-        equipment.contentView.sendSubview(toBack: whiteRoundedView)
+//        rent.contentView.addSubview(whiteRoundedView)
+//        rent.contentView.sendSubview(toBack: whiteRoundedView)
+//        equipment.contentView.addSubview(whiteRoundedView)
+//        equipment.contentView.sendSubview(toBack: whiteRoundedView)
         
         buy.listingTitle.text = BuyData[indexPath.row][0]
         buy.listingPrice.text = BuyData[indexPath.row][1]
-        rent.listingTitle.text = RentalData[indexPath.row][0]
-        rent.listingPrice.text = RentalData[indexPath.row][1]
-        equipment.listingTitle.text = EquipmentData[indexPath.row][0]
-        equipment.listingPrice.text = EquipmentData[indexPath.row][1]
+//        rent.listingTitle.text = RentalData[indexPath.row][0]
+//        rent.listingPrice.text = RentalData[indexPath.row][1]
+//        equipment.listingTitle.text = EquipmentData[indexPath.row][0]
+//        equipment.listingPrice.text = EquipmentData[indexPath.row][1]
         
         return buy
-        return rent
-        return equipment
+//        return rent
+//        return equipment
     }
     
     func dismissKeyboard() {
