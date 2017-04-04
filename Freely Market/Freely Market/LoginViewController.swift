@@ -18,7 +18,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
         // Do any additional setup after loading the view.
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RegisterViewController.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
         
         view.addGestureRecognizer(tap)
         
@@ -62,8 +62,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.present(alertController, animated: true, completion:nil)
             
         } else {
-         
-            //self.performSegue(withIdentifier: "loginSuccess", sender: self)
             
             // database login here
             let myURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/login.php")

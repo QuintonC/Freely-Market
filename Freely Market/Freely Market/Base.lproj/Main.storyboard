@@ -301,7 +301,6 @@
                                 </state>
                                 <connections>
                                     <action selector="loginTapped:" destination="cP5-Bk-4dx" eventType="touchUpInside" id="wGg-bg-uaK"/>
-                                    <segue destination="Jic-mq-bA6" kind="presentation" identifier="registerRedirect" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="sbk-0s-6BX"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tCA-2N-jdj">
@@ -375,6 +374,7 @@
                         <outlet property="password" destination="mo7-r2-nwh" id="l3A-3y-OqF"/>
                         <outlet property="username" destination="tCA-2N-jdj" id="Bfj-cO-d8u"/>
                         <segue destination="rMq-Xu-Nkz" kind="presentation" identifier="loginSuccess" id="JpP-wA-QQM"/>
+                        <segue destination="Jic-mq-bA6" kind="show" identifier="registerRedirect" id="ITL-Pq-XeZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bil-NS-LfA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1004,7 +1004,7 @@ Password must contain at least one letter, at least one number, and be at least 
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVW-mJ-NQU">
-                                                    <rect key="frame" x="150" y="31" width="217" height="21"/>
+                                                    <rect key="frame" x="150" y="31" width="42" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -1136,8 +1136,8 @@ Password must contain at least one letter, at least one number, and be at least 
         <image name="summer-ray-of-sunshine-bikes-bicycles" width="3000" height="2000"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aCG-b2-n3e"/>
-        <segue reference="sbk-0s-6BX"/>
         <segue reference="kmY-bg-8m4"/>
+        <segue reference="aCG-b2-n3e"/>
+        <segue reference="ITL-Pq-XeZ"/>
     </inferredMetricsTieBreakers>
 </document>
