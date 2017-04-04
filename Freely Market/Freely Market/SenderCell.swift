@@ -1,19 +1,19 @@
 //
-//  SenderMessageCell.swift
+//  SenderCell.swift
 //  Freely Market
 //
-//  Created by Austin Mitts on 3/31/17.
+//  Created by Austin Mitts on 4/3/17.
 //  Copyright © 2017 Freely Creative. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class SenderMessageCell: UITableViewCell {
+class SenderCell: UITableViewCell {
     
     
-    @IBOutlet var lblMessage: UILabel!
-    
+    @IBOutlet var sMessage: UILabel!
+    @IBOutlet var lblSender: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

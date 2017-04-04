@@ -14,6 +14,8 @@ import WebKit
 class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
+    @IBOutlet var menuButton: UIBarButtonItem!
+    
     //@IBOutlet weak var tableView: UITableView!
 
     @IBOutlet var tableView: UITableView!
@@ -27,13 +29,27 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if self.revealViewController() != nil {
+            menuButton.target = self.revealViewController()
+            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
         
         tableView.dataSource = self
         tableView.delegate = self
         
         
         // Do any additional setup after loading the view, typically from a nib.
-        //get()
+        //getContacts()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getContacts()
+    }
+    
+    func getContacts() {
         names = []
         var myContacts:[String] = []
         let myURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/getContacts.php")
@@ -68,6 +84,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     //myContacts.append(contact)
                     myContacts.append(contact)
                     self.names.append(contact)
+                    print(contact)
                     
                 }
                 //reload tableView
@@ -82,12 +99,14 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         task.resume()
     }
 
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
     
     
     
@@ -118,10 +137,12 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //Create instance of ConversationViewController
-        let destinationVC = segue.destination as! ConversationViewController
-        //Give ConversationViewController's variable contact a value
-        destinationVC.contact = sender as! String
+        if segue.identifier == "showConversation" {
+            //Create instance of ConversationViewController
+            let destinationVC = segue.destination as! ConversationViewController
+            //Give ConversationViewController's variable contact a value
+            destinationVC.contact = sender as! String
+        }
     }
     
     

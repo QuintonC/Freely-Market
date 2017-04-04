@@ -10,99 +10,43 @@ import Foundation
 import UIKit
 import WebKit
 
+var CONTACT = String()
 
-class ConversationViewController: UITableViewController, UITextFieldDelegate {
+class ConversationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
-    
-    
-    @IBOutlet var txtFldMessage: UITextField!
-    @IBOutlet var conversationTableView: UITableView!
-    
     
     var contact = String()
     var conversation: [[String]] = []
     
+    @IBOutlet var messageTextField: UITextField!
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet var scrollView1: UIScrollView!
+    @IBOutlet var scrollView2: UIScrollView!
+    
+//    var conversation = [["s","Hey"],["r","Hello"],["s","Whats up"],["r","oh not much you?"],["s","Nothing really, just thinking about going to the movies tonight"],["r","That sounds like fun"],["s","Yeah, youre welcom to join if you want to"],["r","I might take you up on that offer"],["s","coolio, just let me know"],["s","Hey"],["r","Hello"],["s","Whats up"],["r","oh not much you?"],["s","Nothing really, just thinking about going to the movies tonight"],["r","That sounds like fun"],["s","Yeah, youre welcom to join if you want to"],["r","I might take you up on that offer"],["s","coolio, just let me know"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.title = contact
+        CONTACT = contact
         
-        tableView.estimatedRowHeight = 75
-        tableView.rowHeight = UITableViewAutomaticDimension
-        
-        tableView.tableFooterView = UIView()
         
         //get conversation from database
+        getMessages()
         
-        conversation = []
-        let myURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/getConversation.php")
-        var request = URLRequest(url:myURL!)
-        request.httpMethod = "POST"
-        
-//        let postString = "user1=\(USER)&user2=\(contact)"
-        let postString = "user1=\("amitts")&user2=\("test1")"
-        
-        request.httpBody = postString.data(using: String.Encoding.utf8)
-        
-        let task = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
-            if error != nil {
-                print("ERROR")
-            }
-            
-            do {
-                //converting response to NSDictionary
-                var messageJSON: NSArray
-                messageJSON = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! NSArray
-                
-                //getting the JSON array messages from the response
-                let messages: NSArray = messageJSON[0] as! NSArray
-                
-                //looping through all the json objects in the array contacts
-                for i in 0 ..< messages.count{
-                    
-                    //getting the data at each index
-                    let message = messages[i] as! NSArray
-                    
-                    let messageSender:String = message[0] as! String
-                    
-                    
-                    //getting the data at each index
-                    let messageText:String = message[1] as! String
-                    
-                    
-                    print(messageText)
-                    print(messageSender)
-                    //conversation.append(message + "\n")
-                    self.conversation.append([messageSender, messageText])
-                    
-                    
-                }
-                //self.txtDisplay.text = conversation
-                //reload tableView
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-                
-            } catch {
-                print(error)
-            }
-        }
-        task.resume()
-        
-        
+
 //        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ConversationViewController.dismissKeyboard))
 //        
 //        if isEditing {
 //            view.addGestureRecognizer(tap)
-//        }
-        
+//        }        
     }
     
     
-//    func dismissKeyboard() {
-//        view.endEditing(true)
-//    }
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -114,106 +58,162 @@ class ConversationViewController: UITableViewController, UITextFieldDelegate {
         
     }
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
-    override func tableView(_ conversationTableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var status = String()
-        var message = String()
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        scrollView1.setContentOffset(CGPoint(x: 0, y: 255), animated: true)
+        scrollView2.setContentOffset(CGPoint(x: 0, y: 255), animated: true)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        scrollView1.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        scrollView2.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let status = conversation[indexPath.row][0]
+        let message = conversation[indexPath.row][1]
 
-        if indexPath.row < conversation.count {
-            status = conversation[indexPath.row][0]
-            message = conversation[indexPath.row][1]
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "newMessage")
-            cell?.contentView.isUserInteractionEnabled = false
-            return cell!
-        }
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SenderCell", for: indexPath) as! SenderCell
         
-        if status == USER {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SenderMessageCell", for: indexPath) as! SenderMessageCell
-            cell.lblMessage.text = message
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageCell
-            cell.lblMessage.text = message
-            return cell
-        }
+//        cell.lblMessage.text = message
+//        cell.lblName.text = status
+        cell.sMessage.text = message
+        cell.lblSender.text = status
+        
+        return cell
     }
     
     
-    override func tableView(_ conversationTableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return conversation.count + 1
+    func tableView(_ conversationTableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return conversation.count
     }
     
-    
-    @IBAction func send(_ sender: Any) {
-        let message:String = txtFldMessage.text!
-        
-        let myURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/createMessage.php")
+    func getMessages() {
+        conversation = []
+        let myURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/getConversation.php")
         var request = URLRequest(url:myURL!)
         request.httpMethod = "POST"
         
-        let postString = "sender=\(USER)&reciever=\(contact)&message=\(message)"
+        let postString = "user1=\(USER)&user2=\(contact)"
+        
         
         request.httpBody = postString.data(using: String.Encoding.utf8)
         
-        let task = URLSession.shared.dataTask(with: request as URLRequest) {
-            (data, response, error) in
-            
+        let task = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
             if error != nil {
-                print("error is \(error)")
-                return
+                print("ERROR")
             }
             
-            var err: NSError?
-            
             do {
-                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                //converting response to NSDictionary
+                var messageJSON: NSDictionary
+                messageJSON = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! NSDictionary
                 
-                
-                if let parseJSON = json {
+                if let messages = messageJSON["messages"] as? [[String: AnyObject]] {
                     
-                    let messageToDisplay:String = parseJSON["message"] as! String
-                    let myAlert = UIAlertController(title: "Alert", message:messageToDisplay, preferredStyle: .alert)
-                    
-                    if messageToDisplay == "Could not send message" {
-                        DispatchQueue.main.async {
-                            let OKAction = UIAlertAction(title: "OK", style: .default) {
-                                (action:UIAlertAction) in
+                    for message in messages {
+                        
+                        if let name = message["sender"] as? String {
+                            
+                            if let messageText = message["message"] as? String {
+                                print(name,messageText)
+                                self.conversation.append([name, messageText])
                             }
-                            myAlert.addAction(OKAction)
-                            self.present(myAlert, animated: true, completion: nil)
-                        }
-                    } else if messageToDisplay == "Message successfully sent" {
-                        DispatchQueue.main.async {
-                            let OKAction = UIAlertAction(title: "OK", style: .default) {
-                                (action:UIAlertAction) in
-                                self.performSegue(withIdentifier: "registerSuccess", sender: self)
-                            }
-                            myAlert.addAction(OKAction)
-                            self.present(myAlert, animated: true, completion: nil)
-                        }
-                    } else { //User has successfully registered
-                        DispatchQueue.main.async {
-                            let OKAction = UIAlertAction(title: "OK", style: .default) {
-                                (action:UIAlertAction) in
-                            }
-                            myAlert.addAction(OKAction)
-                            self.present(myAlert, animated: true, completion: nil)
                         }
                     }
                 }
-            } catch let error as NSError {
-                print(err = error)
+                //reload tableView
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            } catch {
+                print(error)
             }
         }
         task.resume()
     }
+    
+    
+    
+    @IBAction func send(_ sender: Any) {
+        let message:String = messageTextField.text!
+        
+        if message.characters.count > 64 {
+            let myAlert = UIAlertController(title: "Alert", message:"Message cannot be longer than 64 characters", preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "OK", style: .default) {
+                (action:UIAlertAction) in
+            }
+            myAlert.addAction(OKAction)
+            self.present(myAlert, animated: true, completion: nil)
+        } else {
+            let myURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/createMessage.php")
+            var request = URLRequest(url:myURL!)
+            request.httpMethod = "POST"
+
+            let postString = "sender=\(USER)&reciever=\(contact)&message=\(message)"
+
+            request.httpBody = postString.data(using: String.Encoding.utf8)
+
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {
+                (data, response, error) in
+
+                if error != nil {
+                    print("error is \(error)")
+                    return
+                }
+
+                var err: NSError?
+
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
 
 
+                    if let parseJSON = json {
+
+                        let messageToDisplay:String = parseJSON["message"] as! String
+                        let myAlert = UIAlertController(title: "Alert", message:messageToDisplay, preferredStyle: .alert)
+
+                        if messageToDisplay == "Could not send message" {
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                        } else if messageToDisplay == "Message successfully sent" {
+                            DispatchQueue.main.async {
+                                self.getMessages()
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                        }
+                    }
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                } catch let error as NSError {
+                    print(err = error)
+                }
+            }
+            task.resume()
+            messageTextField.text = ""
+            
+            dismissKeyboard()
+        }
+    }
 }
 
 
