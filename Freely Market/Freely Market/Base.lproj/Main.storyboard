@@ -981,30 +981,31 @@ Password must contain at least one letter, at least one number, and be at least 
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pexels-photo-59904" translatesAutoresizingMaskIntoConstraints="NO" id="qRo-nz-iiK">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x56-a0-mtk">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QPa-ph-zAf">
+                                <rect key="frame" x="0.0" y="273" width="375" height="120"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="100" id="xsy-LW-hIv" customClass="CellData" customModule="Freely_Market" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="buy" rowHeight="100" id="js6-Ej-FMd" customClass="CellData" customModule="Freely_Market" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xsy-LW-hIv" id="axG-p5-Ewr" customClass="CellData" customModule="Freely_Market" customModuleProvider="target">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="js6-Ej-FMd" id="brq-ci-prv" customClass="CellData" customModule="Freely_Market" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jis-FX-zbv">
-                                                    <rect key="frame" x="150" y="2" width="217" height="21"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m6I-o9-zmx">
+                                                    <rect key="frame" x="8" y="7" width="130" height="86"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MS6-Il-7YL">
+                                                    <rect key="frame" x="150" y="25" width="217" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ekC-7s-vvI">
-                                                    <rect key="frame" x="4" y="2" width="130" height="95"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVW-mJ-NQU">
-                                                    <rect key="frame" x="150" y="31" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avG-ce-zsW">
+                                                    <rect key="frame" x="150" y="54" width="217" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -1012,7 +1013,51 @@ Password must contain at least one letter, at least one number, and be at least 
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="listingImage" destination="m6I-o9-zmx" id="X6K-ix-fnz"/>
+                                            <outlet property="listingPrice" destination="avG-ce-zsW" id="87b-uu-ftJ"/>
+                                            <outlet property="listingTitle" destination="MS6-Il-7YL" id="9Il-op-nVH"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Mc9-IO-7Jl" id="j3x-Ti-ZQ3"/>
+                                    <outlet property="delegate" destination="Mc9-IO-7Jl" id="d1L-sg-jc0"/>
+                                </connections>
+                            </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x56-a0-mtk">
+                                <rect key="frame" x="0.0" y="122" width="375" height="120"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="rent" rowHeight="100" id="xsy-LW-hIv" customClass="CellData" customModule="Freely_Market" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xsy-LW-hIv" id="axG-p5-Ewr" customClass="CellData" customModule="Freely_Market" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ekC-7s-vvI">
+                                                    <rect key="frame" x="8" y="7" width="130" height="86"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jis-FX-zbv">
+                                                    <rect key="frame" x="150" y="25" width="217" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVW-mJ-NQU">
+                                                    <rect key="frame" x="150" y="54" width="217" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="listingImage" destination="ekC-7s-vvI" id="3Zd-Wh-w4T"/>
                                             <outlet property="listingPrice" destination="eVW-mJ-NQU" id="WaM-ge-X8a"/>
@@ -1025,15 +1070,69 @@ Password must contain at least one letter, at least one number, and be at least 
                                     <outlet property="delegate" destination="Mc9-IO-7Jl" id="KZp-HB-ccc"/>
                                 </connections>
                             </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="buyListings" translatesAutoresizingMaskIntoConstraints="NO" id="9J6-FO-nTJ">
+                                <rect key="frame" x="67" y="64" width="240" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="M7w-uj-lBp"/>
+                                    <constraint firstAttribute="height" constant="60" id="p3w-co-2gb"/>
+                                </constraints>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="83H-m9-4ep">
+                                <rect key="frame" x="0.0" y="431" width="375" height="120"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="equipment" rowHeight="100" id="MtV-MO-hud" customClass="CellData" customModule="Freely_Market" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MtV-MO-hud" id="ulS-Wg-y6w" customClass="CellData" customModule="Freely_Market" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="026-XV-7Mk">
+                                                    <rect key="frame" x="8" y="7" width="130" height="86"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bS1-vv-SqP">
+                                                    <rect key="frame" x="150" y="25" width="217" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Upx-sL-yr4">
+                                                    <rect key="frame" x="150" y="54" width="217" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="listingImage" destination="026-XV-7Mk" id="8bn-St-Cbe"/>
+                                            <outlet property="listingPrice" destination="Upx-sL-yr4" id="B8X-P0-hEY"/>
+                                            <outlet property="listingTitle" destination="bS1-vv-SqP" id="rCh-6f-vV9"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Mc9-IO-7Jl" id="v3K-3U-TEV"/>
+                                    <outlet property="delegate" destination="Mc9-IO-7Jl" id="Yf4-WI-6RL"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="9J6-FO-nTJ" firstAttribute="centerX" secondItem="YVG-en-Cf0" secondAttribute="centerX" id="2fM-S9-jb3"/>
                             <constraint firstAttribute="trailing" secondItem="x56-a0-mtk" secondAttribute="trailing" id="AaV-fp-CFf"/>
-                            <constraint firstItem="x56-a0-mtk" firstAttribute="top" secondItem="ami-zn-Oke" secondAttribute="bottom" id="RLw-oc-5Q3"/>
+                            <constraint firstItem="x56-a0-mtk" firstAttribute="top" secondItem="ami-zn-Oke" secondAttribute="bottom" constant="58" id="RLw-oc-5Q3"/>
                             <constraint firstItem="x56-a0-mtk" firstAttribute="leading" secondItem="YVG-en-Cf0" secondAttribute="leading" id="aPs-yt-ehw"/>
                             <constraint firstAttribute="trailing" secondItem="qRo-nz-iiK" secondAttribute="trailing" id="frb-I6-Gjw"/>
                             <constraint firstItem="qRo-nz-iiK" firstAttribute="leading" secondItem="YVG-en-Cf0" secondAttribute="leading" id="joV-1F-CRk"/>
-                            <constraint firstItem="0De-ey-bVa" firstAttribute="top" secondItem="x56-a0-mtk" secondAttribute="bottom" id="ok3-hW-Pcj"/>
+                            <constraint firstItem="0De-ey-bVa" firstAttribute="top" secondItem="x56-a0-mtk" secondAttribute="bottom" constant="425" id="ok3-hW-Pcj"/>
+                            <constraint firstItem="9J6-FO-nTJ" firstAttribute="top" secondItem="ami-zn-Oke" secondAttribute="bottom" id="pRD-Lg-sop"/>
                             <constraint firstItem="0De-ey-bVa" firstAttribute="top" secondItem="qRo-nz-iiK" secondAttribute="bottom" id="pyG-IH-O3n"/>
                             <constraint firstItem="qRo-nz-iiK" firstAttribute="top" secondItem="YVG-en-Cf0" secondAttribute="top" id="qx7-1Q-fnc"/>
                         </constraints>
@@ -1129,6 +1228,7 @@ Password must contain at least one letter, at least one number, and be at least 
         </scene>
     </scenes>
     <resources>
+        <image name="buyListings" width="1200" height="300"/>
         <image name="freelyMarketLogo" width="1200" height="300"/>
         <image name="menu" width="22" height="22"/>
         <image name="pexels-photo-59904" width="5335" height="3004"/>
@@ -1136,8 +1236,8 @@ Password must contain at least one letter, at least one number, and be at least 
         <image name="summer-ray-of-sunshine-bikes-bicycles" width="3000" height="2000"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kmY-bg-8m4"/>
-        <segue reference="aCG-b2-n3e"/>
+        <segue reference="E9Y-g8-bxw"/>
+        <segue reference="cKi-KO-eLK"/>
         <segue reference="ITL-Pq-XeZ"/>
     </inferredMetricsTieBreakers>
 </document>

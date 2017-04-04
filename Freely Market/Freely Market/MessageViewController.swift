@@ -20,7 +20,7 @@ class MessageViewController: UIViewController, UITextViewDelegate, MFMailCompose
         
         messageBody.delegate = self
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RegisterViewController.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MessageViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
         if self.revealViewController() != nil {
