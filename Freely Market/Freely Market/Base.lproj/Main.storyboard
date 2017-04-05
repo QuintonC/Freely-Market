@@ -979,7 +979,7 @@ Password must contain at least one letter, at least one number, and be at least 
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="summer-ray-of-sunshine-bikes-bicycles" translatesAutoresizingMaskIntoConstraints="NO" id="qRo-nz-iiK">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x56-a0-mtk">
                                 <rect key="frame" x="0.0" y="122" width="375" height="496"/>
@@ -1032,36 +1032,22 @@ Password must contain at least one letter, at least one number, and be at least 
                                     <constraint firstAttribute="height" constant="60" id="p3w-co-2gb"/>
                                 </constraints>
                             </imageView>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GA8-6u-hhT">
-                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="49" id="ZyD-HC-YGi"/>
-                                </constraints>
-                                <items>
-                                    <tabBarItem title="Rentals" id="lN9-1L-wkh"/>
-                                    <tabBarItem title="Sales" id="Klk-GH-rND"/>
-                                    <tabBarItem title="Equipment" id="NW4-Qw-WlI"/>
-                                </items>
-                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="9J6-FO-nTJ" firstAttribute="centerX" secondItem="YVG-en-Cf0" secondAttribute="centerX" id="2fM-S9-jb3"/>
                             <constraint firstAttribute="trailing" secondItem="x56-a0-mtk" secondAttribute="trailing" id="AaV-fp-CFf"/>
                             <constraint firstItem="x56-a0-mtk" firstAttribute="top" secondItem="ami-zn-Oke" secondAttribute="bottom" constant="58" id="RLw-oc-5Q3"/>
-                            <constraint firstItem="GA8-6u-hhT" firstAttribute="leading" secondItem="YVG-en-Cf0" secondAttribute="leading" id="RyM-aR-haq"/>
                             <constraint firstItem="x56-a0-mtk" firstAttribute="leading" secondItem="YVG-en-Cf0" secondAttribute="leading" id="aPs-yt-ehw"/>
-                            <constraint firstItem="0De-ey-bVa" firstAttribute="top" secondItem="GA8-6u-hhT" secondAttribute="bottom" id="cw4-eM-QVX"/>
                             <constraint firstAttribute="trailing" secondItem="qRo-nz-iiK" secondAttribute="trailing" id="frb-I6-Gjw"/>
                             <constraint firstItem="qRo-nz-iiK" firstAttribute="leading" secondItem="YVG-en-Cf0" secondAttribute="leading" id="joV-1F-CRk"/>
-                            <constraint firstItem="0De-ey-bVa" firstAttribute="top" secondItem="x56-a0-mtk" secondAttribute="bottom" constant="49" id="ok3-hW-Pcj"/>
+                            <constraint firstItem="0De-ey-bVa" firstAttribute="top" secondItem="x56-a0-mtk" secondAttribute="bottom" id="ok3-hW-Pcj"/>
                             <constraint firstItem="9J6-FO-nTJ" firstAttribute="top" secondItem="ami-zn-Oke" secondAttribute="bottom" id="pRD-Lg-sop"/>
                             <constraint firstItem="0De-ey-bVa" firstAttribute="top" secondItem="qRo-nz-iiK" secondAttribute="bottom" id="pyG-IH-O3n"/>
                             <constraint firstItem="qRo-nz-iiK" firstAttribute="top" secondItem="YVG-en-Cf0" secondAttribute="top" id="qx7-1Q-fnc"/>
-                            <constraint firstAttribute="trailing" secondItem="GA8-6u-hhT" secondAttribute="trailing" id="wPI-b2-Ilc"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Rentals" id="HHT-rZ-8lQ"/>
                     <navigationItem key="navigationItem" title="Rental Listings" id="a7e-T2-CH3">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="zef-pl-5Ch"/>
                     </navigationItem>
@@ -1073,7 +1059,7 @@ Password must contain at least one letter, at least one number, and be at least 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zM8-yE-kWf" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-338.39999999999998" y="3256.8215892053977"/>
+            <point key="canvasLocation" x="-1223.2" y="4036.7316341829087"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="HtY-io-xNO">
@@ -1108,7 +1094,7 @@ Password must contain at least one letter, at least one number, and be at least 
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Mc9-IO-7Jl" kind="relationship" relationship="rootViewController" id="ZD5-tJ-GS4"/>
+                        <segue destination="cPy-Jc-yU1" kind="relationship" relationship="rootViewController" id="ZD5-tJ-GS4"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GoK-p5-6Rj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1154,7 +1140,7 @@ Password must contain at least one letter, at least one number, and be at least 
         <!--LoginSuccessful / Sales-->
         <scene sceneID="Hzd-jV-KaH">
             <objects>
-                <viewController title="LoginSuccessful / Sales" id="tR7-LC-pZ9" customClass="RentalListingsViewController" customModule="Freely_Market" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="LoginSuccessful / Sales" id="tR7-LC-pZ9" customClass="SaleListingsViewController" customModule="Freely_Market" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="535-Wq-CD2"/>
                         <viewControllerLayoutGuide type="bottom" id="WxM-Xf-a7i"/>
@@ -1164,7 +1150,7 @@ Password must contain at least one letter, at least one number, and be at least 
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="summer-ray-of-sunshine-bikes-bicycles" translatesAutoresizingMaskIntoConstraints="NO" id="SN7-eW-3rS">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RT3-Lq-lGp">
                                 <rect key="frame" x="0.0" y="122" width="375" height="496"/>
@@ -1217,40 +1203,27 @@ Password must contain at least one letter, at least one number, and be at least 
                                     <constraint firstAttribute="width" constant="240" id="zdT-7o-lRS"/>
                                 </constraints>
                             </imageView>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aLv-CG-YMh">
-                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="49" id="vRp-dw-twx"/>
-                                </constraints>
-                                <items>
-                                    <tabBarItem title="Rentals" id="AOE-Wq-OI4"/>
-                                    <tabBarItem title="Sales" id="sIn-Gj-e5Y"/>
-                                    <tabBarItem title="Equipment" id="wTo-WY-QYq"/>
-                                </items>
-                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="aLv-CG-YMh" firstAttribute="leading" secondItem="1yG-5z-nAA" secondAttribute="leading" id="06o-OW-uZL"/>
                             <constraint firstAttribute="trailing" secondItem="RT3-Lq-lGp" secondAttribute="trailing" id="0kI-in-NJX"/>
                             <constraint firstItem="QwS-sm-Idz" firstAttribute="top" secondItem="535-Wq-CD2" secondAttribute="bottom" id="40p-z4-SAy"/>
                             <constraint firstItem="WxM-Xf-a7i" firstAttribute="top" secondItem="SN7-eW-3rS" secondAttribute="bottom" id="6Vb-S5-vFg"/>
                             <constraint firstItem="RT3-Lq-lGp" firstAttribute="top" secondItem="535-Wq-CD2" secondAttribute="bottom" constant="58" id="7zS-du-qmi"/>
                             <constraint firstAttribute="trailing" secondItem="SN7-eW-3rS" secondAttribute="trailing" id="EUx-Hb-qQE"/>
-                            <constraint firstAttribute="trailing" secondItem="aLv-CG-YMh" secondAttribute="trailing" id="Gzx-ob-QxR"/>
                             <constraint firstItem="QwS-sm-Idz" firstAttribute="centerX" secondItem="1yG-5z-nAA" secondAttribute="centerX" id="Mpu-cM-KmX"/>
-                            <constraint firstItem="WxM-Xf-a7i" firstAttribute="top" secondItem="RT3-Lq-lGp" secondAttribute="bottom" constant="49" id="PcE-3T-zf6"/>
+                            <constraint firstItem="WxM-Xf-a7i" firstAttribute="top" secondItem="RT3-Lq-lGp" secondAttribute="bottom" id="PcE-3T-zf6"/>
                             <constraint firstItem="SN7-eW-3rS" firstAttribute="leading" secondItem="1yG-5z-nAA" secondAttribute="leading" id="XK6-Nr-BDi"/>
                             <constraint firstItem="SN7-eW-3rS" firstAttribute="top" secondItem="1yG-5z-nAA" secondAttribute="top" id="kBi-RU-rYA"/>
                             <constraint firstItem="RT3-Lq-lGp" firstAttribute="leading" secondItem="1yG-5z-nAA" secondAttribute="leading" id="noY-GF-sba"/>
-                            <constraint firstItem="WxM-Xf-a7i" firstAttribute="top" secondItem="aLv-CG-YMh" secondAttribute="bottom" id="quh-8K-38q"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Sales" id="qg5-23-qEd"/>
                     <navigationItem key="navigationItem" title="Sale Listings" id="TsO-zl-Z9R">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="a0K-df-5qg"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="menuButton" destination="a0K-df-5qg" id="wRO-yc-Uow"/>
                         <outlet property="tableView" destination="RT3-Lq-lGp" id="kJ1-Wu-x4s"/>
@@ -1258,7 +1231,7 @@ Password must contain at least one letter, at least one number, and be at least 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ulO-1G-lIK" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="404" y="3257"/>
+            <point key="canvasLocation" x="-338.39999999999998" y="4036.7316341829087"/>
         </scene>
         <!--LoginSuccessful / Equipment-->
         <scene sceneID="HWk-ab-iTF">
@@ -1273,7 +1246,7 @@ Password must contain at least one letter, at least one number, and be at least 
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="summer-ray-of-sunshine-bikes-bicycles" translatesAutoresizingMaskIntoConstraints="NO" id="akt-ZY-g6r">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="THw-z8-de7">
                                 <rect key="frame" x="0.0" y="122" width="375" height="496"/>
@@ -1326,40 +1299,27 @@ Password must contain at least one letter, at least one number, and be at least 
                                     <constraint firstAttribute="width" constant="240" id="uCN-dr-Md6"/>
                                 </constraints>
                             </imageView>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yTx-CJ-Fln">
-                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="49" id="qVW-Hz-K11"/>
-                                </constraints>
-                                <items>
-                                    <tabBarItem title="Rentals" id="uEu-4j-mMo"/>
-                                    <tabBarItem title="Sales" id="opk-zg-g8r"/>
-                                    <tabBarItem title="Equipment" id="W4B-Ex-YZ3"/>
-                                </items>
-                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="y3I-Ly-VTb" firstAttribute="top" secondItem="THw-z8-de7" secondAttribute="bottom" constant="49" id="0tt-pd-pCo"/>
+                            <constraint firstItem="y3I-Ly-VTb" firstAttribute="top" secondItem="THw-z8-de7" secondAttribute="bottom" id="0tt-pd-pCo"/>
                             <constraint firstItem="THw-z8-de7" firstAttribute="leading" secondItem="dMd-3A-FFA" secondAttribute="leading" id="86Z-uJ-Bj6"/>
-                            <constraint firstAttribute="trailing" secondItem="yTx-CJ-Fln" secondAttribute="trailing" id="AZL-Vt-3hf"/>
                             <constraint firstItem="akt-ZY-g6r" firstAttribute="top" secondItem="dMd-3A-FFA" secondAttribute="top" id="KYE-0Q-S1l"/>
                             <constraint firstItem="Pra-MC-Dfq" firstAttribute="centerX" secondItem="dMd-3A-FFA" secondAttribute="centerX" id="LAr-hh-LtS"/>
-                            <constraint firstItem="yTx-CJ-Fln" firstAttribute="leading" secondItem="dMd-3A-FFA" secondAttribute="leading" id="MTl-xv-Rdl"/>
                             <constraint firstAttribute="trailing" secondItem="THw-z8-de7" secondAttribute="trailing" id="NDB-QH-biv"/>
                             <constraint firstAttribute="trailing" secondItem="akt-ZY-g6r" secondAttribute="trailing" id="Ouc-80-Mvc"/>
                             <constraint firstItem="Pra-MC-Dfq" firstAttribute="top" secondItem="iQl-Xx-Lxc" secondAttribute="bottom" id="P4g-SU-Teq"/>
                             <constraint firstItem="THw-z8-de7" firstAttribute="top" secondItem="iQl-Xx-Lxc" secondAttribute="bottom" constant="58" id="QGw-mX-7DQ"/>
                             <constraint firstItem="y3I-Ly-VTb" firstAttribute="top" secondItem="akt-ZY-g6r" secondAttribute="bottom" id="ahH-zz-ovx"/>
-                            <constraint firstItem="y3I-Ly-VTb" firstAttribute="top" secondItem="yTx-CJ-Fln" secondAttribute="bottom" id="gdi-AV-0nk"/>
                             <constraint firstItem="akt-ZY-g6r" firstAttribute="leading" secondItem="dMd-3A-FFA" secondAttribute="leading" id="miG-N4-zEL"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Equipment" id="vM7-wB-pED"/>
                     <navigationItem key="navigationItem" title="Equipment Listings" id="eyv-Bn-ch8">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="5Kt-qr-YbY"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="menuButton" destination="5Kt-qr-YbY" id="zgP-gO-ulf"/>
                         <outlet property="tableView" destination="THw-z8-de7" id="l48-Sq-Y5B"/>
@@ -1367,7 +1327,30 @@ Password must contain at least one letter, at least one number, and be at least 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BGR-1j-Kj1" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1151" y="3257"/>
+            <point key="canvasLocation" x="544.79999999999995" y="4036.7316341829087"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="eK2-Ny-h7F">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="cPy-Jc-yU1" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="TSH-1L-NyD"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="81u-GI-TM7">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Mc9-IO-7Jl" kind="relationship" relationship="viewControllers" id="MEn-qZ-zpJ"/>
+                        <segue destination="tR7-LC-pZ9" kind="relationship" relationship="viewControllers" id="5Z5-Xj-F2W"/>
+                        <segue destination="eVL-bb-fq5" kind="relationship" relationship="viewControllers" id="fX2-Qb-Bq9"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bou-BI-bHq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-338" y="3276"/>
         </scene>
     </scenes>
     <resources>
@@ -1380,8 +1363,8 @@ Password must contain at least one letter, at least one number, and be at least 
         <image name="summer-ray-of-sunshine-bikes-bicycles" width="3000" height="2000"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="E9Y-g8-bxw"/>
         <segue reference="cKi-KO-eLK"/>
         <segue reference="ITL-Pq-XeZ"/>
+        <segue reference="Ytu-rK-ivD"/>
     </inferredMetricsTieBreakers>
 </document>

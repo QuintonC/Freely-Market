@@ -66,7 +66,7 @@ class EquipmentListingsViewController: UIViewController, UITableViewDataSource, 
         }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let equipment = tableView.dequeueReusableCell(withIdentifier: "equipmentListing", for: indexPath) as! CellData
+        let equipment = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CellData
         equipment.contentView.backgroundColor = UIColor.clear
         let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 85))
         whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.75])
