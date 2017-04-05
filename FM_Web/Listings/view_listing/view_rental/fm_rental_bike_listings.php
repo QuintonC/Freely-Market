@@ -41,6 +41,10 @@ $offset = ($pagenum - 1)  * $limit;
 $mysql = "SELECT r.item, r.price, r.descr, r.duration, r.picture, r.rid FROM Rental_Listing AS r, User_Accounts AS a WHERE a.aid = r.aid AND a.username != '$username' AND status = 'Active' LIMIT $limit OFFSET $offset";
 $result = $conn->query($mysql);
 
+#Select Advertisements
+$sql1 = "select * from Advertisements limit 3";
+$data = $conn->query($sql1);
+
 ?>
 
 <html>
@@ -84,29 +88,6 @@ li a:hover {
     background-color: 	#00008B;
 }
 
-table, th, td {
-	margin-left: auto;
-	margin-right: auto;
-	border-bottom: 1px solid #ddd;
-	padding-top: 15px;
-	padding-bottom: 15px;
-	padding-left: 45px;
-	padding-right: 45px;
-    text-align: left;
-}
-
-th {
-    background-color: 	#00008B;
-    color: white;
-}
-
-tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-
-tr:hover {
-	background-color: #f5f5f5;
-}
 
 .title {
 margin: auto;
@@ -142,44 +123,48 @@ font-family: Arial, Helvetica, sans-serif;
 position: absolute;
 height: 1100px;
 left: 0%;
-width: 15%;
 background-color: #808080;
 }
 
-.leftsidebar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 200px;
-    background-color: #f1f1f1;
-}
-
-
-.leftsidebar li a {
-   display: block;
-    color: #000;
-    padding: 8px 16px;
-    text-decoration: none;
-	width: 200px;
-    text-align: left;
-}
-
-.leftsidebar li a:hover {
-    background-color: #555;
-    color: white;
-}
-
-.leftsidebar .active {
-    background-color: #4CAF50;
-    color: white;
-}
 
 .center {
 position: absolute;
 height: 1100px;
-left: 15%;
-width: 70%;
+left: 0%;
+width: 66%;
 text-align: center;
+}
+
+.center table, th, td {
+	margin-left: auto;
+	margin-right: auto;
+	border-bottom: 1px solid #ddd;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 50px;
+	padding-right: 50px;
+    text-align: left;
+}
+
+.center th {
+    background-color: 	#00008B;
+    color: white;
+}
+
+.center tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+.center tr:hover {
+	background-color: #f5f5f5;
+}
+
+.rightsidebar {
+position: absolute;
+height: 1100px;
+left: 75%;
+width: 25%;
+background-color: #808080;
 }
 
 
@@ -286,7 +271,7 @@ top: 1250px;
 		<td><?php echo $row['duration']; ?></td>
 		<td><?php echo $row['descr']; ?></td> 
 		<td><img src ="../../../images/<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></td>
-		<td><a href = "fm_viewrental.php?id=<?php echo $row['rid'];?>"><?php echo $row['rid'];?></a></td>
+		<td><a href = "fm_viewrental.php?id=<?php echo $row['rid'];?>">View</a></td>
 	</tr>
 	<?php } ?>
 </table>
@@ -294,8 +279,21 @@ top: 1250px;
 
 </div>
 
-
 <!-- Block 4 -->
+<div class = "rightsidebar">
+
+<table>
+<?php while ($ad = mysqli_fetch_array($data)) { ?>
+	<tr>
+		<td><img src = "../../../images/<?php echo $ad['file']; ?>" height = '250x' width = '230px' /></td>
+	</tr>
+	<?php } ?>
+</table>
+
+</div>
+
+
+<!-- Block 5 -->
 <div class = "footer">
 
 <ul>

@@ -9,8 +9,23 @@ if (isset($_SESSION['loggedin']) and $_SESSION['loggedin'] == true) {
     echo "Please log in first to see this page.";
 }
 
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+	# check connection
+	if ($mysqli->connect_errno) {
+		echo "<p>MySQL error no {$mysqli->connect_errno} : {$mysqli->connect_error}</p>";
+		exit();
+	}
+
 ##Gathers Rental_Listing ID from the URL
 $rid = $_GET['id'];
+
+$sql = "select * from Rental_Listing where rid = '$rid' limit 1";
+$result = $conn->query($sql);
+$set = mysqli_fetch_array($result);
+$item = $set['item'];
+$price = $set['price'];
+$duration = $set['duration'];
+$descr = $set['descr']; 
 
 ?>
 
@@ -199,12 +214,12 @@ top: 650px;
 
 <div class = "forms">
 
-<form name = "myForm" action="fm_update_rental.php?id=<?php echo $rid ?>;" method="post" enctype="multipart/form-data" onsubmit = "return blank()">
+<form name = "myForm" action="fm_update_rental.php?id=<?php echo $rid; ?>" method="post" enctype="multipart/form-data" onsubmit = "return blank()">
 	<input type="hidden" value="add" name="choice">
-	<p>Item Name: <input type="text" id = "item" name ="item" maxlength = "15"></p>
-	<p>Price: <input type="text" id = "price" name ="price"></p>
-	<p>Duration: <input type="text" id = "duration" name ="duration"></p>
-	<p>Description: <input type="text" id = "descr" name="descr" maxlength = "30"></p>
+	<p>Item Name: <input type="text" id = "item" name ="item" maxlength = "15" value = "<?php echo $item; ?>"></p>
+	<p>Price: <input type="text" id = "price" name ="price" value = "<?php echo $price; ?>"></p>
+	<p>Duration: <input type="text" id = "duration" name ="duration" value = "<?php echo $duration; ?>"></p>
+	<p>Description: <input type="text" id = "descr" name="descr" maxlength = "30" value = "<?php echo $descr; ?>"></p>
 	<input type="file" id = "picture" name="picture" accept="image/gif, image/jpeg, image/png">
 	<br />
 	<br />

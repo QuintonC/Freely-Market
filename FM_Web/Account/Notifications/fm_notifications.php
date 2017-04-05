@@ -160,6 +160,7 @@ position: absolute;
 height: 450px;
 left: 15%;
 width: 85%;
+overflow: scroll;
 }
 
 

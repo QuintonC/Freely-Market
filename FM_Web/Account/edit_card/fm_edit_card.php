@@ -20,6 +20,11 @@ $aid = $_SESSION['uid'];
 #Displays current card information
 $sql = "select * from CardInfo where aid = '$aid' limit 1";
 $result = $conn->query($sql);
+$set = mysqli_fetch_array($result);
+$card_name = $set['card_name'];
+$card_number = $set['card_number'];
+$expr = $set['expr']; 
+$cvv = $set['cvv'];
 
 ?>
 
@@ -123,7 +128,7 @@ font-size: 24px;
 width: 100%;
 height: 700;
 background-color: #ffe6e6;
-background-image: url("../../images/river.jpg");
+background-image: url("../../images/bw_rack.jpg");
 position: absolute;
 }
 
@@ -192,7 +197,7 @@ top: 810px;
 </div>
 
 <div class = "search">
-<img src = "logo.png" height = "100px" width = "200px" /><br />
+<img src = "../../images/logo.png" height = "100px" width = "200px" /><br />
 </div>
 
 
@@ -214,32 +219,16 @@ top: 810px;
 
 <div class = "tables">
 
-<table>
-	<?php while ($row = mysqli_fetch_array($result)) { ?>
-	<tr>
-		<td><?php echo "Card Name: " . $row['card_name']; ?></td>
-	</tr>
-	<tr>
-		<td><?php echo "Card Number: " . $row['card_number']; ?></td>
-	</tr>
-	<tr>
-		<td><?php echo "Expiration Date: " . $row['expr']; ?></td>
-	</tr>
-	<tr>
-		<td><?php echo "Security: " . $row['cvv']; ?></td>
-	</tr>
-	<?php } ?>
-</table>
 
 </div>
 
 <div class = "forms">
 <form name = "myForm" action="fm_update_card.php" method="post" onsubmit = "return blank()">
 	<input type="hidden" value="add" name="choice">
-	<p>Card Name: <input type="text" id = "cname" name="cname" maxlength = "30"></p>
-	<p>Card Number: <input type="text" id ="cnum" name="cnum" maxlength = "30"></p>
-	<p>Expiration Date: <input type="text" id = "expr" name="expr" maxlength = "30"></p>
-	<p>Security: <input type="text" id = "cvv" name="cvv"></p>
+	<p>Card Name: <input type="text" id = "cname" name="cname" maxlength = "30" value = "<?php echo $card_name; ?>"></p>
+	<p>Card Number: <input type="text" id ="cnum" name="cnum" maxlength = "30" value = "<?php echo $card_number; ?>"></p>
+	<p>Expiration Date: <input type="text" id = "expr" name="expr" maxlength = "30" value = "<?php echo $expr; ?>"></p>
+	<p>Security: <input type="text" id = "cvv" name="cvv" value = "<?php echo $cvv; ?>"></p>
 	<br />
 	<button type="submit" name = "submit">Update Card</button>
 	</form>

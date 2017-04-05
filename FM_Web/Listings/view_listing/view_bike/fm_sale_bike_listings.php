@@ -41,6 +41,10 @@ $offset = ($pagenum - 1)  * $limit;
 $mysql = "SELECT b.item, b.price, b.descr, b.picture, b.bid FROM Buy_Listing AS b, User_Accounts AS a WHERE a.aid = b.aid AND a.username != '$username' AND status = 'Active' LIMIT $limit OFFSET $offset";
 $result = $conn->query($mysql);
 
+#Select Advertisements
+$sql1 = "select * from Advertisements limit 3";
+$data = $conn->query($sql1);
+
 ?>
 
 <html>
@@ -84,29 +88,7 @@ li a:hover {
     background-color: 	#00008B;
 }
 
-table, th, td {
-	margin-left: auto;
-	margin-right: auto;
-	border-bottom: 1px solid #ddd;
-	padding-top: 15px;
-	padding-bottom: 15px;
-	padding-left: 50px;
-	padding-right: 50px;
-    text-align: left;
-}
 
-th {
-    background-color: 	#00008B;
-    color: white;
-}
-
-tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-
-tr:hover {
-	background-color: #f5f5f5;
-}
 
 .title {
 margin: auto;
@@ -142,7 +124,7 @@ font-family: Arial, Helvetica, sans-serif;
 position: absolute;
 height: 1100px;
 left: 0%;
-width: 15%;
+width: 10%;
 background-color: #808080;
 }
 
@@ -150,17 +132,41 @@ background-color: #808080;
 .center {
 position: absolute;
 height: 1100px;
-left: 15%;
-width: 70%;
+left: 10%;
+width: 66%;
 text-align: center;
+}
+
+.center table, th, td {
+	margin-left: auto;
+	margin-right: auto;
+	border-bottom: 1px solid #ddd;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 50px;
+	padding-right: 50px;
+    text-align: left;
+}
+
+.center th {
+    background-color: 	#00008B;
+    color: white;
+}
+
+.center tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+.center tr:hover {
+	background-color: #f5f5f5;
 }
 
 
 .rightsidebar {
 position: absolute;
 height: 1100px;
-left: 85%;
-width: 15%;
+left: 75%;
+width: 25%;
 background-color: #808080;
 }
 
@@ -265,7 +271,7 @@ top: 1250px;
 		<td><?php echo $row['price']; ?></td>
 		<td><?php echo $row['descr']; ?></td>
 		<td><img src ="../../../images/<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></td> 
-		<td><a href = "fm_viewsale.php?id=<?php echo $row['bid'];?>"><?php echo $row['bid'];?></a></td>
+		<td><a href = "fm_viewsale.php?id=<?php echo $row['bid'];?>">View</a></td>
 	</tr>
 	<?php } ?>
 </table>
@@ -275,6 +281,14 @@ top: 1250px;
 
 <!-- Block 4 -->
 <div class = "rightsidebar">
+
+<table>
+<?php while ($ad = mysqli_fetch_array($data)) { ?>
+	<tr>
+		<td><img src = "../../../images/<?php echo $ad['file']; ?>" height = '250x' width = '230px' /></td>
+	</tr>
+	<?php } ?>
+</table>
 
 </div>
 

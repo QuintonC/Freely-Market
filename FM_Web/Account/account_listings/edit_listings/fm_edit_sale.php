@@ -9,8 +9,24 @@ if (isset($_SESSION['loggedin']) and $_SESSION['loggedin'] == true) {
     echo "Please log in first to see this page.";
 }
 
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+	# check connection
+	if ($mysqli->connect_errno) {
+		echo "<p>MySQL error no {$mysqli->connect_errno} : {$mysqli->connect_error}</p>";
+		exit();
+	}
+
+
 #Gathers Buy_Listing ID from the URL
 $bid = $_GET['id'];
+
+$sql = "select * from Buy_Listing where bid = '$bid' limit 1";
+$result = $conn->query($sql);
+$set = mysqli_fetch_array($result);
+$item = $set['item'];
+$price = $set['price'];
+$descr = $set['descr']; 
+
 
 ?>
 
@@ -198,11 +214,11 @@ top: 650px;
 
 <div class = "forms">
 
-<form name = "myForm" action="fm_update_sale.php?id=<?php echo $bid ?>;" method="post" enctype="multipart/form-data" onsubmit = "return blank()">
+<form name = "myForm" action="fm_update_sale.php?id=<?php echo $bid; ?>" method="post" enctype="multipart/form-data" onsubmit = "return blank()">
 	<input type="hidden" value="add" name="choice">
-	<p>Item Name: <input type="text" id = "item" name ="item" maxlength = "15"></p>
-	<p>Price: <input type="text" id = "price" name ="price"></p>
-	<p>Description: <input type="text" id = "descr" name="descr" maxlength = "30"></p>
+	<p>Item Name: <input type="text" id = "item" name ="item" maxlength = "15" value = "<?php echo $item; ?>"></p>
+	<p>Price: <input type="text" id = "price" name ="price" value = "<?php echo $price; ?>"></p>
+	<p>Description: <input type="text" id = "descr" name="descr" maxlength = "30" value = "<?php echo $descr; ?>"></p>
 	<input type="file" id = "picture" name="picture" accept="image/gif, image/jpeg, image/png">
 	<br />
 	<br />
