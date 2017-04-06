@@ -83,7 +83,6 @@ class SaleListingsViewController: UIViewController, UITableViewDataSource, UITab
         buy.listingTitle.text = BuyData[indexPath.row][0]
         buy.listingPrice.text = BuyData[indexPath.row][1]
         let imageURL = URL(string: "http://cgi.soic.indiana.edu/~team12/images/" + BuyData[indexPath.row][2])!
-        print(imageURL)
         let session = URLSession(configuration: .default)
         let downloadPicTask = session.dataTask(with: imageURL) {
             (data, response, error) in

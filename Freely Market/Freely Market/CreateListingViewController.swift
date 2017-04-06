@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateListingViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class CreateListingViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var itemTitle: UITextField!
@@ -25,28 +25,39 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
         
+        // Gesture recognizers for handling taps outside of keyboard or uipicker
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CreateListingViewController.dismissKeyboard))
+        let done: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CreateListingViewController.doneTapped))
+        tap.delegate = self
+        done.delegate = self
+        view.addGestureRecognizer(tap)
+        view.addGestureRecognizer(done)
+        
+        // Handlers for menu button
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-    
+        
+        // Setup for the text area for description
         self.descBody.layer.cornerRadius = 5.0
         descBody.text = "Enter your item description here."
         descBody.textColor = UIColor.lightGray
         
+        // Set delegates, etc for uipicker and hide some stuff
         listingOptions.delegate = self
         listingOptions.dataSource = self
         listingOptions.showsSelectionIndicator = true
         listingOptions.isHidden = true
         doneButton.isHidden = true
         
-        listingTypeButton.addTarget(self, action: "typeTapped", for: .touchUpInside)
-        doneButton.addTarget(self, action: "doneTapped", for: .touchUpInside)
+        // set targets for the buttons
+        listingTypeButton.addTarget(self, action: #selector(CreateListingViewController.typeTapped), for: .touchUpInside)
+        doneButton.addTarget(self, action: #selector(CreateListingViewController.doneTapped), for: .touchUpInside)
         
+        // set target for the price field
         itemPrice.addTarget(self, action: #selector(priceFieldChanged), for: .editingChanged)
     }
 
@@ -98,6 +109,11 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
     func doneTapped() {
         listingOptions.isHidden = true
         doneButton.isHidden = true
+    }
+    
+    // allow multiple gesture recognizers
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 
     override func didReceiveMemoryWarning() {
