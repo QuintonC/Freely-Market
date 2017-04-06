@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+var USER = String()
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var username: UITextField!
@@ -101,7 +101,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             }
                         } else if messageToDisplay == "Success, you are being logged in." {
                             DispatchQueue.main.async {
-                            self.performSegue(withIdentifier: "loginSuccess", sender: self)
+                                USER = username as String
+                                self.performSegue(withIdentifier: "loginSuccess", sender: self)
                             }
                             
                         } else { //user is not authorized

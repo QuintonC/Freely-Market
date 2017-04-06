@@ -91,7 +91,7 @@ class SaleListingsViewController: UIViewController, UITableViewDataSource, UITab
                 print("Error download image: \(e)")
             } else {
                 if let res = response as? HTTPURLResponse {
-                    print("Downloaded image with response code \(res.statusCode)")
+                    //print("Downloaded image with response code \(res.statusCode)")
                     if let imageData = data {
                         let picture = UIImage(data: imageData)
                         buy.listingImage.image = picture

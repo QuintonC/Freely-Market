@@ -42,6 +42,7 @@ class RentalListingsViewController: UIViewController, UITableViewDataSource, UIT
 //            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
 //            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
 //        }
+        print(USER)
         rentListings()
     }
     
@@ -110,7 +111,7 @@ class RentalListingsViewController: UIViewController, UITableViewDataSource, UIT
                 print("Error download image: \(e)")
             } else {
                 if let res = response as? HTTPURLResponse {
-                    print("Downloaded image with response code \(res.statusCode)")
+                    //print("Downloaded image with response code \(res.statusCode)")
                     if let imageData = data {
                         let picture = UIImage(data: imageData)
                         rent.listingImage.image = picture

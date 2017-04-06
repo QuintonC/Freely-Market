@@ -1332,6 +1332,11 @@ Password must contain at least one letter, at least one number, and be at least 
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Public Listings" id="TSH-1L-NyD">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="ToN-32-6sj"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="LSX-5V-jTf">
+                            <connections>
+                                <segue destination="fj9-Qj-HIM" kind="custom" identifier="" customClass="SWRevealViewControllerSeguePushController" id="qRX-Jb-pgd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="81u-GI-TM7">
@@ -1350,6 +1355,125 @@ Password must contain at least one letter, at least one number, and be at least 
             </objects>
             <point key="canvasLocation" x="600.79999999999995" y="3275.7121439280363"/>
         </scene>
+        <!--Create Listing-->
+        <scene sceneID="eL5-Gm-ZaH">
+            <objects>
+                <viewController id="hbm-az-a8j" customClass="CreateListingViewController" customModule="Freely_Market" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zye-j3-Vb7"/>
+                        <viewControllerLayoutGuide type="bottom" id="pXB-qk-1L6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xZK-9e-Uf2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="summer-ray-of-sunshine-bikes-bicycles" translatesAutoresizingMaskIntoConstraints="NO" id="jlC-Zh-6Da">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gux-Gx-IYq">
+                                <rect key="frame" x="61" y="113" width="120" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="hbm-az-a8j" id="77b-W3-Xyl"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AQc-Ct-1gK">
+                                <rect key="frame" x="192" y="113" width="120" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="hbm-az-a8j" id="RBW-0U-DEP"/>
+                                </connections>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BX9-Mh-Iib">
+                                <rect key="frame" x="61" y="151" width="252" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="hbm-az-a8j" id="uz1-ho-UKZ"/>
+                                </connections>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="elJ-ET-Wdq">
+                                <rect key="frame" x="61" y="287" width="252" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Select Photo">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P8O-TV-QXY">
+                                <rect key="frame" x="61" y="325" width="252" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bv7-g5-6a0">
+                                <rect key="frame" x="0.0" y="547" width="375" height="120"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A65-Au-hTo">
+                                <rect key="frame" x="61" y="69" width="251" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Tap To Select Type">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nh-9T-nJJ">
+                                <rect key="frame" x="0.0" y="517" width="375" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Create Listing" id="RWF-My-ZsZ">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="TFX-Qm-UJQ"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ZMa-Qc-OG8"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="descBody" destination="BX9-Mh-Iib" id="e1q-dG-xqp"/>
+                        <outlet property="doneButton" destination="2nh-9T-nJJ" id="ZLt-xe-j3f"/>
+                        <outlet property="itemPrice" destination="AQc-Ct-1gK" id="d43-TY-Xi8"/>
+                        <outlet property="itemTitle" destination="gux-Gx-IYq" id="lSm-1F-yc9"/>
+                        <outlet property="listingOptions" destination="bv7-g5-6a0" id="YwI-se-dC3"/>
+                        <outlet property="listingTypeButton" destination="A65-Au-hTo" id="xzt-Ep-iTX"/>
+                        <outlet property="menuButton" destination="TFX-Qm-UJQ" id="8mr-YZ-rE2"/>
+                        <outlet property="selectButton" destination="elJ-ET-Wdq" id="9dh-el-IAk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fam-BV-eR6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3160.8000000000002" y="3275.7121439280363"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="lwA-ps-3hv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fj9-Qj-HIM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rZS-yo-aC3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hbm-az-a8j" kind="relationship" relationship="rootViewController" id="AJA-pQ-1WB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Dz-ZZ-qXS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2221.5999999999999" y="3275.7121439280363"/>
+        </scene>
     </scenes>
     <resources>
         <image name="bike40" width="40" height="40"/>
@@ -1365,7 +1489,7 @@ Password must contain at least one letter, at least one number, and be at least 
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="cKi-KO-eLK"/>
-        <segue reference="E9Y-g8-bxw"/>
         <segue reference="ITL-Pq-XeZ"/>
+        <segue reference="E9Y-g8-bxw"/>
     </inferredMetricsTieBreakers>
 </document>

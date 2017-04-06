@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5A04488A1E960FF900699C47 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0448891E960FF900699C47 /* TabBarViewController.swift */; };
+		5A04488C1E96160400699C47 /* CreateListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A04488B1E96160400699C47 /* CreateListingViewController.swift */; };
 		5A2ED65D1DB8472500A75B2E /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5A2ED65B1DB8472500A75B2E /* DataModel.xcdatamodeld */; };
 		5A2ED6651DB8555200A75B2E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2ED6641DB8555200A75B2E /* LoginViewController.swift */; };
 		5A2ED6671DB8564F00A75B2E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2ED6661DB8564F00A75B2E /* RegisterViewController.swift */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		5A0448891E960FF900699C47 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		5A04488B1E96160400699C47 /* CreateListingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateListingViewController.swift; sourceTree = "<group>"; };
 		5A2ED65C1DB8472500A75B2E /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		5A2ED6641DB8555200A75B2E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5A2ED6661DB8564F00A75B2E /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -150,9 +152,10 @@
 				5AED3A751DB80B2200F3EA39 /* AppDelegate.swift */,
 				5AED3A7E1DB80B2200F3EA39 /* LaunchScreen.storyboard */,
 				5AED3A791DB80B2200F3EA39 /* Main.storyboard */,
-				5A0448891E960FF900699C47 /* TabBarViewController.swift */,
 				5AED3A7C1DB80B2200F3EA39 /* Assets.xcassets */,
 				5AED3A811DB80B2200F3EA39 /* Info.plist */,
+				5A04488B1E96160400699C47 /* CreateListingViewController.swift */,
+				5A0448891E960FF900699C47 /* TabBarViewController.swift */,
 				5A65E4DA1E3A9F1E009733D5 /* RentalListingsViewController.swift */,
 				5A45837E1E95779F005FECA6 /* EquipmentListingsViewController.swift */,
 				5A45837C1E95753B005FECA6 /* SaleListingsViewController.swift */,
@@ -340,6 +343,7 @@
 				5A2ED6671DB8564F00A75B2E /* RegisterViewController.swift in Sources */,
 				5AC30E3D1DCBD1DE00C502B2 /* ForgottenPassViewController.swift in Sources */,
 				5A45837F1E95779F005FECA6 /* EquipmentListingsViewController.swift in Sources */,
+				5A04488C1E96160400699C47 /* CreateListingViewController.swift in Sources */,
 				5A2ED65D1DB8472500A75B2E /* DataModel.xcdatamodeld in Sources */,
 				5A04488A1E960FF900699C47 /* TabBarViewController.swift in Sources */,
 				5AED3A781DB80B2200F3EA39 /* ViewController.swift in Sources */,
