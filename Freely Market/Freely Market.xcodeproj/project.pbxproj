@@ -23,7 +23,6 @@
 		5AED3A801DB80B2200F3EA39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AED3A7E1DB80B2200F3EA39 /* LaunchScreen.storyboard */; };
 		5AED3A8B1DB80B2200F3EA39 /* Freely_MarketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AED3A8A1DB80B2200F3EA39 /* Freely_MarketTests.swift */; };
 		5AED3A961DB80B2200F3EA39 /* Freely_MarketUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AED3A951DB80B2200F3EA39 /* Freely_MarketUITests.swift */; };
-		D93CD55A1E9302D400726C0F /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CD5591E9302D400726C0F /* MessageCell.swift */; };
 		D93CD55C1E932B1600726C0F /* SenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CD55B1E932B1600726C0F /* SenderCell.swift */; };
 		D93CD55E1E93462B00726C0F /* CreateNewConvoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CD55D1E93462B00726C0F /* CreateNewConvoViewController.swift */; };
 		D93CD5601E936E7300726C0F /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CD55F1E936E7300726C0F /* CustomSegue.swift */; };
@@ -75,7 +74,6 @@
 		5AED3A911DB80B2200F3EA39 /* Freely MarketUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Freely MarketUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AED3A951DB80B2200F3EA39 /* Freely_MarketUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Freely_MarketUITests.swift; sourceTree = "<group>"; };
 		5AED3A971DB80B2200F3EA39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D93CD5591E9302D400726C0F /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		D93CD55B1E932B1600726C0F /* SenderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SenderCell.swift; sourceTree = "<group>"; };
 		D93CD55D1E93462B00726C0F /* CreateNewConvoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewConvoViewController.swift; sourceTree = "<group>"; };
 		D93CD55F1E936E7300726C0F /* CustomSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegue.swift; sourceTree = "<group>"; };
@@ -161,7 +159,6 @@
 				D93CD55D1E93462B00726C0F /* CreateNewConvoViewController.swift */,
 				D93CD55F1E936E7300726C0F /* CustomSegue.swift */,
 				D93CD55B1E932B1600726C0F /* SenderCell.swift */,
-				D93CD5591E9302D400726C0F /* MessageCell.swift */,
 				D981CB951E8C570D004BF8C9 /* ConversationViewController.swift */,
 				D9C894601E3F977100393D83 /* ContactCell.swift */,
 				5AED3A7C1DB80B2200F3EA39 /* Assets.xcassets */,
@@ -264,7 +261,7 @@
 				TargetAttributes = {
 					5AED3A711DB80B2200F3EA39 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = G94LYLN76P;
+						DevelopmentTeam = YLMGYH89YU;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -359,7 +356,6 @@
 				D93CD55C1E932B1600726C0F /* SenderCell.swift in Sources */,
 				5AED3A781DB80B2200F3EA39 /* ViewController.swift in Sources */,
 				5AED3A761DB80B2200F3EA39 /* AppDelegate.swift in Sources */,
-				D93CD55A1E9302D400726C0F /* MessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,10 +511,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Freely Market/Freely Market.entitlements";
-				DEVELOPMENT_TEAM = G94LYLN76P;
+				DEVELOPMENT_TEAM = YLMGYH89YU;
 				INFOPLIST_FILE = "Freely Market/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.freelyCreative.Freely-Market";
+				PRODUCT_BUNDLE_IDENTIFIER = "Austin-M";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Freely Market/Freely Market-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -533,10 +529,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Freely Market/Freely Market.entitlements";
-				DEVELOPMENT_TEAM = G94LYLN76P;
+				DEVELOPMENT_TEAM = YLMGYH89YU;
 				INFOPLIST_FILE = "Freely Market/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.freelyCreative.Freely-Market";
+				PRODUCT_BUNDLE_IDENTIFIER = "Austin-M";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Freely Market/Freely Market-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

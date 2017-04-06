@@ -48,7 +48,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func loginTapped(_ sender: AnyObject) {
         let username:NSString = self.username.text! as NSString
         let password:NSString = self.password.text! as NSString
-        USER = username as String
+        
         
         // Authentication
         
@@ -105,12 +105,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             }
                         } else if messageToDisplay == "Success, you are being logged in." {
                             DispatchQueue.main.async {
-                                let OKAction = UIAlertAction(title: "OK", style: .default) {
-                                    (action:UIAlertAction) in
-                                    self.performSegue(withIdentifier: "loginSuccess", sender: self)
-                                }
-                                myAlert.addAction(OKAction)
-                                self.present(myAlert, animated: true, completion: nil)
+                                USER = username as String
+                                self.performSegue(withIdentifier: "loginSuccess", sender: self)
+                                
                             }
                             
                             

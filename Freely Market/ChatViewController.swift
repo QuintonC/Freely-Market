@@ -117,9 +117,57 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         //Version 2 (working)
         let cell = UITableViewCell()
+        
+//        cell.sizeThatFits(CGSize(width: 100,height:80))
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 20.0)
         cell.textLabel?.text = names[indexPath.row]
+//
+        cell.backgroundColor = UIColor.clear
+//        cell.layer.masksToBounds = false
+//        cell.layer.cornerRadius = 10
+//        
+        
+        //let rent = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CellData
+        
+        cell.contentView.backgroundColor = UIColor.clear
+        
+        let cellStyle : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 50))
+        
+        cellStyle.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.8])
+        cellStyle.layer.masksToBounds = false
+        cellStyle.layer.cornerRadius = 5.0
+        cellStyle.layer.shadowOffset = CGSize(width: 1, height: 1)
+        cellStyle.layer.shadowOpacity = 0.5
+        
+        cell.contentView.addSubview(cellStyle)
+        cell.contentView.sendSubview(toBack: cellStyle)
+        
+        
+        
+        
+        //cell.sizeThatFits(CGSize(width: self.view.frame.size.width-10, height: self.view.frame.size.height))
+        
+
+//        let cellStyle : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width-10, height: 40))
+//        
+//        cellStyle.sizeThatFits(CGSize(width: self.view.frame.size.width-10, height: self.view.frame.size.height))
+//        
+//        cellStyle.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.5])
+//        cellStyle.layer.masksToBounds = false
+//        cellStyle.layer.cornerRadius = 10
+//
+//        
+//        cell.contentView.addSubview(cellStyle)
+//        cell.contentView.sendSubview(toBack: cellStyle)
+        
+        
         
         return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
     
     

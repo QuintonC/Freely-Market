@@ -21,16 +21,22 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     @IBOutlet var messageTextField: UITextField!
     @IBOutlet var tableView: UITableView!
     @IBOutlet var scrollView1: UIScrollView!
-    @IBOutlet var scrollView2: UIScrollView!
-    
-//    var conversation = [["s","Hey"],["r","Hello"],["s","Whats up"],["r","oh not much you?"],["s","Nothing really, just thinking about going to the movies tonight"],["r","That sounds like fun"],["s","Yeah, youre welcom to join if you want to"],["r","I might take you up on that offer"],["s","coolio, just let me know"],["s","Hey"],["r","Hello"],["s","Whats up"],["r","oh not much you?"],["s","Nothing really, just thinking about going to the movies tonight"],["r","That sounds like fun"],["s","Yeah, youre welcom to join if you want to"],["r","I might take you up on that offer"],["s","coolio, just let me know"]]
+    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var sendBtn: UIButton!
+
+    //    var conversation = [["s","Hey"],["r","Hello"],["s","Whats up"],["r","oh not much you?"],["s","Nothing really, just thinking about going to the movies tonight"],["r","That sounds like fun"],["s","Yeah, youre welcom to join if you want to"],["r","I might take you up on that offer"],["s","coolio, just let me know"],["s","Hey"],["r","Hello"],["s","Whats up"],["r","oh not much you?"],["s","Nothing really, just thinking about going to the movies tonight"],["r","That sounds like fun"],["s","Yeah, youre welcom to join if you want to"],["r","I might take you up on that offer"],["s","coolio, just let me know"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
         self.title = contact
         CONTACT = contact
         
+        sendBtn.layer.cornerRadius = 5
         
         //get conversation from database
         getMessages()
@@ -38,9 +44,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
 
 //        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ConversationViewController.dismissKeyboard))
 //        
-//        if isEditing {
-//            view.addGestureRecognizer(tap)
-//        }        
+//        view.addGestureRecognizer(tap)
     }
     
     
@@ -65,28 +69,48 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         scrollView1.setContentOffset(CGPoint(x: 0, y: 255), animated: true)
-        scrollView2.setContentOffset(CGPoint(x: 0, y: 255), animated: true)
+        scrollView.setContentOffset(CGPoint(x: 0, y: 255), animated: true)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         scrollView1.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-        scrollView2.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let status = conversation[indexPath.row][0]
         let message = conversation[indexPath.row][1]
+        
+        
 
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageCell
         let cell = tableView.dequeueReusableCell(withIdentifier: "SenderCell", for: indexPath) as! SenderCell
         
-//        cell.lblMessage.text = message
-//        cell.lblName.text = status
+        cell.backgroundColor = UIColor.clear
+        
+        cell.contentView.backgroundColor = UIColor.clear
+        
+        let cellStyle : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 50))
+        
+        cellStyle.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.8])
+        cellStyle.layer.masksToBounds = false
+        cellStyle.layer.cornerRadius = 5.0
+        cellStyle.layer.shadowOffset = CGSize(width: 1, height: 1)
+        cellStyle.layer.shadowOpacity = 0.5
+        
+        cell.contentView.addSubview(cellStyle)
+        cell.contentView.sendSubview(toBack: cellStyle)
+        
+        
         cell.sMessage.text = message
         cell.lblSender.text = status
         
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 85
     }
     
     
