@@ -20,6 +20,8 @@ class SaleListingsViewController: UIViewController, UITableViewDataSource, UITab
         
         BuyData = []
         
+        self.tabBarController?.navigationItem.title = "Listings"
+        
         // Do any additional setup after loading the view, typically from a nib.
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()

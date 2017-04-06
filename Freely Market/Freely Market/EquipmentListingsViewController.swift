@@ -18,6 +18,8 @@ class EquipmentListingsViewController: UIViewController, UITableViewDataSource, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tabBarController?.navigationItem.title = "Listings"
+        
         EquipmentData = []
         
         // Do any additional setup after loading the view, typically from a nib.

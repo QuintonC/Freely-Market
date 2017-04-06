@@ -18,14 +18,30 @@ class RentalListingsViewController: UIViewController, UITableViewDataSource, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        self.tabBarController?.navigationItem.title = "Listings"
+//        let button = UIBarButtonItem(image: UIImage(named: "menu"), style: .plain, target:self, action: #selector(SWRevealViewController.revealToggle(_:)))
+//        self.tabBarController
+        
+//        let btn = UIButton(type: .custom)
+//        btn.setImage(UIImage(named: "menu"), for: .normal)
+//        btn.frame = CGRect(x:0, y:0, width: 30, height: 30)
+//        self.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+//        let menuButton = UIBarButtonItem(customView: btn)
+//        
+//        menuButton.target = self.revealViewController()
+//        menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+//        self.tabBarController?.navigationItem.setLeftBarButton(menuButton, animated: true)
+//        self.tabBarController?.navigationItem.leftBarButtonItem?.isEnabled = true
+        
+        
         RentalData = []
         
         // Do any additional setup after loading the view, typically from a nib.
-        if self.revealViewController() != nil {
-            menuButton.target = self.revealViewController()
-            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        }
+//        if self.revealViewController() != nil {
+//            menuButton.target = self.revealViewController()
+//            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+//            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+//        }
         rentListings()
     }
     

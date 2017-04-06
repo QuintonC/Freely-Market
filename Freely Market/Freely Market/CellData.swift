@@ -25,15 +25,16 @@ class CellData: UITableViewCell {
 
         // Configure the view for the selected state
         
-        let focusStyle : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.frame.size.width - 200, height: 10))
+        let focusStyle : UIView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         
-        focusStyle.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.8])
-        focusStyle.layer.masksToBounds = false
-        focusStyle.layer.cornerRadius = 5.0
+        focusStyle.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.7])
+        focusStyle.layer.masksToBounds = true
+        focusStyle.layer.cornerRadius = 0.0
         focusStyle.layer.shadowOffset = CGSize(width: 1, height: 1)
         focusStyle.layer.shadowOpacity = 0.1
         
         self.selectedBackgroundView = focusStyle
+        
     }
 
 }
