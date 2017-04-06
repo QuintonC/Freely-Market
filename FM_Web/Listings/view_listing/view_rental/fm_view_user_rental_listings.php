@@ -19,10 +19,12 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	
 $username = $_SESSION['username'];
 
+#Get user's username
+$user = $_GET['id'];
 
 $pagenum = $_GET['pagenum'];
 
-$sql = "SELECT count(*) FROM Buy_Listing WHERE owner != '$username' AND status = 'Active'";
+$sql = "SELECT count(*) FROM Rental_Listing WHERE owner = '$user' AND status = 'Active'";
 $content = $conn->query($sql);
 $val = mysqli_fetch_array($content);
 $total = $val['count(*)'];
@@ -38,7 +40,7 @@ $prevpage = $pagenum - 1;
 $offset = ($pagenum - 1)  * $limit;
 
 #Show Sales Listed
-$mysql = "SELECT b.item, b.price, b.descr, b.picture, b.owner, b.bid FROM Buy_Listing AS b, User_Accounts AS a WHERE a.aid = b.aid AND a.username != '$username' AND status = 'Active' LIMIT $limit OFFSET $offset";
+$mysql = "SELECT * FROM Rental_Listing WHERE owner = '$user' AND status = 'Active' LIMIT $limit OFFSET $offset";
 $result = $conn->query($mysql);
 
 #Select Advertisements
@@ -51,7 +53,7 @@ $data = $conn->query($sql1);
 
 <head>
 
-<title>Listings Page</title>
+<title>Rental Listings Page</title>
 <style>
 
 body {
@@ -244,19 +246,19 @@ top: 1250px;
 <!-- Block 3 -->
 <div class = "center">
 
-<center><h2>Bike Sales</h2></center>
+<center><h2><?php echo $user; ?>'s Rental Listings</h2></center>
 <?php echo "Page " . $pagenum . " of " . $lastpage;?><br />
 <?php if ($pagenum == 1 and $lastpage != 1) { ?>
-<a href="fm_sale_bike_listings.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_sale_bike_listings.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+<a href="fm_view_user_rental_listings.php?pagenum=<?php echo $nextpage; ?>&id=<?php echo $user; ?>">NEXT</a>
+<a href="fm_view_user_rental_listings.php?pagenum=<?php echo $lastpage; ?>&id=<?php echo $user; ?>">LAST</a>
 <?php } elseif ($pagenum == $lastpage and $pagenum != 1) { ?>
-<a href="fm_sale_bike_listings.php?pagenum=1">FIRST</a>
-<a href="fm_sale_bike_listings.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+<a href="fm_view_user_rental_listings.php?pagenum=1&id=<?php echo $user; ?>">FIRST</a>
+<a href="fm_view_user_rental_listings.php?pagenum=<?php echo $prevpage; ?>&id=<?php echo $user; ?>">PREV</a>
 <?php } elseif ($pagenum != 1 and $lastpage != 1) { ?>
-<a href="fm_sale_bike_listings.php?pagenum=1">FIRST</a>
-<a href="fm_sale_bike_listings.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
-<a href="fm_sale_bike_listings.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_sale_bike_listings.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+<a href="fm_view_user_rental_listings.php?pagenum=1&id=<?php echo $user; ?>">FIRST</a>
+<a href="fm_view_user_rental_listings.php?pagenum=<?php echo $prevpage; ?>&id=<?php echo $user; ?>">PREV</a>
+<a href="fm_view_user_rental_listings.php?pagenum=<?php echo $nextpage; ?>&id=<?php echo $user; ?>">NEXT</a>
+<a href="fm_view_user_rental_listings.php?pagenum=<?php echo $lastpage; ?>&id=<?php echo $user; ?>">LAST</a>
 <?php } ?>
 <table>
 	<tr>
@@ -264,15 +266,13 @@ top: 1250px;
 		<th>Price</th>
 		<th>Description</th>
 		<th>Picture</th>
-		<th>Owner</th>
 	</tr>
 	<?php while ($row = mysqli_fetch_array($result)) { ?>
 	<tr>
-		<td><a href = "fm_viewsale.php?id=<?php echo $row['bid'];?>"><?php echo $row['item']; ?></a></td>
+		<td><a href = "fm_viewrental.php?id=<?php echo $row['rid'];?>"><?php echo $row['item']; ?></a></td>
 		<td><?php echo $row['price']; ?></td>
 		<td><?php echo $row['descr']; ?></td>
-		<td><a href = "fm_viewsale.php?id=<?php echo $row['bid'];?>"><img src ="../../../images/<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></a></td> 
-		<td><a href = "fm_view_user_bike_listings.php?id=<?php echo $row['owner'];?>&pagenum=1"><?php echo $row['owner']; ?></a></td>
+		<td><a href = "fm_viewrental.php?id=<?php echo $row['rid'];?>"><img src ="../../../images/<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></a></td>		
 	</tr>
 	<?php } ?>
 </table>
