@@ -49,7 +49,9 @@ class RentalListingsViewController: UIViewController, UITableViewDataSource, UIT
                         for listing in listings {
                             if let title = listing["item"] as? String {
                                 if let price = listing["price"] as? String {
-                                    self.RentalData.append([title, "$" + price])
+                                    if let picture = listing["picture"] as? String {
+                                        self.RentalData.append([title, "$" + price, picture])
+                                    }
                                 }
                             }
                         }
@@ -67,17 +69,44 @@ class RentalListingsViewController: UIViewController, UITableViewDataSource, UIT
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let rent = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CellData
+        
         rent.contentView.backgroundColor = UIColor.clear
-        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 85))
-        whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.75])
-        whiteRoundedView.layer.masksToBounds = false
-        whiteRoundedView.layer.cornerRadius = 5.0
-        whiteRoundedView.layer.shadowOffset = CGSize(width: 1, height: 1)
-        whiteRoundedView.layer.shadowOpacity = 0.1
-        rent.contentView.addSubview(whiteRoundedView)
-        rent.contentView.sendSubview(toBack: whiteRoundedView)
+        
+        let cellStyle : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 85))
+        
+        cellStyle.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.5])
+        cellStyle.layer.masksToBounds = false
+        cellStyle.layer.cornerRadius = 5.0
+        cellStyle.layer.shadowOffset = CGSize(width: 1, height: 1)
+        cellStyle.layer.shadowOpacity = 0.1
+        
+        rent.contentView.addSubview(cellStyle)
+        rent.contentView.sendSubview(toBack: cellStyle)
+        
         rent.listingTitle.text = RentalData[indexPath.row][0]
         rent.listingPrice.text = RentalData[indexPath.row][1]
+        
+        let imageURL = URL(string: "http://cgi.soic.indiana.edu/~team12/images/" + RentalData[indexPath.row][2])!
+        let session = URLSession(configuration: .default)
+        let downloadPicTask = session.dataTask(with: imageURL) {
+            (data, response, error) in
+            if let e = error {
+                print("Error download image: \(e)")
+            } else {
+                if let res = response as? HTTPURLResponse {
+                    print("Downloaded image with response code \(res.statusCode)")
+                    if let imageData = data {
+                        let picture = UIImage(data: imageData)
+                        rent.listingImage.image = picture
+                    } else {
+                        print("Couldn't get image: Image is nil")
+                    }
+                } else {
+                    print("Couldn't get response code for some reason")
+                }
+            }
+        }
+        downloadPicTask.resume()
         return rent
     }
     

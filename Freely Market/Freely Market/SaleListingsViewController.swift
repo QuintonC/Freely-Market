@@ -49,7 +49,9 @@ class SaleListingsViewController: UIViewController, UITableViewDataSource, UITab
                         for listing in listings {
                             if let title = listing["item"] as? String {
                                 if let price = listing["price"] as? String {
-                                    self.BuyData.append([title, "$" + price])
+                                    if let picture = listing["picture"] as? String {
+                                        self.BuyData.append([title, "$" + price, picture])
+                                    }
                                 }
                             }
                         }
@@ -68,16 +70,38 @@ class SaleListingsViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let buy = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CellData
         buy.contentView.backgroundColor = UIColor.clear
-        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 85))
-        whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.75])
-        whiteRoundedView.layer.masksToBounds = false
-        whiteRoundedView.layer.cornerRadius = 5.0
-        whiteRoundedView.layer.shadowOffset = CGSize(width: 1, height: 1)
-        whiteRoundedView.layer.shadowOpacity = 0.1
-        buy.contentView.addSubview(whiteRoundedView)
-        buy.contentView.sendSubview(toBack: whiteRoundedView)
+        let cellStyle : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 85))
+        cellStyle.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.75])
+        cellStyle.layer.masksToBounds = false
+        cellStyle.layer.cornerRadius = 5.0
+        cellStyle.layer.shadowOffset = CGSize(width: 1, height: 1)
+        cellStyle.layer.shadowOpacity = 0.1
+        buy.contentView.addSubview(cellStyle)
+        buy.contentView.sendSubview(toBack: cellStyle)
         buy.listingTitle.text = BuyData[indexPath.row][0]
         buy.listingPrice.text = BuyData[indexPath.row][1]
+        let imageURL = URL(string: "http://cgi.soic.indiana.edu/~team12/images/" + BuyData[indexPath.row][2])!
+        print(imageURL)
+        let session = URLSession(configuration: .default)
+        let downloadPicTask = session.dataTask(with: imageURL) {
+            (data, response, error) in
+            if let e = error {
+                print("Error download image: \(e)")
+            } else {
+                if let res = response as? HTTPURLResponse {
+                    print("Downloaded image with response code \(res.statusCode)")
+                    if let imageData = data {
+                        let picture = UIImage(data: imageData)
+                        buy.listingImage.image = picture
+                    } else {
+                        print("Couldn't get image: Image is nil")
+                    }
+                } else {
+                    print("Couldn't get response code for some reason")
+                }
+            }
+        }
+        downloadPicTask.resume()
         return buy
     }
     
