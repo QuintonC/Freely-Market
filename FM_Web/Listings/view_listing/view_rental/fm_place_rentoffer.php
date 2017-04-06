@@ -12,8 +12,12 @@ $username = $_SESSION['username'];
 #Get from url
 $rid = $_GET['id'];
 
+$reason = $_POST['reason'];
+$duration = $_POST['duration'];
+$destination = $_POST['destination'];
+
 #Create offer for rental
-$mysql = "insert into Pending_Rental (username,rid) values ('$username','$rid')";
+$mysql = "insert into Pending_Rental (username,reason,duration,destination,rid) values ('$username','$reason','$duration','$destination','$rid')";
 $conn->query($mysql);
 
 $type = "rentalbid";

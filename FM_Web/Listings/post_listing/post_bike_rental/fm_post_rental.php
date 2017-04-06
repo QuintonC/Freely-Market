@@ -45,9 +45,10 @@ $dur = stripslashes($dur);
 $descr = stripslashes($descr);
 
 $status = "Active";
+$typ = "User";
 
 #Create rental listing
-$sql = "insert into Rental_Listing (item,price,duration,descr,picture,status,owner,aid) values('$item','$price','$dur','$descr','$name','$status','$username','$aid')";
+$sql = "insert into Rental_Listing (item,price,duration,descr,picture,status,owner,typ,aid) values('$item','$price','$dur','$descr','$name','$status','$username','$typ','$aid')";
 
 
 if ($conn->query($sql) === TRUE) {

@@ -38,7 +38,7 @@ $prevpage = $pagenum - 1;
 $offset = ($pagenum - 1)  * $limit;
 
 #Show Sales Listed
-$mysql = "SELECT e.item, e.price, e.descr, e.picture, e.eid FROM Equipment_Listing AS e, User_Accounts AS a WHERE a.aid = e.aid AND a.username != '$username' AND status = 'Active' LIMIT $limit OFFSET $offset";
+$mysql = "SELECT e.item, e.price, e.descr, e.picture, e.owner, e.eid FROM Equipment_Listing AS e, User_Accounts AS a WHERE a.aid = e.aid AND a.username != '$username' AND status = 'Active' LIMIT $limit OFFSET $offset";
 $result = $conn->query($mysql);
 
 #Select Advertisements
@@ -266,11 +266,11 @@ top: 1250px;
 	</tr>
 	<?php while ($row = mysqli_fetch_array($result)) { ?>
 	<tr>
-		<td><?php echo $row['item']; ?></td>
+		<td><a href = "fm_viewequipment.php?id=<?php echo $row['eid'];?>"><?php echo $row['item']; ?></a></td>
 		<td><?php echo $row['price']; ?></td>
 		<td><?php echo $row['descr']; ?></td>
-		<td><img src ="../../../images/<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></td> 
-		<td><a href = "fm_viewequipment.php?id=<?php echo $row['eid'];?>">View</a></td>
+		<td><a href = "fm_viewequipment.php?id=<?php echo $row['eid'];?>"><img src ="../../../images/<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></a></td> 
+		<td><?php echo $row['owner']; ?></td>
 	</tr>
 	<?php } ?>
 </table>

@@ -38,10 +38,11 @@ $descr = stripslashes($descr);
 
 
 $status = "Active";
+$typ = "User";
 $username = $_SESSION['username'];
 
 #Create Sale Listing
-$sql = "insert into Buy_Listing (item,price,descr,picture,status,aid,owner) values('$item','$price','$descr','$name','$status','$aid','$username')";
+$sql = "insert into Buy_Listing (item,price,descr,picture,status,aid,typ,owner) values('$item','$price','$descr','$name','$status','$aid','$typ','$username')";
 if ($conn->query($sql) === TRUE) {
 	header("Location: ../../../account/fm_account.php");
 	exit;

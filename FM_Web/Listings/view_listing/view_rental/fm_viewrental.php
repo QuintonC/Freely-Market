@@ -238,7 +238,7 @@ top: 610px;
 		<td><?php echo $set['duration']; ?></td>
 		<td><?php echo $set['descr']; ?></td> 
 		<td><img src ="../../../images/<?php echo $set['picture']; ?>" height = '75px' width = '75px' /></td>
-		<td><a href = "fm_place_rentoffer.php?id=<?php echo $set['rid']; ?>">Place Offer</a></td>
+		<td><a href = "fm_rent_request.php?id=<?php echo $set['rid']; ?>">Request to Rent</a></td>
 	</tr>
 	<?php } ?>
 </table>

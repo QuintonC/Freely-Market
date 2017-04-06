@@ -178,7 +178,6 @@ top: 600px;
 
 <div class = "search">
 <img src = "../images/logo.png" height = "100px" width = "200px" /><br />
-<input type="text" name="search" placeholder="Search..">
 </div>
 
 <div class = "header">

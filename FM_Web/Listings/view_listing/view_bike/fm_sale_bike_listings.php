@@ -38,7 +38,7 @@ $prevpage = $pagenum - 1;
 $offset = ($pagenum - 1)  * $limit;
 
 #Show Sales Listed
-$mysql = "SELECT b.item, b.price, b.descr, b.picture, b.bid FROM Buy_Listing AS b, User_Accounts AS a WHERE a.aid = b.aid AND a.username != '$username' AND status = 'Active' LIMIT $limit OFFSET $offset";
+$mysql = "SELECT b.item, b.price, b.descr, b.picture, b.owner, b.bid FROM Buy_Listing AS b, User_Accounts AS a WHERE a.aid = b.aid AND a.username != '$username' AND status = 'Active' LIMIT $limit OFFSET $offset";
 $result = $conn->query($mysql);
 
 #Select Advertisements
@@ -214,6 +214,7 @@ top: 1250px;
 <img src = "../../../images/logo.png" height = "100px" width = "200px" /><br />
 <form name = "searchbar" action = "fm_buy_bike_search_results.php?pagenum=1" method="post">
 <input type="text" name="search" placeholder="Search for a Listing...">
+
 <button type="submit" value="search">Search</button>
 </form>
 </div>
@@ -263,15 +264,15 @@ top: 1250px;
 		<th>Price</th>
 		<th>Description</th>
 		<th>Picture</th>
-		<th>Id</th>
+		<th>Owner</th>
 	</tr>
 	<?php while ($row = mysqli_fetch_array($result)) { ?>
 	<tr>
-		<td><?php echo $row['item']; ?></td>
+		<td><a href = "fm_viewsale.php?id=<?php echo $row['bid'];?>"><?php echo $row['item']; ?></a></td>
 		<td><?php echo $row['price']; ?></td>
 		<td><?php echo $row['descr']; ?></td>
-		<td><img src ="../../../images/<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></td> 
-		<td><a href = "fm_viewsale.php?id=<?php echo $row['bid'];?>">View</a></td>
+		<td><a href = "fm_viewsale.php?id=<?php echo $row['bid'];?>"><img src ="../../../images/<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></a></td> 
+		<td><?php echo $row['owner']; ?></td>
 	</tr>
 	<?php } ?>
 </table>

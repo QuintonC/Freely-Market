@@ -271,8 +271,7 @@ top: 950px;
 	<tr>
 		<td><?php echo $set['prid']; ?></td>
 		<td><?php echo $set['username']; ?></td>
-		<td><a href = "fm_accept_rentoffers.php?id=<?php echo $set['prid']; ?>">Accept</a></td>
-		<td><a href = "fm_reject_rentoffers.php?id=<?php echo $set['prid']; ?>">Reject</a></td>
+		<td><a href = "fm_view_rental_form.php?id=<?php echo $set['prid']; ?>">View Request</a></td>
 	</tr>
 	<?php } ?>
 </table>

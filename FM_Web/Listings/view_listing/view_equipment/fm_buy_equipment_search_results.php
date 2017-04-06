@@ -38,8 +38,12 @@ $nextpage = $pagenum + 1;
 $prevpage = $pagenum - 1;
 $offset = ($pagenum - 1)  * $limit;
 
-$sql = "SELECT * FROM Equipment_Listing WHERE item LIKE '%".$item."%' AND status = 'Active' AND owner != '$username' LIMIT $limit OFFSET $offset";
+$sql = "SELECT * FROM Equipment_Listing WHERE item LIKE '%".$item."%' OR descr LIKE '%".$item."%' AND status = 'Active' AND owner != '$username' LIMIT $limit OFFSET $offset";
 $content = $conn->query($sql);
+
+#Select Advertisements
+$sql1 = "select * from Advertisements limit 3";
+$data = $conn->query($sql1);
 
 ?>
 
@@ -84,29 +88,6 @@ li a:hover {
     background-color: 	#00008B;
 }
 
-table, th, td {
-	margin-left: auto;
-	margin-right: auto;
-	border-bottom: 1px solid #ddd;
-	padding-top: 15px;
-	padding-bottom: 15px;
-	padding-left: 50px;
-	padding-right: 50px;
-    text-align: left;
-}
-
-th {
-    background-color: 	#00008B;
-    color: white;
-}
-
-tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-
-tr:hover {
-	background-color: #f5f5f5;
-}
 
 .title {
 margin: auto;
@@ -142,24 +123,49 @@ font-family: Arial, Helvetica, sans-serif;
 position: absolute;
 height: 1100px;
 left: 0%;
-width: 15%;
+width: 10%;
 background-color: #808080;
 }
+
 
 .center {
 position: absolute;
 height: 1100px;
-left: 15%;
-width: 70%;
+left: 10%;
+width: 66%;
 text-align: center;
+}
+
+.center table, th, td {
+	margin-left: auto;
+	margin-right: auto;
+	border-bottom: 1px solid #ddd;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 50px;
+	padding-right: 50px;
+    text-align: left;
+}
+
+.center th {
+    background-color: 	#00008B;
+    color: white;
+}
+
+.center tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+.center tr:hover {
+	background-color: #f5f5f5;
 }
 
 
 .rightsidebar {
 position: absolute;
 height: 1100px;
-left: 85%;
-width: 15%;
+left: 75%;
+width: 25%;
 background-color: #808080;
 }
 
@@ -261,11 +267,11 @@ top: 1250px;
 	</tr>
 	<?php while ($row = mysqli_fetch_array($content)) { ?>
 	<tr>
-		<td><?php echo $row['item']; ?></td>
+		<td><a href = "fm_viewequipment.php?id=<?php echo $row['eid'];?>"><?php echo $row['item']; ?></a></td>
 		<td><?php echo $row['price']; ?></td>
 		<td><?php echo $row['descr']; ?></td>
-		<td><img src ="../../../images/<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></td> 
-		<td><a href = "fm_viewequipment.php?id=<?php echo $row['eid'];?>"><?php echo $row['eid'];?></a></td>
+		<td><a href = "fm_viewequipment.php?id=<?php echo $row['eid'];?>"><img src ="../../../images/<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></a></td> 
+		<td><?php echo $row['owner'];?></td>
 	</tr>
 	<?php } ?>
 </table>
@@ -275,6 +281,14 @@ top: 1250px;
 
 <!-- Block 4 -->
 <div class = "rightsidebar">
+
+<table>
+<?php while ($ad = mysqli_fetch_array($data)) { ?>
+	<tr>
+		<td><img src = "../../../images/<?php echo $ad['file']; ?>" height = '250x' width = '230px' /></td>
+	</tr>
+	<?php } ?>
+</table>
 
 </div>
 

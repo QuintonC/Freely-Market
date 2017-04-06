@@ -80,6 +80,7 @@ descr varchar(100) NOT NULL,
 picture LONGBLOB NOT NULL,
 status varchar(30),
 owner varchar(50),
+typ varchar(20),
 aid int NOT NULL,
 PRIMARY KEY(bid),
 FOREIGN KEY(aid) REFERENCES User_Accounts(aid))
@@ -93,6 +94,7 @@ descr varchar(100) NOT NULL,
 picture LONGBLOB NOT NULL,
 status varchar(30),
 owner varchar(50),
+typ varchar(20),
 aid int NOT NULL,
 PRIMARY KEY(eid),
 FOREIGN KEY(aid) REFERENCES User_Accounts(aid))
@@ -108,6 +110,7 @@ descr varchar(100) NOT NULL,
 picture LONGBLOB NOT NULL,
 status varchar(30),
 owner varchar(50),
+typ varchar(20),
 aid int NOT NULL,
 PRIMARY KEY(rid),
 FOREIGN KEY(aid) REFERENCES User_Accounts(aid))
@@ -134,6 +137,9 @@ engine=innodb;
 create table Pending_Rental(
 prid int NOT NULL AUTO_INCREMENT,
 username varchar(30),
+reason varchar(100),
+duration varchar(100),
+destination varchar(100),
 rid int NOT NULL,
 PRIMARY KEY(prid),
 FOREIGN KEY(rid) REFERENCES Rental_Listing(rid))
