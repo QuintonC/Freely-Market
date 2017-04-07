@@ -258,8 +258,7 @@ top: 1250px;
 <table>
 	<tr>
 		<th>Item</th>
-		<th>Price</th>
-		<th>Duration</th>
+		<th><a href="fm_rental_listings_sort.php?pagenum=1">Price</a></th>
 		<th>Description</th>
 		<th>Picture</th>
 		<th>Id</th>
@@ -268,7 +267,6 @@ top: 1250px;
 	<tr>
 		<td><a href = "fm_viewrental.php?id=<?php echo $row['rid'];?>"><?php echo $row['item']; ?></a></td>
 		<td><?php echo $row['price']; ?></td>
-		<td><?php echo $row['duration']; ?></td>
 		<td><?php echo $row['descr']; ?></td> 
 		<td><a href = "fm_viewrental.php?id=<?php echo $row['rid'];?>"><img src ="../../../images/<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></a></td>
 		<td><a href = "fm_view_user_rental_listings.php?id=<?php echo $row['owner'];?>&pagenum=1"><?php echo $row['owner']; ?></a></td>

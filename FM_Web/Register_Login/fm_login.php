@@ -44,12 +44,19 @@ $content = $conn->query($sql);
 $set = mysqli_fetch_array($content);
 $password = $set['password'];
 
+#Select User Account type
+$sql1 = "select typ from User_Accounts where username = '$username' limit 1";
+$data = $conn->query($sql1);
+$batch = mysqli_fetch_array($data);
+$typ = $batch['typ'];
+
 
 if (password_verify($formpass,$password)) {
 	$_SESSION['username'] = $username;
 	$_SESSION['password'] = $password;
 	$_SESSION['uid'] = $id;
 	$_SESSION['loggedin'] = true;
+	$_SESSION['typ'] = $typ;
 	header("Location: ../account/fm_account.php");
 	exit;
 } else {

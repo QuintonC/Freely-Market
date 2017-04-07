@@ -38,7 +38,7 @@ $prevpage = $pagenum - 1;
 $offset = ($pagenum - 1)  * $limit;
 
 #Show Sales Listed
-$mysql = "SELECT e.item, e.price, e.descr, e.picture, e.owner, e.eid FROM Equipment_Listing AS e, User_Accounts AS a WHERE a.aid = e.aid AND a.username != '$username' AND status = 'Active' LIMIT $limit OFFSET $offset";
+$mysql = "SELECT e.item, e.price, e.descr, e.picture, e.owner, e.eid FROM Equipment_Listing AS e, User_Accounts AS a WHERE a.aid = e.aid AND a.username != '$username' AND status = 'Active' ORDER BY price ASC LIMIT $limit OFFSET $offset";
 $result = $conn->query($mysql);
 
 #Select Advertisements
@@ -51,7 +51,7 @@ $data = $conn->query($sql1);
 
 <head>
 
-<title>Equipment Listings Page</title>
+<title>Listings Page</title>
 <style>
 
 body {
@@ -87,6 +87,7 @@ li a:hover {
 .active {
     background-color: 	#00008B;
 }
+
 
 
 .title {
@@ -211,8 +212,9 @@ top: 1250px;
 
 <div class = "search">
 <img src = "../../../images/logo.png" height = "100px" width = "200px" /><br />
-<form name = "searchbar" action = "fm_buy_equipment_search_results.php?pagenum=1" method="post">
+<form name = "searchbar" action = "fm_buy_bike_search_results.php?pagenum=1" method="post">
 <input type="text" name="search" placeholder="Search for a Listing...">
+
 <button type="submit" value="search">Search</button>
 </form>
 </div>
@@ -245,24 +247,24 @@ top: 1250px;
 <center><h2>Equipment Sales</h2></center>
 <?php echo "Page " . $pagenum . " of " . $lastpage;?><br />
 <?php if ($pagenum == 1 and $lastpage != 1) { ?>
-<a href="fm_sale_equipment_listings.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_sale_equipment_listings.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+<a href="fm_equipment_listings_sort.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
+<a href="fm_equipment_listings_sort.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
 <?php } elseif ($pagenum == $lastpage and $pagenum != 1) { ?>
-<a href="fm_sale_equipment_listings.php?pagenum=1">FIRST</a>
-<a href="fm_sale_equipment_listings.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+<a href="fm_equipment_listings_sort.php?pagenum=1">FIRST</a>
+<a href="fm_equipment_listings_sort.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
 <?php } elseif ($pagenum != 1 and $lastpage != 1) { ?>
-<a href="fm_sale_equipment_listings.php?pagenum=1">FIRST</a>
-<a href="fm_sale_equipment_listings.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
-<a href="fm_sale_equipment_listings.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_sale_equipment_listings.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+<a href="fm_equipment_listings_sort.php?pagenum=1">FIRST</a>
+<a href="fm_equipment_listings_sort.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+<a href="fm_equipment_listings_sort.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
+<a href="fm_equipment_listings_sort.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
 <?php } ?>
 <table>
 	<tr>
 		<th>Item</th>
-		<th><a href="fm_equipment_listings_sort.php?pagenum=1">Price</a></th>
+		<th><a href="fm_equipment_listings_sort_asc.php?pagenum=1">Price</a></th>
 		<th>Description</th>
 		<th>Picture</th>
-		<th>Id</th>
+		<th>Owner</th>
 	</tr>
 	<?php while ($row = mysqli_fetch_array($result)) { ?>
 	<tr>

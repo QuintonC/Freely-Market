@@ -261,7 +261,7 @@ top: 1250px;
 <table>
 	<tr>
 		<th>Item</th>
-		<th>Price</th>
+		<th><a href="fm_sale_listings_sort.php?pagenum=1">Price</a></th>
 		<th>Description</th>
 		<th>Picture</th>
 		<th>Owner</th>

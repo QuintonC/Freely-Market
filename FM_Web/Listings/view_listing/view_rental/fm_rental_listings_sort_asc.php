@@ -22,7 +22,7 @@ $username = $_SESSION['username'];
 
 $pagenum = $_GET['pagenum'];
 
-$sql = "SELECT count(*) FROM Equipment_Listing WHERE owner != '$username' AND status = 'Active'";
+$sql = "SELECT count(*) FROM Rental_Listing WHERE owner != '$username' AND status = 'Active'";
 $content = $conn->query($sql);
 $val = mysqli_fetch_array($content);
 $total = $val['count(*)'];
@@ -38,7 +38,7 @@ $prevpage = $pagenum - 1;
 $offset = ($pagenum - 1)  * $limit;
 
 #Show Sales Listed
-$mysql = "SELECT e.item, e.price, e.descr, e.picture, e.owner, e.eid FROM Equipment_Listing AS e, User_Accounts AS a WHERE a.aid = e.aid AND a.username != '$username' AND status = 'Active' LIMIT $limit OFFSET $offset";
+$mysql = "SELECT r.item, r.price, r.descr, r.picture, r.owner, r.rid FROM Rental_Listing AS r, User_Accounts AS a WHERE a.aid = r.aid AND a.username != '$username' AND status = 'Active' ORDER BY price DESC LIMIT $limit OFFSET $offset";
 $result = $conn->query($mysql);
 
 #Select Advertisements
@@ -51,7 +51,7 @@ $data = $conn->query($sql1);
 
 <head>
 
-<title>Equipment Listings Page</title>
+<title>Listings Page</title>
 <style>
 
 body {
@@ -87,6 +87,7 @@ li a:hover {
 .active {
     background-color: 	#00008B;
 }
+
 
 
 .title {
@@ -211,8 +212,9 @@ top: 1250px;
 
 <div class = "search">
 <img src = "../../../images/logo.png" height = "100px" width = "200px" /><br />
-<form name = "searchbar" action = "fm_buy_equipment_search_results.php?pagenum=1" method="post">
+<form name = "searchbar" action = "fm_buy_bike_search_results.php?pagenum=1" method="post">
 <input type="text" name="search" placeholder="Search for a Listing...">
+
 <button type="submit" value="search">Search</button>
 </form>
 </div>
@@ -242,35 +244,35 @@ top: 1250px;
 <!-- Block 3 -->
 <div class = "center">
 
-<center><h2>Equipment Sales</h2></center>
+<center><h2>Rental Listings</h2></center>
 <?php echo "Page " . $pagenum . " of " . $lastpage;?><br />
 <?php if ($pagenum == 1 and $lastpage != 1) { ?>
-<a href="fm_sale_equipment_listings.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_sale_equipment_listings.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+<a href="fm_rental_listings_sort_asc.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
+<a href="fm_rental_listings_sort_asc.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
 <?php } elseif ($pagenum == $lastpage and $pagenum != 1) { ?>
-<a href="fm_sale_equipment_listings.php?pagenum=1">FIRST</a>
-<a href="fm_sale_equipment_listings.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+<a href="fm_rental_listings_sort_asc.php?pagenum=1">FIRST</a>
+<a href="fm_rental_listings_sort_asc.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
 <?php } elseif ($pagenum != 1 and $lastpage != 1) { ?>
-<a href="fm_sale_equipment_listings.php?pagenum=1">FIRST</a>
-<a href="fm_sale_equipment_listings.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
-<a href="fm_sale_equipment_listings.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_sale_equipment_listings.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+<a href="fm_rental_listings_sort_asc.php?pagenum=1">FIRST</a>
+<a href="fm_rental_listings_sort_asc.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+<a href="fm_rental_listings_sort_asc.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
+<a href="fm_rental_listings_sort_asc.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
 <?php } ?>
 <table>
 	<tr>
 		<th>Item</th>
-		<th><a href="fm_equipment_listings_sort.php?pagenum=1">Price</a></th>
+		<th><a href="fm_rental_listings_sort.php?pagenum=1">Price</a></th>
 		<th>Description</th>
 		<th>Picture</th>
-		<th>Id</th>
+		<th>Owner</th>
 	</tr>
 	<?php while ($row = mysqli_fetch_array($result)) { ?>
 	<tr>
-		<td><a href = "fm_viewequipment.php?id=<?php echo $row['eid'];?>"><?php echo $row['item']; ?></a></td>
+		<td><a href = "fm_viewrental.php?id=<?php echo $row['rid'];?>"><?php echo $row['item']; ?></a></td>
 		<td><?php echo $row['price']; ?></td>
 		<td><?php echo $row['descr']; ?></td>
-		<td><a href = "fm_viewequipment.php?id=<?php echo $row['eid'];?>"><img src ="../../../images/<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></a></td> 
-		<td><a href = "fm_view_user_equipment_listings.php?id=<?php echo $row['owner'];?>&pagenum=1"><?php echo $row['owner']; ?></a></td>
+		<td><a href = "fm_viewrental.php?id=<?php echo $row['rid'];?>"><img src ="../../../images/<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></a></td> 
+		<td><a href = "fm_view_user_rental_listings.php?id=<?php echo $row['owner'];?>&pagenum=1"><?php echo $row['owner']; ?></a></td>
 	</tr>
 	<?php } ?>
 </table>

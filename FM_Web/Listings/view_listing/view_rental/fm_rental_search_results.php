@@ -270,7 +270,7 @@ top: 1250px;
 		<td><?php echo $row['duration']; ?></td>
 		<td><?php echo $row['descr']; ?></td>
 		<td><a href = "fm_viewrental.php?id=<?php echo $row['rid'];?>"><img src ="../../../images/<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></a></td> 
-		<td><?php echo $row['owner'];?></td>
+		<td><a href = "fm_view_user_rental_listings.php?id=<?php echo $row['owner'];?>&pagenum=1"><?php echo $row['owner']; ?></a></td>
 	</tr>
 	<?php } ?>
 </table>
