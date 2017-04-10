@@ -1226,7 +1226,7 @@ Password must contain at least one letter, at least one number, and be at least 
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="2RT-sV-iRR" id="JzW-cn-bNL"/>
                                 </connections>

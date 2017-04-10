@@ -16,6 +16,7 @@ class CreateNewConvoViewController: UIViewController, UITextFieldDelegate {
     
     var contact = String()
     var message = String()
+    var height = 255
     
     
     @IBOutlet var usernameTextField: UITextField!
@@ -31,7 +32,15 @@ class CreateNewConvoViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         
         sendBtn.layer.cornerRadius = 5
-        
+
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight = keyboardSize.height
+            //print(keyboardHeight)
+            height = Int(keyboardHeight)
+        }
     }
     
     
@@ -55,7 +64,9 @@ class CreateNewConvoViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        scrollView.setContentOffset(CGPoint(x: 0, y: 255), animated: true)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
+        
+        scrollView.setContentOffset(CGPoint(x: 0, y: height), animated: true)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

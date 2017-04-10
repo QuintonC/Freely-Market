@@ -17,6 +17,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     
     var contact = String()
     var conversation: [[String]] = []
+    var height = 255
     
     @IBOutlet var messageTextField: UITextField!
     @IBOutlet var tableView: UITableView!
@@ -61,6 +62,14 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
         super.viewDidAppear(animated)
         
     }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight = keyboardSize.height
+            print(keyboardHeight)
+            height = Int(keyboardHeight)
+        }
+    }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -68,8 +77,10 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        scrollView1.setContentOffset(CGPoint(x: 0, y: 255), animated: true)
-        scrollView.setContentOffset(CGPoint(x: 0, y: 255), animated: true)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
+        
+        scrollView1.setContentOffset(CGPoint(x: 0, y: height), animated: true)
+        scrollView.setContentOffset(CGPoint(x: 0, y: height), animated: true)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
