@@ -90,9 +90,16 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
         
         cell.contentView.backgroundColor = UIColor.clear
         
-        let cellStyle : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 50))
+        let cellStyle : UIView = UIView(frame: CGRect(x: 8, y: 8, width: self.view.frame.size.width-10, height: 60))
         
-        cellStyle.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.8])
+        
+        if status == USER {
+            cellStyle.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [0, 80, 100, 0.7])
+        } else {
+            cellStyle.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.7])
+        }
+        
+        
         cellStyle.layer.masksToBounds = false
         cellStyle.layer.cornerRadius = 5.0
         cellStyle.layer.shadowOffset = CGSize(width: 1, height: 1)
