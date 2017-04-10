@@ -22,7 +22,7 @@ $bid = $_GET['id'];
 $sql = "delete from Buy_Listing where bid = '$bid'";	
 
 if ($conn->query($sql) === TRUE) {
-	header("Location: ../fm_listed_sales.php");
+	header("Location: ../fm_my_listed_bikes.php?pagenum=1.php");
 	exit;
 } else {
 	echo "Error: " . $sql . "<br>" . $conn->error;

@@ -22,7 +22,7 @@ $rid = $_GET['id'];
 $sql = "delete from Rental_Listing where rid = '$rid'";	
 
 if ($conn->query($sql) === TRUE) {
-	header("Location: ../fm_listed_rentals.php");
+	header("Location: ../fm_my_listed_rentals.php?pagenum=1");
 	exit;
 } else {
 	echo "Error: " . $sql . "<br>" . $conn->error;

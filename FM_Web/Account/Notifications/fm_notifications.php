@@ -160,6 +160,7 @@ position: absolute;
 height: 450px;
 left: 15%;
 width: 85%;
+overflow: scroll;
 }
 
 
@@ -264,10 +265,13 @@ top: 600px;
 		<td><?php echo $row['created']; ?></td>
 		<td><a href = "fm_view_sale_notif.php?id=<?php echo $row['bid']; ?>"><?php echo $row['bid'];?></a></td>
 		<td><a href = "fm_delete_sale_notif.php?id=<?php echo $row['bid']; ?>"><?php echo $row['bid'];?></a></td>
+		<td><a href = "fm_view_equipment_notif.php?id=<?php echo $row['eid']; ?>"><?php echo $row['eid'];?></a></td>
+		<td><a href = "fm_delete_equipment_notif.php?id=<?php echo $row['eid']; ?>"><?php echo $row['eid'];?></a></td>
 		<td><a href = "fm_view_rent_notif.php?id=<?php echo $row['rid']; ?>"><?php echo $row['rid'];?></a></td>
 		<td><a href = "fm_delete_rent_notif.php?id=<?php echo $row['rid']; ?>"><?php echo $row['rid'];?></a></td>
-		<td><a href = "fm_saleoffer_status_accept.php?id=<?php echo $row['tid']; ?>"><?php echo $row['tid'];?></a></td>
-		<td><a href = "fm_rentoffer_status_accept.php?id=<?php echo $row['tid']; ?>"><?php echo $row['tid'];?></a></td> 
+		<td><a href = "fm_saleoffer_status_accept.php?id=<?php echo $row['btid']; ?>"><?php echo $row['btid'];?></a></td>
+		<td><a href = "fm_equipmentoffer_status_accept.php?id=<?php echo $row['etid']; ?>"><?php echo $row['etid'];?></a></td>
+		<td><a href = "fm_rentoffer_status_accept.php?id=<?php echo $row['rtid']; ?>"><?php echo $row['rtid'];?></a></td> 
 	</tr>
 <?php } ?>
 </table>

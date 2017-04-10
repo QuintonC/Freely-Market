@@ -21,6 +21,12 @@ $password = $_SESSION['password'];
 #Shows current information
 $sql = "select * from User_Accounts where username = '$username' and password = '$password' limit 1";
 $result = $conn->query($sql);
+$set = mysqli_fetch_array($result);
+$first_name = $set['first_name'];
+$last_name = $set['last_name'];
+$email = $set['email']; 
+$phone = $set['phone'];
+$picture = $set['picture'];
 
 
 ?>
@@ -124,7 +130,7 @@ font-size: 24px;
 width: 100%;
 height: 850px;
 background-color: #ffe6e6;
-background-image: url("../../images/tower.jpg");
+background-image: url("../../images/bw_rack.jpg");
 position: absolute;
 }
 
@@ -215,25 +221,7 @@ top: 1000px;
 
 <div class = "tables">
 
-<table>
-	<?php while ($row = mysqli_fetch_array($result)) { ?>
-	<tr>
-		<td><?php echo "First Name: " . $row['first_name']; ?></td>
-	</tr>
-	<tr>
-		<td><?php echo "Last Name: " . $row['last_name']; ?></td>
-	</tr>
-	<tr>
-		<td><?php echo "Email: " . $row['email']; ?></td>
-	</tr>
-	<tr>
-		<td><?php echo "Phone: " . $row['phone']; ?></td>
-	</tr>
-	<tr>
-		<td><img src ="../../images/<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></td> 
-	</tr>
-	<?php } ?>
-</table>
+<img src ="../../images/<?php echo $picture; ?>" height = '200px' width = '350px' />
 
 </div>
 
@@ -241,11 +229,11 @@ top: 1000px;
 <div class = "forms">
 <form name = "myForm" action="fm_update_account.php" method="post" enctype="multipart/form-data" onsubmit = "return blank()">
 	<input type="hidden" value="add" name="choice">
-	<p>First Name: <input type="text" id = "fname" name="fname" maxlength = "30"></p>
-	<p>Last Name: <input type="text" id ="lname" name="lname" maxlength = "30"></p>
-	<p>Email: <input type="text" id = "email" name="email" maxlength = "30"></p>
-	<p>Phone: <input type="text" id = "phone" name="phone" pattern ='[0-9]{10}'></p>
-	<input type="file" id = "picture" name="picture" accept="image/gif, image/jpeg, image/png">
+	<p>First Name: <input type="text" id = "fname" name="fname" maxlength = "30" value = "<?php echo $first_name; ?>"></p>
+	<p>Last Name: <input type="text" id ="lname" name="lname" maxlength = "30" value = "<?php echo $last_name; ?>"></p>
+	<p>Email: <input type="text" id = "email" name="email" maxlength = "30" value = "<?php echo $email; ?>"></p>
+	<p>Phone: <input type="text" id = "phone" name="phone" pattern ='[0-9]{10}' value = "<?php echo $phone; ?>"></p>
+	<input type="file" id = "picture" name="picture" accept="image/gif, image/jpeg, image/png"> 
 	<br />
 	<br />
 	<button type="submit" name = "submit">Update Account</button>

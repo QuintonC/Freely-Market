@@ -237,7 +237,6 @@ top: 600px;
 
 <div class = "search">
 <img src = "../images/logo.png" height = "100px" width = "200px" /><br />
-<input type="text" name="search" placeholder="Search..">
 </div>
 
 <div class = "header">
@@ -279,10 +278,8 @@ top: 600px;
 <div class = "center">
 
 <ul>
-<li><a href = "account_listings/fm_listed_sales.php?pagenum=1">My Listed Sales</a></li>
-<li><a href = "account_listings/fm_listed_rentals.php?pagenum=1">My Listed Rentals</a></li>
-<li><a href = "account_listings/fm_purchase_offers.php?pagenum=1">My Active Purchase Offers</a></li>
-<li><a href = "account_listings/fm_rental_offers.php?pagenum=1">My Active Rental Offers</a></li>
+<li><a href = "fm_my_listings.php">My Listings</a></li>
+<li><a href = "fm_my_offers.php">My Offers</a></li>
 </ul>
 
 </div>

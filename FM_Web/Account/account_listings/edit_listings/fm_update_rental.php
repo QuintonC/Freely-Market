@@ -48,7 +48,7 @@ $descr = stripslashes($descr);
 $sql = "update Rental_Listing set item = '$item', price = '$price', duration = '$duration', descr = '$descr', picture = '$name' where rid = '$rid'";	
 
 if ($conn->query($sql) === TRUE) {
-	header("Location: ../fm_listed_rentals.php");
+	header("Location: ../fm_my_listed_rentals.php?pagenum=1");
 	exit;
 } else {
 	echo "Error: " . $sql . "<br>" . $conn->error;

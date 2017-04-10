@@ -41,68 +41,80 @@ li a:hover {
 }
 
 .title {
-margin: auto;
-width: 100%;
-height: 150px;
-background-color: #ff4d4d;
-position: absolute;
+	margin: auto;
+	width: 100%;
+	height: 150px;
+	background-color: #ff4d4d;
+	position: absolute;
 }
 
 
 .title .header {
-left: 40%;
-position: absolute;
-top: 15px;
-font-family: "Brush Script MT", cursive;
-font-size: 24px;
+	left: 40%;
+	position: absolute;
+	top: 15px;
+	font-family: "Brush Script MT", cursive;
+	font-size: 24px;
 }
 
 .title .search {
-top: 15px;
-left: 2%;
-position: absolute;
+	top: 15px;
+	left: 2%;
+	position: absolute;
 }
 
 
 .title .login{
-position: absolute;
-top: 15px;
-right: 2%;
+	position: absolute;
+	top: 15px;
+	right: 2%;
+	font-size: 17px;
+	border-style: solid;
+	border-color: white;
 }
 
 
 .information {
-margin: auto;
-text-align: center;
-width: 100%;
-height: 400px;
-background-color: #ffe6e6;
-position: absolute;
-top: 150px;
+	margin: auto;
+	text-align: center;
+	width: 100%;
+	height: 400px;
+	background-color: #ffe6e6;
+	position: absolute;
+	top: 150px;
 }
 
 .mobile {
-margin: auto;
-text-align: center;
-width: 100%;
-height: 350px;
-background-color: #B0B0B0;
-position: absolute;
-top: 550px;
+	margin: auto;
+	text-align: center;
+	width: 100%;
+	height: 350px;
+	background-color: #B0B0B0;
+	position: absolute;
+	top: 550px;
 }
 
 .mobile .mockup {
-position: relative;
-top: 10px;
+	position: relative;
+	top: 10px;
+}
+
+.mobile .vendorcreate {
+	position: absolute;
+	bottom: 15px;
+	right: 2%;
+	font-size: 17px;
+	border-style: solid;
+	border-color: white;
 }
 
 .footer {
-margin: auto;
-width: 100%;
-background-color: #000000;
-color: #FFFAF0;
-position: absolute;
-top: 900px;
+	margin: auto;
+	width: 100%;
+	background-color: #000000;
+	color: #FFFAF0;
+	position: absolute;
+	top: 900px;
 }
 
 .footer ul {
@@ -133,53 +145,51 @@ top: 900px;
 
 <!-- Block 1 -->
 <div class = "title">
-<div class = "search">
-<img src = "images/logo.png" height = "100px" width = "200px" /><br />
-<input type="text" name="search" placeholder="Search..">
-</div>
+	<div class = "search">
+		<img src = "images/logo.png" height = "100px" width = "200px" /><br />
+		<input type="text" name="search" placeholder="Search..">
+	</div>
 
-<div class = "header">
-<h1>Freely Market</h1>
-</div>
+	<div class = "header">
+		<h1>Freely Market</h1>
+	</div>
 
-<div class = "login">
-<ul>
-<li><a href = "register_login/fm_login.html">Log In</a></li>
-</ul>
-</div>
-
+	<div class = "login">
+		<ul>
+			<li><a href="register_login/fm_create_account.html">Create Account</a></li>
+			<li><a href = "register_login/fm_login.html">Log In</a></li>
+		</ul>
+	</div>
 </div>
 
 
 <!-- Block 2 -->
 <div class = "information">
-<h2>Mission</h2>
-<p>Freely Market..........</p>
-<h2>Video</h2>
+	<h2>Mission</h2>
+	<p>Freely Market is a place where people in the Bloomington, Indiana area can rent or sell bicycles and equipment.</p>
 </div>
 
 <!-- Block 3 -->
 <div class = "mobile">
-
-<div class = "mockup">
-<img src = "images/mobile_mockup-1.jpg" height = "250px" width = "250px" />
-</div>
-
-<h3><a href = "register_login/fm_create_account.html">Create Account</a></h3>
-
+	<h2 align>Are you a vendor?</h2>
+	<p>Apply for our <a href="vendor/application/fm_v_application.html">vendor account</a> if you are interested in having your inventory available on Freely Market.</p>
+	<p>Please apply first!</p>
+	<div class="vendorcreate">
+		<ul>
+			<li><a href = "vendor/register_login/fm_v_account_number.html">Create Vendor Account</a></li>
+		</ul>
+	</div>
 </div>
 
 
 <!-- Block 4 -->
 <div class = "footer">
-
-<ul>
-<li><a href = "">Privacy Policy</a></li>
-<li><a href = "">About</a></li>
-<li><a href = "">Contact</a></li>
-<li style = "float:left"><a href = "">Social Links</a></li>
-</ul>
-
+	<ul>
+		<li><a href = "">Privacy Policy</a></li>
+		<li><a href = "">About</a></li>
+		<li><a href = "">Contact</a></li>
+		<li style = "float:left"><a href = "">Social Links</a></li>
+	</ul>
 </div>
 
 </body>
