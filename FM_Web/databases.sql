@@ -1,26 +1,45 @@
 
-create table B_Transactions(
-tid int NOT NULL AUTO_INCREMENT,
+create table Bike_Transactions(
+btid int NOT NULL AUTO_INCREMENT,
 buyer varchar(30) NOT NULL,
 seller varchar(30) NOT NULL,
+occured datetime NOT NULL,
+payment varchar(3) NOT NULL,
 bid int NOT NULL,
 cid int NOT NULL,
 aid int NOT NULL,
-PRIMARY KEY(tid),
+PRIMARY KEY(btid),
 FOREIGN KEY(bid) REFERENCES Buy_Listing(bid),
 FOREIGN KEY(cid) REFERENCES CardInfo(cid),
 FOREIGN KEY(aid) REFERENCES User_Accounts(aid))
 engine=innodb;
 
-create table R_Transactions(
-tid int NOT NULL AUTO_INCREMENT,
+create table Rental_Transactions(
+rtid int NOT NULL AUTO_INCREMENT,
+borrower varchar(30) NOT NULL,
 renter varchar(30) NOT NULL,
-seller varchar(30) NOT NULL,
+occured datetime NOT NULL,
 rid int NOT NULL,
 cid int NOT NULL,
 aid int NOT NULL,
-PRIMARY KEY(tid),
+payment varchar(3) NOT NULL,
+PRIMARY KEY(rtid),
 FOREIGN KEY(rid) REFERENCES Rental_Listing(rid),
+FOREIGN KEY(cid) REFERENCES CardInfo(cid),
+FOREIGN KEY(aid) REFERENCES User_Accounts(aid))
+engine=innodb;
+
+create table Equipment_Transactions(
+etid int NOT NULL AUTO_INCREMENT,
+buyer varchar(30) NOT NULL,
+seller varchar(30) NOT NULL,
+occured datetime NOT NULL,
+payment varchar(3) NOT NULL,
+eid int NOT NULL,
+cid int NOT NULL,
+aid int NOT NULL,
+PRIMARY KEY(etid),
+FOREIGN KEY(eid) REFERENCES Equipment_Listing(eid),
 FOREIGN KEY(cid) REFERENCES CardInfo(cid),
 FOREIGN KEY(aid) REFERENCES User_Accounts(aid))
 engine=innodb;
@@ -59,18 +78,28 @@ item varchar(30) NOT NULL,
 price varchar(8) NOT NULL,
 descr varchar(100) NOT NULL,
 picture LONGBLOB NOT NULL,
+status varchar(30),
+owner varchar(50),
+typ varchar(20),
 aid int NOT NULL,
 PRIMARY KEY(bid),
 FOREIGN KEY(aid) REFERENCES User_Accounts(aid))
 engine=innodb;
 
-create table View_Buylisting(
-vbid int NOT NULL AUTO_INCREMENT,
-bid int NOT NULL,
-PRIMARY KEY(vbid),
-FOREIGN KEY(bid) REFERENCES Buy_Listing(bid))
+create table Equipment_Listing(
+eid int NOT NULL AUTO_INCREMENT,
+item varchar(30) NOT NULL,
+price varchar(8) NOT NULL,
+descr varchar(100) NOT NULL,
+picture LONGBLOB NOT NULL,
+status varchar(30),
+owner varchar(50),
+typ varchar(20),
+aid int NOT NULL,
+PRIMARY KEY(eid),
+FOREIGN KEY(aid) REFERENCES User_Accounts(aid))
 engine=innodb;
-)
+
 
 create table Rental_Listing(
 rid int NOT NULL AUTO_INCREMENT,
@@ -79,18 +108,14 @@ price varchar(8) NOT NULL,
 duration varchar(10) NOT NULL,
 descr varchar(100) NOT NULL,
 picture LONGBLOB NOT NULL,
+status varchar(30),
+owner varchar(50),
+typ varchar(20),
 aid int NOT NULL,
 PRIMARY KEY(rid),
 FOREIGN KEY(aid) REFERENCES User_Accounts(aid))
 engine=innodb;
 
-create table View_Rentlisting(
-vrid int NOT NULL AUTO_INCREMENT,
-rid int NOT NULL,
-PRIMARY KEY(vrid),
-FOREIGN KEY(rid) REFERENCES Rental_Listing(rid))
-engine=innodb;
-)
 
 create table Messages(
 msgid int NOT NULL AUTO_INCREMENT,
@@ -112,22 +137,50 @@ engine=innodb;
 create table Pending_Rental(
 prid int NOT NULL AUTO_INCREMENT,
 username varchar(30),
+reason varchar(100),
+duration varchar(100),
+destination varchar(100),
 rid int NOT NULL,
 PRIMARY KEY(prid),
 FOREIGN KEY(rid) REFERENCES Rental_Listing(rid))
 engine=innodb;
 
+create table Pending_Equipment(
+peid int NOT NULL AUTO_INCREMENT,
+username varchar(30),
+eid int NOT NULL,
+PRIMARY KEY(peid),
+FOREIGN KEY(eid) REFERENCES Equipment_Listing(eid))
+engine=innodb;
+
 create table Notifications(
 nid int NOT NULL AUTO_INCREMENT,
+message varchar(100) NOT NULL,
 recipient varchar(30) NOT NULL,
 sender varchar(30) NOT NULL,
 types varchar(30) NOT NULL,
 created datetime NOT NULL,
-msgid int,
-psid int,
-prid int,
+bid int,
+rid int,
+eid int,
+btid int,
+rtid int,
+etid int,
 PRIMARY KEY(nid))
 engine=innodb;
+
+create table Msg_Notifications(
+mnid int NOT NULL AUTO_INCREMENT,
+message varchar(100) NOT NULL,
+recipient varchar(30) NOT NULL,
+sender varchar(30) NOT NULL,
+created datetime NOT NULL,
+msgid int,
+PRIMARY KEY(mnid))
+engine=innodb;
+
+
+
 
 
 

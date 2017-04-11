@@ -1,0 +1,131 @@
+<html>
+
+<head>
+	<title>Login</title>
+</head>
+
+<body>
+
+
+
+<style>
+	
+.title {
+margin: auto;
+width: 100%;
+height: 125px;
+background-color: #ff4d4d;
+}
+
+.title .header {
+left: 42%;
+position: absolute;
+font-family: "Brush Script MT", cursive;
+font-size: 24px;
+}
+
+.title .logo {
+top: 25px;
+left: 2%;
+position: absolute;
+}
+
+.forms{
+width: 100%;
+height: 450px;
+background-color: #ffe6e6;
+background-image: url("rack.jpg");
+}
+
+.forms .user_pass {
+position: relative;
+top: 250px;
+left: 400px;
+height: 150px;
+width: 500px;
+background-color: #FFFFFF;
+border-style: solid;
+border-width: 2px;
+padding: 15px;
+position: absolute;
+}
+
+.footer {
+margin: auto;
+width: 100%;
+background-color: #000000;
+color: #FFFAF0;
+position: absolute;
+top: 575px;
+}
+
+.footer ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.footer li {
+    float: right;
+	border-right: 1px solid #bbb;
+}
+
+.footer li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+	
+</style>
+
+<!-- Block 1 -->
+<div class = "title">
+
+<div class = "header">
+<h1>Freely Market</h1>
+</div>
+
+<div class = "logo">
+<img src = "logo.png" height = "100px" width = "200px" />
+</div>
+
+</div>
+
+
+<!-- Block 2 -->
+<div class = "forms">
+
+<div class = "user_pass">
+
+<form name = "login" action = "fm_admin_login.php" method="post" >
+<p>User Name: <input type="text" id = "user" name ="user" maxlength = "15"></p>
+<p>Password: <input type="password" id = "password" name ="password"></p>
+<a>Recover Password</a>
+<br />
+<br />
+<button type="submit" value="Login">Log In</button>
+</form>
+
+</div>
+
+</div>
+
+<!-- Block 3 -->
+<div class = "footer">
+
+<ul>
+<li><a href = "">Privacy Policy</a></li>
+<li><a href = "">About</a></li>
+<li><a href = "">Contact</a></li>
+<li style = "float:left"><a href = "">Social Links</a></li>
+</ul>
+
+</div>
+
+
+</body>
+</html>

@@ -5,7 +5,7 @@
 session_start();
 
 #References data base connection variables
-require_once("db_constant.php");
+require_once("../db_constant.php");
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	# check connection
 	if ($mysqli->connect_errno) {
@@ -15,17 +15,21 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 // Get Forms
 $username = $_POST['user'];
-$password = md5($_POST['password']);
+$formpass = $_POST['password'];
+
 
 //  Prevent MySQL injection 
 $username = strip_tags($username);
-$password = strip_tags($password);
+$formpass = strip_tags($formpass);
 
 $username = stripslashes($username);
-$password = stripslashes($password);
+$formpass = stripslashes($formpass);
+
+
 
 //$username = mysql_real_escape_string($username);
 //$password = mysql_real_escape_string($password);
+
 
 #Creates a global session variable of the user account's id number
 $mysql = "select aid from User_Accounts where username = '$username' limit 1";
@@ -34,21 +38,26 @@ $row = mysqli_fetch_array($result);
 $id = $row['aid'];
 
 
-#Selects the combination where the username and password match in the database
-$sql = "select * from User_Accounts where username like '$username' and password like '$password' limit 1";
+#Selects the combination where the entered form password matches the stored hash
+$sql = "select password from User_Accounts where username = '$username' limit 1";
+$content = $conn->query($sql);
+$set = mysqli_fetch_array($content);
+$password = $set['password'];
 
-$result = $conn->query($sql);
-	if (!$result->num_rows == 1) {
-		echo "<p>Invalid username/password combination</p>";
-	} else {
-		#Creates session variables for username, password, and id if login is successful
-		$_SESSION['username'] = $username;
-		$_SESSION['password'] = $password;
-		$_SESSION['uid'] = $id;
-		$_SESSION['loggedin'] = true;
-		header("Location: fm_account.php");
-		exit;
-	}
+function invalidPass() {
+	echo '<script type="text/javascript"> alert("Invalid username or password."); location="fm_login.html";</script>';
+}
+
+if (password_verify($formpass,$password)) {
+	$_SESSION['username'] = $username;
+	$_SESSION['password'] = $password;
+	$_SESSION['uid'] = $id;
+	$_SESSION['loggedin'] = true;
+	header("Location: ../account/fm_account.php");
+	exit;
+} else {
+	invalidPass();
+}
 
 
 

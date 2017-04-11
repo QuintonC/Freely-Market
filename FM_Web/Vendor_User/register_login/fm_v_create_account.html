@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon" />
+<title>Create Account</title>
+
+<script type="text/javascript">
+
+<!-- Ensures forms are not blank -->
+    function blank()
+    {
+    var a=document.forms["create"]["username"].value;
+    var b=document.forms["create"]["password"].value;
+    var c=document.forms["create"]["first_name"].value;
+    var d=document.forms["create"]["last_name"].value;
+		var e=document.forms["create"]["email"].value;
+		var f=document.forms["create"]["phone"].value;
+    if (a==null || a=="",b==null || b=="",c==null || c=="",d==null || d=="",e==null || e=="",f==null || f=="")
+      {
+      alert("Please complete all required fields");
+      return false;
+      }
+    }
+
+	function maxLength(char) {    
+    if (!('maxLength' in char)) {
+        var max = char.attributes.maxLength.value;
+        char.onkeypress = function () {
+            if (this.value.length >= max) return false;
+        };
+    }
+}
+
+maxLength(document.getElementById("text"));
+</script>
+
+
+<style>
+	
+	body{
+		margin:0px;
+	}
+	
+.title {
+	width: 100%;
+	height: 125px;
+	background-color: #4B4B4B;
+	}
+
+.title .header {
+	left: 42%;
+	position: absolute;
+	font-family: "Brush Script MT", cursive;
+	font-size: 24px;
+	}
+
+.title .logo {
+	top: 2%;
+	left: 1%;
+	position: absolute;
+	}
+
+
+.center{
+	width: 100%;
+	height: 600px;
+	background-color: #4FAB48;
+	}
+
+.center .forms {
+	position: relative;
+	text-align: left;
+	top: 75px;
+	height: 400px;
+	width: 500px;
+	background-color: #FFFFFF;
+	border-style: solid;
+	border-width: 2px;
+	padding: 15px;
+	}
+
+.footer {
+	margin: auto;
+	width: 100%;
+	background-color: #000000;
+	color: #FFFAF0;
+	position: absolute;
+	top: 725px;
+	}
+
+.footer ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.footer li {
+    float: right;
+	border-right: 1px solid #bbb;
+}
+
+.footer li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+	
+</style>
+</head>
+
+<body>
+
+<!-- Block 1 -->
+<div class = "title">
+	<div class = "logo">
+		<img src = "../../images/logo.png" height = "100px" width = "200px" />
+	</div>
+
+	<div class = "header">
+		<h1>Freely Market</h1>
+	</div>
+</div>
+
+<!-- Block 2 -->
+<center>
+	<div class = "center">
+		<div class = "forms">
+			<form name = "create" action="fm_v_create_account.php" method="post" onsubmit = "return blank()">
+				<input type="hidden" value="add" name="choice">
+				<p>Business Name: <input type="text" id = "username" name ="username" maxlength = "15"></p>
+				<p>Password: <input type="password" id = "password" name ="password"></p>
+				<p>First Name: <input type="text" id = "first_name" name="first_name" maxlength = "30"></p>
+				<p>Last Name: <input type="text" id ="last_name" name="last_name" maxlength = "30"></p>
+				<p>Email: <input type="text" id = "email" name="email" maxlength = "30"></p>
+				<p>Phone: <input type="text" id = "phone" name="phone"></p>
+				<input type="file" id = "picture" name="picture" accept="image/gif, image/jpeg, image/png">
+				<br />
+				<br />
+				<button type="submit" name = "Submit">Create Account</button>
+			</form>
+		</div>
+	</div>
+</center>
+<!-- Block 3 -->
+<div class = "footer">
+	<ul>
+		<li><a href = "">Privacy Policy</a></li>
+		<li><a href = "">About</a></li>
+		<li><a href = "">Contact</a></li>
+		<li style = "float:left"><a href = "">Social Links</a></li>
+	</ul>
+</div>
+
+</body>
+</html>

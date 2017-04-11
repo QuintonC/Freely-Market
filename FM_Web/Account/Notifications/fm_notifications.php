@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once("db_constant.php");
+require_once("../../db_constant.php");
 
 if (isset($_SESSION['loggedin']) and $_SESSION['loggedin'] == true) {
      $log = $_SESSION['username'];
@@ -118,41 +118,52 @@ font-family: Arial, Helvetica, sans-serif;
 
 .leftsidebar {
 position: absolute;
-height: 500px;
+height: 450px;
 left: 0%;
 width: 15%;
 background-color: #808080;
 }
 
-.center {
-position: absolute;
-height: 500px;
-left: 15%;
-width: 70%;
-background-image: url("tree.jpg");
+.leftsidebar .menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+}
+.leftsidebar .menu li a {
+   display: block;
+   color: #000;
+   padding: 8px 16px;
+   text-decoration: none;
+   width: 200px;
+   text-align: left;
+}
+.leftsidebar .menu li a:hover {
+    background-color: #555;
+    color: white;
+}
+.leftsidebar .menu li a:hover {
+    background-color: #555;
+    color: white;
+}
+.leftsidebar .menu .active {
+    background-color: #4CAF50;
+    color: white;
+}
+.num {
+	color: red;
 }
 
-.center .list{
+.center {
 position: absolute;
-top: 50px;
-left: 200px;
-height: 300px;
-width: 500px;
-background-color: #FFFFFF;
-border-style: solid;
-border-width: 2px;
-padding: 15px;
-position: absolute;
+height: 450px;
+left: 15%;
+width: 85%;
 overflow: scroll;
 }
 
-.rightsidebar {
-position: absolute;
-height: 500px;
-left: 85%;
-width: 15%;
-background-color: #808080;
-}
+
 
 .footer {
 margin: auto;
@@ -160,7 +171,7 @@ width: 100%;
 background-color: #000000;
 color: #FFFAF0;
 position: absolute;
-top: 650px;
+top: 600px;
 }
 
 .footer ul {
@@ -196,7 +207,7 @@ top: 650px;
 <div class = "title">
 
 <div class = "search">
-<img src = "logo.png" height = "100px" width = "200px" /><br />
+<img src = "../../images/logo.png" height = "100px" width = "200px" /><br />
 <input type="text" name="search" placeholder="Search..">
 </div>
 
@@ -207,10 +218,10 @@ top: 650px;
 <div class = "navbar">
 
 <ul>
-<li><a href = "fm_listings.php">Listings</a></li>
-<li><a href="fm_account.php">My Account</a></li>
-<li><a href = "fm_transactions.php" class = "active">Transactions</a></li>
-<li><a href = 'fm_homepage.html'>Logged In: <?php echo $log; ?></a></li>
+<li><a href = "../../listings/fm_listings.php">Listings</a></li>
+<li><a href="../../account/fm_account.php" class = "active">My Account</a></li>
+<li><a href = "../../transactions/fm_transactions.php">Transactions</a></li>
+<li><a href = "../../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
 </ul>
 
 </div>
@@ -221,37 +232,49 @@ top: 650px;
 <!-- Block 2 -->
 <div class = "leftsidebar">
 
-
+<div class = "menu">
+<ul>
+<li><a href = "../edit_account/fm_edit_account.php">Edit Account</a></li>
+<li><a href = "../edit_card/fm_edit_card.php">Edit Card Info</a></li>
+<li><a href = "../messager/fm_messager1.php">Messager</a></li>
+<li><a href = "../notifications/fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
+<li><a href = 'fm_admin_vendor_requests.php'>Vendor Requests</a></li>
+<?php if ($adminCheck['admin'] == "y"): ?>
+	<span><li><a href = "fm_messager1.php">Messager</a></li></span>
+<?php endif;?>
+</ul>
+</div>
 
 </div>
 
 <!-- Block 3 -->
 <div class = "center">
 
-<div class = "list">
 <table>
 	<tr>
+		<th>Message</th>
 		<th>From</th>
-		<th>Type</th>
 		<th>Date/Time</th>
 		<th>View</th>
 		<th>Delete</th>
 	</tr>
 <?php while ($row = mysqli_fetch_array($result)) { ?>
 	<tr>
+		<td><?php echo $row['message']; ?></td>
 		<td><?php echo $row['sender']; ?></td>
-		<td><?php echo $row['types']; ?></td>
 		<td><?php echo $row['created']; ?></td>
-		<td><a href = "fm_view_msg_notif.php?id=<?php echo $row['msgid'];?>"><?php echo $row['msgid'];?></a></td>
-		<td><a href = "fm_delete_msg_notif.php?id=<?php echo $row['msgid'];?>"><?php echo $row['msgid'];?></a></td>
-		<td><a href = "fm_view_sale_notif.php?id=<?php echo $row['psid'];?>"><?php echo $row['psid'];?></a></td>
-		<td><a href = "fm_delete_sale_notif.php?id=<?php echo $row['psid'];?>"><?php echo $row['psid'];?></a></td>
-		<td><a href = "fm_view_rent_notif.php?id=<?php echo $row['prid'];?>"><?php echo $row['prid'];?></a></td>
-		<td><a href = "fm_delete_rent_notif.php?id=<?php echo $row['prid'];?>"><?php echo $row['prid'];?></a></td>
+		<td><a href = "fm_view_sale_notif.php?id=<?php echo $row['bid']; ?>"><?php echo $row['bid'];?></a></td>
+		<td><a href = "fm_delete_sale_notif.php?id=<?php echo $row['bid']; ?>"><?php echo $row['bid'];?></a></td>
+		<td><a href = "fm_view_equipment_notif.php?id=<?php echo $row['eid']; ?>"><?php echo $row['eid'];?></a></td>
+		<td><a href = "fm_delete_equipment_notif.php?id=<?php echo $row['eid']; ?>"><?php echo $row['eid'];?></a></td>
+		<td><a href = "fm_view_rent_notif.php?id=<?php echo $row['rid']; ?>"><?php echo $row['rid'];?></a></td>
+		<td><a href = "fm_delete_rent_notif.php?id=<?php echo $row['rid']; ?>"><?php echo $row['rid'];?></a></td>
+		<td><a href = "fm_saleoffer_status_accept.php?id=<?php echo $row['btid']; ?>"><?php echo $row['btid'];?></a></td>
+		<td><a href = "fm_equipmentoffer_status_accept.php?id=<?php echo $row['etid']; ?>"><?php echo $row['etid'];?></a></td>
+		<td><a href = "fm_rentoffer_status_accept.php?id=<?php echo $row['rtid']; ?>"><?php echo $row['rtid'];?></a></td> 
 	</tr>
 <?php } ?>
 </table>
-</div>
 
 </div>
 
