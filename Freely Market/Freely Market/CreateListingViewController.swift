@@ -8,18 +8,41 @@
 
 import UIKit
 
-class CreateListingViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIGestureRecognizerDelegate {
+class CreateListingViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var itemTitle: UITextField!
     @IBOutlet weak var itemPrice: UITextField!
     @IBOutlet weak var descBody: UITextView!
-    @IBOutlet weak var selectButton: UIButton!
-    let pickerOptions = ["Rental Listing", "Sale Listing", "Equipment Listing"]
     @IBOutlet weak var listingTypeButton: UIButton!
     @IBOutlet weak var listingOptions: UIPickerView!
     @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var selectedImageView: UIImageView!
+    let pickerOptions = ["Rental Listing", "Sale Listing", "Equipment Listing"]
+    var type = "none"
     
+    @IBAction func selectImage(_ sender: Any) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+//        selectedImageView.image = selectedImage
+        
+        if let selectedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            selectedImageView.image = selectedImage
+        } else if let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            selectedImageView.image = selectedImage
+        } else {
+            print("Something went wrong")
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+        //uploadImage()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,6 +122,16 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         listingTypeButton.setTitle(pickerOptions[row], for: .normal)
+        //let pickerOptions = ["Rental Listing", "Sale Listing", "Equipment Listing"]
+        if pickerOptions[row] == "Rental Listing" {
+            type = "Rental_Listing"
+        } else if pickerOptions[row] == "Sale Listing" {
+            type = "Buy_Listing"
+        } else if pickerOptions[row] == "Equipment Listing" {
+            type = "Equipment_Listing"
+        } else {
+            type = "none"
+        }
     }
     
     func typeTapped() {
@@ -121,6 +154,28 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func saveTapped(_ sender: Any) {
+    
+        let item:NSString = self.itemTitle.text! as NSString
+        let price:NSString = self.itemPrice.text! as NSString
+        let descr:NSString = self.descBody.text! as NSString
+        
+        if item.isEqual(to: "") || price.isEqual(to: "") || descr.isEqual(to: "") || type.isEqual("none") {
+            let alertController = UIAlertController(title: "Oops!", message: "It seems you've forgotten something.", preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "OK", style: .default) {
+                (action:UIAlertAction) in
+            }
+            alertController.addAction(OKAction)
+            self.present(alertController, animated: true, completion:nil)
+        } else {
+            //do code
+        }
+        
+        print(item)
+        print(price)
+        print(descr)
+        print(type)
+    }
 
     /*
     // MARK: - Navigation
