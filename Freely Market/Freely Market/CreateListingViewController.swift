@@ -159,6 +159,8 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
         let item:NSString = self.itemTitle.text! as NSString
         let price:NSString = self.itemPrice.text! as NSString
         let descr:NSString = self.descBody.text! as NSString
+        let fixedPrice:NSString = price.replacingOccurrences(of: "$", with: "") as NSString
+        let username = USER
         
         if item.isEqual(to: "") || price.isEqual(to: "") || descr.isEqual(to: "") || type.isEqual("none") {
             let alertController = UIAlertController(title: "Oops!", message: "It seems you've forgotten something.", preferredStyle: .alert)
@@ -168,13 +170,81 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
             alertController.addAction(OKAction)
             self.present(alertController, animated: true, completion:nil)
         } else {
-            //do code
+            // insert into database
+            let myURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/createListing.php")
+            var request = URLRequest(url:myURL!)
+            request.httpMethod = "POST"
+            
+            let postString = "type=\(type)&item=\(item)&price=\(fixedPrice)&descr=\(descr)&owner=\(username)"
+            
+            request.httpBody = postString.data(using: String.Encoding.utf8)
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {
+                (data, response, error) in
+                
+                if error != nil {
+                    print("error is \(String(describing: error))")
+                    return
+                }
+                
+                var err: NSError?
+                
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                    
+                    
+                    if let parseJSON = json {
+                        
+                        let messageToDisplay:String = parseJSON["message"] as! String
+                        let myAlert = UIAlertController(title: "Alert", message:messageToDisplay, preferredStyle: .alert)
+                        
+                        if messageToDisplay == "Could not create listing" {
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                        } else if messageToDisplay == "Could not locate aid" {
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                        } else if messageToDisplay == "Listing created successfully" {
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+//                                  self.performSegue(withIdentifier: "registerSuccess", sender: self)
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                        } else { //Something else went wrong
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                        }
+                    }
+                } catch let error as NSError {
+                    print(err = error)
+                }
+            }
+            task.resume()
         }
         
-        print(item)
-        print(price)
-        print(descr)
-        print(type)
+//        print(USER)
+//        print(item)
+//        print(fixedPrice)
+//        print(descr)
+//        print(type)
     }
 
     /*
