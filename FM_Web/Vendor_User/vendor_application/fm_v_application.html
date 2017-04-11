@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon" />
 
 <script type="text/javascript">
 
@@ -83,6 +83,20 @@ maxLength(document.getElementById("text"));
 		position: absolute;
 	}
 	
+	.button {
+		background-color: #4B4B4B;
+		border: none;
+		border-radius: 3px;
+		color: white;
+		padding: 5px 15px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 12px;
+		margin: 4px 2px;
+		cursor: pointer;
+	}
+	
 	
 	footer {
 		margin: auto;
@@ -125,7 +139,7 @@ maxLength(document.getElementById("text"));
 <!-- Header -->
 <div class="header">
 	<div class="image">
-		<img src="../../images/LogoMakr-layerExport.png" height = "90px" width = "175px"/>
+		<a href="../../fm_homepage.html"><img src="../../images/logo.png" height = "100px" width = "200px"/></a>
 	</div>
 
 	<div class ="title">
@@ -157,11 +171,11 @@ maxLength(document.getElementById("text"));
 						<input type="radio" name="years" value="3">3
 						<input type="radio" name="years" value="4">4+<br>
 				<br>
-				Why do you want to join Freely Market? <br><textarea cols="80" rows="5" id="whyjoin" name="whyjoin" maxlength="300"></textarea>
+				Why do you want to join Freely Market? <br><textarea cols="100" rows="5" id="whyjoin" name="whyjoin" maxlength="300"></textarea>
 				<br>
-				What is the future projection of the company? <br><textarea cols="80" rows="5" id="futureproj" name="futureproj" maxlength="300"></textarea>
+				What is the future projection of the company? <br><textarea cols="100" rows="5" id="futureproj" name="futureproj" maxlength="300"></textarea>
 				<br>
-				<input type="submit" value="Submit">
+				<input type="submit" class="button" value="Submit">
 			</fieldset>
 		</form>
 </div>
