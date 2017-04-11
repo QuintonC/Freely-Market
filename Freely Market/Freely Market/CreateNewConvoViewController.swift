@@ -19,6 +19,11 @@ class CreateNewConvoViewController: UIViewController, UITextFieldDelegate {
     var height = 255
     
     
+    var alert = String()
+    
+    var validUserName = Bool()
+    
+    
     @IBOutlet var usernameTextField: UITextField!
     @IBOutlet var messageTextField: UITextField!
     @IBOutlet var scrollView: UIScrollView!
@@ -76,8 +81,9 @@ class CreateNewConvoViewController: UIViewController, UITextFieldDelegate {
     
     
     
+    
     @IBAction func send(_ sender: Any) {
-        contact = usernameTextField.text!
+        contact = usernameTextField.text! as String
         message = messageTextField.text!
         
         let myURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/createMessage.php")
@@ -137,7 +143,12 @@ class CreateNewConvoViewController: UIViewController, UITextFieldDelegate {
         task.resume()
         messageTextField.text = ""
         usernameTextField.text = ""
+        
     }
+    
+    
+    
+    
     
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {

@@ -1204,7 +1204,7 @@ Password must contain at least one letter, at least one number, and be at least 
             </objects>
             <point key="canvasLocation" x="2248.8000000000002" y="3256.8215892053977"/>
         </scene>
-        <!--Title-->
+        <!--New Message-->
         <scene sceneID="eL6-aP-wYI">
             <objects>
                 <viewController id="2RT-sV-iRR" customClass="CreateNewConvoViewController" customModule="Freely_Market" customModuleProvider="target" sceneMemberID="viewController">
@@ -1308,7 +1308,7 @@ Password must contain at least one letter, at least one number, and be at least 
                             <constraint firstItem="3zU-qu-P7H" firstAttribute="leading" secondItem="Gvw-pt-Ks6" secondAttribute="leading" id="zgX-ZL-mTd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="kpa-kG-2x1"/>
+                    <navigationItem key="navigationItem" title="New Message" id="kpa-kG-2x1"/>
                     <connections>
                         <outlet property="messageTextField" destination="f9s-4K-1UN" id="obt-Aj-SD0"/>
                         <outlet property="scrollView" destination="3zU-qu-P7H" id="HdZ-dA-cco"/>

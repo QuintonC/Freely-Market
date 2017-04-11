@@ -84,7 +84,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     //myContacts.append(contact)
                     myContacts.append(contact)
                     self.names.append(contact)
-                    print(contact)
+                    //print(contact)
                     
                 }
                 //reload tableView
