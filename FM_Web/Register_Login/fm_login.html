@@ -1,15 +1,42 @@
 <html>
 
 <head>
+<script type="text/javascript">
+
+<!-- Ensures forms are not blank -->
+    function blank()
+    {
+    var a=document.forms["login"]["user"].value;
+    var b=document.forms["login"]["password"].value;
+    if (a==null || a=="",b==null || b=="")
+      {
+      alert("Please complete all required fields");
+      return false;
+      }
+    }
+
+	function maxLength(char) {    
+    if (!('maxLength' in char)) {
+        var max = char.attributes.maxLength.value;
+        char.onkeypress = function () {
+            if (this.value.length >= max) return false;
+        };
+    }
+}
+
+maxLength(document.getElementById("text"));
+</script>
 	<title>Login</title>
 </head>
 
 <body>
-
-
-
 <style>
-	
+
+body{
+	padding: 0px;
+	margin: 0px;
+}	
+
 .title {
 margin: auto;
 width: 100%;
@@ -104,7 +131,7 @@ top: 575px;
 <form name = "login" action = "fm_login.php" method="post" >
 <p>User Name: <input type="text" id = "user" name ="user" maxlength = "15"></p>
 <p>Password: <input type="password" id = "password" name ="password"></p>
-<a href="../fm_recover_password.html">Recover Password</a>
+<a href="fm_recover_password.html">Recover Password</a>
 <br />
 <br />
 <button type="submit" value="Login">Log In</button>

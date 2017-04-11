@@ -44,6 +44,9 @@ $content = $conn->query($sql);
 $set = mysqli_fetch_array($content);
 $password = $set['password'];
 
+function invalidPass() {
+	echo '<script type="text/javascript"> alert("Invalid username or password."); location="fm_login.html";</script>';
+}
 
 if (password_verify($formpass,$password)) {
 	$_SESSION['username'] = $username;
@@ -53,7 +56,7 @@ if (password_verify($formpass,$password)) {
 	header("Location: ../account/fm_account.php");
 	exit;
 } else {
-	echo "<p>Invalid username/password combination</p>";
+	invalidPass();
 }
 
 
