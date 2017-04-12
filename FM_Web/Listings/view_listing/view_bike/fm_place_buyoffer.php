@@ -17,12 +17,20 @@ $conn->query($mysql);
 
 $type = "buybid";
 $date = date("Y-m-d H:i:s");
-$message = "You have recieved an offer for one of your sale listings!";
 
 $sql = "select psid from Pending_Sale where username = '$username' and bid = '$bid' limit 1";
 $content = $conn->query($sql);
 $row = mysqli_fetch_array($content);
 $psid = $row['psid'];
+
+#Get Item Name
+$sql1 = "select item from Buy_Listing where bid = '$bid'";
+$cont = $conn->query($sql1);
+$dat = mysqli_fetch_array($cont);
+$item = $dat['item'];
+
+$message = "You have recieved an offer for " . $item . "!";
+$email_msg = "You have recieved an offer for " . $item . " from " . $username . "!<br /><a href = 'http://cgi.soic.indiana.edu/~team12/register_login/fm_login.html'>Freely Market</a>";
 
 $sql2 = "SELECT u.username, u.email FROM User_Accounts AS u, Buy_Listing AS b, Pending_Sale AS p WHERE p.bid = b.bid AND b.aid = u.aid AND psid = '$psid'";
 $data = $conn->query($sql2);
@@ -32,7 +40,7 @@ $email = $set['email'];
 
 #Email Confirmation Message
 $to = $email;
-$subject = 'the subject';
+$subject = 'Offer Recieved';
 
 //Set content-type
 $headers = "MIME-Version: 1.0" . "\r\n";
@@ -45,7 +53,7 @@ $headers .= 'From: freelycreativecapstone@gmail.com' . "\r\n";
 #Create notification
 $sql3 = "INSERT INTO Notifications(message,recipient,sender,types,created,bid) VALUES('$message','$seller','$username','$type','$date','$bid')";
 if ($conn->query($sql3) === TRUE) {
-	mail($to, $subject, $message, $headers);
+	mail($to, $subject, $email_msg, $headers);
 	header("Location: ../../../account/fm_account.php");
 	exit;
 } else {

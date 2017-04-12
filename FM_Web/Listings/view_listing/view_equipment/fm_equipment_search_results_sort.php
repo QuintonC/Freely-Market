@@ -38,7 +38,7 @@ $nextpage = $pagenum + 1;
 $prevpage = $pagenum - 1;
 $offset = ($pagenum - 1)  * $limit;
 
-$sql = "SELECT * FROM Equipment_Listing WHERE item LIKE '%".$item."%' OR descr LIKE '%".$item."%' AND status = 'Active' AND owner != '$username' LIMIT $limit OFFSET $offset";
+$sql = "SELECT * FROM Equipment_Listing WHERE item LIKE '%".$item."%' OR descr LIKE '%".$item."%' AND status = 'Active' AND owner != '$username' ORDER BY price ASC LIMIT $limit OFFSET $offset";
 $content = $conn->query($sql);
 
 #Select Advertisements
@@ -246,21 +246,21 @@ top: 1250px;
 <center><h2>Sales</h2></center>
 <?php echo "Page " . $pagenum . "of " . $lastpage;?><br />
 <?php if ($pagenum == 1 and $lastpage != 1) { ?>
-<a href="fm_buy_equipment_search_results.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_buy_equipment_search_results.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+<a href="fm_buy_equipment_search_results_sort.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
+<a href="fm_buy_equipment_search_results_sort.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
 <?php } elseif ($pagenum == $lastpage and $pagenum != 1) { ?>
-<a href="fm_buy_equipment_search_results.php?pagenum=1">FIRST</a>
-<a href="fm_buy_equipment_search_results.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+<a href="fm_buy_equipment_search_results_sort.php?pagenum=1">FIRST</a>
+<a href="fm_buy_equipment_search_results_sort.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
 <?php } elseif ($pagenum != 1 and $lastpage != 1) { ?>
-<a href="fm_buy_equipment_search_results.php?pagenum=1">FIRST</a>
-<a href="fm_buy_equipment_search_results.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
-<a href="fm_buy_equipment_search_results.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_buy_equipment_search_results.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+<a href="fm_buy_equipment_search_results_sort.php?pagenum=1">FIRST</a>
+<a href="fm_buy_equipment_search_results_sort.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+<a href="fm_buy_equipment_search_results_sort.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
+<a href="fm_buy_equipment_search_results_sort.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
 <?php } ?>
 <table>
 	<tr>
 		<th>Item</th>
-		<th><a href="fm_equipment_search_results_sort.php?pagenum=1">Price</a></th>
+		<th><a href="fm_equipment_search_results_sort_asc.php?pagenum=1">Price</a></th>
 		<th>Description</th>
 		<th>Picture</th>
 		<th>Id</th>

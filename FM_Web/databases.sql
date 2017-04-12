@@ -68,6 +68,7 @@ email varchar(30) NOT NULL,
 phone varchar(10) NOT NULL,
 typ varchar(10) NOT NULL,
 picture LONGBLOB NOT NULL,
+created datetime NOT NULL,
 PRIMARY KEY(aid))
 engine=innodb;
 

@@ -22,12 +22,20 @@ $conn->query($mysql);
 
 $type = "rentalbid";
 $date = date("Y-m-d H:i:s");
-$message = "You have recieved an offer for one of your rental listings!";
 
 $sql = "select prid from Pending_Rental where username = '$username' and rid = '$rid' limit 1";
 $content = $conn->query($sql);
 $row = mysqli_fetch_array($content);
 $prid = $row['prid'];
+
+#Get Item Name
+$sql1 = "select item from Rental_Listing where rid = '$rid'";
+$cont = $conn->query($sql1);
+$dat = mysqli_fetch_array($cont);
+$item = $dat['item'];
+
+$message = "You have recieved an offer for " . $item . "!";
+$email_msg = "You have recieved an offer for " . $item . " from " . $username . "!<br /><a href = 'http://cgi.soic.indiana.edu/~team12/register_login/fm_login.html'>Freely Market</a>";
 
 $sql2 = "SELECT u.username, u.email FROM User_Accounts AS u, Rental_Listing AS r, Pending_Rental AS p WHERE p.rid = r.rid AND r.aid = u.aid AND prid = '$prid'";
 $data = $conn->query($sql2);
@@ -37,7 +45,7 @@ $email = $set['email'];
 
 #Email Confirmation Message
 $to = $email;
-$subject = 'the subject';
+$subject = 'Offer Recieved';
 
 //Set content-type
 $headers = "MIME-Version: 1.0" . "\r\n";
@@ -51,7 +59,7 @@ $headers .= 'From: freelycreativecapstone@gmail.com' . "\r\n";
 $sql3 = "INSERT INTO Notifications(message,recipient,sender,types,created,rid) VALUES('$message','$seller','$username','$type','$date','$rid')";
 
 if ($conn->query($sql3) === TRUE) {
-	mail($to, $subject, $message, $headers);
+	mail($to, $subject, $email_msg, $headers);
 	header("Location: ../../../account/fm_account.php");
 	exit;
 } else {

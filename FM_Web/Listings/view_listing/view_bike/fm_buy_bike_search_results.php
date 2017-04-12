@@ -260,7 +260,7 @@ top: 1250px;
 <table>
 	<tr>
 		<th>Item</th>
-		<th>Price</th>
+		<th><a href="fm_buy_bike_search_results_sort.php?pagenum=1&id=<?php echo $item; ?>">Price</a></th>
 		<th>Description</th>
 		<th>Picture</th>
 		<th>Id</th>

@@ -8,6 +8,7 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 		exit();
 	}
 $username = $_SESSION['username'];
+
 #Get id from url
 $eid = $_GET['id'];
 
@@ -17,12 +18,20 @@ $conn->query($mysql);
 
 $type = "equipmenteid";
 $date = date("Y-m-d H:i:s");
-$message = "You have recieved an offer for one of your equipment listings!";
 
 $sql = "select peid from Pending_Equipment where username = '$username' and eid = '$eid' limit 1";
 $content = $conn->query($sql);
 $row = mysqli_fetch_array($content);
 $peid = $row['peid'];
+
+#Get Item Name
+$sql1 = "select item from Equipment_Listing where eid = '$eid'";
+$cont = $conn->query($sql1);
+$dat = mysqli_fetch_array($cont);
+$item = $dat['item'];
+
+$message = "You have recieved an offer for " . $item . "!";
+$email_msg = "You have recieved an offer for " . $item . " from " . $username . "!<br /><a href = 'http://cgi.soic.indiana.edu/~team12/register_login/fm_login.html'>Freely Market</a>";
 
 $sql2 = "SELECT u.username, u.email FROM User_Accounts AS u, Equipment_Listing AS e, Pending_Equipment AS p WHERE p.eid = e.eid AND e.aid = u.aid AND peid = '$peid'";
 $data = $conn->query($sql2);
@@ -32,7 +41,7 @@ $email = $set['email'];
 
 #Email Confirmation Message
 $to = $email;
-$subject = 'the subject';
+$subject = 'Offer Recieved';
 
 //Set content-type
 $headers = "MIME-Version: 1.0" . "\r\n";
@@ -45,7 +54,7 @@ $headers .= 'From: freelycreativecapstone@gmail.com' . "\r\n";
 #Create notification
 $sql3 = "INSERT INTO Notifications(message,recipient,sender,types,created,eid) VALUES('$message','$seller','$username','$type','$date','$eid')";
 if ($conn->query($sql3) === TRUE) {
-	mail($to, $subject, $message, $headers);
+	mail($to, $subject, $email_msg, $headers);
 	header("Location: ../../../account/fm_account.php");
 	exit;
 } else {
