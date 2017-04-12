@@ -246,7 +246,7 @@ top: 1250px;
 <!-- Block 3 -->
 <div class = "center">
 
-<center><h2><?php echo $user; ?>'s Bike Listings</h2></center>
+<center><h2><?php echo $user; ?>'s Equipment Listings</h2></center>
 <?php echo "Page " . $pagenum . " of " . $lastpage;?><br />
 <?php if ($pagenum == 1 and $lastpage != 1) { ?>
 <a href="fm_view_user_equipment_listings.php?pagenum=<?php echo $nextpage; ?>&id=<?php echo $user; ?>">NEXT</a>
