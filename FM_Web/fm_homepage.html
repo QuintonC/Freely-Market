@@ -33,8 +33,21 @@ li a {
 }
 
 li a:hover {
-    background-color: #111;
+    background-color: black;
 }
+
+a:link {
+    color: green;
+}
+
+a:visited {
+    color: white;
+}
+
+a:hover {
+    color: #13A61B;
+}
+
 
 .active {
     background-color: #4CAF50;
@@ -43,30 +56,32 @@ li a:hover {
 .title {
 	margin: auto;
 	width: 100%;
-	height: 150px;
-	background-color: #ff4d4d;
+	height: 15%;
+	background-color: #13A61B;
 	position: absolute;
 }
 
 
 .title .header {
-	left: 40%;
+	width: 100%;
 	position: absolute;
-	top: 15px;
+	top: 1%;
 	font-family: "Brush Script MT", cursive;
 	font-size: 24px;
 }
 
 .title .search {
-	top: 15px;
+	top: 0.25%;
 	left: 2%;
 	position: absolute;
 }
 
 
 .title .login{
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	border-radius: 5px;
 	position: absolute;
-	top: 15px;
+	top: 15%;
 	right: 2%;
 	font-size: 17px;
 	border-style: solid;
@@ -75,23 +90,37 @@ li a:hover {
 
 
 .information {
+	font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
 	margin: auto;
 	text-align: center;
+	color: white;
+	border-top: solid;
+	border-color: white;
 	width: 100%;
-	height: 400px;
+	height: 50%;
 	background-color: #ffe6e6;
 	position: absolute;
-	top: 150px;
+	top: 15%;
+	background-image: url("images/views.jpg");
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	opacity: 0.65;
 }
 
 .mobile {
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	color: white;
 	margin: auto;
 	text-align: center;
+	border-top: solid;
+	border-color: white;
 	width: 100%;
-	height: 350px;
-	background-color: #B0B0B0;
+	height: 40%;
+	background-color: #333;
 	position: absolute;
-	top: 550px;
+	top: 65%;
 }
 
 .mobile .mockup {
@@ -105,16 +134,20 @@ li a:hover {
 	right: 2%;
 	font-size: 17px;
 	border-style: solid;
-	border-color: white;
+	border-color: #13A61B;
+	border-radius: 5px;
 }
 
 .footer {
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
 	margin: auto;
 	width: 100%;
+	border-top: solid;
+	border-color: white;
 	background-color: #000000;
 	color: #FFFAF0;
 	position: absolute;
-	top: 900px;
+	top: 105%;
 }
 
 .footer ul {
@@ -146,12 +179,11 @@ li a:hover {
 <!-- Block 1 -->
 <div class = "title">
 	<div class = "search">
-		<img src = "images/logo.png" height = "100px" width = "200px" /><br />
-		<input type="text" name="search" placeholder="Search..">
+		<h3 align="center"><img src = "images/logo.png" height = "90px" width = "160px" /></h3><br />
 	</div>
 
 	<div class = "header">
-		<h1>Freely Market</h1>
+		<h1 align="center">Freely Market</h1>
 	</div>
 
 	<div class = "login">
@@ -165,10 +197,11 @@ li a:hover {
 
 <!-- Block 2 -->
 <div class = "information">
-	<h2>Mission</h2>
-	<p>Freely Market is a place where people in the Bloomington, Indiana area can rent or sell bicycles and equipment.</p>
+<div class="img1">
+	<h1>Mission</h1>
+	<h4><p>Freely Market is a place where people in the Bloomington, Indiana area can rent or sell bicycles and equipment.</p></h4>
 </div>
-
+</div>
 <!-- Block 3 -->
 <div class = "mobile">
 	<h2 align>Are you a vendor?</h2>
