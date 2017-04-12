@@ -11,38 +11,17 @@ import UIKit
 class RentalListingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var RentalData: [[String]] = []
+    var selectedTitle:String!
+    var selectedPrice:String!
+    var selectedImage:String!
+    var selectedDescr:String!
+    var selectedOwner:String!
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.tabBarController?.navigationItem.title = "Listings"
-//        let button = UIBarButtonItem(image: UIImage(named: "menu"), style: .plain, target:self, action: #selector(SWRevealViewController.revealToggle(_:)))
-//        self.tabBarController
-        
-//        let btn = UIButton(type: .custom)
-//        btn.setImage(UIImage(named: "menu"), for: .normal)
-//        btn.frame = CGRect(x:0, y:0, width: 30, height: 30)
-//        self.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-//        let menuButton = UIBarButtonItem(customView: btn)
-//        
-//        menuButton.target = self.revealViewController()
-//        menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
-//        self.tabBarController?.navigationItem.setLeftBarButton(menuButton, animated: true)
-//        self.tabBarController?.navigationItem.leftBarButtonItem?.isEnabled = true
-        
-        
-        RentalData = []
-        
-        // Do any additional setup after loading the view, typically from a nib.
-//        if self.revealViewController() != nil {
-//            menuButton.target = self.revealViewController()
-//            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
-//            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-//        }
-        print(USER)
         rentListings()
     }
     
@@ -67,7 +46,11 @@ class RentalListingsViewController: UIViewController, UITableViewDataSource, UIT
                             if let title = listing["item"] as? String {
                                 if let price = listing["price"] as? String {
                                     if let picture = listing["picture"] as? String {
-                                        self.RentalData.append([title, "$" + price, picture])
+                                        if let descr = listing["descr"] as? String {
+                                            if let owner = listing["owner"] as? String {
+                                                self.RentalData.append([title, "$" + price, picture, descr, owner])
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -86,7 +69,6 @@ class RentalListingsViewController: UIViewController, UITableViewDataSource, UIT
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let rent = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CellData
-        
         rent.contentView.backgroundColor = UIColor.clear
         
         let cellStyle : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 85))
@@ -105,13 +87,13 @@ class RentalListingsViewController: UIViewController, UITableViewDataSource, UIT
         
         let imageURL = URL(string: "http://cgi.soic.indiana.edu/~team12/images/" + RentalData[indexPath.row][2])!
         let session = URLSession(configuration: .default)
+        
         let downloadPicTask = session.dataTask(with: imageURL) {
             (data, response, error) in
             if let e = error {
                 print("Error download image: \(e)")
             } else {
-                if let res = response as? HTTPURLResponse {
-                    //print("Downloaded image with response code \(res.statusCode)")
+                if (response as? HTTPURLResponse) != nil {
                     if let imageData = data {
                         let picture = UIImage(data: imageData)
                         rent.listingImage.image = picture
@@ -129,6 +111,33 @@ class RentalListingsViewController: UIViewController, UITableViewDataSource, UIT
     
     func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+        selectedTitle = RentalData[indexPath.row][0]
+        selectedPrice = RentalData[indexPath.row][1]
+        selectedImage = RentalData[indexPath.row][2]
+        selectedDescr = RentalData[indexPath.row][3]
+        selectedOwner = RentalData[indexPath.row][4]
+        
+        performSegue(withIdentifier: "passSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "passSegue") {
+            
+            let destination = storyboard?.instantiateViewController(withIdentifier: "indListing") as! IndividualListingViewController
+            
+            //let destination = segue.destination as? IndividualListingViewController
+            
+            destination.lTitle = selectedTitle
+            destination.image = selectedImage
+            destination.descr = selectedDescr
+            destination.owner = selectedOwner
+            destination.price = selectedPrice
+            
+        }
     }
 
     @IBAction func logout(_ sender: AnyObject) {

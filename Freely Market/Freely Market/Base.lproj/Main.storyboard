@@ -1052,6 +1052,7 @@ Password must contain at least one letter, at least one number, and be at least 
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="x56-a0-mtk" id="7zB-UN-CL9"/>
+                        <segue destination="opi-jG-y3i" kind="custom" identifier="passSegue" customClass="SWRevealViewControllerSeguePushController" id="TRM-Ep-dyG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zM8-yE-kWf" sceneMemberID="firstResponder"/>
@@ -1222,11 +1223,142 @@ Password must contain at least one letter, at least one number, and be at least 
                     <connections>
                         <outlet property="menuButton" destination="a0K-df-5qg" id="wRO-yc-Uow"/>
                         <outlet property="tableView" destination="RT3-Lq-lGp" id="kJ1-Wu-x4s"/>
+                        <segue destination="opi-jG-y3i" kind="custom" identifier="passSegue" customClass="SWRevealViewControllerSeguePushController" id="CY8-II-rwR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ulO-1G-lIK" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="601" y="4037"/>
+        </scene>
+        <!--Listing-->
+        <scene sceneID="OY6-50-EaL">
+            <objects>
+                <viewController storyboardIdentifier="indListing" useStoryboardIdentifierAsRestorationIdentifier="YES" id="H1U-uo-Y4Y" customClass="IndividualListingViewController" customModule="Freely_Market" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rch-F3-Mm7"/>
+                        <viewControllerLayoutGuide type="bottom" id="T0L-PF-8rK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EJ2-Dt-T1H">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="summer-ray-of-sunshine-bikes-bicycles" translatesAutoresizingMaskIntoConstraints="NO" id="6vp-ws-csQ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DUh-dj-BQQ">
+                                <rect key="frame" x="46" y="130" width="283" height="175"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="175" id="FrP-z2-qSg"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7s-BF-hcI">
+                                <rect key="frame" x="46" y="72" width="283" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6ku-qK-7V1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eAi-BB-7uz">
+                                <rect key="frame" x="0.0" y="597" width="375" height="70"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="deg-I6-kKE"/>
+                                </constraints>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7s-V9-Zv5">
+                                <rect key="frame" x="46" y="367" width="283" height="205"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="0.34999999999999998" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="205" id="rBg-R8-Gnr"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posted by: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hf2-6l-ic1">
+                                <rect key="frame" x="46" y="326" width="125" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="125" id="O8L-ko-q9r"/>
+                                    <constraint firstAttribute="height" constant="21" id="P6M-AU-kd8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posted by: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqF-Jw-FsU">
+                                <rect key="frame" x="204" y="326" width="125" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="125" id="Pjb-G3-CQG"/>
+                                    <constraint firstAttribute="height" constant="21" id="kyj-zu-JtF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DUh-dj-BQQ" firstAttribute="leading" secondItem="EJ2-Dt-T1H" secondAttribute="leadingMargin" constant="30" id="0b7-nF-aO4"/>
+                            <constraint firstItem="DUh-dj-BQQ" firstAttribute="top" secondItem="u7s-BF-hcI" secondAttribute="bottom" constant="8" id="1pD-Kq-RjL"/>
+                            <constraint firstAttribute="trailing" secondItem="6vp-ws-csQ" secondAttribute="trailing" id="1td-oo-uwL"/>
+                            <constraint firstItem="hf2-6l-ic1" firstAttribute="top" secondItem="DUh-dj-BQQ" secondAttribute="bottom" constant="21" id="1vc-EP-kzq"/>
+                            <constraint firstItem="6vp-ws-csQ" firstAttribute="leading" secondItem="EJ2-Dt-T1H" secondAttribute="leading" id="93m-Ms-Nfh"/>
+                            <constraint firstItem="V7s-V9-Zv5" firstAttribute="leading" secondItem="EJ2-Dt-T1H" secondAttribute="leadingMargin" constant="30" id="DzG-Ot-Lrh"/>
+                            <constraint firstItem="T0L-PF-8rK" firstAttribute="top" secondItem="6vp-ws-csQ" secondAttribute="bottom" id="IQg-Zv-n5e"/>
+                            <constraint firstItem="hf2-6l-ic1" firstAttribute="leading" secondItem="EJ2-Dt-T1H" secondAttribute="leadingMargin" constant="30" id="KUP-3Y-IRM"/>
+                            <constraint firstItem="V7s-V9-Zv5" firstAttribute="top" secondItem="hf2-6l-ic1" secondAttribute="bottom" constant="20" id="MK9-5j-347"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="V7s-V9-Zv5" secondAttribute="trailing" constant="30" id="Tot-CW-qQP"/>
+                            <constraint firstItem="fqF-Jw-FsU" firstAttribute="top" secondItem="DUh-dj-BQQ" secondAttribute="bottom" constant="21" id="WHw-Dt-hLW"/>
+                            <constraint firstItem="eAi-BB-7uz" firstAttribute="top" secondItem="V7s-V9-Zv5" secondAttribute="bottom" constant="25" id="aCS-Z7-Jir"/>
+                            <constraint firstItem="u7s-BF-hcI" firstAttribute="top" secondItem="rch-F3-Mm7" secondAttribute="bottom" constant="8" id="gwq-dk-idB"/>
+                            <constraint firstItem="V7s-V9-Zv5" firstAttribute="top" secondItem="fqF-Jw-FsU" secondAttribute="bottom" constant="20" id="i9C-i2-OxM"/>
+                            <constraint firstItem="u7s-BF-hcI" firstAttribute="leading" secondItem="EJ2-Dt-T1H" secondAttribute="leadingMargin" constant="30" id="iBj-p6-4ff"/>
+                            <constraint firstItem="6vp-ws-csQ" firstAttribute="top" secondItem="EJ2-Dt-T1H" secondAttribute="top" id="kFN-ex-qVT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="u7s-BF-hcI" secondAttribute="trailing" constant="30" id="n7r-4p-ubA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DUh-dj-BQQ" secondAttribute="trailing" constant="30" id="rX9-Og-FBs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fqF-Jw-FsU" secondAttribute="trailing" constant="30" id="s92-aY-NyT"/>
+                            <constraint firstItem="eAi-BB-7uz" firstAttribute="leading" secondItem="EJ2-Dt-T1H" secondAttribute="leadingMargin" constant="-16" id="yDc-RS-eio"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eAi-BB-7uz" secondAttribute="trailing" constant="-16" id="z8R-ky-NF1"/>
+                            <constraint firstItem="T0L-PF-8rK" firstAttribute="top" secondItem="eAi-BB-7uz" secondAttribute="bottom" id="zro-ew-J44"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Listing" id="vyC-My-RHT">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="B9h-RS-g3b"/>
+                        <barButtonItem key="rightBarButtonItem" image="more" id="yyH-ut-YXk"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="listingDescription" destination="V7s-V9-Zv5" id="38H-gn-ZKy"/>
+                        <outlet property="listingImage" destination="DUh-dj-BQQ" id="2zh-gW-ouL"/>
+                        <outlet property="listingOwner" destination="fqF-Jw-FsU" id="bPz-l0-UEe"/>
+                        <outlet property="listingTitle" destination="u7s-BF-hcI" id="Xht-OQ-ela"/>
+                        <outlet property="menuButton" destination="B9h-RS-g3b" id="APg-Kj-vdr"/>
+                        <outlet property="moreButton" destination="yyH-ut-YXk" id="efp-cZ-MhU"/>
+                        <outlet property="rentButton" destination="eAi-BB-7uz" id="lmg-4w-dd1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z92-1U-8ve" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iq0-Qk-u4x">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="B5W-Cp-yFO"/>
+                        <constraint firstAttribute="width" constant="375" id="JmK-eR-wPm"/>
+                    </constraints>
+                    <state key="normal" title="Reset Password">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="forgotPassPressed:" destination="0b6-aO-MC0" eventType="touchUpInside" id="PKV-Y0-lpw"/>
+                    </connections>
+                </button>
+            </objects>
+            <point key="canvasLocation" x="600.79999999999995" y="5620.8395802098958"/>
         </scene>
         <!--LoginSuccessful / Equipment-->
         <scene sceneID="HWk-ab-iTF">
@@ -1316,18 +1448,19 @@ Password must contain at least one letter, at least one number, and be at least 
                     <connections>
                         <outlet property="menuButton" destination="5Kt-qr-YbY" id="zgP-gO-ulf"/>
                         <outlet property="tableView" destination="THw-z8-de7" id="l48-Sq-Y5B"/>
+                        <segue destination="opi-jG-y3i" kind="custom" identifier="passSegue" customClass="SWRevealViewControllerSeguePushController" id="GrT-cH-ID5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BGR-1j-Kj1" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1286" y="4037"/>
         </scene>
-        <!--Public Listings-->
+        <!--Listings-->
         <scene sceneID="eK2-Ny-h7F">
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="cPy-Jc-yU1" customClass="TabBarViewController" customModule="Freely_Market" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Public Listings" id="TSH-1L-NyD">
+                    <navigationItem key="navigationItem" title="Listings" id="TSH-1L-NyD">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="ToN-32-6sj"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="LSX-5V-jTf">
                             <connections>
@@ -1526,6 +1659,24 @@ Password must contain at least one letter, at least one number, and be at least 
             </objects>
             <point key="canvasLocation" x="2221.5999999999999" y="3275.7121439280363"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dji-CE-GAr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="opi-jG-y3i" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fcZ-Hu-cG5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="H1U-uo-Y4Y" kind="relationship" relationship="rootViewController" id="nK9-Qz-gec"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GQG-hP-yPe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="600.79999999999995" y="4900.2998500749627"/>
+        </scene>
     </scenes>
     <resources>
         <image name="bike40" width="40" height="40"/>
@@ -1533,6 +1684,7 @@ Password must contain at least one letter, at least one number, and be at least 
         <image name="equipmentListings" width="1200" height="300"/>
         <image name="freelyMarketLogo" width="1200" height="300"/>
         <image name="menu" width="22" height="22"/>
+        <image name="more" width="22" height="22"/>
         <image name="pexels-photo-59904Blur" width="5335" height="3004"/>
         <image name="rentalListings" width="1200" height="300"/>
         <image name="saleListings" width="1200" height="300"/>
@@ -1540,8 +1692,9 @@ Password must contain at least one letter, at least one number, and be at least 
         <image name="summer-ray-of-sunshine-bikes-bicycles" width="3000" height="2000"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="E9Y-g8-bxw"/>
         <segue reference="aCG-b2-n3e"/>
         <segue reference="ita-cW-69Q"/>
-        <segue reference="E9Y-g8-bxw"/>
+        <segue reference="TRM-Ep-dyG"/>
     </inferredMetricsTieBreakers>
 </document>

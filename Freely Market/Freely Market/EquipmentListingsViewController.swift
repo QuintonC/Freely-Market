@@ -89,7 +89,7 @@ class EquipmentListingsViewController: UIViewController, UITableViewDataSource, 
             if let e = error {
                 print("Error download image: \(e)")
             } else {
-                if let res = response as? HTTPURLResponse {
+                if (response as? HTTPURLResponse) != nil {
                     //print("Downloaded image with response code \(res.statusCode)")
                     if let imageData = data {
                         let picture = UIImage(data: imageData)

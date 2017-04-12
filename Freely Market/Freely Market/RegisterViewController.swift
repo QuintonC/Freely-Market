@@ -70,7 +70,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
     
     func keyboardDown(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             self.view.frame.origin.y = 0
         }
     }
