@@ -15,11 +15,6 @@ $first = $_POST['fname'];
 $middle = $_POST['mname'];
 $last = $_POST['lname'];
 $email = $_POST['email'];
-$owner = $_POST['owner'];
-$ofirst = $_POST['ofirst'];
-$omiddle = $_POST['omiddle'];
-$olast = $_POST['olast'];
-$oemail = $_POST['oemail'];
 $street = $_POST['street'];
 $city = $_POST['city'];
 $state = $_POST['state'];
@@ -34,11 +29,6 @@ $first = strip_tags($first);
 $middle = strip_tags($middle);
 $last = strip_tags($last);
 $email = strip_tags($email);
-$owner = strip_tags($owner);
-$ofirst = strip_tags($ofirst);
-$omiddle = strip_tags($omiddle);
-$olast = strip_tags($olast);
-$oemail = strip_tags($oemail);
 $street = strip_tags($street);
 $city = strip_tags($city);
 $state = strip_tags($state);
@@ -52,11 +42,6 @@ $first = stripslashes($first);
 $middle = stripslashes($middle);
 $last = stripslashes($last);
 $email = stripslashes($email);
-$owner = stripslashes($owner);
-$ofirst = stripslashes($ofirst);
-$omiddle = stripslashes($omiddle);
-$olast = stripslashes($olast);
-$oemail = stripslashes($oemail);
 $street = stripslashes($street);
 $city = stripslashes($city);
 $state = stripslashes($state);
@@ -89,13 +74,17 @@ $headers .= 'From: freelycreativecapstone@gmail.com' . "\r\n";
 
 $random = mt_rand(100000,999999);
 
+function appSubmit(){
+	echo '<script type="text/javascript"> alert("Thank you for applying! Your application has been recieved and is being processed."); location="../../fm_homepage.html";</script>';
+}
 
 //Insert into the table
-$sql = "INSERT INTO Vendor_Application (vendor, fname, mname, lname, email, owner, ofname, omname, olname, oemail, street, city, state, zip, years, whyjoin, futureproj, code) 
-VALUES ('$vendor', '$first', '$middle', '$last', '$email', '$owner', '$ofirst', '$omiddle', '$olast', '$oemail', '$street', '$city', '$state', '$zip', '$years', '$whyjoin', '$futureproj', '$random')";
+$sql = "INSERT INTO Vendor_Application (vendor, fname, mname, lname, email, street, city, state, zip, years, whyjoin, futureproj, code) 
+VALUES ('$vendor', '$first', '$middle', '$last', '$email', '$street', '$city', '$state', '$zip', '$years', '$whyjoin', '$futureproj', '$random')";
 
 if ($con->query($sql) === TRUE) {
-	header("Location: fm_v_submission.html");
+	appSubmit();
+	//header("Location: fm_v_submission.html");
 	mail($to, $subject, $msg, $headers);
 	exit;
 } else {

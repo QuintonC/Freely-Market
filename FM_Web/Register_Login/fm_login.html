@@ -1,15 +1,42 @@
 <html>
 
 <head>
+<script type="text/javascript">
+
+<!-- Ensures forms are not blank -->
+    function blank()
+    {
+    var a=document.forms["login"]["user"].value;
+    var b=document.forms["login"]["password"].value;
+    if (a==null || a=="",b==null || b=="")
+      {
+      alert("Please complete all required fields");
+      return false;
+      }
+    }
+
+	function maxLength(char) {    
+    if (!('maxLength' in char)) {
+        var max = char.attributes.maxLength.value;
+        char.onkeypress = function () {
+            if (this.value.length >= max) return false;
+        };
+    }
+}
+
+maxLength(document.getElementById("text"));
+</script>
 	<title>Login</title>
 </head>
 
 <body>
-
-
-
 <style>
-	
+
+body{
+	padding: 0px;
+	margin: 0px;
+}	
+
 .title {
 margin: auto;
 width: 100%;

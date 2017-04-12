@@ -31,7 +31,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-        
     }
     
     func dismissKeyboard() {

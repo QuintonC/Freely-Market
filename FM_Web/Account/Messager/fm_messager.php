@@ -25,13 +25,17 @@ $date = date("Y-m-d H:i:s");
 
 $type = "You have recieved a message";
 
+$sql = "select count(*) from User_Accounts where username = '$reciever'";
+$num = $conn->query($sql);
+$set = mysqli_fetch_array($num);
+$number = $set['count(*)'];
+
 #Creates Message
 $mysql = "INSERT INTO Messages(sender,reciever,message,recieved) VALUES('$sender','$reciever','$message','$date')";
 
-if (!$conn->query($mysql) === TRUE) {
-	echo "Error: " . $mysql . "<br>" . $conn->error;
-	exit;
-}
+if ($number != 0) {
+	$conn->query($mysql);
+} 
 
 #Gets message ids
 $sql2 = "select msgid from Messages where sender = '$sender' and reciever = '$reciever' order by recieved desc limit 1";
@@ -44,11 +48,12 @@ $message = 'You have recieved a message from ' . $sender . '!';
 #Create Notification
 $sql3 = "INSERT INTO Msg_Notifications(message,recipient,sender,created,msgid) VALUES('$message','$reciever','$sender','$date','$msgid')";
 
-if ($conn->query($sql3) === TRUE) {
+if ($number != 0) {
+	$conn->query($sql3);
 	header("Location: fm_conversation.php?contact=" . $reciever);
 	exit;
 } else {
-	echo "Error: " . $sql3 . "<br>" . $conn->error;
+	echo "User does not exist!";
 	exit;
 }
 

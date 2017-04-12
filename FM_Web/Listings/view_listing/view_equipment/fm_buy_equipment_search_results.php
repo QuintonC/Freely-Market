@@ -38,7 +38,7 @@ $nextpage = $pagenum + 1;
 $prevpage = $pagenum - 1;
 $offset = ($pagenum - 1)  * $limit;
 
-$sql = "SELECT * FROM Equipment_Listing WHERE item LIKE '%".$item."%' OR descr LIKE '%".$item."%' AND status = 'Active' AND owner != '$username' LIMIT $limit OFFSET $offset";
+$sql = "SELECT * FROM Equipment_Listing WHERE (item LIKE '%".$item."%' OR descr LIKE '%".$item."%') AND status = 'Active' AND owner != '$username' LIMIT $limit OFFSET $offset";
 $content = $conn->query($sql);
 
 #Select Advertisements
@@ -212,7 +212,7 @@ top: 1250px;
 <div class = "search">
 <img src = "../../../images/logo.png" height = "100px" width = "200px" /><br />
 <form name = "searchbar" action = "fm_buy_equipment_search_results.php?pagenum=1" method="post">
-<input type="text" name="search" placeholder="Search for a Listing...">
+<input type="text" name="search" value = "~" placeholder="Search for a Listing...">
 <button type="submit" value="search">Search</button>
 </form>
 </div>
@@ -260,7 +260,7 @@ top: 1250px;
 <table>
 	<tr>
 		<th>Item</th>
-		<th><a href="fm_equipment_search_results_sort.php?pagenum=1">Price</a></th>
+		<th><a href="fm_equipment_search_results_sort.php?pagenum=1&id=<?php echo $item; ?>">Price</a></th>
 		<th>Description</th>
 		<th>Picture</th>
 		<th>Id</th>

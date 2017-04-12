@@ -19,7 +19,7 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	
 $username = $_SESSION['username'];
 
-$item = $_POST['search'];
+$item = $_GET['id'];
 
 
 $mysql = "SELECT count(*) FROM Rental_Listing WHERE item LIKE '%".$item."%'";
@@ -38,7 +38,7 @@ $nextpage = $pagenum + 1;
 $prevpage = $pagenum - 1;
 $offset = ($pagenum - 1)  * $limit;
 
-$sql = "SELECT * FROM Rental_Listing WHERE item LIKE '%".$item."%' OR descr LIKE '%".$item."%' AND status = 'Active' AND owner != '$username' LIMIT $limit OFFSET $offset";
+$sql = "SELECT * FROM Rental_Listing WHERE (item LIKE '%".$item."%' OR descr LIKE '%".$item."%') AND status = 'Active' AND owner != '$username' ORDER BY price ASC LIMIT $limit OFFSET $offset";
 $content = $conn->query($sql);
 
 #Select Advertisements
@@ -209,7 +209,7 @@ top: 1250px;
 <div class = "search">
 <img src = "../../../images/logo.png" height = "100px" width = "200px" /><br />
 <form name = "searchbar" action = "fm_rental_search_results.php?pagenum=1" method="post">
-<input type="text" name="search" value = "~" placeholder="Search for a Listing...">
+<input type="text" name="search" placeholder="Search for a Listing...">
 <button type="submit" value="search">Search</button>
 </form>
 </div>
@@ -243,21 +243,21 @@ top: 1250px;
 <center><h2>Rentals</h2></center>
 <?php echo "Page " . $pagenum . "of " . $lastpage;?><br />
 <?php if ($pagenum == 1 and $lastpage != 1) { ?>
-<a href="fm_rental_search_results.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_rental_search_results.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+<a href="fm_rental_search_results_sort.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
+<a href="fm_rental_search_results_sort.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
 <?php } elseif ($pagenum == $lastpage and $pagenum != 1) { ?>
-<a href="fm_rental_search_results.php?pagenum=1">FIRST</a>
-<a href="fm_rental_search_results.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+<a href="fm_rental_search_results_sort.php?pagenum=1">FIRST</a>
+<a href="fm_rental_search_results_sort.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
 <?php } elseif ($pagenum != 1 and $lastpage != 1) { ?>
-<a href="fm_rental_search_results.php?pagenum=1">FIRST</a>
-<a href="fm_rental_search_results.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
-<a href="fm_rental_search_results.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_rental_search_results.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+<a href="fm_rental_search_results_sort.php?pagenum=1">FIRST</a>
+<a href="fm_rental_search_results_sort.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+<a href="fm_rental_search_results_sort.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
+<a href="fm_rental_search_results_sort.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
 <?php } ?>
 <table>
 	<tr>
 		<th>Item</th>
-		<th><a href="fm_rental_search_results_sort.php?pagenum=1&id=<?php echo $item; ?>">Price</th>
+		<th><a href="fm_rental_search_results_sort_asc.php?pagenum=1&id=<?php echo $item; ?>">Price</th>
 		<th>Duration</th>
 		<th>Description</th>
 		<th>Picture</th>
