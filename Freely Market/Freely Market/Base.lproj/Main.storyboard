@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="s3r-uP-m7a">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="s3r-uP-m7a">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -1329,11 +1329,15 @@ Password must contain at least one letter, at least one number, and be at least 
                                     <segue destination="qoV-cF-ocN" kind="show" identifier="messageOwner" id="uGr-uf-BNo"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="n2i-fa-466">
+                                <rect key="frame" x="169" y="199" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="DUh-dj-BQQ" firstAttribute="leading" secondItem="EJ2-Dt-T1H" secondAttribute="leadingMargin" constant="30" id="0b7-nF-aO4"/>
                             <constraint firstItem="DUh-dj-BQQ" firstAttribute="top" secondItem="u7s-BF-hcI" secondAttribute="bottom" constant="8" id="1pD-Kq-RjL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="n2i-fa-466" secondAttribute="trailing" constant="153" id="1rz-0n-s15"/>
                             <constraint firstAttribute="trailing" secondItem="6vp-ws-csQ" secondAttribute="trailing" id="1td-oo-uwL"/>
                             <constraint firstItem="hf2-6l-ic1" firstAttribute="top" secondItem="DUh-dj-BQQ" secondAttribute="bottom" constant="21" id="1vc-EP-kzq"/>
                             <constraint firstItem="6vp-ws-csQ" firstAttribute="leading" secondItem="EJ2-Dt-T1H" secondAttribute="leading" id="93m-Ms-Nfh"/>
@@ -1345,6 +1349,8 @@ Password must contain at least one letter, at least one number, and be at least 
                             <constraint firstItem="V7s-V9-Zv5" firstAttribute="top" secondItem="hf2-6l-ic1" secondAttribute="bottom" constant="20" id="MK9-5j-347"/>
                             <constraint firstAttribute="trailingMargin" secondItem="VF1-mN-mh0" secondAttribute="trailing" constant="30" id="PbE-FB-Jvu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="V7s-V9-Zv5" secondAttribute="trailing" constant="30" id="Tot-CW-qQP"/>
+                            <constraint firstItem="n2i-fa-466" firstAttribute="leading" secondItem="EJ2-Dt-T1H" secondAttribute="leadingMargin" constant="153" id="Uc3-qU-tqW"/>
+                            <constraint firstItem="n2i-fa-466" firstAttribute="centerX" secondItem="EJ2-Dt-T1H" secondAttribute="centerX" id="X5M-E6-Src"/>
                             <constraint firstItem="eAi-BB-7uz" firstAttribute="top" secondItem="V7s-V9-Zv5" secondAttribute="bottom" constant="25" id="aCS-Z7-Jir"/>
                             <constraint firstItem="u7s-BF-hcI" firstAttribute="top" secondItem="rch-F3-Mm7" secondAttribute="bottom" constant="8" id="gwq-dk-idB"/>
                             <constraint firstItem="u7s-BF-hcI" firstAttribute="leading" secondItem="EJ2-Dt-T1H" secondAttribute="leadingMargin" constant="30" id="iBj-p6-4ff"/>
@@ -1352,6 +1358,7 @@ Password must contain at least one letter, at least one number, and be at least 
                             <constraint firstItem="VF1-mN-mh0" firstAttribute="top" secondItem="DUh-dj-BQQ" secondAttribute="bottom" constant="21" id="mjd-EI-rK3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="u7s-BF-hcI" secondAttribute="trailing" constant="30" id="n7r-4p-ubA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DUh-dj-BQQ" secondAttribute="trailing" constant="30" id="rX9-Og-FBs"/>
+                            <constraint firstItem="n2i-fa-466" firstAttribute="centerY" secondItem="DUh-dj-BQQ" secondAttribute="centerY" id="sJc-mb-k1R"/>
                             <constraint firstItem="eAi-BB-7uz" firstAttribute="leading" secondItem="EJ2-Dt-T1H" secondAttribute="leadingMargin" constant="-16" id="yDc-RS-eio"/>
                             <constraint firstAttribute="trailingMargin" secondItem="eAi-BB-7uz" secondAttribute="trailing" constant="-16" id="z8R-ky-NF1"/>
                             <constraint firstItem="T0L-PF-8rK" firstAttribute="top" secondItem="eAi-BB-7uz" secondAttribute="bottom" id="zro-ew-J44"/>
@@ -1367,6 +1374,7 @@ Password must contain at least one letter, at least one number, and be at least 
                         <outlet property="listingImage" destination="DUh-dj-BQQ" id="2zh-gW-ouL"/>
                         <outlet property="listingOwner" destination="VF1-mN-mh0" id="Xfu-QN-nzp"/>
                         <outlet property="listingTitle" destination="u7s-BF-hcI" id="Xht-OQ-ela"/>
+                        <outlet property="loadingIndicator" destination="n2i-fa-466" id="BAO-io-5bu"/>
                         <outlet property="menuButton" destination="B9h-RS-g3b" id="APg-Kj-vdr"/>
                         <outlet property="moreButton" destination="yyH-ut-YXk" id="efp-cZ-MhU"/>
                         <outlet property="rentButton" destination="eAi-BB-7uz" id="lmg-4w-dd1"/>
