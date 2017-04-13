@@ -29,12 +29,39 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.title = contact
+        
         CONTACT = contact
         sendBtn.layer.cornerRadius = 5
         //get conversation from database
+        
+        let navigationBar = navigationController!.navigationBar
+        
+        //let rightButton = UIBarButtonItem(title: "Right Button", style: UIBarButtonItem.refresh, target: self, action: nil)
+        let rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.refresh, target: self, action: "refresh")
+        
+        navigationItem.rightBarButtonItem = rightButton
+        
+        
+        
         getMessages()
+        
+//        var timer = Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(ConversationViewController.getMessages), userInfo: nil, repeats: true)
+        
+//        var timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: Selector("reloadTableView"), userInfo: nil, repeats: true)
+        
     }
     
+//    func reloadTableView() {
+//        OperationQueue.main.addOperation {
+//            self.getMessages()
+//        }
+//    }
+    
+    
+    func refresh() {
+        getMessages()
+        autoScroll()
+    }
     
     func dismissKeyboard() {
         view.endEditing(true)
@@ -47,7 +74,18 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        autoScroll()
         
+    }
+    
+    func autoScroll() {
+        let numberOfSections = self.tableView.numberOfSections
+        let numberOfRows = self.tableView.numberOfRows(inSection: numberOfSections-1)
+        if (numberOfRows > 0) {
+            let indexPath = IndexPath(row: numberOfRows-1, section: (numberOfSections-1))
+            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            
+        }
     }
     
     func keyboardWillShow(notification: NSNotification) {
@@ -212,6 +250,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
             messageTextField.text = ""
             
             dismissKeyboard()
+            autoScroll()
         }
     }
 }

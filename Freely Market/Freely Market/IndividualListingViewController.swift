@@ -17,6 +17,7 @@ class IndividualListingViewController: UIViewController {
     @IBOutlet weak var listingOwner: UIButton!
     @IBOutlet weak var listingDescription: UITextView!
     @IBOutlet weak var rentButton: UIButton!
+    @IBOutlet var loadingIndicator: UIActivityIndicatorView!
     
     var lTitle = String()
     var image = String()
@@ -47,6 +48,14 @@ class IndividualListingViewController: UIViewController {
         rentButton.setTitle("Rent Now - " + price, for: .normal)
         listingOwner.setTitle(owner, for: .normal)
         
+        //Start loading Activity Indicator
+//        loadingIndicator.hidesWhenStopped = false
+//        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+        loadingIndicator.startAnimating()
+        
+        
+        
+        
         //Get Listing Image from database and show it in listingImage
         let imageURL = URL(string: "http://cgi.soic.indiana.edu/~team12/images/" + image)
         let session = URLSession(configuration: .default)
@@ -58,8 +67,12 @@ class IndividualListingViewController: UIViewController {
             } else {
                 if (response as? HTTPURLResponse) != nil {
                     if let imageData = data {
-                        let picture = UIImage(data: imageData)
-                        self.listingImage.image = picture
+                        DispatchQueue.main.async {
+                            let picture = UIImage(data: imageData)
+                            self.listingImage.image = picture
+                            self.loadingIndicator.removeFromSuperview()
+                        }
+                        
                     } else {
                         print("Couldn't get image: Image is nil")
                     }
@@ -69,7 +82,6 @@ class IndividualListingViewController: UIViewController {
             }
         }
         downloadPicTask.resume()
-        
         
         
         

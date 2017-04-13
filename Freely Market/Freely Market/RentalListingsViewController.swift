@@ -95,8 +95,11 @@ class RentalListingsViewController: UIViewController, UITableViewDataSource, UIT
             } else {
                 if (response as? HTTPURLResponse) != nil {
                     if let imageData = data {
-                        let picture = UIImage(data: imageData)
-                        rent.listingImage.image = picture
+                        DispatchQueue.main.async {
+                            let picture = UIImage(data: imageData)
+                            rent.listingImage.image = picture
+                        }
+                        
                     } else {
                         print("Couldn't get image: Image is nil")
                     }

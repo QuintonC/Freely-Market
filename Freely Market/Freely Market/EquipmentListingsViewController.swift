@@ -92,8 +92,11 @@ class EquipmentListingsViewController: UIViewController, UITableViewDataSource, 
                 if (response as? HTTPURLResponse) != nil {
                     //print("Downloaded image with response code \(res.statusCode)")
                     if let imageData = data {
-                        let picture = UIImage(data: imageData)
-                        equipment.listingImage.image = picture
+                        DispatchQueue.main.async {
+                            let picture = UIImage(data: imageData)
+                            equipment.listingImage.image = picture
+                        }
+                        
                     } else {
                         print("Couldn't get image: Image is nil")
                     }
