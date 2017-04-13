@@ -29,6 +29,7 @@ class RentalListingsViewController: UIViewController, UITableViewDataSource, UIT
         return RentalData.count
     }
     
+    //function to get information on all rental listings in the database
     func rentListings() {
         let requestURL: NSURL = NSURL(string: "http://cgi.soic.indiana.edu/~team12/api/rentalListings.php")!
         let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
@@ -117,29 +118,31 @@ class RentalListingsViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    
+        //Set variables to pass to IndividualListingViewController
         selectedTitle = RentalData[indexPath.row][0] as String
         selectedPrice = RentalData[indexPath.row][1] as String
         selectedImage = RentalData[indexPath.row][2] as String
         selectedDescr = RentalData[indexPath.row][3] as String
         selectedOwner = RentalData[indexPath.row][4] as String
-        print(selectedTitle)
-        print(selectedPrice)
+        
         performSegue(withIdentifier: "passSegue", sender: self)
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "passSegue") {
+            //Create an instance of the NavigationController
             let navVC = segue.destination as? UINavigationController
-        
+            //Create an instance of the destination IndividualListingViewController
             let listingVC = navVC?.viewControllers.first as! IndividualListingViewController
             
+            //give the variables in the destination values from the current viewcontroller
             listingVC.lTitle = selectedTitle
             listingVC.image = selectedImage
             listingVC.descr = selectedDescr
             listingVC.owner = selectedOwner
             listingVC.price = selectedPrice
+            listingVC.btnText = "Rent Now - " + selectedPrice
         }
     }
     
