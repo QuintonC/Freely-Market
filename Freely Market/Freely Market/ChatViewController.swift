@@ -20,12 +20,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     @IBOutlet var tableView: UITableView!
     
-    
-    var values:NSArray = []
     var names = [String]()
     var user = USER
-    
-        
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +35,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.dataSource = self
         tableView.delegate = self
         
-        
         // Do any additional setup after loading the view, typically from a nib.
         //getContacts()
         
@@ -49,6 +44,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         getContacts()
     }
     
+    //function to get all of the usernames of people the user has had a conversation with
     func getContacts() {
         names = []
         var myContacts:[String] = []
@@ -118,19 +114,15 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //Version 2 (working)
         let cell = UITableViewCell()
         
-//        cell.sizeThatFits(CGSize(width: 100,height:80))
+        //Give the cell a text label and populate it with a name
         cell.textLabel?.font = UIFont.systemFont(ofSize: 20.0)
         cell.textLabel?.text = names[indexPath.row]
-//
+        
+        //change the cells background color
         cell.backgroundColor = UIColor.clear
-//        cell.layer.masksToBounds = false
-//        cell.layer.cornerRadius = 10
-//        
-        
-        //let rent = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CellData
-        
         cell.contentView.backgroundColor = UIColor.clear
         
+        //more styling for the cell
         let cellStyle : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 50))
         
         cellStyle.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.8])
@@ -142,30 +134,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.contentView.addSubview(cellStyle)
         cell.contentView.sendSubview(toBack: cellStyle)
         
-        
-        
-        
-        //cell.sizeThatFits(CGSize(width: self.view.frame.size.width-10, height: self.view.frame.size.height))
-        
-
-//        let cellStyle : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width-10, height: 40))
-//        
-//        cellStyle.sizeThatFits(CGSize(width: self.view.frame.size.width-10, height: self.view.frame.size.height))
-//        
-//        cellStyle.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.5])
-//        cellStyle.layer.masksToBounds = false
-//        cellStyle.layer.cornerRadius = 10
-//
-//        
-//        cell.contentView.addSubview(cellStyle)
-//        cell.contentView.sendSubview(toBack: cellStyle)
-        
-        
-        
         return cell
     }
     
-    
+    //set the height for all the cells
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
@@ -176,12 +148,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Perform segue showConversation with selected cell as sender
         performSegue(withIdentifier: "showConversation", sender: names[indexPath.row])
     }
-    
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -192,6 +162,4 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             destinationVC.contact = sender as! String
         }
     }
-    
-    
 }

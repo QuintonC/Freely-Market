@@ -898,8 +898,34 @@ Password must contain at least one letter, at least one number, and be at least 
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="nXH-xf-k8j">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="q8N-ps-Fzi">
                                         <rect key="frame" x="0.0" y="132" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q8N-ps-Fzi" id="Ek7-Ju-img">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Messages" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Git-hm-Xf6">
+                                                    <rect key="frame" x="8" y="8" width="359" height="27.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Git-hm-Xf6" secondAttribute="trailing" id="Myj-d0-5FO"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="Git-hm-Xf6" secondAttribute="leading" id="T7l-hv-34E"/>
+                                                <constraint firstItem="Git-hm-Xf6" firstAttribute="top" secondItem="Ek7-Ju-img" secondAttribute="topMargin" id="XuH-Nu-YAA"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Git-hm-Xf6" secondAttribute="bottom" id="Y5P-fL-feI"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="4NR-6K-4V8" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="jsh-Xj-66X"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="nXH-xf-k8j">
+                                        <rect key="frame" x="0.0" y="176" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nXH-xf-k8j" id="Kkn-lA-bls">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -927,7 +953,7 @@ Password must contain at least one letter, at least one number, and be at least 
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="zKo-b7-6qp">
-                                        <rect key="frame" x="0.0" y="176" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="220" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zKo-b7-6qp" id="bMh-3d-SsD">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -950,32 +976,6 @@ Password must contain at least one letter, at least one number, and be at least 
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <segue destination="cP5-Bk-4dx" kind="custom" identifier="logoutSegue" customClass="SWRevealViewControllerSeguePushController" id="cKi-KO-eLK"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="q8N-ps-Fzi">
-                                        <rect key="frame" x="0.0" y="220" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q8N-ps-Fzi" id="Ek7-Ju-img">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Messages" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Git-hm-Xf6">
-                                                    <rect key="frame" x="8" y="8" width="359" height="27.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Git-hm-Xf6" secondAttribute="trailing" id="Myj-d0-5FO"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="Git-hm-Xf6" secondAttribute="leading" id="T7l-hv-34E"/>
-                                                <constraint firstItem="Git-hm-Xf6" firstAttribute="top" secondItem="Ek7-Ju-img" secondAttribute="topMargin" id="XuH-Nu-YAA"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Git-hm-Xf6" secondAttribute="bottom" id="Y5P-fL-feI"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <segue destination="4NR-6K-4V8" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="jsh-Xj-66X"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -2073,11 +2073,11 @@ Password must contain at least one letter, at least one number, and be at least 
         <image name="summer-ray-of-sunshine-bikes-bicycles" width="3000" height="2000"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Mw4-QG-wnN"/>
         <segue reference="cKi-KO-eLK"/>
+        <segue reference="Mw4-QG-wnN"/>
         <segue reference="TRM-Ep-dyG"/>
         <segue reference="uGr-uf-BNo"/>
-        <segue reference="cbj-FS-vsA"/>
+        <segue reference="up8-nE-ebJ"/>
         <segue reference="ita-cW-69Q"/>
     </inferredMetricsTieBreakers>
 </document>

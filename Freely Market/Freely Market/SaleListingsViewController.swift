@@ -11,6 +11,11 @@ import UIKit
 class SaleListingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var BuyData: [[String]] = []
+    var selectedTitle = String()
+    var selectedPrice = String()
+    var selectedImage = String()
+    var selectedDescr = String()
+    var selectedOwner = String()
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
@@ -35,6 +40,7 @@ class SaleListingsViewController: UIViewController, UITableViewDataSource, UITab
         return BuyData.count
     }
     
+    //function to get information on all buy listings in the database
     func buyListings() {
         let requestURL: NSURL = NSURL(string: "http://cgi.soic.indiana.edu/~team12/api/buyListings.php")!
         let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
@@ -52,7 +58,11 @@ class SaleListingsViewController: UIViewController, UITableViewDataSource, UITab
                             if let title = listing["item"] as? String {
                                 if let price = listing["price"] as? String {
                                     if let picture = listing["picture"] as? String {
-                                        self.BuyData.append([title, "$" + price, picture])
+                                        if let descr = listing["descr"] as? String {
+                                            if let owner = listing["owner"] as? String {
+                                                self.BuyData.append([title, "$" + price, picture, descr, owner])
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -113,32 +123,34 @@ class SaleListingsViewController: UIViewController, UITableViewDataSource, UITab
         view.endEditing(true)
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        
-//        selectedTitle = RentalData[indexPath.row][0] as String
-//        selectedPrice = RentalData[indexPath.row][1] as String
-//        selectedImage = RentalData[indexPath.row][2] as String
-//        selectedDescr = RentalData[indexPath.row][3] as String
-//        selectedOwner = RentalData[indexPath.row][4] as String
-//        print(selectedTitle)
-//        print(selectedPrice)
-//        performSegue(withIdentifier: "passSegue", sender: self)
-//    }
-//    
-//    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if (segue.identifier == "passSegue") {
-//            let navVC = segue.destination as? UINavigationController
-//            
-//            let listingVC = navVC?.viewControllers.first as! IndividualListingViewController
-//            
-//            listingVC.lTitle = selectedTitle
-//            listingVC.image = selectedImage
-//            listingVC.descr = selectedDescr
-//            listingVC.owner = selectedOwner
-//            listingVC.price = selectedPrice
-//        }
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //Set variables to pass to IndividualListingViewController
+        selectedTitle = BuyData[indexPath.row][0] as String
+        selectedPrice = BuyData[indexPath.row][1] as String
+        selectedImage = BuyData[indexPath.row][2] as String
+        selectedDescr = BuyData[indexPath.row][3] as String
+        selectedOwner = BuyData[indexPath.row][4] as String
+        
+        performSegue(withIdentifier: "passSegue", sender: self)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "passSegue") {
+            //Create an instance of the NavigationController
+            let navVC = segue.destination as? UINavigationController
+            //Create an instance of the destination IndividualListingViewController
+            let listingVC = navVC?.viewControllers.first as! IndividualListingViewController
+            
+            //give the variables in the destination values from the current viewcontroller
+            listingVC.lTitle = selectedTitle
+            listingVC.image = selectedImage
+            listingVC.descr = selectedDescr
+            listingVC.owner = selectedOwner
+            listingVC.price = selectedPrice
+            listingVC.btnText = "Buy Now - " + selectedPrice
+        }
+    }
     
     
     

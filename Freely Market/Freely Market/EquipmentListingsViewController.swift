@@ -11,6 +11,11 @@ import UIKit
 class EquipmentListingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var EquipmentData: [[String]] = []
+    var selectedTitle = String()
+    var selectedPrice = String()
+    var selectedImage = String()
+    var selectedDescr = String()
+    var selectedOwner = String()
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
@@ -34,7 +39,8 @@ class EquipmentListingsViewController: UIViewController, UITableViewDataSource, 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return EquipmentData.count
     }
-
+    
+    //function to get information on all equipment listings in the database
     func equipmentListings() {
             let requestURL: NSURL = NSURL(string: "http://cgi.soic.indiana.edu/~team12/api/equipmentListings.php")!
             let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
@@ -52,7 +58,11 @@ class EquipmentListingsViewController: UIViewController, UITableViewDataSource, 
                                 if let title = listing["item"] as? String {
                                     if let price = listing["price"] as? String {
                                         if let picture = listing["picture"] as? String {
-                                            self.EquipmentData.append([title, "$" + price, picture])
+                                            if let descr = listing["descr"] as? String {
+                                                if let owner = listing["owner"] as? String {
+                                                    self.EquipmentData.append([title, "$" + price, picture, descr, owner])
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -112,6 +122,37 @@ class EquipmentListingsViewController: UIViewController, UITableViewDataSource, 
     func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //Set variables to pass to IndividualListingViewController
+        selectedTitle = EquipmentData[indexPath.row][0] as String
+        selectedPrice = EquipmentData[indexPath.row][1] as String
+        selectedImage = EquipmentData[indexPath.row][2] as String
+        selectedDescr = EquipmentData[indexPath.row][3] as String
+        selectedOwner = EquipmentData[indexPath.row][4] as String
+        
+        performSegue(withIdentifier: "passSegue", sender: self)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "passSegue") {
+            //Create an instance of the NavigationController
+            let navVC = segue.destination as? UINavigationController
+            //Create an instance of the destination IndividualListingViewController
+            let listingVC = navVC?.viewControllers.first as! IndividualListingViewController
+            
+            //give the variables in the destination values from the current viewcontroller
+            listingVC.lTitle = selectedTitle
+            listingVC.image = selectedImage
+            listingVC.descr = selectedDescr
+            listingVC.owner = selectedOwner
+            listingVC.price = selectedPrice
+            listingVC.btnText = "Buy Now - " + selectedPrice
+        }
+    }
+    
 
     @IBAction func logout(_ sender: AnyObject) {
         
