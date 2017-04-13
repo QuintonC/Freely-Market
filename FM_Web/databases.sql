@@ -68,6 +68,7 @@ email varchar(30) NOT NULL,
 phone varchar(10) NOT NULL,
 typ varchar(10) NOT NULL,
 picture LONGBLOB NOT NULL,
+created datetime NOT NULL,
 PRIMARY KEY(aid))
 engine=innodb;
 
@@ -75,7 +76,7 @@ engine=innodb;
 create table Buy_Listing(
 bid int NOT NULL AUTO_INCREMENT,
 item varchar(30) NOT NULL,
-price varchar(8) NOT NULL,
+price DECIMAL(10,2) NOT NULL,
 descr varchar(100) NOT NULL,
 picture LONGBLOB NOT NULL,
 status varchar(30),
@@ -89,7 +90,7 @@ engine=innodb;
 create table Equipment_Listing(
 eid int NOT NULL AUTO_INCREMENT,
 item varchar(30) NOT NULL,
-price varchar(8) NOT NULL,
+price DECIMAL(10,2) NOT NULL,
 descr varchar(100) NOT NULL,
 picture LONGBLOB NOT NULL,
 status varchar(30),
@@ -104,7 +105,7 @@ engine=innodb;
 create table Rental_Listing(
 rid int NOT NULL AUTO_INCREMENT,
 item varchar(30) NOT NULL,
-price varchar(8) NOT NULL,
+price DECIMAL(10,2) NOT NULL,
 duration varchar(10) NOT NULL,
 descr varchar(100) NOT NULL,
 picture LONGBLOB NOT NULL,

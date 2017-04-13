@@ -120,7 +120,6 @@ class RentalListingsViewController: UIViewController, UITableViewDataSource, UIT
         selectedImage = RentalData[indexPath.row][2] as String
         selectedDescr = RentalData[indexPath.row][3] as String
         selectedOwner = RentalData[indexPath.row][4] as String
-        
         print(selectedTitle)
         print(selectedPrice)
         performSegue(withIdentifier: "passSegue", sender: self)

@@ -16,6 +16,7 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	}
 	
 $sender = $_SESSION['username'];
+$reciever = $_GET['id'];
 
 $mysql = "select * from Msg_Notifications where recipient = '$sender'";
 $result = $conn->query($mysql);
@@ -335,7 +336,7 @@ top: 950px;
 
 <div class ="mess">
 <form name = "messager" action = "fm_messager.php" method="get" onsubmit = "return blank()" >
-<p>To: <input type="text" id = "reciever" name ="reciever" maxlength = "15"></p>
+<p>To: <input type="text" id = "reciever" name ="reciever" value = "<?php echo $reciever; ?>" maxlength = "15"></p>
 <p>Message: </p>
 <textarea rows = "4" cols = "50" id = "message" name = "message"></textarea>
 <br />

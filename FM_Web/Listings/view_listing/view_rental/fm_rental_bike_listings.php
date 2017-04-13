@@ -211,7 +211,7 @@ top: 1250px;
 <div class = "search">
 <img src = "../../../images/logo.png" height = "100px" width = "200px" /><br />
 <form name = "searchbar" action = "fm_rental_search_results.php?pagenum=1" method="post">
-<input type="text" name="search" placeholder="Search for a Listing...">
+<input type="text" name="search" value = "~" placeholder="Search for a Listing...">
 <button type="submit" value="search">Search</button>
 </form>
 </div>
@@ -242,7 +242,7 @@ top: 1250px;
 <div class = "center">
 
 <center><h2>Bike Rentals</h2></center>
-<?php echo "Page " . $pagenum . "of " . $lastpage;?><br />
+<?php echo "Page " . $pagenum . " of " . $lastpage;?><br />
 <?php if ($pagenum == 1 and $lastpage != 1) { ?>
 <a href="fm_rental_bike_listings.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
 <a href="fm_rental_bike_listings.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
@@ -258,8 +258,7 @@ top: 1250px;
 <table>
 	<tr>
 		<th>Item</th>
-		<th>Price</th>
-		<th>Duration</th>
+		<th><a href="fm_rental_listings_sort.php?pagenum=1">Price</a></th>
 		<th>Description</th>
 		<th>Picture</th>
 		<th>Id</th>
@@ -268,10 +267,9 @@ top: 1250px;
 	<tr>
 		<td><a href = "fm_viewrental.php?id=<?php echo $row['rid'];?>"><?php echo $row['item']; ?></a></td>
 		<td><?php echo $row['price']; ?></td>
-		<td><?php echo $row['duration']; ?></td>
 		<td><?php echo $row['descr']; ?></td> 
 		<td><a href = "fm_viewrental.php?id=<?php echo $row['rid'];?>"><img src ="../../../images/<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></a></td>
-		<td><?php echo $row['owner']; ?></td>
+		<td><a href = "fm_view_user_rental_listings.php?id=<?php echo $row['owner'];?>&pagenum=1"><?php echo $row['owner']; ?></a></td>
 	</tr>
 	<?php } ?>
 </table>

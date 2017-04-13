@@ -14,6 +14,9 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	if ($mysqli->connect_errno) {
 		echo "<p>MySQL error no {$mysqli->connect_errno} : {$mysqli->connect_error}</p>";
 	}
+	
+$sql = "select count(*) from User_Accounts where username = '$reciever'";
+$num = $conn->query($sql);
 
 $reciever = $_GET['contact'];
 $sender = $_SESSION['username'];
@@ -356,7 +359,7 @@ top: 950px;
 
 <div class ="mess">
 <form name = "messager" action = "fm_messager.php?id=<?php echo $reciever ?>" method="get" onsubmit = "return blank()" >
-<p>To: <input type="text" id = "reciever" name ="reciever" maxlength = "15"></p
+<p>To: <input type="text" id = "reciever" name ="reciever" value = "<?php echo $reciever; ?>" maxlength = "15"></p
 <p>Message: </p>
 <textarea rows = "4" cols = "50" id = "message" name = "message"></textarea>
 <br />

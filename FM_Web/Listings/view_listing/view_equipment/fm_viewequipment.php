@@ -23,9 +23,16 @@ $eid = $_GET['id'];
 #Display Account information of the account who posted the listing
 $mysql = "SELECT u.username, u.first_name, u.last_name, u.email, u.phone FROM User_Accounts AS u, Equipment_Listing AS e WHERE u.aid = e.aid AND e.eid = '$eid' limit 1";
 $result = $conn->query($mysql);
+
 #Display the Sale Listing
 $sql = "select * from Equipment_Listing where eid = '$eid' limit 1";
 $content = $conn->query($sql);
+
+#Select Owner's Name to pass to messager
+$sql1 = "select owner from Equipment_Listing where eid = '$eid'";
+$record = $conn->query($sql1);
+$rec = mysqli_fetch_array($record);
+$reciever = $rec['owner'];
 
 ?>
 
@@ -189,7 +196,7 @@ top: 610px;
 <div class = "search">
 <img src = "../../../images/logo.png" height = "100px" width = "200px" /><br />
 <form name = "searchbar" action = "fm_buy_equipment_search_results.php?pagenum=1" method="post">
-<input type="text" name="search" placeholder="Search for a Listing...">
+<input type="text" name="search" value = "~" placeholder="Search for a Listing...">
 <button type="submit" value="search">Search</button>
 </form>
 </div>
@@ -229,6 +236,7 @@ top: 610px;
 		<th>Description</th>
 		<th>Picture</th>
 		<th>Make Offer</th>
+		<th>Send Message</th>
 	</tr>
 	<?php while ($set = mysqli_fetch_array($content)) { ?>
 	<tr>
@@ -237,11 +245,10 @@ top: 610px;
 		<td><?php echo $set['descr']; ?></td> 
 		<td><img src ="../../../images/<?php echo $set['picture']; ?>" height = '75px' width = '75px' /></td>
 		<td><a href = "fm_place_equipmentoffer.php?id=<?php echo $set['eid']; ?>">Place Offer</a></td>
+		<td><a href = "../../../account/messager/fm_messager1.php?id=<?php echo $reciever; ?>">Message User</a></td>
 	</tr>
 	<?php } ?>
 </table>
-
-<a href = "fm_messager.php">Message User</a>
 
 </div>
 </div>

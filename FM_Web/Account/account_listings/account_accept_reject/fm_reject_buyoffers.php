@@ -38,13 +38,20 @@ $email = $grp['email'];
 $sql2 = "delete from Pending_Sale where bid = '$bid'";
 $conn->query($sql2);
 
+#Get Item Name
+$sql3 = "select item from Buy_Listing where bid = '$bid'";
+$info = $conn->query($sql3);
+$tup = mysqli_fetch_array($info);
+$item = $tup['item'];
+
 $type = "buyreject";
 $date = date("Y-m-d H:i:s");
-$message = "Your offer for a sale listing has been rejected!";
+$message = "Your offer for " . $item . " has been rejected!";
+$email_msg = "Your offer for " . $item . " has been rejected by " . $seller . "!<br /><a href = 'http://cgi.soic.indiana.edu/~team12/register_login/fm_login.html'>Freely Market</a>";
 
 #Email Confirmation Message
 $to = $email;
-$subject = 'the subject';
+$subject = 'Offer Status';
 
 //Set content-type
 $headers = "MIME-Version: 1.0" . "\r\n";
@@ -54,10 +61,10 @@ $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 $headers .= 'From: freelycreativecapstone@gmail.com' . "\r\n";
 
 #Create Notification
-$sql3 = "insert into Notifications(message,recipient,sender,types,created,bid) values('$message','$buyer','$seller','$type','$date','$bid')";
+$sql4 = "insert into Notifications(message,recipient,sender,types,created,bid) values('$message','$buyer','$seller','$type','$date','$bid')";
 
-if ($conn->query($sql3) === TRUE) {
-	mail($to, $subject, $message, $headers);
+if ($conn->query($sql4) === TRUE) {
+	mail($to, $subject, $email_msg, $headers);
 	header("Location: ../../../account/fm_account.php");
 	exit;
 } else {

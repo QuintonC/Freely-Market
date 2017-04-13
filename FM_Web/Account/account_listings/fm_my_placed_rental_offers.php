@@ -45,8 +45,15 @@ $prevpage = $pagenum - 1;
 $offset = ($pagenum - 1)  * $limit;
 
 #Show Sales Listed
-$mysql = "SELECT r.item, r.price, r.duration, r.descr, r.picture FROM Rental_Listing AS r, Pending_Rental AS rs WHERE r.rid = rs.rid AND rs.username = '$username' AND status = 'Active' LIMIT $limit OFFSET $offset";
+$mysql = "SELECT r.item, r.price, r.duration, r.descr, r.picture, r.owner FROM Rental_Listing AS r, Pending_Rental AS rs WHERE r.rid = rs.rid AND rs.username = '$username' AND status = 'Active' LIMIT $limit OFFSET $offset";
 $result = $conn->query($mysql);
+
+#Get Listing Id
+$sql1 = "SELECT p.rid, r.owner FROM Pending_Rental AS p, Rental_Listing AS r WHERE p.username = '$username' AND p.rid = r.rid";
+$data = $conn->query($sql1);
+$dat = mysqli_fetch_array($data);
+$rid = $dat['rid'];
+$user = $dat['owner'];
 
 ?>
 
@@ -297,16 +304,16 @@ top: 1250px;
 		<th>Duration</th>
 		<th>Description</th>
 		<th>Picture</th>
-		<th>View</th>
+		<th>User</th>
 	</tr>
 	<?php while ($area = mysqli_fetch_array($result)) { ?>
 	<tr>
-		<td><?php echo $area['item']; ?></td>
+		<td><a href="../../listings/view_listing/view_rental/fm_viewrental.php?id=<?php echo $rid; ?>"><?php echo $area['item']; ?></a></td>
 		<td><?php echo $area['price']; ?></td>
 		<td><?php echo $area['duration']; ?></td>
 		<td><?php echo $area['descr']; ?></td> 
-		<td><img src ="../../images/<?php echo $area['picture']; ?>" height = '75px' width = '75px' /></td> 
-		<td></td>
+		<td><a href="../../listings/view_listing/view_rental/fm_viewrental.php?id=<?php echo $rid; ?>"><img src ="../../images/<?php echo $area['picture']; ?>" height = '75px' width = '75px' /></a></td> 
+		<td><a href="../../listings/view_listing/view_rental/fm_view_user_rental_listings.php?pagenum=1&id=<?php echo $user; ?>"><?php echo $area['owner']; ?></a></td>
 	</tr>
 	<?php } ?>
 </table>

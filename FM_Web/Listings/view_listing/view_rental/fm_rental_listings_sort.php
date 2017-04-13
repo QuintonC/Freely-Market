@@ -19,15 +19,14 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	
 $username = $_SESSION['username'];
 
-$item = $_POST['search'];
-
-
-$mysql = "SELECT count(*) FROM Rental_Listing WHERE item LIKE '%".$item."%'";
-$result = $conn->query($mysql);
-$val = mysqli_fetch_array($result);
-$total = $val['count(*)'];
 
 $pagenum = $_GET['pagenum'];
+
+$sql = "SELECT count(*) FROM Rental_Listing WHERE owner != '$username' AND status = 'Active'";
+$content = $conn->query($sql);
+$val = mysqli_fetch_array($content);
+$total = $val['count(*)'];
+
 $limit = 8;
 
 $lastpage = ceil($total / $limit);
@@ -38,8 +37,9 @@ $nextpage = $pagenum + 1;
 $prevpage = $pagenum - 1;
 $offset = ($pagenum - 1)  * $limit;
 
-$sql = "SELECT * FROM Rental_Listing WHERE item LIKE '%".$item."%' OR descr LIKE '%".$item."%' AND status = 'Active' AND owner != '$username' LIMIT $limit OFFSET $offset";
-$content = $conn->query($sql);
+#Show Sales Listed
+$mysql = "SELECT r.item, r.price, r.descr, r.picture, r.owner, r.rid FROM Rental_Listing AS r, User_Accounts AS a WHERE a.aid = r.aid AND a.username != '$username' AND status = 'Active' ORDER BY price ASC LIMIT $limit OFFSET $offset";
+$result = $conn->query($mysql);
 
 #Select Advertisements
 $sql1 = "select * from Advertisements limit 3";
@@ -88,6 +88,8 @@ li a:hover {
     background-color: 	#00008B;
 }
 
+
+
 .title {
 margin: auto;
 width: 100%;
@@ -122,13 +124,15 @@ font-family: Arial, Helvetica, sans-serif;
 position: absolute;
 height: 1100px;
 left: 0%;
+width: 10%;
 background-color: #808080;
 }
+
 
 .center {
 position: absolute;
 height: 1100px;
-left: 0%;
+left: 10%;
 width: 66%;
 text-align: center;
 }
@@ -157,6 +161,7 @@ text-align: center;
 	background-color: #f5f5f5;
 }
 
+
 .rightsidebar {
 position: absolute;
 height: 1100px;
@@ -164,7 +169,6 @@ left: 75%;
 width: 25%;
 background-color: #808080;
 }
-
 
 .footer {
 margin: auto;
@@ -234,40 +238,37 @@ top: 1250px;
 <!-- Block 2 -->
 <div class = "leftsidebar">
 
-
 </div>
 
 <!-- Block 3 -->
 <div class = "center">
 
-<center><h2>Rentals</h2></center>
-<?php echo "Page " . $pagenum . "of " . $lastpage;?><br />
+<center><h2>Rental Listings</h2></center>
+<?php echo "Page " . $pagenum . " of " . $lastpage;?><br />
 <?php if ($pagenum == 1 and $lastpage != 1) { ?>
-<a href="fm_rental_search_results.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_rental_search_results.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+<a href="fm_rental_listings_sort.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
+<a href="fm_rental_listings_sort.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
 <?php } elseif ($pagenum == $lastpage and $pagenum != 1) { ?>
-<a href="fm_rental_search_results.php?pagenum=1">FIRST</a>
-<a href="fm_rental_search_results.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+<a href="fm_rental_listings_sort.php?pagenum=1">FIRST</a>
+<a href="fm_rental_listings_sort.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
 <?php } elseif ($pagenum != 1 and $lastpage != 1) { ?>
-<a href="fm_rental_search_results.php?pagenum=1">FIRST</a>
-<a href="fm_rental_search_results.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
-<a href="fm_rental_search_results.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_rental_search_results.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+<a href="fm_rental_listings_sort.php?pagenum=1">FIRST</a>
+<a href="fm_rental_listings_sort.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+<a href="fm_rental_listings_sort.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
+<a href="fm_rental_listings_sort.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
 <?php } ?>
 <table>
 	<tr>
 		<th>Item</th>
-		<th><a href="fm_rental_search_results_sort.php?pagenum=1&id=<?php echo $item; ?>">Price</th>
-		<th>Duration</th>
+		<th><a href="fm_rental_listings_sort_asc.php?pagenum=1">Price</a></th>
 		<th>Description</th>
 		<th>Picture</th>
-		<th>Id</th>
+		<th>Owner</th>
 	</tr>
-	<?php while ($row = mysqli_fetch_array($content)) { ?>
+	<?php while ($row = mysqli_fetch_array($result)) { ?>
 	<tr>
 		<td><a href = "fm_viewrental.php?id=<?php echo $row['rid'];?>"><?php echo $row['item']; ?></a></td>
 		<td><?php echo $row['price']; ?></td>
-		<td><?php echo $row['duration']; ?></td>
 		<td><?php echo $row['descr']; ?></td>
 		<td><a href = "fm_viewrental.php?id=<?php echo $row['rid'];?>"><img src ="../../../images/<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></a></td> 
 		<td><a href = "fm_view_user_rental_listings.php?id=<?php echo $row['owner'];?>&pagenum=1"><?php echo $row['owner']; ?></a></td>

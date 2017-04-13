@@ -48,6 +48,8 @@ $lname = stripslashes($lname);
 $email = stripslashes($email);
 $phone = stripslashes($phone);
 
+#Today's date
+$date = date("Y-m-d H:i:s");
 
 #$username = mysqli_real_escape_string($username);
 #$password = mysqli_real_escape_string($password);
@@ -61,13 +63,14 @@ $content = $conn->query($sql1);
 $count = mysqli_num_rows($content);
 
 $type = 0;
+$active = 0;
 
 #Query to create user account ensuring there is only one of each username
 if ($count > 0) {
 	echo "Sorry this username already exists!";
 }
 else {
-	$sql = "INSERT INTO User_Accounts (username,password,first_name,last_name,email,phone,typ,picture) VALUES ('$username','$encpw','$fname','$lname','$email','$phone','$type','$name')";
+	$sql = "INSERT INTO User_Accounts (username,password,first_name,last_name,email,phone,typ,picture,active,created) VALUES ('$username','$encpw','$fname','$lname','$email','$phone','$type','$name','$active','$date')";
 }
 
 if (!$conn->query($sql) === TRUE) {

@@ -44,15 +44,25 @@ $content = $conn->query($sql);
 $set = mysqli_fetch_array($content);
 $password = $set['password'];
 
+<<<<<<< HEAD
+#Select User Account type
+$sql1 = "select typ from User_Accounts where username = '$username' limit 1";
+$data = $conn->query($sql1);
+$batch = mysqli_fetch_array($data);
+$typ = $batch['typ'];
+
+=======
 function invalidPass() {
 	echo '<script type="text/javascript"> alert("Invalid username or password."); location="fm_login.html";</script>';
 }
+>>>>>>> f3dbc47a6ce0da808f3ed9c7dda229c555936261
 
 if (password_verify($formpass,$password)) {
 	$_SESSION['username'] = $username;
 	$_SESSION['password'] = $password;
 	$_SESSION['uid'] = $id;
 	$_SESSION['loggedin'] = true;
+	$_SESSION['typ'] = $typ;
 	header("Location: ../account/fm_account.php");
 	exit;
 } else {

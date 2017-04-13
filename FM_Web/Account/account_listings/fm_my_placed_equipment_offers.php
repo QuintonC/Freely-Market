@@ -45,8 +45,15 @@ $prevpage = $pagenum - 1;
 $offset = ($pagenum - 1)  * $limit;
 
 #Show Sales Listed
-$mysql = "SELECT e.item, e.price, e.descr, e.picture FROM Equipment_Listing AS e, Pending_Equipment AS p WHERE e.eid = p.eid AND p.username = '$username' AND status = 'Active' LIMIT $limit OFFSET $offset";
+$mysql = "SELECT e.item, e.price, e.descr, e.picture, e.owner FROM Equipment_Listing AS e, Pending_Equipment AS p WHERE e.eid = p.eid AND p.username = '$username' AND status = 'Active' LIMIT $limit OFFSET $offset";
 $result = $conn->query($mysql);
+
+#Get Listing Id
+$sql1 = "SELECT p.eid, e.owner FROM Pending_Equipment AS p, Equipment_Listing AS e WHERE p.username = '$username' AND p.eid = e.eid";
+$data = $conn->query($sql1);
+$dat = mysqli_fetch_array($data);
+$eid = $dat['eid'];
+$user = $dat['owner'];
 
 ?>
 
@@ -296,15 +303,15 @@ top: 1250px;
 		<th>Price</th>
 		<th>Description</th>
 		<th>Picture</th>
-		<th>View</th>
+		<th>User</th>
 	</tr>
 	<?php while ($batch = mysqli_fetch_array($result)) { ?>
 	<tr>
-		<td><?php echo $batch['item']; ?></td>
+		<td><a href="../../listings/view_listing/view_equipment/fm_viewequipment.php?id=<?php echo $eid; ?>"><?php echo $batch['item']; ?></a></td>
 		<td><?php echo $batch['price']; ?></td>
 		<td><?php echo $batch['descr']; ?></td> 
-		<td><img src ="../../images/<?php echo $batch['picture']; ?>" height = '75px' width = '75px' /></td> 
-		<td></td>
+		<td><a href="../../listings/view_listing/view_equipment/fm_viewequipment.php?id=<?php echo $eid; ?>"><img src ="../../images/<?php echo $batch['picture']; ?>" height = '75px' width = '75px' /></a></td> 
+		<td><a href="../../listings/view_listing/view_equipment/fm_view_user_equipment_listings.php?pagenum=1&id=<?php echo $user; ?>"><?php echo $batch['owner']; ?></a></td>
 	</tr>
 	<?php } ?>
 </table>
