@@ -146,11 +146,6 @@ class CreateNewConvoViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    
-    
-    
-    
-    
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         return false
     }

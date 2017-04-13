@@ -44,6 +44,10 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
         //uploadImage()
     }
     
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -239,12 +243,6 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
             }
             task.resume()
         }
-        
-//        print(USER)
-//        print(item)
-//        print(fixedPrice)
-//        print(descr)
-//        print(type)
     }
 
     /*

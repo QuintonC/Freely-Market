@@ -11,11 +11,11 @@ import UIKit
 class RentalListingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var RentalData: [[String]] = []
-    var selectedTitle:String!
-    var selectedPrice:String!
-    var selectedImage:String!
-    var selectedDescr:String!
-    var selectedOwner:String!
+    var selectedTitle = String()
+    var selectedPrice = String()
+    var selectedImage = String()
+    var selectedDescr = String()
+    var selectedOwner = String()
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!

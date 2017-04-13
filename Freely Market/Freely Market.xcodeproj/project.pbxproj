@@ -18,6 +18,7 @@
 		5A2ED65D1DB8472500A75B2E /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5A2ED65B1DB8472500A75B2E /* DataModel.xcdatamodeld */; };
 		5A2ED6651DB8555200A75B2E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2ED6641DB8555200A75B2E /* LoginViewController.swift */; };
 		5A2ED6671DB8564F00A75B2E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2ED6661DB8564F00A75B2E /* RegisterViewController.swift */; };
+		5A41999A1E9EFF02008A6489 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4199991E9EFF02008A6489 /* ChatViewController.swift */; };
 		5A45837D1E95753B005FECA6 /* SaleListingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A45837C1E95753B005FECA6 /* SaleListingsViewController.swift */; };
 		5A45837F1E95779F005FECA6 /* EquipmentListingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A45837E1E95779F005FECA6 /* EquipmentListingsViewController.swift */; };
 		5A65E4DB1E3A9F1E009733D5 /* RentalListingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A65E4DA1E3A9F1E009733D5 /* RentalListingsViewController.swift */; };
@@ -64,6 +65,7 @@
 		5A2ED65C1DB8472500A75B2E /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		5A2ED6641DB8555200A75B2E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5A2ED6661DB8564F00A75B2E /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		5A4199991E9EFF02008A6489 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		5A45837C1E95753B005FECA6 /* SaleListingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaleListingsViewController.swift; sourceTree = "<group>"; };
 		5A45837E1E95779F005FECA6 /* EquipmentListingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquipmentListingsViewController.swift; sourceTree = "<group>"; };
 		5A65E4DA1E3A9F1E009733D5 /* RentalListingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RentalListingsViewController.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				5A2E39ED1E9EEF5800A278DF /* CreateNewConvoViewController.swift */,
 				5A2E39EE1E9EEF5800A278DF /* CustomSegue.swift */,
 				5A2E39F01E9EEF5800A278DF /* SenderCell.swift */,
+				5A4199991E9EFF02008A6489 /* ChatViewController.swift */,
 			);
 			path = "Freely Market";
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				5A6FB8761DD9025500D58436 /* MessageViewController.swift in Sources */,
 				5A2ED6671DB8564F00A75B2E /* RegisterViewController.swift in Sources */,
 				5AC30E3D1DCBD1DE00C502B2 /* ForgottenPassViewController.swift in Sources */,
+				5A41999A1E9EFF02008A6489 /* ChatViewController.swift in Sources */,
 				5A2E39F11E9EEF5800A278DF /* ContactCell.swift in Sources */,
 				5A2E39EA1E9D31F900A278DF /* IndividualListingViewController.swift in Sources */,
 				5A2E39F21E9EEF5800A278DF /* ConversationViewController.swift in Sources */,

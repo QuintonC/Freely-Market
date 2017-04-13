@@ -18,11 +18,11 @@ class IndividualListingViewController: UIViewController {
     @IBOutlet weak var listingDescription: UITextView!
     @IBOutlet weak var rentButton: UIButton!
     
-    var lTitle:String = ""
-    var image:String = ""
-    var descr:String = ""
-    var owner:String = ""
-    var price:String = ""
+    var lTitle = String()
+    var image = String()
+    var descr = String()
+    var owner = String()
+    var price = String()
 
     
     override func viewDidLoad() {
