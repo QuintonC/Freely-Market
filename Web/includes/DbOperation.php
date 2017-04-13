@@ -173,10 +173,10 @@ class DbOperation {
         return $row[0];
     }
 
-    public function createListing($type, $item, $price, $descr, $aid, $owner) {
-        $stmt = $this->conn->prepare("INSERT INTO $type(item, price, descr, aid, owner, typ, status) VALUES('$item', '$price', '$descr', '$aid', '$owner', 'User', 'Active');");
+    public function createListing($type, $item, $price, $descr, $aid, $owner, $picture) {
+        $stmt = $this->conn->prepare("INSERT INTO $type(item, price, descr, aid, owner, typ, status, picture) VALUES('$item', '$price', '$descr', '$aid', '$owner', 'User', 'Active', '$picture');");
 
-        $stmt->bind_param("ssssss", $type, $item, $price, $descr, $aid, $owner);
+        $stmt->bind_param("sssssss", $type, $item, $price, $descr, $aid, $owner, $picture);
         $result = $stmt->execute();
         $stmt->close();
         return $result;

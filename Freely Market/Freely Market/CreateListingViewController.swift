@@ -20,6 +20,7 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
     @IBOutlet weak var selectedImageView: UIImageView!
     let pickerOptions = ["Rental Listing", "Sale Listing", "Equipment Listing"]
     var type = "none"
+    var imagePath = String()
     
     @IBAction func selectImage(_ sender: Any) {
         let imagePicker = UIImagePickerController()
@@ -29,23 +30,58 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-//        selectedImageView.image = selectedImage
-        
-        if let selectedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
-            selectedImageView.image = selectedImage
-        } else if let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            selectedImageView.image = selectedImage
-        } else {
-            print("Something went wrong")
-        }
-        
+        let selectedImage = info[UIImagePickerControllerEditedImage] as? UIImage
+        let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
+        selectedImageView.image = selectedImage
         self.dismiss(animated: true, completion: nil)
-        //uploadImage()
+        let basePath = imageURL.path!
+        imagePath = (basePath.replacingOccurrences(of: "/", with: "") as NSString) as String
+    }
+    
+    func uploadImage() {
+        let uploadURL = URL(string: "")
+        let request = NSMutableURLRequest(url: uploadURL!)
+        request.httpMethod = "POST"
+        let boundary = generateBoundaryString()
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        if (selectedImageView.image == nil) {
+            return
+        }
+        let image_data = UIImagePNGRepresentation(selectedImageView.image!)
+        if(image_data == nil) {
+            return
+        }
+        let body = NSMutableData()
+        let fname = "image.png"
+        let mimetype = "image/png"
+        body.append("--\(boundary)\r\n".data(using: String.Encoding.utf8)!)
+        body.append("Content-Disposition:form-data; name=\"test\"\r\n\r\n".data(using: String.Encoding.utf8)!)
+        body.append("hi\r\n".data(using: String.Encoding.utf8)!)
+        body.append("--\(boundary)\r\n".data(using: String.Encoding.utf8)!)
+        body.append("Content-Disposition:form-data; name=\"file\"; filename=\"\(fname)\"\r\n".data(using: String.Encoding.utf8)!)
+        body.append("Content-Type: \(mimetype)\r\n\r\n".data(using: String.Encoding.utf8)!)
+        body.append(image_data!)
+        body.append("\r\n".data(using: String.Encoding.utf8)!)
+        body.append("--\(boundary)--\r\n".data(using: String.Encoding.utf8)!)
+        request.httpBody = body as Data
+        let session = URLSession.shared
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {(
+            data, response, error) in
+            guard ((data) != nil), let _:URLResponse = response, error == nil else {
+                print("error")
+                return
+            }
+            if let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) {
+                print(dataString)
+            }
+        })
+        task.resume()
     }
     
     
-    
+    func generateBoundaryString() -> String {
+        return "Boundary-\(UUID().uuidString)"
+    }
     
     
     override func viewDidLoad() {
@@ -165,6 +201,8 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
         let descr:NSString = self.descBody.text! as NSString
         let fixedPrice:NSString = price.replacingOccurrences(of: "$", with: "") as NSString
         let username = USER
+        print(imagePath)
+        
         
         if item.isEqual(to: "") || price.isEqual(to: "") || descr.isEqual(to: "") || type.isEqual("none") {
             let alertController = UIAlertController(title: "Oops!", message: "It seems you've forgotten something.", preferredStyle: .alert)
@@ -179,7 +217,7 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
             var request = URLRequest(url:myURL!)
             request.httpMethod = "POST"
             
-            let postString = "type=\(type)&item=\(item)&price=\(fixedPrice)&descr=\(descr)&owner=\(username)"
+            let postString = "type=\(type)&item=\(item)&price=\(fixedPrice)&descr=\(descr)&owner=\(username)&picture=\(imagePath)"
             
             request.httpBody = postString.data(using: String.Encoding.utf8)
             
@@ -222,7 +260,6 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
                             DispatchQueue.main.async {
                                 let OKAction = UIAlertAction(title: "OK", style: .default) {
                                     (action:UIAlertAction) in
-//                                  self.performSegue(withIdentifier: "registerSuccess", sender: self)
                                 }
                                 myAlert.addAction(OKAction)
                                 self.present(myAlert, animated: true, completion: nil)
@@ -282,4 +319,12 @@ extension String {
         return formatter.string(from: number)!
     }
     
+}
+
+extension NSMutableData {
+    
+    func appendString(_ string: String) {
+        let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true)
+        append(data!)
+    }
 }
