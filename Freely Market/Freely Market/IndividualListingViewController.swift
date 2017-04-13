@@ -52,10 +52,6 @@ class IndividualListingViewController: UIViewController {
         print(descr)
         print(owner)
         print(price)
-//        print("title: " + listingTitle.text!)
-//        print("Owner: " + listingOwner.text!)
-//        print("Description: " + listingDescription.text!)
-//        print("imagePath: " + imagePath)
     }
     
     func populateFields() {
