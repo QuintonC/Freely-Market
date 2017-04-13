@@ -32,14 +32,17 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let selectedImage = info[UIImagePickerControllerEditedImage] as? UIImage
         let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
+        
         selectedImageView.image = selectedImage
         self.dismiss(animated: true, completion: nil)
+        
         let basePath = imageURL.path!
         imagePath = (basePath.replacingOccurrences(of: "/", with: "") as NSString) as String
+            
     }
     
     func uploadImage() {
-        let uploadURL = URL(string: "")
+        let uploadURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/imageUpload.php")
         let request = NSMutableURLRequest(url: uploadURL!)
         request.httpMethod = "POST"
         let boundary = generateBoundaryString()
@@ -47,13 +50,13 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
         if (selectedImageView.image == nil) {
             return
         }
-        let image_data = UIImagePNGRepresentation(selectedImageView.image!)
+        let image_data = UIImageJPEGRepresentation(selectedImageView.image!, 1.0)
         if(image_data == nil) {
             return
         }
         let body = NSMutableData()
-        let fname = "image.png"
-        let mimetype = "image/png"
+        let fname = "asset.jpg"
+        let mimetype = "asset/jpg"
         body.append("--\(boundary)\r\n".data(using: String.Encoding.utf8)!)
         body.append("Content-Disposition:form-data; name=\"test\"\r\n\r\n".data(using: String.Encoding.utf8)!)
         body.append("hi\r\n".data(using: String.Encoding.utf8)!)
@@ -203,6 +206,7 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
         let username = USER
         print(imagePath)
         
+        uploadImage()
         
         if item.isEqual(to: "") || price.isEqual(to: "") || descr.isEqual(to: "") || type.isEqual("none") {
             let alertController = UIAlertController(title: "Oops!", message: "It seems you've forgotten something.", preferredStyle: .alert)
