@@ -41,58 +41,64 @@ class IndividualListingViewController: UIViewController {
         listingImage.layer.shadowOffset = CGSize(width: 1, height: 1)
         listingImage.layer.shadowOpacity = 0.1
 
-        //listingTitle.text = lTitle
-        //listingImage.image =
-        //listingOwner.text = owner
+        //Populate ui elements with data
+        listingTitle.text = lTitle
+        listingDescription.text = descr
+        rentButton.setTitle("Rent Now - " + price, for: .normal)
+        listingOwner.setTitle(owner, for: .normal)
         
-        print("")
-        print("Start print output of the individual listing controller")
-        print(lTitle)
-        print(image)
-        print(descr)
-        print(owner)
-        print(price)
-    }
-    
-    func populateFields() {
-//        let requestURL: NSURL = NSURL(string: "http://cgi.soic.indiana.edu/~team12/api/rentalListings.php")!
-//        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
-//        let session = URLSession.shared
-//        let imageURL = URL(string: "http://cgi.soic.indiana.edu/~team12/images/" + imagePath)!
-//        let task = session.dataTask(with: urlRequest as URLRequest) {
-//            (data, response, error) -> Void in
-//            
-//            let httpResponse = response as! HTTPURLResponse
-//            let statusCode = httpResponse.statusCode
-//            if (statusCode == 200) {
-//                do {
-//                    let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
-//                    if let listings = json["listing"] as? [[String: AnyObject]] {
-//                        for listing in listings {
-//                            if let title = listing["item"] as? String {
-//                                if let price = listing["price"] as? String {
-//                                    if let picture = listing["picture"] as? String {
-//                                        //self.RentalData.append([title, "$" + price, picture])
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
-//                    DispatchQueue.main.async {
-//                        //self.tableView.reloadData()
-//                    }
-//                } catch {
-//                    print("Error with JSON: \(error)")
-//                }
-//            }
-//        }
-//        task.resume()
+        //Get Listing Image from database and show it in listingImage
+        let imageURL = URL(string: "http://cgi.soic.indiana.edu/~team12/images/" + image)
+        let session = URLSession(configuration: .default)
+        
+        let downloadPicTask = session.dataTask(with: imageURL!) {
+            (data, response, error) in
+            if let e = error {
+                print("Error download image: \(e)")
+            } else {
+                if (response as? HTTPURLResponse) != nil {
+                    if let imageData = data {
+                        let picture = UIImage(data: imageData)
+                        self.listingImage.image = picture
+                    } else {
+                        print("Couldn't get image: Image is nil")
+                    }
+                } else {
+                    print("Couldn't get response code for some reason")
+                }
+            }
+        }
+        downloadPicTask.resume()
+        
+        
+        
+        
+//        print("")
+//        print("Start print output of the individual listing controller")
+//        print(lTitle)
+//        print(image)
+//        print(descr)
+//        print(owner)
+//        print(price)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "messageOwner") {
+            //Create instance of CreateNewConvoViewController
+            let destinationVC = segue.destination as! CreateNewConvoViewController
+            //Give CreateNewConvoViewController's textEntry a value
+            destinationVC.username = owner
+            
+            
+        }
+    }
+    
+    
     
 
     /*
