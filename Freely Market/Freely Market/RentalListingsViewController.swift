@@ -115,12 +115,14 @@ class RentalListingsViewController: UIViewController, UITableViewDataSource, UIT
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
-        selectedTitle = RentalData[indexPath.row][0]
-        selectedPrice = RentalData[indexPath.row][1]
-        selectedImage = RentalData[indexPath.row][2]
-        selectedDescr = RentalData[indexPath.row][3]
-        selectedOwner = RentalData[indexPath.row][4]
+        selectedTitle = RentalData[indexPath.row][0] as String
+        selectedPrice = RentalData[indexPath.row][1] as String
+        selectedImage = RentalData[indexPath.row][2] as String
+        selectedDescr = RentalData[indexPath.row][3] as String
+        selectedOwner = RentalData[indexPath.row][4] as String
         
+        print(selectedTitle)
+        print(selectedPrice)
         performSegue(withIdentifier: "passSegue", sender: self)
     }
     
