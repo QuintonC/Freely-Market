@@ -92,8 +92,11 @@ class SaleListingsViewController: UIViewController, UITableViewDataSource, UITab
                 if (response as? HTTPURLResponse) != nil {
                     //print("Downloaded image with response code \(res.statusCode)")
                     if let imageData = data {
-                        let picture = UIImage(data: imageData)
-                        buy.listingImage.image = picture
+                        DispatchQueue.main.async {
+                            let picture = UIImage(data: imageData)
+                            buy.listingImage.image = picture
+                        }
+                        
                     } else {
                         print("Couldn't get image: Image is nil")
                     }
@@ -109,6 +112,35 @@ class SaleListingsViewController: UIViewController, UITableViewDataSource, UITab
     func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        
+//        selectedTitle = RentalData[indexPath.row][0] as String
+//        selectedPrice = RentalData[indexPath.row][1] as String
+//        selectedImage = RentalData[indexPath.row][2] as String
+//        selectedDescr = RentalData[indexPath.row][3] as String
+//        selectedOwner = RentalData[indexPath.row][4] as String
+//        print(selectedTitle)
+//        print(selectedPrice)
+//        performSegue(withIdentifier: "passSegue", sender: self)
+//    }
+//    
+//    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if (segue.identifier == "passSegue") {
+//            let navVC = segue.destination as? UINavigationController
+//            
+//            let listingVC = navVC?.viewControllers.first as! IndividualListingViewController
+//            
+//            listingVC.lTitle = selectedTitle
+//            listingVC.image = selectedImage
+//            listingVC.descr = selectedDescr
+//            listingVC.owner = selectedOwner
+//            listingVC.price = selectedPrice
+//        }
+//    }
+    
+    
     
     @IBAction func logout(_ sender: AnyObject) {
         let alertController = UIAlertController(title: "Success", message: "You have been logged out.", preferredStyle: .alert)
