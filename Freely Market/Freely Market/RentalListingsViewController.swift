@@ -95,8 +95,11 @@ class RentalListingsViewController: UIViewController, UITableViewDataSource, UIT
             } else {
                 if (response as? HTTPURLResponse) != nil {
                     if let imageData = data {
-                        let picture = UIImage(data: imageData)
-                        rent.listingImage.image = picture
+                        DispatchQueue.main.async {
+                            let picture = UIImage(data: imageData)
+                            rent.listingImage.image = picture
+                        }
+                        
                     } else {
                         print("Couldn't get image: Image is nil")
                     }
@@ -125,21 +128,22 @@ class RentalListingsViewController: UIViewController, UITableViewDataSource, UIT
         performSegue(withIdentifier: "passSegue", sender: self)
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "passSegue") {
+            let navVC = segue.destination as? UINavigationController
+        
+            let listingVC = navVC?.viewControllers.first as! IndividualListingViewController
             
-            let destination = storyboard?.instantiateViewController(withIdentifier: "indListing") as! IndividualListingViewController
-            
-            //let destination = segue.destination as? IndividualListingViewController
-            
-            destination.lTitle = selectedTitle
-            destination.image = selectedImage
-            destination.descr = selectedDescr
-            destination.owner = selectedOwner
-            destination.price = selectedPrice
-            
+            listingVC.lTitle = selectedTitle
+            listingVC.image = selectedImage
+            listingVC.descr = selectedDescr
+            listingVC.owner = selectedOwner
+            listingVC.price = selectedPrice
         }
     }
+    
+    
 
     @IBAction func logout(_ sender: AnyObject) {
         

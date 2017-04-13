@@ -18,6 +18,7 @@ class CreateNewConvoViewController: UIViewController, UITextFieldDelegate {
     var message = String()
     var height = 255
     
+    var username = String()
     
     var alert = String()
     
@@ -30,13 +31,14 @@ class CreateNewConvoViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var sendBtn: UIButton!
     
     
-    //    var conversation = [["s","Hey"],["r","Hello"],["s","Whats up"],["r","oh not much you?"],["s","Nothing really, just thinking about going to the movies tonight"],["r","That sounds like fun"],["s","Yeah, youre welcom to join if you want to"],["r","I might take you up on that offer"],["s","coolio, just let me know"],["s","Hey"],["r","Hello"],["s","Whats up"],["r","oh not much you?"],["s","Nothing really, just thinking about going to the movies tonight"],["r","That sounds like fun"],["s","Yeah, youre welcom to join if you want to"],["r","I might take you up on that offer"],["s","coolio, just let me know"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         sendBtn.layer.cornerRadius = 5
+        
+        usernameTextField.text = username
 
     }
     
