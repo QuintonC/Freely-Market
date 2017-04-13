@@ -38,7 +38,7 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
         
         let basePath = imageURL.path!
         imagePath = (basePath.replacingOccurrences(of: "/", with: "") as NSString) as String
-            
+        
     }
     
     func uploadImage() {
