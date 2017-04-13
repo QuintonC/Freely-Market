@@ -11,7 +11,6 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
     $last_name = $_POST['lname'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
-
     $encpw = password_hash($password, PASSWORD_BCRYPT);
 
     //including the db operation file
