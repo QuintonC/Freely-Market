@@ -1317,16 +1317,18 @@ Password must contain at least one letter, at least one number, and be at least 
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posted by: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqF-Jw-FsU">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VF1-mN-mh0">
                                 <rect key="frame" x="204" y="326" width="125" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="125" id="Pjb-G3-CQG"/>
-                                    <constraint firstAttribute="height" constant="21" id="kyj-zu-JtF"/>
+                                    <constraint firstAttribute="width" constant="125" id="Ani-HV-YFk"/>
+                                    <constraint firstAttribute="height" constant="21" id="So3-s2-82e"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="qoV-cF-ocN" kind="show" identifier="messageOwner" id="uGr-uf-BNo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1335,20 +1337,21 @@ Password must contain at least one letter, at least one number, and be at least 
                             <constraint firstAttribute="trailing" secondItem="6vp-ws-csQ" secondAttribute="trailing" id="1td-oo-uwL"/>
                             <constraint firstItem="hf2-6l-ic1" firstAttribute="top" secondItem="DUh-dj-BQQ" secondAttribute="bottom" constant="21" id="1vc-EP-kzq"/>
                             <constraint firstItem="6vp-ws-csQ" firstAttribute="leading" secondItem="EJ2-Dt-T1H" secondAttribute="leading" id="93m-Ms-Nfh"/>
+                            <constraint firstItem="V7s-V9-Zv5" firstAttribute="top" secondItem="VF1-mN-mh0" secondAttribute="bottom" constant="20" id="9Vo-Ae-GkF"/>
                             <constraint firstItem="V7s-V9-Zv5" firstAttribute="leading" secondItem="EJ2-Dt-T1H" secondAttribute="leadingMargin" constant="30" id="DzG-Ot-Lrh"/>
+                            <constraint firstItem="VF1-mN-mh0" firstAttribute="leading" secondItem="hf2-6l-ic1" secondAttribute="trailing" constant="33" id="FtC-ny-wZV"/>
                             <constraint firstItem="T0L-PF-8rK" firstAttribute="top" secondItem="6vp-ws-csQ" secondAttribute="bottom" id="IQg-Zv-n5e"/>
                             <constraint firstItem="hf2-6l-ic1" firstAttribute="leading" secondItem="EJ2-Dt-T1H" secondAttribute="leadingMargin" constant="30" id="KUP-3Y-IRM"/>
                             <constraint firstItem="V7s-V9-Zv5" firstAttribute="top" secondItem="hf2-6l-ic1" secondAttribute="bottom" constant="20" id="MK9-5j-347"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VF1-mN-mh0" secondAttribute="trailing" constant="30" id="PbE-FB-Jvu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="V7s-V9-Zv5" secondAttribute="trailing" constant="30" id="Tot-CW-qQP"/>
-                            <constraint firstItem="fqF-Jw-FsU" firstAttribute="top" secondItem="DUh-dj-BQQ" secondAttribute="bottom" constant="21" id="WHw-Dt-hLW"/>
                             <constraint firstItem="eAi-BB-7uz" firstAttribute="top" secondItem="V7s-V9-Zv5" secondAttribute="bottom" constant="25" id="aCS-Z7-Jir"/>
                             <constraint firstItem="u7s-BF-hcI" firstAttribute="top" secondItem="rch-F3-Mm7" secondAttribute="bottom" constant="8" id="gwq-dk-idB"/>
-                            <constraint firstItem="V7s-V9-Zv5" firstAttribute="top" secondItem="fqF-Jw-FsU" secondAttribute="bottom" constant="20" id="i9C-i2-OxM"/>
                             <constraint firstItem="u7s-BF-hcI" firstAttribute="leading" secondItem="EJ2-Dt-T1H" secondAttribute="leadingMargin" constant="30" id="iBj-p6-4ff"/>
                             <constraint firstItem="6vp-ws-csQ" firstAttribute="top" secondItem="EJ2-Dt-T1H" secondAttribute="top" id="kFN-ex-qVT"/>
+                            <constraint firstItem="VF1-mN-mh0" firstAttribute="top" secondItem="DUh-dj-BQQ" secondAttribute="bottom" constant="21" id="mjd-EI-rK3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="u7s-BF-hcI" secondAttribute="trailing" constant="30" id="n7r-4p-ubA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DUh-dj-BQQ" secondAttribute="trailing" constant="30" id="rX9-Og-FBs"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="fqF-Jw-FsU" secondAttribute="trailing" constant="30" id="s92-aY-NyT"/>
                             <constraint firstItem="eAi-BB-7uz" firstAttribute="leading" secondItem="EJ2-Dt-T1H" secondAttribute="leadingMargin" constant="-16" id="yDc-RS-eio"/>
                             <constraint firstAttribute="trailingMargin" secondItem="eAi-BB-7uz" secondAttribute="trailing" constant="-16" id="z8R-ky-NF1"/>
                             <constraint firstItem="T0L-PF-8rK" firstAttribute="top" secondItem="eAi-BB-7uz" secondAttribute="bottom" id="zro-ew-J44"/>
@@ -1361,7 +1364,7 @@ Password must contain at least one letter, at least one number, and be at least 
                     <connections>
                         <outlet property="listingDescription" destination="V7s-V9-Zv5" id="38H-gn-ZKy"/>
                         <outlet property="listingImage" destination="DUh-dj-BQQ" id="2zh-gW-ouL"/>
-                        <outlet property="listingOwner" destination="fqF-Jw-FsU" id="bPz-l0-UEe"/>
+                        <outlet property="listingOwner" destination="VF1-mN-mh0" id="Xfu-QN-nzp"/>
                         <outlet property="listingTitle" destination="u7s-BF-hcI" id="Xht-OQ-ela"/>
                         <outlet property="menuButton" destination="B9h-RS-g3b" id="APg-Kj-vdr"/>
                         <outlet property="moreButton" destination="yyH-ut-YXk" id="efp-cZ-MhU"/>
@@ -1665,7 +1668,7 @@ Password must contain at least one letter, at least one number, and be at least 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fam-BV-eR6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3160.8000000000002" y="3275.7121439280363"/>
+            <point key="canvasLocation" x="-1156" y="4791"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lwA-ps-3hv">
@@ -1683,7 +1686,7 @@ Password must contain at least one letter, at least one number, and be at least 
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Dz-ZZ-qXS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2221.5999999999999" y="3275.7121439280363"/>
+            <point key="canvasLocation" x="-1156" y="4037"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dji-CE-GAr">
@@ -1754,7 +1757,7 @@ Password must contain at least one letter, at least one number, and be at least 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ca0-hf-IHi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4167.1999999999998" y="4083.5082458770617"/>
+            <point key="canvasLocation" x="3161" y="3276"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1jk-ln-XUp">
@@ -1772,7 +1775,7 @@ Password must contain at least one letter, at least one number, and be at least 
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0IE-Xt-sXZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3228" y="4083.5082458770617"/>
+            <point key="canvasLocation" x="2222" y="3276"/>
         </scene>
         <!--New Message-->
         <scene sceneID="Mu7-fi-TNx">
@@ -1889,7 +1892,7 @@ Password must contain at least one letter, at least one number, and be at least 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z1a-61-aTQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4167" y="4917"/>
+            <point key="canvasLocation" x="3161" y="4037"/>
         </scene>
         <!--Conversation View Controller-->
         <scene sceneID="NhB-eW-n6H">
@@ -2043,7 +2046,7 @@ Password must contain at least one letter, at least one number, and be at least 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Zu-5G-rVJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5194" y="4084"/>
+            <point key="canvasLocation" x="4026" y="4037"/>
         </scene>
     </scenes>
     <resources>
@@ -2063,8 +2066,9 @@ Password must contain at least one letter, at least one number, and be at least 
     <inferredMetricsTieBreakers>
         <segue reference="Mw4-QG-wnN"/>
         <segue reference="cKi-KO-eLK"/>
-        <segue reference="up8-nE-ebJ"/>
         <segue reference="TRM-Ep-dyG"/>
+        <segue reference="uGr-uf-BNo"/>
+        <segue reference="cbj-FS-vsA"/>
         <segue reference="ita-cW-69Q"/>
     </inferredMetricsTieBreakers>
 </document>

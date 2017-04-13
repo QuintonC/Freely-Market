@@ -14,7 +14,7 @@ class IndividualListingViewController: UIViewController {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var listingTitle: UILabel!
     @IBOutlet weak var listingImage: UIImageView!
-    @IBOutlet weak var listingOwner: UILabel!
+    @IBOutlet weak var listingOwner: UIButton!
     @IBOutlet weak var listingDescription: UITextView!
     @IBOutlet weak var rentButton: UIButton!
     
@@ -40,19 +40,18 @@ class IndividualListingViewController: UIViewController {
         listingDescription.layer.shadowOpacity = 0.1
         listingImage.layer.shadowOffset = CGSize(width: 1, height: 1)
         listingImage.layer.shadowOpacity = 0.1
+
+        //listingTitle.text = lTitle
+        //listingImage.image =
+        //listingOwner.text = owner
         
+        print("")
+        print("Start print output of the individual listing controller")
         print(lTitle)
         print(image)
         print(descr)
         print(owner)
         print(price)
-        
-        
-        listingTitle.text = lTitle
-        //listingImage.image =
-        listingOwner.text = owner
-        
-        print(" ")
 //        print("title: " + listingTitle.text!)
 //        print("Owner: " + listingOwner.text!)
 //        print("Description: " + listingDescription.text!)
