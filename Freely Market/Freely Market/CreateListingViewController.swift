@@ -37,7 +37,8 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
         self.dismiss(animated: true, completion: nil)
         
         let basePath = imageURL.path!
-        imagePath = (basePath.replacingOccurrences(of: "/", with: "") as NSString) as String
+        let ucasePath = (basePath.replacingOccurrences(of: "/", with: "") as NSString) as String
+        imagePath = (ucasePath.replacingOccurrences(of: "JPG", with: "jpg"))
         
     }
     
@@ -57,6 +58,8 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
         let body = NSMutableData()
         let fname = "asset.jpg"
         let mimetype = "asset/jpg"
+        var stripPathOfTags = ""
+        
         body.append("--\(boundary)\r\n".data(using: String.Encoding.utf8)!)
         body.append("Content-Disposition:form-data; name=\"test\"\r\n\r\n".data(using: String.Encoding.utf8)!)
         body.append("hi\r\n".data(using: String.Encoding.utf8)!)
@@ -67,15 +70,25 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
         body.append("\r\n".data(using: String.Encoding.utf8)!)
         body.append("--\(boundary)--\r\n".data(using: String.Encoding.utf8)!)
         request.httpBody = body as Data
+        
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest, completionHandler: {(
             data, response, error) in
+            
             guard ((data) != nil), let _:URLResponse = response, error == nil else {
                 print("error")
                 return
             }
+            
+            //let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
+            
             if let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) {
+                stripPathOfTags = (dataString.replacingOccurrences(of: "{path", with: "") as NSString) as String
+                
+                //self.imagePath = stripPathOfTags
                 print(dataString)
+                
+                // here we need to return the "path:" portion of the JSON array and set the imagePath to be defined as what is returned there.
             }
         })
         task.resume()
@@ -204,7 +217,7 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
         let descr:NSString = self.descBody.text! as NSString
         let fixedPrice:NSString = price.replacingOccurrences(of: "$", with: "") as NSString
         let username = USER
-        print(imagePath)
+        //print(imagePath)
         
         uploadImage()
         

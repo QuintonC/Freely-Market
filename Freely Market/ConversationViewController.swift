@@ -34,10 +34,10 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
         sendBtn.layer.cornerRadius = 5
         //get conversation from database
         
-        let navigationBar = navigationController!.navigationBar
+        _ = navigationController!.navigationBar
         
         //let rightButton = UIBarButtonItem(title: "Right Button", style: UIBarButtonItem.refresh, target: self, action: nil)
-        let rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.refresh, target: self, action: "refresh")
+        let rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.refresh, target: self, action: #selector(ConversationViewController.refresh))
         
         navigationItem.rightBarButtonItem = rightButton
         
@@ -202,7 +202,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
                 (data, response, error) in
 
                 if error != nil {
-                    print("error is \(error)")
+                    print("error is \(String(describing: error))")
                     return
                 }
 
