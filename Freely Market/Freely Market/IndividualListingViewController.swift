@@ -24,8 +24,8 @@ class IndividualListingViewController: UIViewController {
     var descr = String()
     var owner = String()
     var price = String()
+    var btnText = String()
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,6 +36,7 @@ class IndividualListingViewController: UIViewController {
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
+        //Design for the description and image
         listingDescription.layer.cornerRadius = 5.0
         listingDescription.layer.shadowOffset = CGSize(width: 1, height: 1)
         listingDescription.layer.shadowOpacity = 0.1
@@ -45,16 +46,11 @@ class IndividualListingViewController: UIViewController {
         //Populate ui elements with data
         listingTitle.text = lTitle
         listingDescription.text = descr
-        rentButton.setTitle("Rent Now - " + price, for: .normal)
+        rentButton.setTitle(btnText, for: .normal)
         listingOwner.setTitle(owner, for: .normal)
         
         //Start loading Activity Indicator
-//        loadingIndicator.hidesWhenStopped = false
-//        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
         loadingIndicator.startAnimating()
-        
-        
-        
         
         //Get Listing Image from database and show it in listingImage
         let imageURL = URL(string: "http://cgi.soic.indiana.edu/~team12/images/" + image)
@@ -70,9 +66,9 @@ class IndividualListingViewController: UIViewController {
                         DispatchQueue.main.async {
                             let picture = UIImage(data: imageData)
                             self.listingImage.image = picture
+                            //Stop the loadingIndicator
                             self.loadingIndicator.removeFromSuperview()
                         }
-                        
                     } else {
                         print("Couldn't get image: Image is nil")
                     }
@@ -82,16 +78,6 @@ class IndividualListingViewController: UIViewController {
             }
         }
         downloadPicTask.resume()
-        
-        
-        
-//        print("")
-//        print("Start print output of the individual listing controller")
-//        print(lTitle)
-//        print(image)
-//        print(descr)
-//        print(owner)
-//        print(price)
     }
 
     override func didReceiveMemoryWarning() {
@@ -105,14 +91,10 @@ class IndividualListingViewController: UIViewController {
             let destinationVC = segue.destination as! CreateNewConvoViewController
             //Give CreateNewConvoViewController's textEntry a value
             destinationVC.username = owner
-            
-            
         }
     }
     
     
-    
-
     /*
     // MARK: - Navigation
 

@@ -32,23 +32,24 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
         
         CONTACT = contact
         sendBtn.layer.cornerRadius = 5
-        //get conversation from database
+
         
-        _ = navigationController!.navigationBar
+        //Create nav bar
+        let navigationBar = navigationController!.navigationBar
         
-        //let rightButton = UIBarButtonItem(title: "Right Button", style: UIBarButtonItem.refresh, target: self, action: nil)
+        //give nav bar a refresh button
         let rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.refresh, target: self, action: #selector(ConversationViewController.refresh))
-        
         navigationItem.rightBarButtonItem = rightButton
         
-        
-        
+        //get conversation from database
         getMessages()
         
+
+/////////////  Begin  //////////////////////   AUTO REFRESH   ///////////////////////////////////////////////////////////
 //        var timer = Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(ConversationViewController.getMessages), userInfo: nil, repeats: true)
         
 //        var timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: Selector("reloadTableView"), userInfo: nil, repeats: true)
-        
+///////////////  End  ////////////////////   AUTO REFRESH   ///////////////////////////////////////////////////////////
     }
     
 //    func reloadTableView() {
@@ -59,9 +60,11 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     
     
     func refresh() {
-        getMessages()
-        autoScroll()
+        print("refreshing")
+        viewDidLoad()
+        
     }
+    
     
     func dismissKeyboard() {
         view.endEditing(true)
@@ -75,16 +78,15 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         autoScroll()
-        
     }
     
+    //func to scroll to bottom of table view to see most recent message
     func autoScroll() {
         let numberOfSections = self.tableView.numberOfSections
         let numberOfRows = self.tableView.numberOfRows(inSection: numberOfSections-1)
         if (numberOfRows > 0) {
             let indexPath = IndexPath(row: numberOfRows-1, section: (numberOfSections-1))
             self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-            
         }
     }
     
@@ -142,6 +144,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
         return conversation.count
     }
     
+    //Function to get the conversation from the database
     func getMessages() {
         conversation = []
         let myURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/getConversation.php")
@@ -162,7 +165,6 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
                     for message in messages {
                         if let name = message["sender"] as? String {
                             if let messageText = message["message"] as? String {
-                                print(name,messageText)
                                 self.conversation.append([name, messageText])
                             }
                         }
@@ -179,6 +181,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
         task.resume()
     }
     
+    //func to send message and add it to the database
     @IBAction func send(_ sender: Any) {
         let message:String = messageTextField.text!
         
@@ -227,7 +230,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
                             }
                         } else if messageToDisplay == "Message successfully sent" {
                             DispatchQueue.main.async {
-                                self.getMessages()
+                                self.refresh()
                             }
                         } else {
                             DispatchQueue.main.async {
@@ -248,9 +251,8 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
             }
             task.resume()
             messageTextField.text = ""
-            
+
             dismissKeyboard()
-            autoScroll()
         }
     }
 }
