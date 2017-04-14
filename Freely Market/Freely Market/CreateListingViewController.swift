@@ -21,84 +21,7 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
     let pickerOptions = ["Rental Listing", "Sale Listing", "Equipment Listing"]
     var type = "none"
     var imagePath = String()
-    
-    @IBAction func selectImage(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.allowsEditing = true
-        self.present(imagePicker, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let selectedImage = info[UIImagePickerControllerEditedImage] as? UIImage
-        let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
-        
-        selectedImageView.image = selectedImage
-        self.dismiss(animated: true, completion: nil)
-        
-        let basePath = imageURL.path!
-        let ucasePath = (basePath.replacingOccurrences(of: "/", with: "") as NSString) as String
-        imagePath = (ucasePath.replacingOccurrences(of: "JPG", with: "jpg"))
-        
-    }
-    
-    func uploadImage() {
-        let uploadURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/imageUpload.php")
-        let request = NSMutableURLRequest(url: uploadURL!)
-        request.httpMethod = "POST"
-        let boundary = generateBoundaryString()
-        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-        if (selectedImageView.image == nil) {
-            return
-        }
-        let image_data = UIImageJPEGRepresentation(selectedImageView.image!, 1.0)
-        if(image_data == nil) {
-            return
-        }
-        let body = NSMutableData()
-        let fname = "asset.jpg"
-        let mimetype = "asset/jpg"
-        var stripPathOfTags = ""
-        
-        body.append("--\(boundary)\r\n".data(using: String.Encoding.utf8)!)
-        body.append("Content-Disposition:form-data; name=\"test\"\r\n\r\n".data(using: String.Encoding.utf8)!)
-        body.append("hi\r\n".data(using: String.Encoding.utf8)!)
-        body.append("--\(boundary)\r\n".data(using: String.Encoding.utf8)!)
-        body.append("Content-Disposition:form-data; name=\"file\"; filename=\"\(fname)\"\r\n".data(using: String.Encoding.utf8)!)
-        body.append("Content-Type: \(mimetype)\r\n\r\n".data(using: String.Encoding.utf8)!)
-        body.append(image_data!)
-        body.append("\r\n".data(using: String.Encoding.utf8)!)
-        body.append("--\(boundary)--\r\n".data(using: String.Encoding.utf8)!)
-        request.httpBody = body as Data
-        
-        let session = URLSession.shared
-        let task = session.dataTask(with: request as URLRequest, completionHandler: {(
-            data, response, error) in
-            
-            guard ((data) != nil), let _:URLResponse = response, error == nil else {
-                print("error")
-                return
-            }
-            
-            //let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
-            
-            if let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) {
-                stripPathOfTags = (dataString.replacingOccurrences(of: "{path", with: "") as NSString) as String
-                
-                //self.imagePath = stripPathOfTags
-                print(dataString)
-                
-                // here we need to return the "path:" portion of the JSON array and set the imagePath to be defined as what is returned there.
-            }
-        })
-        task.resume()
-    }
-    
-    
-    func generateBoundaryString() -> String {
-        return "Boundary-\(UUID().uuidString)"
-    }
-    
+    var stripPathOfTags = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,14 +62,14 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
         // set target for the price field
         itemPrice.addTarget(self, action: #selector(priceFieldChanged), for: .editingChanged)
     }
-
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         if descBody.textColor == UIColor.lightGray {
             descBody.text = nil
             descBody.textColor = UIColor.black
         }
     }
-
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         if descBody.text.isEmpty {
             descBody.text = "Enter your item description here."
@@ -162,6 +85,97 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
     
     func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    func typeTapped() {
+        listingOptions.isHidden = false
+        doneButton.isHidden = false
+    }
+    
+    func doneTapped() {
+        listingOptions.isHidden = true
+        doneButton.isHidden = true
+    }
+    
+    // allow multiple gesture recognizers
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let selectedImage = info[UIImagePickerControllerEditedImage] as? UIImage
+        let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
+        
+        selectedImageView.image = selectedImage
+        self.dismiss(animated: true, completion: nil)
+        
+        let basePath = imageURL.path!
+        let ucasePath = (basePath.replacingOccurrences(of: "/", with: "") as NSString) as String
+        imagePath = (ucasePath.replacingOccurrences(of: "JPG", with: "jpg"))
+        
+    }
+    
+    @IBAction func selectImage(_ sender: Any) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func uploadImage() -> String {
+        let uploadURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/imageUpload.php")
+        let request = NSMutableURLRequest(url: uploadURL!)
+        request.httpMethod = "POST"
+        let boundary = generateBoundaryString()
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        if (selectedImageView.image == nil) {
+            return "No image selected"
+        }
+        
+        let image_data = UIImageJPEGRepresentation(selectedImageView.image!, 1.0)
+        
+        if(image_data == nil) {
+            return "no image data"
+        }
+        
+        let body = NSMutableData()
+        let fname = "asset.jpg"
+        let mimetype = "asset/jpg"
+        
+        body.append("--\(boundary)\r\n".data(using: String.Encoding.utf8)!)
+        body.append("Content-Disposition:form-data; name=\"test\"\r\n\r\n".data(using: String.Encoding.utf8)!)
+        body.append("hi\r\n".data(using: String.Encoding.utf8)!)
+        body.append("--\(boundary)\r\n".data(using: String.Encoding.utf8)!)
+        body.append("Content-Disposition:form-data; name=\"file\"; filename=\"\(fname)\"\r\n".data(using: String.Encoding.utf8)!)
+        body.append("Content-Type: \(mimetype)\r\n\r\n".data(using: String.Encoding.utf8)!)
+        body.append(image_data!)
+        body.append("\r\n".data(using: String.Encoding.utf8)!)
+        body.append("--\(boundary)--\r\n".data(using: String.Encoding.utf8)!)
+        request.httpBody = body as Data
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {(
+            data, response, error) in
+            
+            guard ((data) != nil), let _:URLResponse = response, error == nil else {
+                print("error")
+                return
+            }
+            if let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) {
+                DispatchQueue.main.async {
+                    self.stripPathOfTags = (dataString.replacingOccurrences(of: "\"", with: "") as NSString) as String
+                    print(self.stripPathOfTags)
+                }
+            }
+        })
+        task.resume()
+        return self.stripPathOfTags
+    }
+    
+    
+    func generateBoundaryString() -> String {
+        return "Boundary-\(UUID().uuidString)"
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -189,21 +203,6 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
             type = "none"
         }
     }
-    
-    func typeTapped() {
-        listingOptions.isHidden = false
-        doneButton.isHidden = false
-    }
-    
-    func doneTapped() {
-        listingOptions.isHidden = true
-        doneButton.isHidden = true
-    }
-    
-    // allow multiple gesture recognizers
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -217,9 +216,6 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
         let descr:NSString = self.descBody.text! as NSString
         let fixedPrice:NSString = price.replacingOccurrences(of: "$", with: "") as NSString
         let username = USER
-        //print(imagePath)
-        
-        uploadImage()
         
         if item.isEqual(to: "") || price.isEqual(to: "") || descr.isEqual(to: "") || type.isEqual("none") {
             let alertController = UIAlertController(title: "Oops!", message: "It seems you've forgotten something.", preferredStyle: .alert)
@@ -234,7 +230,10 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
             var request = URLRequest(url:myURL!)
             request.httpMethod = "POST"
             
-            let postString = "type=\(type)&item=\(item)&price=\(fixedPrice)&descr=\(descr)&owner=\(username)&picture=\(imagePath)"
+            
+            print("Post string image path: " + self.stripPathOfTags)
+            
+            let postString = "type=\(type)&item=\(item)&price=\(fixedPrice)&descr=\(descr)&owner=\(username)&picture=\(uploadImage())"
             
             request.httpBody = postString.data(using: String.Encoding.utf8)
             
