@@ -36,54 +36,112 @@ body{
 	padding: 0px;
 	margin: 0px;
 }	
+	
+a:link {
+    color: green;
+}
+
+a:visited {
+    color: white;
+}
+
+a:hover {
+    color: #13A61B;
+}
 
 .title {
-margin: auto;
-width: 100%;
-height: 125px;
-background-color: #ff4d4d;
+	margin: auto;
+	width: 100%;
+	height: 15%;
+	background-color: #13A61B;
+	position: absolute;
 }
 
 .title .header {
-left: 42%;
-position: absolute;
-font-family: "Brush Script MT", cursive;
-font-size: 24px;
+	width: 100%;
+	position: absolute;
+	top: 1%;
+	font-family: "Brush Script MT", cursive;
+	font-size: 24px;
 }
 
 .title .logo {
-top: 25px;
-left: 2%;
-position: absolute;
+	top: 0.25%;
+	left: 2%;
+	position: absolute;
 }
 
 .forms{
-width: 100%;
-height: 450px;
-background-color: #ffe6e6;
-background-image: url("../images/rack.jpg");
+	width: 100%;
+	height: 90%;
+	top: 15%;
+	position: absolute;	
+	border-top: solid;
+	border-color: white;
+	background-color: #ffe6e6;
+	background-image: url("../images/rack.jpg");
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	opacity: 0.85;
 }
 
 .forms .user_pass {
-position: relative;
-top: 250px;
-left: 400px;
-height: 150px;
-width: 500px;
-background-color: #FFFFFF;
-border-style: solid;
-border-width: 2px;
-padding: 15px;
-position: absolute;
+	top: 20%;
+	left: 35%;
+	height: 45%;
+	width: 30%;
+	color: white;
+	background-color: #333;
+	border-style: solid;
+	border-color: white;
+	border-width: 2px;
+	padding: 10px;
+	padding-bottom: 5px;
+	position: absolute;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+}
+input[type=text] {
+	width: 100%;
+	padding: 10px 10px;
+	box-sizing:border-box;
+	border-color: white;
+	border-radius: 3px;
+}
+	
+input[type=password] {
+	width: 100%;
+	padding: 12px 10px;
+	box-sizing: border-box;
+	border-color: white;
+	border-radius: 3px;
+}
+
+.button {
+	background-color: #13A61B;
+	border: none;
+	border-radius: 3px;
+	color: white;
+	padding: 5px 15px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	margin: 4px 2px;
+	cursor: pointer;
 }
 
 .footer {
-margin: auto;
-width: 100%;
-background-color: #000000;
-color: #FFFAF0;
-position: absolute;
-top: 575px;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	margin: auto;
+	width: 100%;
+	border-top: solid;
+	border-color: white;
+	background-color: #000000;
+	color: #FFFAF0;
+	position: absolute;
+	top: 105%;
 }
 
 .footer ul {
@@ -113,11 +171,11 @@ top: 575px;
 <div class = "title">
 
 <div class = "header">
-<h1>Freely Market</h1>
+	<h1 align="center">Freely Market</h1>
 </div>
 
 <div class = "logo">
-<img src = "../images/logo.png" height = "100px" width = "200px" />
+	<a href="	../fm_homepage.html"><img src="../images/logo.png" height = "100px" width = "200px"/></a>
 </div>
 
 </div>
@@ -125,20 +183,15 @@ top: 575px;
 
 <!-- Block 2 -->
 <div class = "forms">
-
-<div class = "user_pass">
-
-<form name = "login" action = "fm_login.php" method="post" >
-<p>User Name: <input type="text" id = "user" name ="user" maxlength = "15"></p>
-<p>Password: <input type="password" id = "password" name ="password"></p>
-<a href="fm_recover_password.html">Recover Password</a>
-<br />
-<br />
-<button type="submit" value="Login">Log In</button>
-</form>
-
-</div>
-
+	<div class = "user_pass">
+		<form name = "login" action = "fm_login.php" method="post" >
+			<p align="center">User Name<br> <input type="text" id = "user" name ="user" maxlength = "15"></p>
+			<p align="center">Password<br> <input type="password" id = "password" name ="password"></p>
+			<br />
+			<p align="center"><button type="submit" class="button" value="Login">Log In</button>
+			<a href="fm_recover_password.php">Recover Password</a></p>
+		</form>
+	</div>
 </div>
 
 <!-- Block 3 -->
