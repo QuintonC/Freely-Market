@@ -14,6 +14,17 @@ $newpass1 = $_POST['newpass1'];
 $post_username = $_POST['username'];
 $token = $_GET['token'];
 
+//  Prevent MySQL injection 
+$newpass = strip_tags($newpass);
+$newpass1 = strip_tags($newpass1);
+$post_username = strip_tags($post_username);
+$token = strip_tags($token);
+
+$newpass = stripslashes($newpass);
+$newpass1 = stripslashes($newpass1);
+$post_username = stripslashes($post_username);
+$token = stripslashes($token);
+
 
 if($newpass == $newpass1)
 {
@@ -29,7 +40,7 @@ if($newpass == $newpass1)
 }
 else
 {
-	echo '<script type="text/javascript"> alert("Passwords must match."); window.location="fm_password_reset.php";</script>';
+	echo '<script type="text/javascript"> alert("Passwords must match."); window.location="fm_recover_password.php";</script>';
 }
 
 ?>

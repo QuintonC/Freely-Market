@@ -13,6 +13,13 @@ if($_GET['token'])
 	$get_username = $_GET['username'];
 	$get_token = $_GET['token'];
 	
+	//  Prevent MySQL injection 
+	$get_username = strip_tags($get_username);
+	$get_token = strip_tags($get_token);
+
+	$get_username = stripslashes($get_username);
+	$get_token = stripslashes($get_token);
+	
 	$query3 = "SELECT token FROM User_Accounts WHERE username='$get_username' AND token='$get_token'";
 	$da = $conn->query($query3);
 	$numrows1 = $da->num_rows;
@@ -91,7 +98,7 @@ if($_GET['token'])
 		<div class="header">
 
 			<div class="search">
-				<img src="../images/logo.png" height = "90px" width = "175px"/>
+				<a href="../fm_homepage.html"><img src="../images/logo.png" height = "90px" width = "175px"/></a>
 			</div>
 
 			<div class ="title">
@@ -196,7 +203,7 @@ else
 	<div class="header">
 
 		<div class="search">
-			<img src="../images/logo.png" height = "90px" width = "175px"/>
+			<a href="../fm_homepage.html"><img src="../images/logo.png" height = "90px" width = "175px"/></a>
 		</div>
 
 		<div class ="title">
@@ -230,6 +237,13 @@ else
 		$username = $_POST['username'];
 		$email = $_POST['email'];
 		
+		//  Prevent MySQL injection 
+		$username = strip_tags($username);
+		$email = strip_tags($email);
+
+		$username = stripslashes($username);
+		$email = stripslashes($email);
+		
 		$query1 = "SELECT aid FROM User_Accounts WHERE username='$username' AND email='$email'";
 		$runquery = $conn->query($query1);
 		$numrow = $runquery->num_rows;
@@ -247,7 +261,7 @@ else
 
 			mail($to, $subject, $body);
 
-			echo '<script type="text/javascript"> alert("Check your email!"); location="fm_recover_password.php";</script>';
+			echo '<script type="text/javascript"> alert("Check your email!"); location="../fm_homepage.html";</script>';
 		}
 		else
 		{
