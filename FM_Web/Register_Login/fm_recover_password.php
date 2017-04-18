@@ -65,12 +65,44 @@ if($_GET['token'])
 <?php	
 	}
 	else
-	{
-		echo "expired link";
+	{?>
+		<html>
+		<head>
+		<link rel="stylesheet" type="text/css" href="../_style.css">
+		<title>Reset Password</title>
+		</head>
+		<body>
+		<!-- Header -->
+		<!-- Block 1 -->
+		<div class = "title">
+			<div class = "search">
+				<h3 align="center"><a href="../fm_homepage.html"><img src = "../images/logo.png" height = "90px" width = "160px" /></a></h3><br/>
+			</div>
+
+			<div class = "header">
+				<h1 align="center">Freely Market</h1>
+			</div>
+		</div>
+		<!-- End Header -->
+
+		<!-- Center Page -->
+		<div class = "forms">
+			<div class="error">
+			<br>
+			<br>
+			<br>
+				<font color="white"><h1 align="center">404 Page not found</h1></font>
+			</div>
+		</div>
+		<!-- End Center Page -->
+		</body>
+		</html>
+<?php
 	}
 }
 else
-{?>
+{
+?>
 	<html>
 	<head>
 	<link rel="stylesheet" type="text/css" href="../_style.css">

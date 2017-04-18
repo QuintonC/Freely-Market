@@ -238,6 +238,14 @@ input[type=password] {
 	padding: 15px;
 }
 
+.error {
+	top: 15%;
+	position: absolute;
+	height: 50%;
+	width: 60%;
+	color: white;
+}
+
 .footer {
 	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
 	margin: auto;
