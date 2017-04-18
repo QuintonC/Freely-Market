@@ -19,7 +19,15 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	
 $username = $_SESSION['username'];
 
+#Call session variables
+$aid = $_SESSION['uid'];	
+$username = $_SESSION['username'];
 
+
+#Check if user is restricted
+$rsql = "select active from User_Accounts where aid = '$aid'";
+$restrictedCheck = $conn->query($rsql);
+$rcheck = mysqli_fetch_array($restrictedCheck);
 ?>
 
 <html>
@@ -201,11 +209,19 @@ top: 600px;
 <!-- Block 2 -->
 <div class = "center">
 
+<?php if ($rcheck['active'] == "0" ): ?>
 <ul>
 <li><a href = "fm_post_listing.php">Post Listings</a></li>
 <li><a href = "fm_view_listings.php">View Listings</a></li>
 </ul>
+<?php endif;?>
 
+<?php if ($rcheck['active'] == "2" ): ?>
+<ul>
+<li><a href = "restricted_warning.php">Post Listings</a></li>
+<li><a href = "restricted_warning.php">View Listings</a></li>
+</ul>
+<?php endif;?>
 </div>
 
 <!-- Block 3 -->
