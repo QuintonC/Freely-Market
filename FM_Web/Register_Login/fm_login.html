@@ -1,8 +1,8 @@
 <html>
-
 <head>
 <link rel="stylesheet" type="text/css" href="../_style.css">
-<script type="text/javascript">
+<meta charset="utf-8">
+<script language="javascript" type="text/javascript">
 
 <!-- Ensures forms are not blank -->
     function blank()
@@ -48,7 +48,7 @@ maxLength(document.getElementById("text"));
 <!-- Block 2 -->
 <div class = "forms">
 	<div class = "user_pass">
-		<form name = "login" action = "fm_login.php" method="post" >
+		<form name = "login" action = "fm_login.php" method="post" onsubmit="return blank()">
 			<p align="center">User Name<br> <input type="text" id = "user" name ="user"></p>
 			<p align="center">Password<br> <input type="password" id = "password" name ="password"></p>
 			<br />
