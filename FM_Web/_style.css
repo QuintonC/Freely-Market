@@ -222,6 +222,22 @@ input[type=password] {
 	padding: 15px;
 }
 
+.addcard {
+	position: relative;
+	top: 17%;
+	left: 30%;
+	height: 45%;
+	width: 40%;
+	color: white;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	background-color: #333;
+	border-style: solid;
+	border-color: white;
+	border-width: 2px;
+	border-radius: 3px;
+	padding: 15px;
+}
+
 .footer {
 	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
 	margin: auto;
