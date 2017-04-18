@@ -1,4 +1,3 @@
-
 <?php
 
 #Initiates session variables
@@ -67,7 +66,7 @@ $active = 0;
 
 #Query to create user account ensuring there is only one of each username
 if ($count > 0) {
-	echo "Sorry this username already exists!";
+	echo '<script type="text/javascript"> alert("This username already exists."); location="fm_create_account.html";</script>';
 }
 else {
 	$sql = "INSERT INTO User_Accounts (username,password,first_name,last_name,email,phone,typ,picture,active,created) VALUES ('$username','$encpw','$fname','$lname','$email','$phone','$type','$name','$active','$date')";
@@ -83,6 +82,7 @@ if (!$conn->query($sql) === TRUE) {
 
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="../_style.css">
 	<title>Card Info</title>
 	
 <script type="text/javascript">
@@ -111,130 +111,36 @@ if (!$conn->query($sql) === TRUE) {
 
 maxLength(document.getElementById("text"));
 </script>
-	
-<style>
-	
-.title {
-margin: auto;
-width: 100%;
-height: 125px;
-background-color: #ff4d4d;
-}
-
-.title .header {
-left: 42%;
-position: absolute;
-font-family: "Brush Script MT", cursive;
-font-size: 24px;
-}
-
-.title .logo {
-top: 25px;
-left: 2%;
-position: absolute;
-}
-
-
-.center{
-width: 100%;
-height: 480px;
-background-color: #ffe6e6;
-background-image: url("../images/tree.jpg");
-}
-
-.center .forms {
-position: relative;
-top: 75px;
-left: 400px;
-height: 250px;
-width: 500px;
-background-color: #FFFFFF;
-border-style: solid;
-border-width: 2px;
-padding: 15px;
-}
-
-.footer {
-margin: auto;
-width: 100%;
-background-color: #000000;
-color: #FFFAF0;
-position: absolute;
-top: 605px;
-}
-
-.footer ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-
-.footer li {
-    float: right;
-	border-right: 1px solid #bbb;
-}
-
-.footer li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-	
-</style>
 </head>
-
 
 <body>
 
 <!-- Block 1 -->
 <div class = "title">
+	<div class = "search">
+		<h3 align="center"><img src = "../images/logo.png" height = "90px" width = "160px" /></h3><br />
+	</div>
 
-<div class = "logo">
-<img src = "../images/logo.png" height = "100px" width = "200px" />
-</div>
-
-<div class = "header">
-<h1>Freely Market</h1>
-</div>
-
+	<div class = "header">
+		<h1 align="center">Freely Market</h1>
+	</div>
 </div>
 
 <!-- Block 2 -->
 <div class = "center">
-
-<div class = "forms">
-
-<form name = "myForm" action="fm_add_card.php" method="post" onsubmit = "return blank()">
-	<input type="hidden" value="add" name="choice">
-	<p>Card Name: <input type="text" id = "name" name ="name" maxlength = "30"></p>
-	<p>Card Number: <input type="text" id = "number" name ="number"></p>
-	<p>Expiration Date: <input type="text" id = "expr" name="expr" maxlength = "30"></p>
-	<p>CVV: <input type="text" id ="cvv" name="cvv" maxlength = "30"></p>
-	<button type="submit" name = "submit">Add Card</button>
-	</form>
-
-</div>
-
-</div>
-
-<!-- Block 3 -->
-<div class = "footer">
-
-<ul>
-<li><a href = "">Privacy Policy</a></li>
-<li><a href = "">About</a></li>
-<li><a href = "">Contact</a></li>
-<li style = "float:left"><a href = "">Social Links</a></li>
-</ul>
-
+	<div class = "addcard">
+		<form name = "myForm" action="fm_add_card.php" method="post" onsubmit = "return blank()">
+			<input type="hidden" value="add" name="choice">
+			<p>Card Name: <input type="text" id = "name" name ="name" maxlength = "30"></p>
+			<p>Card Number: <input type="text" id = "number" name ="number"></p>
+			<p>Expiration Date: <input type="text" id = "expr" name="expr" maxlength = "30"></p>
+			<p>CVV: <input type="text" id ="cvv" name="cvv" maxlength = "30"></p>
+			<button class="button" type="submit" name = "submit">Add Card</button>
+		</form>
+	</div>
 </div>
 
 </body>
-
 </html>
 
 <?php
@@ -246,8 +152,3 @@ $id = $row['aid'];
 $_SESSION['aid'] = $id;
 
 ?>
-
-
-
-
-

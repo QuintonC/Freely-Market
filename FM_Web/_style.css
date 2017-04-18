@@ -197,6 +197,47 @@ input[type=password] {
 	position: absolute;
 }
 
+.center {
+	width: 100%;
+	height: 110%;
+	top: 15%;
+	background-color: #333;
+	border-top: solid;
+	border-top-color: white;
+}
+
+.createaccount {
+	position: relative;
+	top: 17%;
+	left: 30%;
+	height: 75%;
+	width: 40%;
+	color: white;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	background-color: #333;
+	border-style: solid;
+	border-color: white;
+	border-width: 2px;
+	border-radius: 3px;
+	padding: 15px;
+}
+
+.addcard {
+	position: relative;
+	top: 17%;
+	left: 30%;
+	height: 45%;
+	width: 40%;
+	color: white;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	background-color: #333;
+	border-style: solid;
+	border-color: white;
+	border-width: 2px;
+	border-radius: 3px;
+	padding: 15px;
+}
+
 .footer {
 	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
 	margin: auto;
