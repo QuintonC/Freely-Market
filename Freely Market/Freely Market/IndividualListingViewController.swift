@@ -17,6 +17,7 @@ class IndividualListingViewController: UIViewController {
     @IBOutlet weak var listingOwner: UIButton!
     @IBOutlet weak var listingDescription: UITextView!
     @IBOutlet weak var rentButton: UIButton!
+    @IBOutlet weak var viewOffersBtn: UIButton!
     @IBOutlet var loadingIndicator: UIActivityIndicatorView!
     
     var lTitle = String()
@@ -25,6 +26,9 @@ class IndividualListingViewController: UIViewController {
     var owner = String()
     var price = String()
     var btnText = String()
+    var hideButton = false
+    var hideViewOffers = true
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,10 +48,14 @@ class IndividualListingViewController: UIViewController {
         listingImage.layer.shadowOpacity = 0.1
 
         //Populate ui elements with data
+        
+        
         listingTitle.text = lTitle
         listingDescription.text = descr
+        rentButton.isHidden = hideButton
         rentButton.setTitle(btnText, for: .normal)
         listingOwner.setTitle(owner, for: .normal)
+        viewOffersBtn.isHidden = hideViewOffers
         
         //Start loading Activity Indicator
         loadingIndicator.startAnimating()

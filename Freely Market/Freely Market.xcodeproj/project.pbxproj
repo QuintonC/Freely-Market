@@ -34,6 +34,7 @@
 		5AED3A801DB80B2200F3EA39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AED3A7E1DB80B2200F3EA39 /* LaunchScreen.storyboard */; };
 		5AED3A8B1DB80B2200F3EA39 /* Freely_MarketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AED3A8A1DB80B2200F3EA39 /* Freely_MarketTests.swift */; };
 		5AED3A961DB80B2200F3EA39 /* Freely_MarketUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AED3A951DB80B2200F3EA39 /* Freely_MarketUITests.swift */; };
+		D9A8ABE61EA5B8A60036D031 /* MyListingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8ABE51EA5B8A60036D031 /* MyListingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		5AED3A911DB80B2200F3EA39 /* Freely MarketUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Freely MarketUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AED3A951DB80B2200F3EA39 /* Freely_MarketUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Freely_MarketUITests.swift; sourceTree = "<group>"; };
 		5AED3A971DB80B2200F3EA39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9A8ABE51EA5B8A60036D031 /* MyListingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyListingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 				5AED3A751DB80B2200F3EA39 /* AppDelegate.swift */,
 				5AED3A7E1DB80B2200F3EA39 /* LaunchScreen.storyboard */,
 				5AED3A791DB80B2200F3EA39 /* Main.storyboard */,
+				D9A8ABE51EA5B8A60036D031 /* MyListingsViewController.swift */,
 				5AED3A7C1DB80B2200F3EA39 /* Assets.xcassets */,
 				5AED3A811DB80B2200F3EA39 /* Info.plist */,
 				5A04488B1E96160400699C47 /* CreateListingViewController.swift */,
@@ -357,6 +360,7 @@
 				5A65E4DB1E3A9F1E009733D5 /* RentalListingsViewController.swift in Sources */,
 				5A2E39F31E9EEF5800A278DF /* CreateNewConvoViewController.swift in Sources */,
 				5A6FB8741DD7823100D58436 /* SWRevealViewController.m in Sources */,
+				D9A8ABE61EA5B8A60036D031 /* MyListingsViewController.swift in Sources */,
 				5A45837D1E95753B005FECA6 /* SaleListingsViewController.swift in Sources */,
 				5A2ED6651DB8555200A75B2E /* LoginViewController.swift in Sources */,
 				5A65E4DD1E3AAEC3009733D5 /* CellData.swift in Sources */,
