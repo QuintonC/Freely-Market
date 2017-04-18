@@ -29,93 +29,32 @@ if($_GET['token'])
 ?>	
 		<html>
 		<head>
+		<link rel="stylesheet" type="text/css" href="../_style.css">
 		<title>Reset Password</title>
 		</head>
-		<style>
-		body {
-			margin: 0px;
-		}
-
-		.header {
-			width: 100%;
-			height: 16%;
-			background-color:#4B4B4B;
-			position: absolute;
-		}	
-
-
-		.header .title {
-			position: absolute;
-			left: 41%;
-			bottom: -15px;
-			font-style: italic;
-			font-family: "Brush Script MT";
-			font-size: 30px;
-		}
-
-		.header .search {
-			top: 14px;
-			left: 2%;
-			position: absolute;
-		}
-
-		.center {
-			position: absolute;
-			width: 100%;
-			height:100%;
-			top: 15%;
-			background-color: #4FAB48;
-			border: thin;
-			border-bottom-color: white;
-		}
-
-		.center .reset {
-			align-content: center;
-			top: 25%;
-			left: 35%;
-			right: 35%;
-			position: absolute;
-			height: 200px;
-			width: 30%;
-			padding: 20px;
-			border:solid;
-			border-color: white;
-			background-color: #4B4B4B;
-			font-family: Constantia, "Lucida Bright", "DejaVu Serif", Georgia, "serif";
-
-		}
-
-		.password {
-			align-content: center;
-			display: block;
-			color: white;
-		}
-
-		</style>
-
 		<body>
 		<!-- Header -->
-		<div class="header">
-
-			<div class="search">
-				<a href="../fm_homepage.html"><img src="../images/logo.png" height = "90px" width = "175px"/></a>
+		<!-- Block 1 -->
+		<div class = "title">
+			<div class = "search">
+				<h3 align="center"><a href="../fm_homepage.html"><img src = "../images/logo.png" height = "90px" width = "160px" /></a></h3><br/>
 			</div>
 
-			<div class ="title">
-				<h1>Freely Market</h1>
+			<div class = "header">
+				<h1 align="center">Freely Market</h1>
 			</div>
 		</div>
 		<!-- End Header -->
 
 		<!-- Center Page -->
-		<div class = "center">
-			<div class = "reset">
+		<div class = "forms">
+			<div class = "user_pass">
 				<center>
 					<form action='fm_password_reset.php?token=<?php echo $get_token?>' method='POST'>
 						<p>Enter a new password<br><input type='password' name='newpass'><br>
 						<p>Re-enter your password<br><input type='password' name='newpass1'><p>
 						<input type='hidden' name='username' value='<? echo $get_username ?>'>
-						<input type='submit' value='Update Password'>
+						<input class='button' type='submit' value='Update Password'>
 					</form>
 				</center>		
 			</div>
@@ -134,94 +73,30 @@ else
 {?>
 	<html>
 	<head>
+	<link rel="stylesheet" type="text/css" href="../_style.css">
 	<title>Recover Password</title>
 	</head>
-	<style>
-		body {
-			margin: 0px;
-		}
-
-		.header {
-			width: 100%;
-			height: 16%;
-			background-color:#4B4B4B;
-			position: absolute;
-		}	
-
-
-		.header .title {
-			position: absolute;
-			left: 41%;
-			bottom: -15px;
-			font-style: italic;
-			font-family: "Brush Script MT";
-			font-size: 30px;
-		}
-
-		.header .search {
-			top: 14px;
-			left: 2%;
-			position: absolute;
-		}
-
-		.center {
-			position: absolute;
-			width: 100%;
-			height:100%;
-			top: 15%;
-			background-color: #4FAB48;
-			border: thin;
-			border-bottom-color: white;
-		}
-	
-		.center .recover {
-			align-content: center;
-			top: 25%;
-			left: 35%;
-			right: 35%;
-			position: absolute;
-			height: 200px;
-			width: 30%;
-			padding: 20px;
-			border:solid;
-			border-color: white;
-			background-color: #4B4B4B;
-			font-family: Constantia, "Lucida Bright", "DejaVu Serif", Georgia, "serif";
-
-		}
-
-		.login {
-			align-content: center;
-			display: block;
-			color: white;
-		}
-	
-	</style>
-
 	<body>
-	<!-- Header -->
-	<div class="header">
-
-		<div class="search">
-			<a href="../fm_homepage.html"><img src="../images/logo.png" height = "90px" width = "175px"/></a>
+	<!-- Block 1 -->
+	<div class = "title">
+		<div class = "search">
+			<h3 align="center"><a href="../fm_homepage.html"><img src = "../images/logo.png" height = "90px" width = "160px" /></a></h3><br/>
 		</div>
 
-		<div class ="title">
-			<center>
-				<h1>Freely Market</h1>
-			</center>
+		<div class = "header">
+			<h1 align="center">Freely Market</h1>
 		</div>
 	</div>
 	<!-- End Header -->
 
 	<!-- Center Page -->
-	<div class = "center">
-	  <div class = "recover">
+	<div class = "forms">
+	  <div class = "user_pass">
 			<center>
 				<form action='fm_recover_password.php' method='POST'>
 					<p>Enter your username<br><input type='text' name='username'><p>
 					<p>Enter your email<br><input type='text' name='email'><p>
-					<input type='submit' value='Submit' name='submit'>
+					<input class='button' type='submit' value='Submit' name='submit'>
 				</form>
 			</center>		
 		</div>
