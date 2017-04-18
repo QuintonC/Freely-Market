@@ -146,6 +146,7 @@ class RentalListingsViewController: UIViewController, UITableViewDataSource, UIT
             listingVC.owner = selectedOwner
             listingVC.price = selectedPrice
             listingVC.btnText = "Rent Now - " + selectedPrice
+            listingVC.listingType = "Rental_Listing"
         }
     }
     

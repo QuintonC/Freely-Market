@@ -150,6 +150,7 @@ class EquipmentListingsViewController: UIViewController, UITableViewDataSource, 
             listingVC.owner = selectedOwner
             listingVC.price = selectedPrice
             listingVC.btnText = "Buy Now - " + selectedPrice
+            listingVC.listingType = "Equipment_Listing"
         }
     }
     

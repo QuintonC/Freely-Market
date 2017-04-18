@@ -149,6 +149,7 @@ class SaleListingsViewController: UIViewController, UITableViewDataSource, UITab
             listingVC.owner = selectedOwner
             listingVC.price = selectedPrice
             listingVC.btnText = "Buy Now - " + selectedPrice
+            listingVC.listingType = "Buy_Listing"
         }
     }
     
