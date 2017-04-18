@@ -59,14 +59,8 @@ class IndividualListingViewController: UIViewController {
         
         listingTitle.text = lTitle
         listingDescription.text = descr
-<<<<<<< HEAD
         rentButton.isHidden = hideButton
-=======
-        
-        print(lTitle)
-        
-        
->>>>>>> master
+
         rentButton.setTitle(btnText, for: .normal)
         listingOwner.setTitle(owner, for: .normal)
         viewOffersBtn.isHidden = hideViewOffers

@@ -1398,11 +1398,8 @@ Password must contain at least one letter, at least one number, and be at least 
                         <outlet property="loadingIndicator" destination="n2i-fa-466" id="BAO-io-5bu"/>
                         <outlet property="menuButton" destination="B9h-RS-g3b" id="APg-Kj-vdr"/>
                         <outlet property="rentButton" destination="eAi-BB-7uz" id="lmg-4w-dd1"/>
-<<<<<<< HEAD
                         <outlet property="viewOffersBtn" destination="qPi-X3-qRR" id="CaD-TL-zme"/>
-=======
                         <segue destination="5Vh-Wk-3iQ" kind="show" identifier="editSegue" id="U1O-7F-aYD"/>
->>>>>>> master
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z92-1U-8ve" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2083,7 +2080,6 @@ Password must contain at least one letter, at least one number, and be at least 
             </objects>
             <point key="canvasLocation" x="4026" y="4037"/>
         </scene>
-<<<<<<< HEAD
         <!--My Listings-->
         <scene sceneID="Jhn-0D-cZD">
             <objects>
@@ -2188,7 +2184,7 @@ Password must contain at least one letter, at least one number, and be at least 
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kl0-3L-kw5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2287" y="4037"/>
-=======
+        </scene>
         <!--Edit Listing-->
         <scene sceneID="0PM-Yj-wDi">
             <objects>
@@ -2317,7 +2313,6 @@ Password must contain at least one letter, at least one number, and be at least 
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dVj-gs-I1I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="600.79999999999995" y="6366.5667166416797"/>
->>>>>>> master
         </scene>
     </scenes>
     <resources>
