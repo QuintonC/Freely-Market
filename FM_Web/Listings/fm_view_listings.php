@@ -205,6 +205,7 @@ top: 600px;
 <li><a href = "view_listing/view_bike/fm_sale_bike_listings.php?pagenum=1">View Bikes</a></li>
 <li><a href = "view_listing/view_equipment/fm_sale_equipment_listing.php?pagenum=1">View Equipment</a></li>
 <li><a href = "view_listing/view_rental/fm_rental_bike_listings.php?pagenum=1">View Rentals</a></li>
+<li><a href = "view_listing/view_advertisements/fm_advertisement_listings.php?">View Vendor Sales</a></li>
 </ul>
 
 </div>
