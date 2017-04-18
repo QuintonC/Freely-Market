@@ -132,7 +132,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             var request = URLRequest(url:myURL!)
             request.httpMethod = "POST"
             
-            let postString = "password=\(password)&fname=\(fname)&lname=\(lname)&email=\(email)&phone=\(phone)"
+            let postString = "username=\(USER)&password=\(password)&fname=\(fname)&lname=\(lname)&email=\(email)&phone=\(phone)"
             
             request.httpBody = postString.data(using: String.Encoding.utf8)
             

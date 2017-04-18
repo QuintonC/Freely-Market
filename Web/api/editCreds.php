@@ -6,11 +6,13 @@ $response = array();
 if($_SERVER['REQUEST_METHOD']=='POST') {
 
     //POSTting values
+    $username = $_POST['username'];
     $password = $_POST['password'];
     $first_name = $_POST['fname'];
     $last_name = $_POST['lname'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
+
     $encpw = password_hash($password, PASSWORD_BCRYPT);
 
     //including the db operation file
@@ -19,7 +21,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
     $db = new DbOperation();
 
     //Insert user into database after confirming if user exists or not
-    $result = $db->editCreds($encpw, $first_name, $last_name, $email, $phone);
+    $result = $db->editCreds($username, $encpw, $first_name, $last_name, $email, $phone);
     if (!$result) {
         $response['error']=true;
         $response['message']='Could not edit information.';
