@@ -19,6 +19,7 @@ class IndividualListingViewController: UIViewController {
     @IBOutlet weak var rentButton: UIButton!
     @IBOutlet weak var viewOffersBtn: UIButton!
     @IBOutlet var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var editButton: UIBarButtonItem!
     
     var lTitle = String()
     var image = String()
@@ -32,6 +33,12 @@ class IndividualListingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if owner == USER || USERTYP == "2" {
+            editButton.isEnabled = true
+        } else {
+            editButton.isEnabled = false
+        }
         
         // Handlers for menu button
         if self.revealViewController() != nil {
@@ -52,7 +59,14 @@ class IndividualListingViewController: UIViewController {
         
         listingTitle.text = lTitle
         listingDescription.text = descr
+<<<<<<< HEAD
         rentButton.isHidden = hideButton
+=======
+        
+        print(lTitle)
+        
+        
+>>>>>>> master
         rentButton.setTitle(btnText, for: .normal)
         listingOwner.setTitle(owner, for: .normal)
         viewOffersBtn.isHidden = hideViewOffers
@@ -87,6 +101,12 @@ class IndividualListingViewController: UIViewController {
         }
         downloadPicTask.resume()
     }
+    
+    
+    @IBAction func editTapped(_ sender: Any) {
+        performSegue(withIdentifier: "editSegue", sender: self)
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -99,6 +119,14 @@ class IndividualListingViewController: UIViewController {
             let destinationVC = segue.destination as! CreateNewConvoViewController
             //Give CreateNewConvoViewController's textEntry a value
             destinationVC.username = owner
+        } else if (segue.identifier == "editSegue") {
+            
+            let editVC = segue.destination as! EditListingViewController
+            
+            editVC.lTitle = listingTitle.text!
+            editVC.image = image
+            editVC.descr = listingDescription.text
+            editVC.price = price
         }
     }
     

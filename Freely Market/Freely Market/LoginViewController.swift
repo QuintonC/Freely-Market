@@ -8,6 +8,7 @@
 
 import UIKit
 var USER = String()
+var USERTYP = String()
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var username: UITextField!
@@ -90,6 +91,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         
                         let messageToDisplay:String = parseJSON["message"] as! String
                         let myAlert = UIAlertController(title: "Alert", message:messageToDisplay, preferredStyle: .alert)
+                        let getTyp:String = ("\(parseJSON["type"])")
+                        
+                        
                         
                         if messageToDisplay == "Incorrect password or username combination." {
                             DispatchQueue.main.async {
@@ -102,6 +106,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         } else if messageToDisplay == "Success, you are being logged in." {
                             DispatchQueue.main.async {
                                 USER = username as String
+                                let baseType = (getTyp.replacingOccurrences(of: "Optional(", with: ""))
+                                USERTYP = (baseType.replacingOccurrences(of: ")", with: ""))
                                 self.performSegue(withIdentifier: "loginSuccess", sender: self)
                             }
                             

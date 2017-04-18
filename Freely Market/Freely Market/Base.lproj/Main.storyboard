@@ -1382,19 +1382,27 @@ Password must contain at least one letter, at least one number, and be at least 
                     </view>
                     <navigationItem key="navigationItem" title="Listing" id="vyC-My-RHT">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="B9h-RS-g3b"/>
-                        <barButtonItem key="rightBarButtonItem" image="more" id="yyH-ut-YXk"/>
+                        <barButtonItem key="rightBarButtonItem" image="more" id="yyH-ut-YXk">
+                            <connections>
+                                <action selector="editTapped:" destination="H1U-uo-Y4Y" id="r8o-8r-chs"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="editButton" destination="yyH-ut-YXk" id="SeV-RX-bJM"/>
                         <outlet property="listingDescription" destination="V7s-V9-Zv5" id="38H-gn-ZKy"/>
                         <outlet property="listingImage" destination="DUh-dj-BQQ" id="2zh-gW-ouL"/>
                         <outlet property="listingOwner" destination="VF1-mN-mh0" id="Xfu-QN-nzp"/>
                         <outlet property="listingTitle" destination="u7s-BF-hcI" id="Xht-OQ-ela"/>
                         <outlet property="loadingIndicator" destination="n2i-fa-466" id="BAO-io-5bu"/>
                         <outlet property="menuButton" destination="B9h-RS-g3b" id="APg-Kj-vdr"/>
-                        <outlet property="moreButton" destination="yyH-ut-YXk" id="efp-cZ-MhU"/>
                         <outlet property="rentButton" destination="eAi-BB-7uz" id="lmg-4w-dd1"/>
+<<<<<<< HEAD
                         <outlet property="viewOffersBtn" destination="qPi-X3-qRR" id="CaD-TL-zme"/>
+=======
+                        <segue destination="5Vh-Wk-3iQ" kind="show" identifier="editSegue" id="U1O-7F-aYD"/>
+>>>>>>> master
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z92-1U-8ve" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2075,6 +2083,7 @@ Password must contain at least one letter, at least one number, and be at least 
             </objects>
             <point key="canvasLocation" x="4026" y="4037"/>
         </scene>
+<<<<<<< HEAD
         <!--My Listings-->
         <scene sceneID="Jhn-0D-cZD">
             <objects>
@@ -2179,6 +2188,136 @@ Password must contain at least one letter, at least one number, and be at least 
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kl0-3L-kw5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2287" y="4037"/>
+=======
+        <!--Edit Listing-->
+        <scene sceneID="0PM-Yj-wDi">
+            <objects>
+                <viewController id="5Vh-Wk-3iQ" customClass="EditListingViewController" customModule="Freely_Market" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="t5f-9o-bBn"/>
+                        <viewControllerLayoutGuide type="bottom" id="hHQ-1o-zi9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ebu-kE-OVR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="summer-ray-of-sunshine-bikes-bicycles" translatesAutoresizingMaskIntoConstraints="NO" id="j08-Tf-rpr">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YOe-Zy-EY1">
+                                <rect key="frame" x="63" y="120" width="120.5" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="KkI-gQ-ABq"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="5Vh-Wk-3iQ" id="V48-wv-WSW"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BET-xN-Hzr">
+                                <rect key="frame" x="191.5" y="120" width="120.5" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Jde-sH-TS7"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="5Vh-Wk-3iQ" id="10I-13-OBB"/>
+                                </connections>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FjV-2d-RZk">
+                                <rect key="frame" x="63" y="158" width="249" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="FKd-4c-nUh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="5Vh-Wk-3iQ" id="oC2-an-daE"/>
+                                </connections>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yjh-dM-znI">
+                                <rect key="frame" x="63" y="294" width="249" height="30"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="kcW-Uj-4f1"/>
+                                </constraints>
+                                <state key="normal" title="Select Photo">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectImage:" destination="5Vh-Wk-3iQ" eventType="touchUpInside" id="CPO-mo-D1B"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yhy-1o-zrJ">
+                                <rect key="frame" x="63" y="332" width="249" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="SgF-X4-Xmz"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bGW-AV-UnR">
+                                <rect key="frame" x="0.0" y="597" width="375" height="70"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="AI5-nh-Zjp"/>
+                                </constraints>
+                                <state key="normal" title="Delete Listing">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Yjh-dM-znI" secondAttribute="trailing" constant="47" id="0cI-he-B4s"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FjV-2d-RZk" secondAttribute="trailing" constant="47" id="9JJ-1E-p3O"/>
+                            <constraint firstAttribute="trailing" secondItem="j08-Tf-rpr" secondAttribute="trailing" id="Agg-CY-iwj"/>
+                            <constraint firstItem="YOe-Zy-EY1" firstAttribute="width" secondItem="BET-xN-Hzr" secondAttribute="width" id="ERi-PT-pYZ"/>
+                            <constraint firstItem="Yjh-dM-znI" firstAttribute="centerX" secondItem="Ebu-kE-OVR" secondAttribute="centerX" id="Fhx-ey-mWZ"/>
+                            <constraint firstItem="Yjh-dM-znI" firstAttribute="leading" secondItem="Ebu-kE-OVR" secondAttribute="leadingMargin" constant="47" id="GqU-C4-OSE"/>
+                            <constraint firstItem="Yjh-dM-znI" firstAttribute="top" secondItem="FjV-2d-RZk" secondAttribute="bottom" constant="8" id="HuN-Nk-wyy"/>
+                            <constraint firstItem="FjV-2d-RZk" firstAttribute="top" secondItem="BET-xN-Hzr" secondAttribute="bottom" constant="8" id="Jro-YH-ZOy"/>
+                            <constraint firstItem="j08-Tf-rpr" firstAttribute="leading" secondItem="Ebu-kE-OVR" secondAttribute="leading" id="LKH-8K-JZW"/>
+                            <constraint firstItem="YOe-Zy-EY1" firstAttribute="baseline" secondItem="BET-xN-Hzr" secondAttribute="baseline" id="MIv-HW-ffY"/>
+                            <constraint firstItem="yhy-1o-zrJ" firstAttribute="leading" secondItem="Ebu-kE-OVR" secondAttribute="leadingMargin" constant="47" id="MRM-9t-SDr"/>
+                            <constraint firstItem="FjV-2d-RZk" firstAttribute="centerX" secondItem="Ebu-kE-OVR" secondAttribute="centerX" id="Nh4-4D-api"/>
+                            <constraint firstItem="hHQ-1o-zi9" firstAttribute="top" secondItem="j08-Tf-rpr" secondAttribute="bottom" id="QXD-H9-veo"/>
+                            <constraint firstAttribute="trailing" secondItem="bGW-AV-UnR" secondAttribute="trailing" id="YWa-9o-oko"/>
+                            <constraint firstItem="bGW-AV-UnR" firstAttribute="leading" secondItem="Ebu-kE-OVR" secondAttribute="leading" id="aUS-IW-pTN"/>
+                            <constraint firstItem="j08-Tf-rpr" firstAttribute="top" secondItem="Ebu-kE-OVR" secondAttribute="top" id="ekj-7x-0W9"/>
+                            <constraint firstItem="YOe-Zy-EY1" firstAttribute="leading" secondItem="Ebu-kE-OVR" secondAttribute="leadingMargin" constant="47" id="epq-hN-LpY"/>
+                            <constraint firstItem="YOe-Zy-EY1" firstAttribute="top" secondItem="t5f-9o-bBn" secondAttribute="bottom" constant="56" id="jH3-4a-ftt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BET-xN-Hzr" secondAttribute="trailing" constant="47" id="jsq-oO-k97"/>
+                            <constraint firstItem="FjV-2d-RZk" firstAttribute="leading" secondItem="Ebu-kE-OVR" secondAttribute="leadingMargin" constant="47" id="lGR-Ap-VMX"/>
+                            <constraint firstItem="BET-xN-Hzr" firstAttribute="leading" secondItem="YOe-Zy-EY1" secondAttribute="trailing" constant="8" id="ogK-Ti-6jH"/>
+                            <constraint firstItem="hHQ-1o-zi9" firstAttribute="top" secondItem="bGW-AV-UnR" secondAttribute="bottom" id="prV-77-Iiq"/>
+                            <constraint firstItem="yhy-1o-zrJ" firstAttribute="centerX" secondItem="bGW-AV-UnR" secondAttribute="centerX" id="uSE-mp-hSc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yhy-1o-zrJ" secondAttribute="trailing" constant="47" id="vMR-wv-9zQ"/>
+                            <constraint firstItem="yhy-1o-zrJ" firstAttribute="top" secondItem="Yjh-dM-znI" secondAttribute="bottom" constant="8" id="vjN-zL-t6L"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit Listing" id="OeQ-Iy-jtV">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="dGW-hU-ST5">
+                            <connections>
+                                <action selector="saveTapped:" destination="5Vh-Wk-3iQ" id="Ulz-bQ-aRE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="listingDescription" destination="FjV-2d-RZk" id="Iep-Cd-QHi"/>
+                        <outlet property="listingImage" destination="yhy-1o-zrJ" id="meh-gv-g7h"/>
+                        <outlet property="listingPrice" destination="BET-xN-Hzr" id="FE3-rW-elD"/>
+                        <outlet property="listingTitle" destination="YOe-Zy-EY1" id="ayo-fc-Ijs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dVj-gs-I1I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="600.79999999999995" y="6366.5667166416797"/>
+>>>>>>> master
         </scene>
     </scenes>
     <resources>

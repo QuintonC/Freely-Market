@@ -1,6 +1,6 @@
-<!doctype html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="../../_style.css">
 <meta charset="utf-8">
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 <title>Create Account</title>
@@ -29,101 +29,25 @@
 
 maxLength(document.getElementById("text"));
 </script>
-	
-<style>
-	
-	body{
-		margin:0px;
-	}
-	
-.title {
-	width: 100%;
-	height: 125px;
-	background-color: #4B4B4B;
-	}
-
-.title .header {
-	left: 42%;
-	position: absolute;
-	font-family: "Brush Script MT", cursive;
-	font-size: 24px;
-	}
-
-.title .logo {
-	top: 2%;
-	left: 1%;
-	position: absolute;
-	}
-
-
-.center{
-	width: 100%;
-	height: 600px;
-	background-color: #4FAB48;
-	}
-
-.center .forms {
-	position: relative;
-	text-align: left;
-	top: 75px;
-	height: 150px;
-	width: 500px;
-	background-color: #FFFFFF;
-	border-style: solid;
-	border-width: 2px;
-	padding: 15px;
-	}
-
-.footer {
-	margin: auto;
-	width: 100%;
-	background-color: #000000;
-	color: #FFFAF0;
-	position: absolute;
-	top: 725px;
-	}
-
-.footer ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-
-.footer li {
-    float: right;
-	border-right: 1px solid #bbb;
-}
-
-.footer li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-	
-</style>
 </head>
 
 <body>
 
 <!-- Block 1 -->
 <div class = "title">
-	<div class = "logo">
-		<img src = "../../images/logo.png" height = "100px" width = "200px" />
+	<div class = "search">
+		<h3 align="center"><img src = "../../images/logo.png" height = "90px" width = "160px" /></h3><br />
 	</div>
 
 	<div class = "header">
-		<h1>Freely Market</h1>
+		<h1 align="center">Freely Market</h1>
 	</div>
 </div>
 
 <!-- Block 2 -->
 <center>
-	<div class = "center">
-		<div class = "forms">
+	<div class = "forms">
+		<div class = "user_pass">
 			<form name = "confirmation" action="fm_v_account_number.php" method="post" onsubmit = "return blank()">
 				<input type="hidden" value="add" name="choice">
 				<center><p>Please enter your account confirmation number below 
@@ -133,19 +57,19 @@ maxLength(document.getElementById("text"));
 				</p>
 				<br />
 				<br />
-				<button type="submit" name = "Submit">Submit</button>
+				<button class="button" type="submit" name = "Submit">Submit</button>
 				</center>
 			</form>
 		</div>
 	</div>
 </center>
+
 <!-- Block 3 -->
 <div class = "footer">
 	<ul>
 		<li><a href = "">Privacy Policy</a></li>
 		<li><a href = "">About</a></li>
 		<li><a href = "">Contact</a></li>
-		<li style = "float:left"><a href = "">Social Links</a></li>
 	</ul>
 </div>
 
