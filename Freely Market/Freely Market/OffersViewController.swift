@@ -18,6 +18,9 @@ class OffersViewController: UIViewController, UITableViewDataSource, UITableView
     
     var offerBy = String()
     
+    var type = String()
+    var id = String()
+    
     override func viewDidLoad() {
         
         if self.revealViewController() != nil {
@@ -41,7 +44,7 @@ class OffersViewController: UIViewController, UITableViewDataSource, UITableView
         let requestURL: NSURL = NSURL(string: "http://cgi.soic.indiana.edu/~team12/api/getOffers.php")!
         let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
         urlRequest.httpMethod = "POST"
-        let postString = "user=\(USER)"
+        let postString = "owner=\(USER)&type=\(type)&id=\(id)"
         urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
         let session = URLSession.shared
@@ -53,21 +56,8 @@ class OffersViewController: UIViewController, UITableViewDataSource, UITableView
             if (statusCode == 200) {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
-                    if let listings = json["listing"] as? [[String: AnyObject]] {
-                        for listing in listings {
-                            if let title = listing["item"] as? String {
-                                if let price = listing["price"] as? String {
-                                    if let picture = listing["picture"] as? String {
-                                        if let descr = listing["descr"] as? String {
-                                            if let owner = listing["owner"] as? String {
-                                                self.Offers.append([title, "$" + price, picture, descr, owner])
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    
+                    
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
