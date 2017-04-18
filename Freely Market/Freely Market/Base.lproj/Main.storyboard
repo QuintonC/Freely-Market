@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="s3r-uP-m7a">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="s3r-uP-m7a">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -1673,6 +1673,7 @@ Password must contain at least one letter, at least one number, and be at least 
                         <outlet property="listingTypeButton" destination="A65-Au-hTo" id="xzt-Ep-iTX"/>
                         <outlet property="menuButton" destination="TFX-Qm-UJQ" id="8mr-YZ-rE2"/>
                         <outlet property="selectedImageView" destination="P8O-TV-QXY" id="ZBs-Z4-d77"/>
+                        <segue destination="opi-jG-y3i" kind="custom" identifier="successfulListing" customClass="SWRevealViewControllerSeguePushController" id="tPf-FU-EAe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fam-BV-eR6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2075,9 +2076,9 @@ Password must contain at least one letter, at least one number, and be at least 
     <inferredMetricsTieBreakers>
         <segue reference="cKi-KO-eLK"/>
         <segue reference="Mw4-QG-wnN"/>
-        <segue reference="TRM-Ep-dyG"/>
-        <segue reference="uGr-uf-BNo"/>
         <segue reference="up8-nE-ebJ"/>
+        <segue reference="tPf-FU-EAe"/>
+        <segue reference="uGr-uf-BNo"/>
         <segue reference="ita-cW-69Q"/>
     </inferredMetricsTieBreakers>
 </document>
