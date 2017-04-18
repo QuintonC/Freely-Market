@@ -96,7 +96,12 @@ class OffersViewController: UIViewController, UITableViewDataSource, UITableView
         view.endEditing(true)
     }
     
+    //set the height for all the cells
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
     
+    //Set the accept and decline offer sliding buttons
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
         let accept = UITableViewRowAction(style: .normal, title: "Accept") { action, index in
             print("accept button tapped")
