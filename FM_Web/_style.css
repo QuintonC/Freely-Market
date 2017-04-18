@@ -84,6 +84,12 @@ a:hover {
 	border-color: white;
 }
 
+.title .navbar{
+	left: 85%;
+	position: relative;
+	font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+}
+
 
 .information {
 	font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
@@ -142,6 +148,23 @@ a:hover {
 	top: 20%;
 	left: 30%;
 	height: 55%;
+	width: 40%;
+	color: white;
+	background-color: #333;
+	border-style: solid;
+	border-color: white;
+	border-width: 2px;
+	border-radius: 3px;
+	padding: 10px;
+	padding-bottom: 5px;
+	position: absolute;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+}
+
+.forms .edit_account {
+	top: 3%;
+	left: 30%;
+	height: 90%;
 	width: 40%;
 	color: white;
 	background-color: #333;
