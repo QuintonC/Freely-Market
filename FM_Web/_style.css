@@ -195,6 +195,89 @@ a:hover {
 	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
 }
 
+.leftsidebar {
+	font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	top: 15%;
+	width: 15%;
+	height: 100%;
+	position: absolute;
+	border-top: solid;
+	border-top-color: white;
+	background-color: #333;
+	padding-top: 8px;
+}
+	
+.leftsidebar .menu ul {
+	font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	list-style-type: none;
+	background-color: #13A61B;
+	margin: 0px;
+	padding: 0px;
+}
+	
+.leftsidebar .menu li {
+	float: none;
+	border: 1px solid #bbb;
+	border:solid;
+	border-color: #333;
+	border-radius: 1px;
+}
+	
+.leftsidebar .menu li a {
+	display: block;
+	color: white;
+	font-size: 14px;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+	
+.leftsidebar .img-circle {
+	border-radius: 50%;
+	border-style: solid;
+	border-color: white;
+	width: 150px;
+	height: 130px;
+}
+
+.leftsidebar .menu li a:hover {
+    background-color: black;
+    color: white;
+}
+.leftsidebar .menu .active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.account {
+	font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	position: absolute;
+	top:15%;
+	height: 100%;
+	left: 15%;
+	width: 85%;
+	text-align: center;
+	background-color: #333;
+	border-top: solid;
+	border-color: white;
+}
+
+.account ul {
+	list-style-type: none;
+    margin: 0;
+    padding: 0;
+	background-color: #333;
+}
+
+.account li {
+	display: block;
+    text-decoration: none;
+	width: 100%;
+    text-align: left;
+	color: white;
+}
+
+
 input[type=text] {
 	width: 100%;
 	padding: 7px 7px;
@@ -209,6 +292,14 @@ input[type=password] {
 	box-sizing: border-box;
 	border-color: white;
 	border-radius: 3px;
+}
+
+.num {
+	color: red;
+}
+
+.dig {
+	color: red;
 }
 
 .button {
