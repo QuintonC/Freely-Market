@@ -335,6 +335,7 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
             listingVC.owner = selectedOwner
             listingVC.price = selectedPrice
             listingVC.btnText = "Rent Now - " + selectedPrice
+            listingVC.listingType = type
         }
     }
 

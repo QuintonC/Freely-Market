@@ -26,6 +26,7 @@ class IndividualListingViewController: UIViewController {
     var owner = String()
     var price = String()
     var btnText = String()
+    var listingType = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,6 +117,7 @@ class IndividualListingViewController: UIViewController {
             editVC.image = image
             editVC.descr = listingDescription.text
             editVC.price = price
+            editVC.listingType = listingType
         }
     }
     
