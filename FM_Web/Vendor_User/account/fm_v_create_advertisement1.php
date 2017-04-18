@@ -57,6 +57,7 @@ if($row_arr == $currentdate){
 <!doctype html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="../../_style.css">
 <meta charset="utf-8">
 <link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon" />
 <title>Create Advertisement</title>
@@ -90,7 +91,7 @@ maxLength(document.getElementById("text"));
 </script>
 
 
-<style>
+<!--<style>
 	
 	body {
 		margin: 0px;
@@ -332,27 +333,27 @@ maxLength(document.getElementById("text"));
 </style>
 </head>
 
-<body>
+<body>-->
 
-<!-- Header -->
-<div class="header">
-
-	<div class="search">
-		<a href="../../fm_homepage.html"><img src="../../images/logo.png" height = "100px" width = "200px"/></a>
+<!-- Block 1 -->
+<div class = "title">
+	<div class = "search">
+		<h3 align="center"><a href="../../fm_homepage.html"><img src = "../../images/logo.png" height = "90px" width = "160px" /></a></h3>
 	</div>
 
-	<div class ="title">
-		<h1>Freely Market</h1>
+	<div class = "header">
+		<h1 align="center">Freely Market</h1>
 	</div>
 
 	<div class = "login">
 		<ul>
-			<li><a href="../../account/fm_account.php" class="active">My Account</a></li>
-			<li><a href = "../../fm_homepage.html">Log Out</a></li>
+			<li><a href = "../../listings/fm_listings.php">Listings</a></li>
+			<li><a href = "../../transactions/fm_transactions.php">Transactions</a></li>
+			<li><a href="../fm_account.php"  class = "active">My Account</a></li>
+			<li><a href = "../../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
 		</ul>
 	</div>
 </div>
-<!-- End Header -->
 
 <!-- Left Sidebar -->
 <div class="leftsidebar"> 
@@ -364,32 +365,33 @@ maxLength(document.getElementById("text"));
 	</table>
 	<?php } ?>
 	<h2 align="center"> <?php echo $log; ?></h2>
+	<div class = "menu">
 	<ul>
-		<li>
-			<a href="../../account/edit_account/fm_edit_account.php">Edit Account</a>
-		</li>
-		<li>
-			<a href="../../transactions/fm_transactions.php">Transactions</a>
-		</li>
-		<li>
-			<a href="../../listings/fm_listings.php">Listings</a>
-		</li>
-		<li>
-			<a href="../../account/messager/fm_messager1.php">Messager <div class = "dig"><?php if ($digit != 0) { echo $digit;}?></div></a>
-		</li>
-		<li>
-			<a href="../../account/notifications/fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a>
-		</li>
-		<li>
-			<a href="fm_v_create_advertisement1.php">Advertisements</a>
-		</li>
+		<li><a href = "edit_account/fm_edit_account.php">Edit Account</a></li>
+		<li><a href = "edit_card/fm_edit_card.php">Edit Card Info</a></li>
+		<li><a href = "messager/fm_messager1.php">Messager <div class = "dig"><?php if ($digit != 0) { echo $digit;}?></div></a></li>
+		<li><a href = "notifications/fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
+		<li><a href = "report_issue/fm_issue_form.php">Report an Issue</a></li>
+		<?php if ($check['typ'] == 2 ): ?>
+			<span><li><a href = '../admin/fm_admin_vendor_requests.php'>Vendor Requests</a></li>
+		<?php endif;?>
+		<?php if ($check['typ'] == 2 ): ?>
+			<span><li><a href = '../admin/fm_admin_view_users.php'>View Users</a></li>
+		<?php endif;?>
+		<?php if ($check['typ'] == 2 ): ?>
+			<span><li><a href = '../admin/fm_admin_view_issues.php'>View Issues</a></li>
+		<?php endif;?>
+		<?php if ($check['typ'] == 1 ): ?>
+			<span><li><a href = '../vendor/account_page/fm_v_create_advertisement1.php'>Advertisements</a></li>
+		<?php endif;?>
 	</ul>
+</div>
 </div>
 <!-- End Left Sidebar -->
 
 <!-- Right Sidebar -->
 <div class="rightsidebar">
-	<h3 align="center"><a href="../../listings/view_listings/view_advertisements/fm_advertisement_listing.php">All Advertisements</a></h3>
+	<h3 align="center">Current</h3>
 	<?php while ($row = mysqli_fetch_array($data)) { ?>
 		<table align="center">
 			<tr>
@@ -401,7 +403,7 @@ maxLength(document.getElementById("text"));
 <!-- End Right Sidebar -->
 
 <!-- Center Page -->
-<div class="center">
+<div class="center1">
 	<h2 align="center">Advertisements</h2>
 	<form name="advertisement" action="fm_v_create_advertisement.php" method="post" enctype="multipart/form-data" onsubmit = "return blank()">
 		<p>Title <br><br> <input type="text" id="title" name="title"></p> 
@@ -421,13 +423,11 @@ maxLength(document.getElementById("text"));
 
 <!-- Footer -->
 <div class = "footer">
-
-<ul>
-	<li><a href = "">Privacy Policy</a></li>
-	<li><a href = "">About</a></li>
-	<li><a href = "">Contact</a></li>
-	<li style = "float:left"><a href = "">Social Links</a></li>
-</ul>
+	<ul>
+		<li><a href = "">Privacy Policy</a></li>
+		<li><a href = "">About</a></li>
+		<li><a href = "">Contact</a></li>
+	</ul>
 </div>
 <!-- End Footer -->
 </body>

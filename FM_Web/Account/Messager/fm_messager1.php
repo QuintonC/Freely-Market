@@ -24,6 +24,15 @@ $result = $conn->query($mysql);
 $sql = "select distinct sender from Messages where reciever = '$sender'";
 $content = $conn->query($sql);
 
+#Call session variables
+$username = $_SESSION['username'];
+$aid = $_SESSION['uid'];
+
+#Check if user is admin
+$adminsql = "select typ from User_Accounts where aid = '$aid'";
+$adminCheck = $conn->query($adminsql);
+$check = mysqli_fetch_array($adminCheck);
+
 ?>
 
 <html>
@@ -297,17 +306,24 @@ top: 950px;
 
 <div class = "menu">
 <ul>
-<li><a href = "../edit_account/fm_edit_account.php">Edit Account</a></li>
-<li><a href = "../edit_card/fm_edit_card.php">Edit Card Info</a></li>
-<li><a href = "../messager/fm_messager1.php">Messager</a></li>
-<li><a href = "../notifications/fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
-<li><a href = 'fm_admin_vendor_requests.php'>Vendor Requests</a></li>
-<?php if ($adminCheck['admin'] == "y"): ?>
-	<span><li><a href = "fm_messager1.php">Messager</a></li></span>
+<li><a href = "../../account/edit_account/fm_edit_account.php">Edit Account</a></li>
+<li><a href = "../../account/edit_card/fm_edit_card.php">Edit Card Info</a></li>
+<li><a href = "../../account/messager/fm_messager1.php">Messager <div class = "dig"><?php if ($digit != 0) { echo $digit;}?></div></a></li>
+<li><a href = "../../account/notifications/fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
+<li><a href = "../../account/report_issue/fm_issue_form.php">Report an Issue</a></li>
+<?php if ($check['typ'] == 2 ): ?>
+	<span><li><a href = '../../admin/fm_admin_vendor_requests.php'>Vendor Requests</a></li>
+<?php endif;?>
+<?php if ($check['typ'] == 2 ): ?>
+	<span><li><a href = '../../admin/fm_admin_view_users.php'>View Users</a></li>
+<?php endif;?>
+<?php if ($check['typ'] == 2 ): ?>
+	<span><li><a href = '../../admin/fm_admin_view_issues.php'>View Issues</a></li>
+<?php endif;?>
+<?php if ($check['typ'] == 1 ): ?>
+	<span><li><a href = '../../vendor/account_page/fm_v_create_advertisement1.php'>View Users</a></li>
 <?php endif;?>
 </ul>
-</div>
-
 </div>
 
 <!-- Block 3 -->

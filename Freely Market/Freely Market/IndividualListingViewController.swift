@@ -31,6 +31,9 @@ class IndividualListingViewController: UIViewController {
     var hideViewOffers = true
     
 
+    var listingType = String()
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -131,6 +134,7 @@ class IndividualListingViewController: UIViewController {
             editVC.image = image
             editVC.descr = listingDescription.text
             editVC.price = price
+
         } else if (segue.identifier == "viewOffersSegue") {
             //Create an instance of the NavigationController
             let navVC = segue.destination as? UINavigationController
@@ -138,6 +142,9 @@ class IndividualListingViewController: UIViewController {
             let destinationVC = navVC?.viewControllers.first as! OffersViewController
             
             destinationVC.offerBy = "junkData"
+
+            editVC.listingType = listingType
+
         }
     }
     

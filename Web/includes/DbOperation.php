@@ -72,10 +72,22 @@ class DbOperation {
         $stmt->close();
     }
 
+    public function getUserType($username) {
+        $stmt = $this->conn->prepare("SELECT typ FROM User_Accounts WHERE username ='$username';");
+        $stmt->bind_param("typ");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        $row = $result->fetch_row();
+        return $row[0];
+    }
+
     public function editCreds($username, $password, $first_name, $last_name, $email, $phone) {
 
-        $stmt = $this->conn->prepare("UPDATE User_Accounts SET password='$password', first_name='$first_name', last_name='$last_name', email='$email', phone='$phone' WHERE username='$username");
-        $stmt->bind_param("sssss", $password, $first_name, $last_name, $email, $phone);
+        $stmt = $this->conn->prepare("UPDATE User_Accounts SET password='$password', first_name='$first_name', last_name='$last_name', email='$email', phone='$phone' WHERE username='$username'");
+
+        $stmt->bind_param("ssssss", $username, $password, $first_name, $last_name, $email, $phone);
         $result = $stmt->execute();
         $stmt->close();
         
@@ -107,6 +119,27 @@ class DbOperation {
         return $result;
     }
     
+    public function myRentalListings($user) {
+        $stmt = $this->conn->prepare("SELECT item, price, picture, descr, owner FROM Rental_Listing WHERE owner='$user'");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+
+    public function mySalesListings($user) {
+        $stmt = $this->conn->prepare("SELECT item, price, picture, descr, owner FROM Buy_Listing WHERE owner='$user'");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+
+    public function myEquipmentListings($user) {
+        $stmt = $this->conn->prepare("SELECT item, price, picture, descr, owner FROM Equipment_Listing WHERE owner='$user'");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+
     
     //Function for getting contacts
     public function getContacts($user) {
@@ -181,7 +214,73 @@ class DbOperation {
         $stmt->close();
         return $result;
     }
-    
+
+    public function getRID($item, $price, $descr, $picture) {
+        $stmt = $this->conn->prepare("SELECT rid from Rental_Listing WHERE item='$item' AND price='$price' AND descr='$descr' AND picture='$picture'");
+        $stmt->bind_param("picture");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $row = $result->fetch_row();
+        return $row[0];
+    }
+
+    public function getBID($item, $price, $descr, $picture) {
+        $stmt = $this->conn->prepare("SELECT bid from Buy_Listing WHERE item='$item', price='$price', descr='$descr', picture='$picture'");
+        $stmt->bind_param("picture");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $row = $result->fetch_row();
+        return $row[0];
+    }
+
+    public function getEID($item, $price, $descr, $picture) {
+        $stmt = $this->conn->prepare("SELECT eid from Equipment_Listing WHERE item='$item', price='$price', descr='$descr', picture='$picture'");
+        $stmt->bind_param("picture");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $row = $result->fetch_row();
+        return $row[0];
+    }
+
+    public function editListing($type, $item, $price, $descr, $picture, $id) {
+        if ($type = 'Rental_Listing') {
+            $stmt = $this->conn->prepare("UPDATE $type SET item='$item', price='$price', descr='$descr', picture='$picture' where rid='$id'");
+        } else if ($type = 'Buy_Listing') {
+            $stmt = $this->conn->prepare("UPDATE $type SET item='$item', price='$price', descr='$descr', picture='$picture' where bid='$id'");
+        } else if ($type = 'Equipment_Listing') {
+            $stmt = $this->conn->prepare("UPDATE $type SET item='$item', price='$price', descr='$descr', picture='$picture' where eid='$id'");
+        }
+
+        $stmt->bind_param("ssssss", $type, $item, $price, $descr, $picture, $id);
+        $result = $stmt->execute();
+        $stmt->close();
+        return $result;
+    }
+
+    public function deleteListing($type, $id) {
+        if ($type = 'Rental_Listing') {
+            $stmt = $this->conn->prepare("DELETE FROM $type WHERE rid='$id'");
+        } else if ($type = 'Buy_Listing') {
+            $stmt = $this->conn->prepare("DELETE FROM $type WHERE bid='$id'");
+        } else if ($type = 'Equipment_Listing') {
+            $stmt = $this->conn->prepare("DELETE FROM $type WHERE eid='$id'");
+        }
+
+        $stmt->bind_param("ss", $type, $id);
+        $result = $stmt->execute();
+        $stmt->close();
+
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+        //return $result;
+    }
+
 }
 
 ?>
