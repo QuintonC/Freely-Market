@@ -34,9 +34,13 @@ class IndividualListingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if owner == USER || USERTYP == "2" {
+        if owner == USER {
             editButton.isEnabled = true
-        } else {
+            hideButton = true
+            hideViewOffers = false
+        } else if USERTYP == "2" {
+            editButton.isEnabled = true
+        }else {
             editButton.isEnabled = false
         }
         
@@ -101,6 +105,12 @@ class IndividualListingViewController: UIViewController {
         performSegue(withIdentifier: "editSegue", sender: self)
     }
     
+    
+    @IBAction func viewOffers(_ sender: Any) {
+        performSegue(withIdentifier: "viewOffersSegue", sender: self)
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -121,6 +131,13 @@ class IndividualListingViewController: UIViewController {
             editVC.image = image
             editVC.descr = listingDescription.text
             editVC.price = price
+        } else if (segue.identifier == "viewOffersSegue") {
+            //Create an instance of the NavigationController
+            let navVC = segue.destination as? UINavigationController
+            //Create an instance of the destination IndividualListingViewController
+            let destinationVC = navVC?.viewControllers.first as! OffersViewController
+            
+            destinationVC.offerBy = "junkData"
         }
     }
     

@@ -157,8 +157,6 @@ class MyListingsViewController: UIViewController, UITableViewDataSource, UITable
             listingVC.owner = selectedOwner
             listingVC.price = selectedPrice
             listingVC.btnText = "Rent Now - " + selectedPrice
-//            listingVC.hideButton = true
-//            listingVC.hideViewOffers = false
             
         }
     }

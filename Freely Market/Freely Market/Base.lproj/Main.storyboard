@@ -1298,6 +1298,9 @@ Password must contain at least one letter, at least one number, and be at least 
                                 <state key="normal" title="View Offers">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="viewOffers:" destination="H1U-uo-Y4Y" eventType="touchUpInside" id="eo8-hZ-Q5r"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7s-V9-Zv5">
                                 <rect key="frame" x="46" y="367" width="283" height="205"/>
@@ -1400,6 +1403,7 @@ Password must contain at least one letter, at least one number, and be at least 
                         <outlet property="rentButton" destination="eAi-BB-7uz" id="lmg-4w-dd1"/>
                         <outlet property="viewOffersBtn" destination="qPi-X3-qRR" id="CaD-TL-zme"/>
                         <segue destination="5Vh-Wk-3iQ" kind="show" identifier="editSegue" id="U1O-7F-aYD"/>
+                        <segue destination="rj6-Gp-uQH" kind="custom" identifier="viewOffersSegue" customClass="SWRevealViewControllerSeguePushController" id="oGr-zz-9fX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z92-1U-8ve" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2313,6 +2317,85 @@ Password must contain at least one letter, at least one number, and be at least 
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dVj-gs-I1I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="600.79999999999995" y="6366.5667166416797"/>
+        </scene>
+        <!--Offers-->
+        <scene sceneID="OM6-Cn-okH">
+            <objects>
+                <viewController title="Offers" id="zft-At-ivO" customClass="OffersViewController" customModule="Freely_Market" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dNS-9J-1hj"/>
+                        <viewControllerLayoutGuide type="bottom" id="tFI-8Q-Bp2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="left" id="Tvi-Gd-zDd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="summer-ray-of-sunshine-bikes-bicycles" translatesAutoresizingMaskIntoConstraints="NO" id="tI3-h9-3m4">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yS0-k5-y3K">
+                                <rect key="frame" x="0.0" y="72" width="375" height="595"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="100" id="pun-48-Sww" customClass="CellData" customModule="Freely_Market" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pun-48-Sww" id="obA-92-fVL" customClass="CellData" customModule="Freely_Market" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="zft-At-ivO" id="yaD-Du-RWC"/>
+                                    <outlet property="delegate" destination="zft-At-ivO" id="Krl-xb-FXE"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="yS0-k5-y3K" secondAttribute="trailing" id="145-FT-D7P"/>
+                            <constraint firstItem="tFI-8Q-Bp2" firstAttribute="top" secondItem="tI3-h9-3m4" secondAttribute="bottom" id="2ab-Y3-MH8"/>
+                            <constraint firstItem="tI3-h9-3m4" firstAttribute="leading" secondItem="Tvi-Gd-zDd" secondAttribute="leading" id="8Xn-31-auL"/>
+                            <constraint firstItem="tFI-8Q-Bp2" firstAttribute="top" secondItem="yS0-k5-y3K" secondAttribute="bottom" id="BzM-z5-auN"/>
+                            <constraint firstAttribute="trailing" secondItem="tI3-h9-3m4" secondAttribute="trailing" id="Dzr-Xi-3GJ"/>
+                            <constraint firstItem="tI3-h9-3m4" firstAttribute="top" secondItem="Tvi-Gd-zDd" secondAttribute="top" id="IXL-Ed-eYW"/>
+                            <constraint firstItem="yS0-k5-y3K" firstAttribute="leading" secondItem="Tvi-Gd-zDd" secondAttribute="leading" id="XRh-nn-Q5T"/>
+                            <constraint firstItem="yS0-k5-y3K" firstAttribute="top" secondItem="dNS-9J-1hj" secondAttribute="bottom" constant="8" id="gGq-oh-psM"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Offers" image="cruiser40" selectedImage="cruiser40" id="BA6-yS-ZEc"/>
+                    <navigationItem key="navigationItem" title="Offers" id="5fh-Ss-4S9" userLabel="My Listings">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="bgG-hL-Hyv"/>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="menuButton" destination="bgG-hL-Hyv" id="krf-Re-uh6"/>
+                        <outlet property="tableView" destination="yS0-k5-y3K" id="KSS-Os-Dav"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1rW-VJ-zUW" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2222" y="6367"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="pLw-im-ZaW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rj6-Gp-uQH" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YfK-MA-8xE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zft-At-ivO" kind="relationship" relationship="rootViewController" id="B8K-BA-Go8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A1u-i2-UI3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2222" y="5621"/>
         </scene>
     </scenes>
     <resources>
