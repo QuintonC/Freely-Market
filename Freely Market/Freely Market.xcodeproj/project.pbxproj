@@ -25,6 +25,7 @@
 		5A65E4DD1E3AAEC3009733D5 /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A65E4DC1E3AAEC3009733D5 /* CellData.swift */; };
 		5A6FB8741DD7823100D58436 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6FB8731DD7823100D58436 /* SWRevealViewController.m */; };
 		5A6FB8761DD9025500D58436 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6FB8751DD9025500D58436 /* MessageViewController.swift */; };
+		5AB3C7DE1EA5BA1500F1C04E /* EditListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB3C7DD1EA5BA1500F1C04E /* EditListingViewController.swift */; };
 		5AC30E3D1DCBD1DE00C502B2 /* ForgottenPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC30E3C1DCBD1DE00C502B2 /* ForgottenPassViewController.swift */; };
 		5AD6B24B1DC95D440033E896 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AD6B24A1DC95D440033E896 /* MapKit.framework */; };
 		5AED3A761DB80B2200F3EA39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AED3A751DB80B2200F3EA39 /* AppDelegate.swift */; };
@@ -74,6 +75,7 @@
 		5A6FB8721DD7823100D58436 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		5A6FB8731DD7823100D58436 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		5A6FB8751DD9025500D58436 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		5AB3C7DD1EA5BA1500F1C04E /* EditListingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditListingViewController.swift; sourceTree = "<group>"; };
 		5AC30E3C1DCBD1DE00C502B2 /* ForgottenPassViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgottenPassViewController.swift; sourceTree = "<group>"; };
 		5AD6B24A1DC95D440033E896 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		5AD6B24C1DC95D5A0033E896 /* Freely Market.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Freely Market.entitlements"; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				5AED3A7C1DB80B2200F3EA39 /* Assets.xcassets */,
 				5AED3A811DB80B2200F3EA39 /* Info.plist */,
 				5A04488B1E96160400699C47 /* CreateListingViewController.swift */,
+				5AB3C7DD1EA5BA1500F1C04E /* EditListingViewController.swift */,
 				5A2E39E91E9D31F900A278DF /* IndividualListingViewController.swift */,
 				5A0448891E960FF900699C47 /* TabBarViewController.swift */,
 				5A65E4DA1E3A9F1E009733D5 /* RentalListingsViewController.swift */,
@@ -373,6 +376,7 @@
 				5A2ED65D1DB8472500A75B2E /* DataModel.xcdatamodeld in Sources */,
 				5A2E39F61E9EEF5800A278DF /* SenderCell.swift in Sources */,
 				5A04488A1E960FF900699C47 /* TabBarViewController.swift in Sources */,
+				5AB3C7DE1EA5BA1500F1C04E /* EditListingViewController.swift in Sources */,
 				5AED3A781DB80B2200F3EA39 /* ViewController.swift in Sources */,
 				5AED3A761DB80B2200F3EA39 /* AppDelegate.swift in Sources */,
 			);

@@ -23,6 +23,9 @@ class RentalListingsViewController: UIViewController, UITableViewDataSource, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         rentListings()
+        
+        print("User: " + USER)
+        print("User Type: " + USERTYP)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
