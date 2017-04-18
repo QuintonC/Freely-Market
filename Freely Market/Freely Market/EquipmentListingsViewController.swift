@@ -83,7 +83,7 @@ class EquipmentListingsViewController: UIViewController, UITableViewDataSource, 
         let equipment = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CellData
         equipment.contentView.backgroundColor = UIColor.clear
         let cellStyle : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 85))
-        cellStyle.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.75])
+        cellStyle.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.5])
         cellStyle.layer.masksToBounds = false
         cellStyle.layer.cornerRadius = 5.0
         cellStyle.layer.shadowOffset = CGSize(width: 1, height: 1)

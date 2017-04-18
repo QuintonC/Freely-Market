@@ -32,7 +32,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
         
         CONTACT = contact
         sendBtn.layer.cornerRadius = 5
-        
+
         
         //Create nav bar
         let navigationBar = navigationController!.navigationBar
@@ -205,7 +205,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
                 (data, response, error) in
 
                 if error != nil {
-                    print("error is \(error)")
+                    print("error is \(String(describing: error))")
                     return
                 }
 

@@ -11,6 +11,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
     $price = $_POST['price'];
     $descr = $_POST['descr'];
     $owner = $_POST['owner'];
+    $picture = $_POST['picture'];
 
     //including the db operation file
     require_once '../includes/DbOperation.php';
@@ -24,7 +25,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
         $reponse['error'] = true;
         $response['message'] = 'Could not locate aid';
     } else {
-        $createListing = $db->createListing($type, $item, $price, $descr, $aid, $owner);
+        $createListing = $db->createListing($type, $item, $price, $descr, $aid, $owner, $picture);
         if (!createListing) {
             $response['error'] = true;
             $response['message'] = "Could not create listing";
@@ -33,30 +34,6 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
             $response['message'] = "Listing created successfully";
         }
     }
-
-
-
-
-
-
-
-
-    //$aid = $db->getAID($owner);
-    //echo($aid);
-    // if (!$aid) {
-    //     $response['error']=true;
-    //     $response['error']='Could not locate aid for this user.';
-    // } else {
-    //     echo($aid);
-    //     $createListing = $db->createListing($type, $item, $price, $descr, $aid, $owner);
-        // if (!$createListing) {
-        //     $response['error']=true;
-        //     $response['message']='Could not create listing';
-        // } else {
-        //     $response['error']=false;
-        //     $response['message']='Listing created successfully';
-        // }
-    //} 
 } else {
     $response['error']=true;
     $response['message']='You are not authorized';

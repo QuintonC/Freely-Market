@@ -20,33 +20,27 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
     @IBOutlet weak var selectedImageView: UIImageView!
     let pickerOptions = ["Rental Listing", "Sale Listing", "Equipment Listing"]
     var type = "none"
+    var imagePath = String()
+    var selectedTitle = String()
+    var selectedPrice = String()
+    var selectedImage = String()
+    var selectedDescr = String()
+    var selectedOwner = String()
     
-    @IBAction func selectImage(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.allowsEditing = true
-        self.present(imagePicker, animated: true, completion: nil)
-    }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-//        selectedImageView.image = selectedImage
-        
-        if let selectedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
-            selectedImageView.image = selectedImage
-        } else if let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            selectedImageView.image = selectedImage
-        } else {
-            print("Something went wrong")
-        }
-        
-        self.dismiss(animated: true, completion: nil)
-        //uploadImage()
+    func getDate() -> String {
+        let currentDate = NSDate()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMMddyyyyhhmmss"
+        return dateFormatter.string(from: currentDate as Date)
     }
     
     
-    
-    
+    var timestamp:String {
+        return getDate()
+        //"\(NSDate().timeIntervalSince1970 * 1000)"
+    }
+    var postURL = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,14 +81,14 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
         // set target for the price field
         itemPrice.addTarget(self, action: #selector(priceFieldChanged), for: .editingChanged)
     }
-
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         if descBody.textColor == UIColor.lightGray {
             descBody.text = nil
             descBody.textColor = UIColor.black
         }
     }
-
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         if descBody.text.isEmpty {
             descBody.text = "Enter your item description here."
@@ -112,32 +106,6 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
         view.endEditing(true)
     }
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerOptions.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerOptions[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        listingTypeButton.setTitle(pickerOptions[row], for: .normal)
-        //let pickerOptions = ["Rental Listing", "Sale Listing", "Equipment Listing"]
-        if pickerOptions[row] == "Rental Listing" {
-            type = "Rental_Listing"
-        } else if pickerOptions[row] == "Sale Listing" {
-            type = "Buy_Listing"
-        } else if pickerOptions[row] == "Equipment Listing" {
-            type = "Equipment_Listing"
-        } else {
-            type = "none"
-        }
-    }
-    
     func typeTapped() {
         listingOptions.isHidden = false
         doneButton.isHidden = false
@@ -152,6 +120,109 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let selectedImage = info[UIImagePickerControllerEditedImage] as? UIImage
+        let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
+        
+        selectedImageView.image = selectedImage
+        self.dismiss(animated: true, completion: nil)
+        
+        let basePath = imageURL.path!
+        let ucasePath = (basePath.replacingOccurrences(of: "/", with: "") as NSString) as String
+        imagePath = (ucasePath.replacingOccurrences(of: "JPG", with: "jpg"))
+        
+    }
+    
+    @IBAction func selectImage(_ sender: Any) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func uploadImage() {
+        let uploadURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/imageUpload.php")
+        let request = NSMutableURLRequest(url: uploadURL!)
+        request.httpMethod = "POST"
+        let boundary = generateBoundaryString()
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        if (selectedImageView.image == nil) {
+            return
+        }
+        
+        let image_data = UIImageJPEGRepresentation(selectedImageView.image!, 1.0)
+        
+        if(image_data == nil) {
+            return
+        }
+        
+        let body = NSMutableData()
+        
+        let mimetype = USER + timestamp + "/jpg"
+        postURL = USER + timestamp + ".jpg"
+        
+        body.append("--\(boundary)\r\n".data(using: String.Encoding.utf8)!)
+        body.append("Content-Disposition:form-data; name=\"test\"\r\n\r\n".data(using: String.Encoding.utf8)!)
+        body.append("hi\r\n".data(using: String.Encoding.utf8)!)
+        body.append("--\(boundary)\r\n".data(using: String.Encoding.utf8)!)
+        body.append("Content-Disposition:form-data; name=\"file\"; filename=\"\(postURL)\"\r\n".data(using: String.Encoding.utf8)!)
+        body.append("Content-Type: \(mimetype)\r\n\r\n".data(using: String.Encoding.utf8)!)
+        body.append(image_data!)
+        body.append("\r\n".data(using: String.Encoding.utf8)!)
+        body.append("--\(boundary)--\r\n".data(using: String.Encoding.utf8)!)
+        
+        request.httpBody = body as Data
+        
+//        let postString = "type=\(type)&item=\(item)&price=\(fixedPrice)&descr=\(descr)&owner=\(username)&picture=\(postURL)"
+//        
+//        request.httpBody = postString.data(using: String.Encoding.utf8)
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {(
+            data, response, error) in
+            
+            guard ((data) != nil), let _:URLResponse = response, error == nil else {
+                print("error")
+                return
+            }
+            if let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) {
+                print(dataString)
+            }
+        })
+        task.resume()
+    }
+    
+    
+    func generateBoundaryString() -> String {
+        return "Boundary-\(UUID().uuidString)"
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerOptions.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerOptions[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        listingTypeButton.setTitle(pickerOptions[row], for: .normal)
+        if pickerOptions[row] == "Rental Listing" {
+            type = "Rental_Listing"
+        } else if pickerOptions[row] == "Sale Listing" {
+            type = "Buy_Listing"
+        } else if pickerOptions[row] == "Equipment Listing" {
+            type = "Equipment_Listing"
+        } else {
+            type = "none"
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -160,6 +231,7 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
     
     @IBAction func saveTapped(_ sender: Any) {
     
+        uploadImage()
         let item:NSString = self.itemTitle.text! as NSString
         let price:NSString = self.itemPrice.text! as NSString
         let descr:NSString = self.descBody.text! as NSString
@@ -179,7 +251,10 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
             var request = URLRequest(url:myURL!)
             request.httpMethod = "POST"
             
-            let postString = "type=\(type)&item=\(item)&price=\(fixedPrice)&descr=\(descr)&owner=\(username)"
+            
+            //print("Post string image path: " + postURL)
+            
+            let postString = "type=\(type)&item=\(item)&price=\(fixedPrice)&descr=\(descr)&owner=\(username)&picture=\(postURL)"
             
             request.httpBody = postString.data(using: String.Encoding.utf8)
             
@@ -220,12 +295,13 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
                             }
                         } else if messageToDisplay == "Listing created successfully" {
                             DispatchQueue.main.async {
-                                let OKAction = UIAlertAction(title: "OK", style: .default) {
-                                    (action:UIAlertAction) in
-//                                  self.performSegue(withIdentifier: "registerSuccess", sender: self)
-                                }
-                                myAlert.addAction(OKAction)
-                                self.present(myAlert, animated: true, completion: nil)
+                                self.selectedTitle = item as String
+                                self.selectedPrice = price as String
+                                self.selectedImage = self.postURL
+                                self.selectedDescr = descr as String
+                                self.selectedOwner = USER
+                                
+                                self.performSegue(withIdentifier: "successfulListing", sender: self)
                             }
                         } else { //Something else went wrong
                             DispatchQueue.main.async {
@@ -242,6 +318,23 @@ class CreateListingViewController: UIViewController, UITextFieldDelegate, UIText
                 }
             }
             task.resume()
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "successfulListing") {
+            //Create an instance of the NavigationController
+            let navVC = segue.destination as? UINavigationController
+            //Create an instance of the destination IndividualListingViewController
+            let listingVC = navVC?.viewControllers.first as! IndividualListingViewController
+            
+            //give the variables in the destination values from the current viewcontroller
+            listingVC.lTitle = selectedTitle
+            listingVC.image = selectedImage
+            listingVC.descr = selectedDescr
+            listingVC.owner = selectedOwner
+            listingVC.price = selectedPrice
+            listingVC.btnText = "Rent Now - " + selectedPrice
         }
     }
 
@@ -282,4 +375,12 @@ extension String {
         return formatter.string(from: number)!
     }
     
+}
+
+extension NSMutableData {
+    
+    func appendString(_ string: String) {
+        let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true)
+        append(data!)
+    }
 }
