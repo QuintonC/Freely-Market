@@ -178,6 +178,23 @@ a:hover {
 	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
 }
 
+.forms .edit_card {
+	top: 10%;
+	left: 30%;
+	height: 55%;
+	width: 40%;
+	color: white;
+	background-color: #333;
+	border-style: solid;
+	border-color: white;
+	border-width: 2px;
+	border-radius: 3px;
+	padding: 10px;
+	padding-bottom: 5px;
+	position: absolute;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+}
+
 input[type=text] {
 	width: 100%;
 	padding: 7px 7px;

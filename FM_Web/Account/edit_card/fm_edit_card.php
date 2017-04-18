@@ -31,6 +31,7 @@ $cvv = $set['cvv'];
 
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="../../_style.css">
 	<title>Update Card Information</title>
 	
 <script type="text/javascript">
@@ -64,7 +65,7 @@ maxLength(document.getElementById("text"));
 </head>
 <body>
 
-<style>
+<!--<style>
 
 ul {
     list-style-type: none;
@@ -187,64 +188,51 @@ top: 810px;
     text-decoration: none;
 }
 	
-</style>
+</style>-->
 
 <!-- Block 1 -->
 <div class = "title">
+	<div class = "search">
+		<h3 align="center"><a href="../../fm_homepage.html"><img src = "../../images/logo.png" height = "90px" width = "160px" /></a></h3>
+	</div>
 
-<div class = "header">
-<h1>Edit Card</h1>
-</div>
+	<div class = "header">
+		<h1 align="center">Freely Market</h1>
+	</div>
 
-<div class = "search">
-<img src = "../../images/logo.png" height = "100px" width = "200px" /><br />
-</div>
-
-
-<div class = "navbar">
-<ul>
-<li><a href = "../../listings/fm_listings.php">Listings</a></li>
-<li><a href="../fm_account.php"  class = "active">My Account</a></li>
-<li><a href = "../../transactions/fm_transactions.php">Transactions</a></li>
-<li><a href = "../../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
-</ul>
-</div>
-
-
+	<div class = "login">
+		<ul>
+			<li><a href = "../../listings/fm_listings.php">Listings</a></li>
+			<li><a href = "../../transactions/fm_transactions.php">Transactions</a></li>
+			<li><a href="../fm_account.php"  class = "active">My Account</a></li>
+			<li><a href = "../../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
+		</ul>
+	</div>
 </div>
 
 <!-- Block 2 -->
 
-<div class = "center">
-
-<div class = "tables">
-
-
-</div>
-
 <div class = "forms">
-<form name = "myForm" action="fm_update_card.php" method="post" onsubmit = "return blank()">
-	<input type="hidden" value="add" name="choice">
-	<p>Card Name: <input type="text" id = "cname" name="cname" maxlength = "30" value = "<?php echo $card_name; ?>"></p>
-	<p>Card Number: <input type="text" id ="cnum" name="cnum" maxlength = "30" value = "<?php echo $card_number; ?>"></p>
-	<p>Expiration Date: <input type="text" id = "expr" name="expr" maxlength = "30" value = "<?php echo $expr; ?>"></p>
-	<p>Security: <input type="text" id = "cvv" name="cvv" value = "<?php echo $cvv; ?>"></p>
-	<br />
-	<button type="submit" name = "submit">Update Card</button>
-	</form>
-</div>
+	<div class = "edit_card">
+		<form name = "myForm" action="fm_update_card.php" method="post" onsubmit = "return blank()">
+			<input type="hidden" value="add" name="choice">
+			<p>Card Name: <input type="text" id = "cname" name="cname" maxlength = "30" value = "<?php echo $card_name; ?>"></p>
+			<p>Card Number: <input type="text" id ="cnum" name="cnum" maxlength = "30" value = "<?php echo $card_number; ?>"></p>
+			<p>Expiration Date: <input type="text" id = "expr" name="expr" maxlength = "30" value = "<?php echo $expr; ?>"></p>
+			<p>Security: <input type="text" id = "cvv" name="cvv" value = "<?php echo $cvv; ?>"></p>
+			<br />
+			<button class="button" type="submit" name = "submit">Update Card</button>
+		</form>
+	</div>
 </div>
 	
 	<!-- Block 3 -->
 <div class = "footer">
-
-<ul>
-<li><a href = "">Privacy Policy</a></li>
-<li><a href = "">About</a></li>
-<li><a href = "">Contact</a></li>
-<li style = "float:left"><a href = "">Social Links</a></li>
-</ul>
-
+	<ul>
+		<li><a href = "">Privacy Policy</a></li>
+		<li><a href = "">About</a></li>
+		<li><a href = "">Contact</a></li>
+	</ul>
 </div>
 </body>
 </html>
