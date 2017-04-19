@@ -27,9 +27,13 @@ class IndividualListingViewController: UIViewController {
     var owner = String()
     var price = String()
     var btnText = String()
+
     var hideButton = false
     var hideViewOffers = true
     
+
+    var listingType = String()
+
 
     var listingType = String()
 
@@ -135,6 +139,7 @@ class IndividualListingViewController: UIViewController {
             editVC.descr = listingDescription.text
             editVC.price = price
 
+
         } else if (segue.identifier == "viewOffersSegue") {
             //Create an instance of the NavigationController
             let navVC = segue.destination as? UINavigationController
@@ -142,6 +147,9 @@ class IndividualListingViewController: UIViewController {
             let destinationVC = navVC?.viewControllers.first as! OffersViewController
             
             destinationVC.offerBy = "junkData"
+
+            editVC.listingType = listingType
+
 
             editVC.listingType = listingType
 
