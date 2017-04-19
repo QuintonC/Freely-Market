@@ -465,7 +465,7 @@ input:-webkit-autofill:active {
 }
 
 .leftsidebar {
-	font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	font-family: 'Open Sans', sans-serif;
 	top: 15%;
 	width: 15%;
 	height: 100%;
@@ -477,7 +477,7 @@ input:-webkit-autofill:active {
 }
 	
 .leftsidebar .menu ul {
-	font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	font-family: 'Open Sans', sans-serif;
 	list-style-type: none;
 	background-color: #13A61B;
 	margin: 0px;
@@ -519,7 +519,7 @@ input:-webkit-autofill:active {
 }
 
 .rightsidebar {
-	font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	font-family: 'Open Sans', sans-serif;
 	width: 15%;
 	height: 100%;
 	right: 0%;
@@ -555,7 +555,7 @@ input:-webkit-autofill:active {
 	text-align: left;
 	padding: 3px;
 	left: 15%;
-	font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	font-family: 'Open Sans', sans-serif;
 	width: 70%;
 	height: 100%;
 	background-color: #ffe6e6;
@@ -586,7 +586,7 @@ input:-webkit-autofill:active {
 }
 
 .account {
-	font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	font-family: 'Open Sans', sans-serif;
 	position: absolute;
 	top:15%;
 	height: 100%;
@@ -643,7 +643,7 @@ input:-webkit-autofill:active {
 	text-align: left;
 	padding-top: 5px;
 	padding-left: 1px;
-	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	font-family: 'Open Sans', sans-serif;
 	width: 100%;
 	height: 120%;
 	top: 15%;
@@ -651,29 +651,19 @@ input:-webkit-autofill:active {
 	position: absolute;
 }
 
-.center {
-	width: 100%;
-	height: 110%;
-	top: 15%;
-	background-color: #333;
-	border-top: solid;
-	border-top-color: white;
+.createaccount {
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+	color: white;
+	padding-bottom: 5px;
+	font-family: 'Open Sans', sans-serif;
+	text-align: center;
 }
 
-.createaccount {
-	position: relative;
-	top: 17%;
-	left: 30%;
-	height: 75%;
-	width: 40%;
-	color: white;
-	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
-	background-color: #333;
-	border-style: solid;
-	border-color: white;
-	border-width: 2px;
-	border-radius: 3px;
-	padding: 15px;
+.fiftyElement {
+	width: 49% !important;
+	display: inline-block !important;
 }
 
 .addcard {
@@ -683,7 +673,7 @@ input:-webkit-autofill:active {
 	height: 45%;
 	width: 40%;
 	color: white;
-	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	font-family: 'Open Sans', sans-serif;
 	background-color: #333;
 	border-style: solid;
 	border-color: white;
