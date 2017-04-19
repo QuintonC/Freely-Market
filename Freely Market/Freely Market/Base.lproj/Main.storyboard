@@ -16,7 +16,7 @@
         <scene sceneID="VX1-B7-euh">
             <objects>
                 <navigationController id="s3r-uP-m7a" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rOb-ex-gcR">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rOb-ex-gcR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1133,7 +1133,7 @@ Password must contain at least one letter, at least one number, and be at least 
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6IZ-Q6-pUk" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iMO-OS-llV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iMO-OS-llV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1151,7 +1151,7 @@ Password must contain at least one letter, at least one number, and be at least 
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fyQ-TB-a5n" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Lhm-GM-txS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lhm-GM-txS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1322,6 +1322,9 @@ Password must contain at least one letter, at least one number, and be at least 
                                 <state key="normal" title="Button">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="sendOffer:" destination="H1U-uo-Y4Y" eventType="touchUpInside" id="aVB-dm-bgt"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posted by: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hf2-6l-ic1">
                                 <rect key="frame" x="46" y="326" width="125" height="21"/>
@@ -1404,6 +1407,7 @@ Password must contain at least one letter, at least one number, and be at least 
                         <outlet property="viewOffersBtn" destination="qPi-X3-qRR" id="CaD-TL-zme"/>
                         <segue destination="5Vh-Wk-3iQ" kind="show" identifier="editSegue" id="U1O-7F-aYD"/>
                         <segue destination="rj6-Gp-uQH" kind="custom" identifier="viewOffersSegue" customClass="SWRevealViewControllerSeguePushController" id="oGr-zz-9fX"/>
+                        <segue destination="5ey-W9-2cX" kind="custom" identifier="offerMade" customClass="SWRevealViewControllerSeguePushController" id="fNZ-xQ-4Gf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z92-1U-8ve" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1711,7 +1715,7 @@ Password must contain at least one letter, at least one number, and be at least 
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fj9-Qj-HIM" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rZS-yo-aC3">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rZS-yo-aC3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1729,7 +1733,7 @@ Password must contain at least one letter, at least one number, and be at least 
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="opi-jG-y3i" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="fcZ-Hu-cG5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fcZ-Hu-cG5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1800,7 +1804,7 @@ Password must contain at least one letter, at least one number, and be at least 
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4NR-6K-4V8" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4Jf-5T-aYI">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Jf-5T-aYI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1829,7 +1833,7 @@ Password must contain at least one letter, at least one number, and be at least 
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7T5-bt-1b3">
-                                <rect key="frame" x="38" y="42" width="183" height="30"/>
+                                <rect key="frame" x="38" y="86" width="183" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="183" id="hDn-BP-0hT"/>
                                 </constraints>
@@ -1841,7 +1845,7 @@ Password must contain at least one letter, at least one number, and be at least 
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dms-WW-2ur">
-                                <rect key="frame" x="5" y="46" width="42" height="21"/>
+                                <rect key="frame" x="5" y="90" width="42" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="0b1-OU-zCF"/>
                                 </constraints>
@@ -1850,13 +1854,13 @@ Password must contain at least one letter, at least one number, and be at least 
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NqA-oC-YAi">
-                                <rect key="frame" x="0.0" y="93" width="375" height="574"/>
+                                <rect key="frame" x="0.0" y="137" width="375" height="530"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P9q-1H-IFv">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="530"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="27v-T3-ZUP">
-                                                <rect key="frame" x="8" y="536" width="265" height="30"/>
+                                                <rect key="frame" x="8" y="492" width="265" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -1865,7 +1869,7 @@ Password must contain at least one letter, at least one number, and be at least 
                                                 </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZ6-Xs-fUU">
-                                                <rect key="frame" x="279" y="536" width="88" height="30"/>
+                                                <rect key="frame" x="279" y="492" width="88" height="30"/>
                                                 <color key="backgroundColor" red="0.60392156860000001" green="0.83137254900000002" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="27V-II-YJ1"/>
@@ -2346,7 +2350,7 @@ Password must contain at least one letter, at least one number, and be at least 
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pun-48-Sww" id="obA-92-fVL" customClass="CellData" customModule="Freely_Market" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2378,6 +2382,8 @@ Password must contain at least one letter, at least one number, and be at least 
                     <connections>
                         <outlet property="menuButton" destination="bgG-hL-Hyv" id="krf-Re-uh6"/>
                         <outlet property="tableView" destination="yS0-k5-y3K" id="KSS-Os-Dav"/>
+                        <segue destination="5ey-W9-2cX" kind="custom" identifier="offerAccepted" customClass="SWRevealViewControllerSeguePushController" id="13a-21-ngM"/>
+                        <segue destination="5ey-W9-2cX" kind="custom" identifier="offerDeclined" customClass="SWRevealViewControllerSeguePushController" id="QgS-T1-Td6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1rW-VJ-zUW" sceneMemberID="firstResponder"/>
@@ -2418,15 +2424,11 @@ Password must contain at least one letter, at least one number, and be at least 
         <image name="summer-ray-of-sunshine-bikes-bicycles" width="3000" height="2000"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Mw4-QG-wnN"/>
-        <segue reference="cKi-KO-eLK"/>
-        <segue reference="yXz-hf-HeT"/>
-        <segue reference="cKi-KO-eLK"/>
-        <segue reference="up8-nE-ebJ"/>
-        <segue reference="dCn-7H-Qkt"/>
+        <segue reference="QgS-T1-Td6"/>
         <segue reference="fN6-7p-Liu"/>
         <segue reference="uGr-uf-BNo"/>
-        <segue reference="up8-nE-ebJ"/>
         <segue reference="ita-cW-69Q"/>
+        <segue reference="cKi-KO-eLK"/>
+        <segue reference="up8-nE-ebJ"/>
     </inferredMetricsTieBreakers>
 </document>

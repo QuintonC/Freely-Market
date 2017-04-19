@@ -173,6 +173,60 @@ class IndividualListingViewController: UIViewController {
     }
     
     
+    @IBAction func sendOffer(_ sender: Any) {
+        var request = URLRequest(url: URL(string: "http://cgi.soic.indiana.edu/~team12/api/makeOffer.php")!)
+        request.httpMethod = "POST"
+        let postString = "username=\(USER)&id=\(finID)&type=\(listingType)"
+        
+        request.httpBody = postString.data(using: String.Encoding.utf8)
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {
+            (data, response, error) in
+            
+            if error != nil {
+                print("error is \(String(describing: error))")
+                return
+            }
+            
+            var err: NSError?
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                
+                
+                if let parseJSON = json {
+                    
+                    let messageToDisplay:String = parseJSON["message"] as! String
+                    let myAlert = UIAlertController(title: "Alert", message:messageToDisplay, preferredStyle: .alert)
+                    
+                    if messageToDisplay == "Could not make offer" {
+                        DispatchQueue.main.async {
+                            let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                (action:UIAlertAction) in
+                            }
+                            myAlert.addAction(OKAction)
+                            self.present(myAlert, animated: true, completion: nil)
+                        }
+                    } else if messageToDisplay == "Offer made" {
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "offerMade", sender: self)
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                (action:UIAlertAction) in
+                            }
+                            myAlert.addAction(OKAction)
+                            self.present(myAlert, animated: true, completion: nil)
+                        }
+                    }
+                }
+            } catch let error as NSError {
+                print(err = error)
+            }
+        }
+        task.resume()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
