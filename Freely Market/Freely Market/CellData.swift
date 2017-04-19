@@ -15,6 +15,7 @@ class CellData: UITableViewCell {
     @IBOutlet weak var listingTitle: UILabel!
     @IBOutlet weak var listingPrice: UILabel!
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

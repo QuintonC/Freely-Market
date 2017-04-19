@@ -17,6 +17,7 @@ class IndividualListingViewController: UIViewController {
     @IBOutlet weak var listingOwner: UIButton!
     @IBOutlet weak var listingDescription: UITextView!
     @IBOutlet weak var rentButton: UIButton!
+    @IBOutlet weak var viewOffersBtn: UIButton!
     @IBOutlet var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var editButton: UIBarButtonItem!
     
@@ -25,17 +26,35 @@ class IndividualListingViewController: UIViewController {
     var descr = String()
     var owner = String()
     var price = String()
+    var plainPrice = String()
     var btnText = String()
+
+    var hideButton = false
+    var hideViewOffers = true
+
     var listingType = String()
+    
+    var bid = String()
+    var rid = String()
+    var eid = String()
+    var finID = String()
+    
+    var callURL = URL(string: "")
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if owner == USER || USERTYP == "2" {
+        if owner == USER {
             editButton.isEnabled = true
-        } else {
+            hideButton = true
+            hideViewOffers = false
+        } else if USERTYP == "2" {
+            editButton.isEnabled = true
+        }else {
             editButton.isEnabled = false
         }
+        
+        plainPrice = price.replacingOccurrences(of: "$", with: "")
         
         // Handlers for menu button
         if self.revealViewController() != nil {
@@ -52,14 +71,16 @@ class IndividualListingViewController: UIViewController {
         listingImage.layer.shadowOpacity = 0.1
 
         //Populate ui elements with data
+        
+        
         listingTitle.text = lTitle
         listingDescription.text = descr
-        
-        print(lTitle)
-        
-        
+        rentButton.isHidden = hideButton
+
         rentButton.setTitle(btnText, for: .normal)
         listingOwner.setTitle(owner, for: .normal)
+        viewOffersBtn.isHidden = hideViewOffers
+        
         
         //Start loading Activity Indicator
         loadingIndicator.startAnimating()
@@ -90,12 +111,67 @@ class IndividualListingViewController: UIViewController {
             }
         }
         downloadPicTask.resume()
+        
+        // GET ID OF THE LISTING
+        if listingType == "Rental_Listing" {
+            callURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/getRID.php")
+            rid = finID
+        } else if listingType == "Equipment_Listing" {
+            callURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/getEID.php")
+            eid = finID
+        } else if listingType == "Buy_Listing" {
+            callURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/getBID.php")
+            //deleteURL = URL(string: http://cgi.soic)
+            bid = finID
+        } else {
+            print ("Something went wrong, could not retrieve ID of the listing.")
+        }
+        
+        var request = URLRequest(url: callURL!)
+        request.httpMethod = "POST"
+        let postString = "item=\(lTitle)&price=\(plainPrice)&descr=\(descr)&picture=\(image)"
+        
+        request.httpBody = postString.data(using: String.Encoding.utf8)
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {
+            (data, response, error) in
+            
+            if error != nil {
+                print("error is \(String(describing: error))")
+                return
+            }
+            
+            var err: NSError?
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                
+                
+                
+                if let parseJSON = json {
+                    DispatchQueue.main.async {
+                        let baseID = ("\(String(describing: parseJSON["ID:"]))")
+                        let halfID = baseID.replacingOccurrences(of: "Optional(", with: "")
+                        self.finID = halfID.replacingOccurrences(of: ")", with: "")
+                    }
+                }
+            } catch let error as NSError {
+                print(err = error)
+            }
+        }
+        task.resume()
     }
     
     
     @IBAction func editTapped(_ sender: Any) {
         performSegue(withIdentifier: "editSegue", sender: self)
     }
+    
+    
+    @IBAction func viewOffers(_ sender: Any) {
+        performSegue(withIdentifier: "viewOffersSegue", sender: self)
+    }
+    
     
 
     override func didReceiveMemoryWarning() {
@@ -118,8 +194,74 @@ class IndividualListingViewController: UIViewController {
             editVC.descr = listingDescription.text
             editVC.price = price
             editVC.listingType = listingType
+
+        } else if (segue.identifier == "viewOffersSegue") {
+            //Create an instance of the NavigationController
+            let navVC = segue.destination as? UINavigationController
+            //Create an instance of the destination IndividualListingViewController
+            let destinationVC = navVC?.viewControllers.first as! OffersViewController
+            
+            destinationVC.offerBy = "junkData"
+            destinationVC.type = self.listingType
+            destinationVC.id = self.finID
+            
+            print("type: "+listingType)
+            print("id: "+self.finID)
+
         }
     }
+    
+    // GET ID OF THE LISTING
+//    func getProperId () {
+//        if listingType == "Rental_Listing" {
+//            callURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/getRID.php")
+//            rid = finID
+//            print("rental")
+//        } else if listingType == "Equipment_Listing" {
+//            callURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/getEID.php")
+//            eid = finID
+//            print("equipment")
+//        } else if listingType == "Buy_Listing" {
+//            callURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/getBID.php")
+//            bid = finID
+//            print("buy")
+//        } else {
+//            print ("Something went wrong, could not retrieve ID of the listing.")
+//        }
+//        
+//        var request = URLRequest(url: callURL!)
+//        request.httpMethod = "POST"
+//        let postString = "item=\(lTitle)&price=\(price)&descr=\(descr)&picture=\(image)"
+//        
+//        request.httpBody = postString.data(using: String.Encoding.utf8)
+//        
+//        let task = URLSession.shared.dataTask(with: request as URLRequest) {
+//            (data, response, error) in
+//            
+//            if error != nil {
+//                print("error is \(String(describing: error))")
+//                return
+//            }
+//            
+//            var err: NSError?
+//            
+//            do {
+//                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+//                
+//                if let parseJSON = json {
+//                    DispatchQueue.main.async {
+//                        let baseID = ("\(String(describing: parseJSON["ID:"]))")
+//                        let halfID = baseID.replacingOccurrences(of: "Optional(", with: "")
+//                        self.finID = halfID.replacingOccurrences(of: ")", with: "")
+//                        print(self.finID)
+//                    }
+//                }
+//            } catch let error as NSError {
+//                print(err = error)
+//            }
+//        }
+//        task.resume()
+//    }
     
     
     /*
