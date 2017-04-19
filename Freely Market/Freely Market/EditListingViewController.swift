@@ -90,7 +90,6 @@ class EditListingViewController: UIViewController, UITextFieldDelegate, UITextVi
         }
         downloadPicTask.resume()
 
-
         // GET ID OF THE LISTING
         if listingType == "Rental_Listing" {
             callURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/getRID.php")
@@ -248,7 +247,7 @@ class EditListingViewController: UIViewController, UITextFieldDelegate, UITextVi
 
 
             //print("Post string image path: " + postURL)
-
+            
             let postString = "type=\(listingType)&item=\(item)&price=\(fixedPrice)&descr=\(descr)&picture=\(postURL)&id=\(self.finID)"
 
             request.httpBody = postString.data(using: String.Encoding.utf8)
