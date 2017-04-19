@@ -97,6 +97,9 @@ $digit = $set['count(*)'];
 		<?php if ($check['typ'] == 1 ): ?>
 			<span><li><a href = '../vendor/account_page/fm_v_create_advertisement1.php'>Advertisements</a></li>
 		<?php endif;?>
+		<?php if ($check['typ'] == 2 ): ?>
+			<span><li><a href = '../admin/fm_admin_ad_requests.php'>Ad Requests</a></li>
+		<?php endif;?>
 	</ul>
 </div>
 
