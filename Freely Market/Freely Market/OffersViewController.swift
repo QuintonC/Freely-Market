@@ -154,26 +154,70 @@ class OffersViewController: UIViewController, UITableViewDataSource, UITableView
         let username = myOffers[index]
         print(username)
         
-//        var request = URLRequest(url:acceptURL!)
-//        request.httpMethod = "POST"
-//        
-//        // username is name of offerer id is id of listing
-//        let postString = "username=\(username)&id=\(id)"
-//        request.httpBody = postString.data(using: String.Encoding.utf8)
-//        
-//        let task = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
-//            if error != nil {
-//                print("ERROR")
-//            }
-//            
-//            do {
-//                
-//            } catch {
-//                print(error)
-//            }
-//        }
-//        task.resume()
-//        
+        let alertController = UIAlertController(title: "Are you sure?", message:"This offer will be accepted.", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
+            action -> Void in
+        }
+        let OKAction = UIAlertAction(title: "OK", style: .default) {
+            (action:UIAlertAction) in
+        
+            var request = URLRequest(url:self.acceptURL!)
+            request.httpMethod = "POST"
+            
+            // username is name of offerer id is id of listing
+            let postString = "seller=\(USER)&buyer=\(username)&id=\(self.id)"
+            request.httpBody = postString.data(using: String.Encoding.utf8)
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {
+                (data, response, error) in
+                
+                if error != nil {
+                    print("error is \(String(describing: error))")
+                    return
+                }
+                
+                var err: NSError?
+                
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                    
+                    
+                    if let parseJSON = json {
+                        
+                        let messageToDisplay:String = parseJSON["message"] as! String
+                        let myAlert = UIAlertController(title: "Alert", message:messageToDisplay, preferredStyle: .alert)
+                        
+                        if messageToDisplay == "Could not accept offer" {
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                        } else if messageToDisplay == "Offer accepted" {
+                            DispatchQueue.main.async {
+                                self.performSegue(withIdentifier: "offerAccepted", sender: self)
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                        }
+                    }
+                } catch let error as NSError {
+                    print(err = error)
+                }
+            }
+            task.resume()
+        }
+        alertController.addAction(OKAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion:nil)
     }
     
     func declineOffer(index: Int) {
