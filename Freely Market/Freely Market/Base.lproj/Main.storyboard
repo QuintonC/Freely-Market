@@ -2383,6 +2383,7 @@ Password must contain at least one letter, at least one number, and be at least 
                         <outlet property="menuButton" destination="bgG-hL-Hyv" id="krf-Re-uh6"/>
                         <outlet property="tableView" destination="yS0-k5-y3K" id="KSS-Os-Dav"/>
                         <segue destination="5ey-W9-2cX" kind="custom" identifier="offerAccepted" customClass="SWRevealViewControllerSeguePushController" id="13a-21-ngM"/>
+                        <segue destination="5ey-W9-2cX" kind="custom" identifier="offerDeclined" customClass="SWRevealViewControllerSeguePushController" id="QgS-T1-Td6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1rW-VJ-zUW" sceneMemberID="firstResponder"/>
@@ -2423,7 +2424,7 @@ Password must contain at least one letter, at least one number, and be at least 
         <image name="summer-ray-of-sunshine-bikes-bicycles" width="3000" height="2000"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="13a-21-ngM"/>
+        <segue reference="QgS-T1-Td6"/>
         <segue reference="fN6-7p-Liu"/>
         <segue reference="uGr-uf-BNo"/>
         <segue reference="ita-cW-69Q"/>
