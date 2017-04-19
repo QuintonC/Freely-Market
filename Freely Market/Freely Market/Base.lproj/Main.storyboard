@@ -2418,16 +2418,13 @@ Password must contain at least one letter, at least one number, and be at least 
         <image name="summer-ray-of-sunshine-bikes-bicycles" width="3000" height="2000"/>
     </resources>
     <inferredMetricsTieBreakers>
-<<<<<<< HEAD
         <segue reference="Mw4-QG-wnN"/>
         <segue reference="cKi-KO-eLK"/>
         <segue reference="yXz-hf-HeT"/>
-=======
         <segue reference="cKi-KO-eLK"/>
         <segue reference="up8-nE-ebJ"/>
         <segue reference="dCn-7H-Qkt"/>
         <segue reference="fN6-7p-Liu"/>
->>>>>>> origin/master
         <segue reference="uGr-uf-BNo"/>
         <segue reference="up8-nE-ebJ"/>
         <segue reference="ita-cW-69Q"/>
