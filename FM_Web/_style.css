@@ -249,6 +249,73 @@ a:hover {
     color: white;
 }
 
+.rightsidebar {
+	font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	width: 15%;
+	height: 100%;
+	right: 0%;
+	position: absolute;
+	border-top: thick;
+	border-top-color: white;
+	background-color: #333;
+	top: 15%;
+	color: white;
+}
+	
+.rightsidebar ul {
+	margin: 0px;
+	padding: 2px;
+}
+	
+.rightsidebar li {
+	float: none;
+	border: 1px solid #bbb;
+}
+	
+.rightsidebar li a {
+	display: block;
+	color: white;
+	font-size: 14px;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+.center1 {
+	margin: auto;
+	text-align: left;
+	padding: 3px;
+	left: 15%;
+	font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	width: 70%;
+	height: 100%;
+	background-color: #ffe6e6;
+	position: absolute;
+	top: 15%;
+	border-top: solid;
+	border-color: white;
+}
+	
+.center1 ul {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+	
+.center1 li {
+	float: none;
+	border: 1px solid #bbb;
+}
+	
+.center1 li a {
+	display: block;
+	color: white;
+	font-size: 14px;
+	text-align:left;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
 .account {
 	font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
 	position: absolute;
@@ -263,18 +330,36 @@ a:hover {
 }
 
 .account ul {
-	list-style-type: none;
+	
     margin: 0;
     padding: 0;
 	background-color: #333;
 }
 
 .account li {
-	display: block;
-    text-decoration: none;
-	width: 100%;
-    text-align: left;
+	width: 40%;
 	color: white;
+}
+
+.accont .my_listings {
+	top: 25%;
+	left: 35%;
+	border-radius: 50%;
+	border-style: solid;
+	border-color: white;
+	background-image: url("images/bike2.jpg");
+	width: 300px;
+	height: 260px;
+}
+
+.account .my_offers {
+	float: right;
+	border-radius: 50%;
+	border-style: solid;
+	border-color: white;
+	background-image: url("images/bike2.jpg");
+	width: 300px;
+	height: 260px;
 }
 
 
