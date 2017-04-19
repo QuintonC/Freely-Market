@@ -26,6 +26,7 @@ $check = mysqli_fetch_array($adminCheck);
 
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="../../_style.css">
 <meta charset="utf-8">
 <link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon" />
 
@@ -57,7 +58,7 @@ maxLength(document.getElementById("text"));
 
 <title>Report Issue Form</title>
 </head>
-<style>
+<!--<style>
 	body {
 		margin: 0px;
 	}
@@ -149,54 +150,28 @@ maxLength(document.getElementById("text"));
 		text-decoration: none;
 	}
 	
-</style>
+</style>-->
 
 <body>
 <!-- Header -->
-<div class="header">
-	<div class="image">
-		<a href="../fm_account.php"><img src="../../images/logo.png" height = "100px" width = "200px"/></a>
+<div class="title">
+	<div class="search">
+		<h3 align="center"><a href="../fm_account.php"><img src="../../images/logo.png" height = "90px" width = "160px"/></a></h3><br />
 	</div>
 
-	<div class ="title">
-		<h1>Freely Market</h1>
+	<div class ="header">
+		<h1 align="center">Freely Market</h1>
 	</div>
 </div>
 <!-- End Header -->
 
-<!-- Block 2 -->
-<div class = "leftsidebar">
-
-<div class = "menu">
-<ul>
-<li><a href = "../../account/edit_account/fm_edit_account.php">Edit Account</a></li>
-<li><a href = "../../account/edit_card/fm_edit_card.php">Edit Card Info</a></li>
-<li><a href = "../../account/messager/fm_messager1.php">Messager <div class = "dig"><?php if ($digit != 0) { echo $digit;}?></div></a></li>
-<li><a href = "../../account/notifications/fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
-<li><a href = "../../account/report_issue/fm_issue_form.php">Report an Issue</a></li>
-<?php if ($check['typ'] == 2 ): ?>
-	<span><li><a href = '../../admin/fm_admin_vendor_requests.php'>Vendor Requests</a></li>
-<?php endif;?>
-<?php if ($check['typ'] == 2 ): ?>
-	<span><li><a href = '../../admin/fm_admin_view_users.php'>View Users</a></li>
-<?php endif;?>
-<?php if ($check['typ'] == 2 ): ?>
-	<span><li><a href = '../../admin/fm_admin_view_issues.php'>View Issues</a></li>
-<?php endif;?>
-<?php if ($check['typ'] == 1 ): ?>
-	<span><li><a href = '../../vendor/account_page/fm_v_create_advertisement1.php'>View Users</a></li>
-<?php endif;?>
-</ul>
-</div>
-
-
 <!-- Form -->
-<div class="information">
+<div class="application">
 	<form name="issue" action="fm_issued.php" method="post" onsubmit="return blank()">
 		<fieldset>
 			<input type="hidden" value="add" name="choice">
 			<legend> Report an Issue</legend>
-				Let us know what's up: <br><textarea cols="200" rows="10" id="description" name="description" maxlength="400"></textarea>
+				Describe the situation below: <br><textarea cols="200" rows="10" id="description" name="description" maxlength="400"></textarea>
 				<input type="submit" class="button" value="Submit">
 			</fieldset>
 		</form>
@@ -209,7 +184,6 @@ maxLength(document.getElementById("text"));
 		<li><a href = "">Privacy Policy</a></li>
 		<li><a href = "">About</a></li>
 		<li><a href = "">Contact</a></li>
-		<li style = "float:left"><a href = "">Social Links</a></li>
 	</ul>
 </div>
 <!-- End Footer -->
