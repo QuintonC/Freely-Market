@@ -33,9 +33,9 @@ $rcheck = mysqli_fetch_array($restrictedCheck);
 <html>
 
 <head>
-
+<link rel="stylesheet" type="text/css" href="../_style.css">
 <title>Listings Page</title>
-<style>
+<!--<style>
 
 body {
 padding: 0px;
@@ -174,7 +174,7 @@ top: 600px;
     text-decoration: none;
 }
 
-</style>
+</style>-->
 
 
 </head>
@@ -183,57 +183,51 @@ top: 600px;
 
 <!-- Block 1 -->
 <div class = "title">
+	<div class = "search">
+		<h3 align="center"><a href="../fm_homepage.html"><img src = "../images/logo.png" height = "90px" width = "160px" /></a></h3>
+	</div>
 
-<div class = "search">
-<img src = "../images/logo.png" height = "100px" width = "200px" /><br />
+	<div class = "header">
+		<h1 align="center">Listings</h1>
+	</div>
+
+	<div class = "login">
+		<ul>
+			<li><a href = "fm_listings.php">Listings</a></li>
+			<li><a href = "../transactions/fm_transactions.php">Transactions</a></li>
+			<li><a href="../account/fm_account.php"  class = "active">My Account</a></li>
+			<li><a href = "../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
+		</ul>
+	</div>
 </div>
-
-<div class = "header">
-<h1>Listings</h1>
-</div>
-
-<div class = "navbar">
-
-<ul>
-<li><a href = "../listings/fm_listings.php" class = "active">Listings</a></li>
-<li><a href="../account/fm_account.php">My Account</a></li>
-<li><a href = "../transactions/fm_transactions.php">Transactions</a></li>
-<li><a href = "../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
-</ul>
-</div>
-
-
 </div>
 
 
 <!-- Block 2 -->
-<div class = "center">
+<div class = "forms">
+<div class="listing">
 
 <?php if ($rcheck['active'] == "0" ): ?>
-<ul>
-<li><a href = "fm_post_listing.php">Post Listings</a></li>
-<li><a href = "fm_view_listings.php">View Listings</a></li>
-</ul>
+		<p><a href = "fm_post_listing.php">Post Listings</a></p>
+		<p><a href = "fm_view_listings.php">View Listings</a></p>
 <?php endif;?>
 
 <?php if ($rcheck['active'] == "2" ): ?>
-<ul>
-<li><a href = "restricted_warning.php">Post Listings</a></li>
-<li><a href = "restricted_warning.php">View Listings</a></li>
-</ul>
+	<ul>
+		<li><a href = "restricted_warning.php">Post Listings</a></li>
+		<li><a href = "restricted_warning.php">View Listings</a></li>
+	</ul>
 <?php endif;?>
+</div>
 </div>
 
 <!-- Block 3 -->
 <div class = "footer">
-
-<ul>
-<li><a href = "">Privacy Policy</a></li>
-<li><a href = "">About</a></li>
-<li><a href = "">Contact</a></li>
-<li style = "float:left"><a href = "">Social Links</a></li>
-</ul>
-
+	<ul>
+		<li><a href = "">Privacy Policy</a></li>
+		<li><a href = "">About</a></li>
+		<li><a href = "">Contact</a></li>
+	</ul>
 </div>
 
 </body>

@@ -161,6 +161,23 @@ a:hover {
 	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
 }
 
+.forms .listing{
+	top: 20%;
+	left: 30%;
+	height: 55%;
+	width: 40%;
+	color: white;
+	background-color: #333;
+	border-style: solid;
+	border-color: white;
+	border-width: 2px;
+	border-radius: 3px;
+	padding: 10px;
+	padding-bottom: 5px;
+	position: absolute;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+}
+
 .forms .edit_account {
 	top: 3%;
 	left: 30%;
