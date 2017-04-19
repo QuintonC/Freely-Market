@@ -39,186 +39,9 @@ $check = mysqli_fetch_array($adminCheck);
 
 <html>
 <header>
+<link rel="stylesheet" type="text/css" href="../_style.css">
 <style>
-body {
-padding: 0px;
-margin: 0px;
-}
 
-.active {
-    background-color: 	#00008B;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-li {
-    float: left;
-	border-right: 1px solid #bbb;
-}
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-li a:hover {
-    background-color: 	#00008B;
-	
-
-}
-
-.links {
-	background-color: #333;
-}
-
-.links a:hover {
-    background-color: 	#00008B;
-	
-
-}
-
-.title .navbar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-.title .navbar li {
-    float: left;
-	border-right: 1px solid #bbb;
-}
-.title .navbar li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-.title .navbar li a:hover {
-    background-color: 	#00008B;
-}
-.title .navbar .active {
-    background-color: 	#00008B;
-}
-table, th, td {
-	margin-left: auto;
-	margin-right: auto;
-	border-bottom: 1px solid #ddd;
-	padding: 15px;
-    text-align: left;
-}
-th {
-    background-color: 	#00008B;
-    color: white;
-}
-tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-
-.title {
-margin: auto;
-width: 100%;
-height: 150px;
-background-color: #ff4d4d;
-}
-.title .header {
-top: 10px;
-left: 42%;
-position: absolute;
-font-family: "Brush Script MT", cursive;
-font-size: 24px;
-}
-.title .search {
-top: 15px;
-left: 2%;
-position: absolute;
-}
-.title .navbar{
-top: 15px;
-right: 2%;
-position: absolute;
-font-family: Arial, Helvetica, sans-serif;
-}
-
-.num {
-	color: red;
-}
-.center {
-position: absolute;
-height: 450px;
-width: 99%;
-text-align: center;
-}
-
-.center ul {
-	list-style-type: none;
-    margin: 0;
-    padding: 0;
-	background-color: #333;
-}
-
-.center li {
-	display: block;
-    text-decoration: none;
-	width: 100%;
-    text-align: left;
-	color: white;
-}
-
-
-
-.navMenu {
-	margin:0;
-	padding:0;
-}	
-.navMenu ul {
-	margin:0;
-	padding:0;
-	line-height:15px;
-}	
-	
-.navMenu li {
-	margin:0;
-	padding:0;
-	list-style:none;
-	float:left;
-	position:relative;
-}
-
-.navMenu > ul > li:hover {
-	background-color: #f5f5f5;
-}	
-.navMenu > ul > li {
-	text-align:center;
-	text-decoration:none;
-	display:block;
-	color:#000;
-	position:relative;
-}	
-
-ul.sub-menu {
-	position:absolute;
-	opacity:0;
-}
-ul.sub-menu li{
-	
-}
-	
-.navMenu ul ul {
-	position:absolute;
-	visibility:hidden;
-}
-	
-.navClass li:hover .sub-menu{
-	opacity:1;
-}
 </style>
 </header>
 <title>Vendor Requests</title>
@@ -242,10 +65,36 @@ ul.sub-menu li{
 <li><a href = "../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
 </ul>
 </div>
-
-
 </div>
 
+<!-- Block 2 -->
+<div class = "leftsidebar">
+
+<div class = "menu">
+<ul>
+<li><a href = "../account/edit_account/fm_edit_account.php">Edit Account</a></li>
+<li><a href = "../account/edit_card/fm_edit_card.php">Edit Card Info</a></li>
+<li><a href = "../account/messager/fm_messager1.php">Messager <div class = "dig"><?php if ($digit != 0) { echo $digit;}?></div></a></li>
+<li><a href = "../account/notifications/fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
+<li><a href = "../account/report_issue/fm_issue_form.php">Report an Issue</a></li>
+<?php if ($check['typ'] == 2 ): ?>
+	<span><li><a href = '../admin/fm_admin_vendor_requests.php'>Vendor Requests</a></li>
+<?php endif;?>
+<?php if ($check['typ'] == 2 ): ?>
+	<span><li><a href = '../admin/fm_admin_view_users.php'>View Users</a></li>
+<?php endif;?>
+<?php if ($check['typ'] == 2 ): ?>
+	<span><li><a href = '../admin/fm_admin_view_issues.php'>View Issues</a></li>
+<?php endif;?>
+<?php if ($check['typ'] == 1 ): ?>
+	<span><li><a href = '../vendor/account_page/fm_v_create_advertisement1.php'>View Users</a></li>
+<?php endif;?>
+</ul>
+</div>
+
+
+
+<!--Block 3 -->
 <div class = "vendor_requests">
 <center><h2>Vendor Requests</h2></center>
 <table>

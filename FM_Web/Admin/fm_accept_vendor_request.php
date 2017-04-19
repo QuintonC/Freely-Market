@@ -36,7 +36,7 @@ $msg = '
 <title>Freely Market Password</title>
 </head>
 <body>
-<p>Follow this <a href="https://cgi.soic.indiana.edu/~team12/fm_v_account_number.html"> link</a> to input your code: '.$fetch1['code']. '</p></br>
+<p>Follow this <a href="https://cgi.soic.indiana.edu/~team12/vendor/register_login/fm_v_account_number.html"> link</a> to input your code: '.$fetch1['code']. '</p></br>
 <br/>
 <p><i>Freely Market Team</i></p>
 ';
