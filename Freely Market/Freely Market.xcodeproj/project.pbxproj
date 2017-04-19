@@ -36,6 +36,7 @@
 		5AED3A8B1DB80B2200F3EA39 /* Freely_MarketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AED3A8A1DB80B2200F3EA39 /* Freely_MarketTests.swift */; };
 		5AED3A961DB80B2200F3EA39 /* Freely_MarketUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AED3A951DB80B2200F3EA39 /* Freely_MarketUITests.swift */; };
 		D95089B11EA5E0F1003BC8E3 /* OffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95089B01EA5E0F1003BC8E3 /* OffersViewController.swift */; };
+		D9A6D5601EA7E23F002D2E80 /* AcceptedOffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A6D55F1EA7E23F002D2E80 /* AcceptedOffersViewController.swift */; };
 		D9A8ABE61EA5B8A60036D031 /* MyListingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8ABE51EA5B8A60036D031 /* MyListingsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,7 @@
 		5AED3A951DB80B2200F3EA39 /* Freely_MarketUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Freely_MarketUITests.swift; sourceTree = "<group>"; };
 		5AED3A971DB80B2200F3EA39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D95089B01EA5E0F1003BC8E3 /* OffersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffersViewController.swift; sourceTree = "<group>"; };
+		D9A6D55F1EA7E23F002D2E80 /* AcceptedOffersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptedOffersViewController.swift; sourceTree = "<group>"; };
 		D9A8ABE51EA5B8A60036D031 /* MyListingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyListingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,6 +174,7 @@
 				5AED3A751DB80B2200F3EA39 /* AppDelegate.swift */,
 				5AED3A7E1DB80B2200F3EA39 /* LaunchScreen.storyboard */,
 				5AED3A791DB80B2200F3EA39 /* Main.storyboard */,
+				D9A6D55F1EA7E23F002D2E80 /* AcceptedOffersViewController.swift */,
 				D95089B01EA5E0F1003BC8E3 /* OffersViewController.swift */,
 				D9A8ABE51EA5B8A60036D031 /* MyListingsViewController.swift */,
 				5AED3A7C1DB80B2200F3EA39 /* Assets.xcassets */,
@@ -375,6 +378,7 @@
 				5A6FB8761DD9025500D58436 /* MessageViewController.swift in Sources */,
 				5A2ED6671DB8564F00A75B2E /* RegisterViewController.swift in Sources */,
 				5AC30E3D1DCBD1DE00C502B2 /* ForgottenPassViewController.swift in Sources */,
+				D9A6D5601EA7E23F002D2E80 /* AcceptedOffersViewController.swift in Sources */,
 				5A41999A1E9EFF02008A6489 /* ChatViewController.swift in Sources */,
 				5A2E39F11E9EEF5800A278DF /* ContactCell.swift in Sources */,
 				5A2E39EA1E9D31F900A278DF /* IndividualListingViewController.swift in Sources */,

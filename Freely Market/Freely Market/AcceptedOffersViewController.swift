@@ -1,15 +1,15 @@
 //
-//  MyListingsViewController.swift
+//  AcceptedOffersViewController.swift
 //  Freely Market
 //
-//  Created by Austin Mitts on 4/17/17.
+//  Created by Austin Mitts on 4/19/17.
 //  Copyright © 2017 Freely Creative. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class MyListingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class AcceptedOffersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var ListingsData: [[String]] = []
     var selectedTitle = String()
@@ -18,9 +18,11 @@ class MyListingsViewController: UIViewController, UITableViewDataSource, UITable
     var selectedDescr = String()
     var selectedOwner = String()
     var selectedType = String()
+    var selectedBuyer = String()
+    var selectedID = String()
+    
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
-    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -30,19 +32,22 @@ class MyListingsViewController: UIViewController, UITableViewDataSource, UITable
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-
+        
         
         super.viewDidLoad()
-        rentListings()
+        
+        offerListings()
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.ListingsData.count
+        print(ListingsData.count)
+        return ListingsData.count
     }
     
     //function to get information on all rental listings in the database
-    func rentListings() {
-        let requestURL: NSURL = NSURL(string: "http://cgi.soic.indiana.edu/~team12/api/myListings.php")!
+    func offerListings() {
+        let requestURL: NSURL = NSURL(string: "http://cgi.soic.indiana.edu/~team12/api/myPendingPayments.php")!
         let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
         urlRequest.httpMethod = "POST"
         let postString = "user=\(USER)"
@@ -54,18 +59,25 @@ class MyListingsViewController: UIViewController, UITableViewDataSource, UITable
             
             let httpResponse = response as! HTTPURLResponse
             let statusCode = httpResponse.statusCode
+            print(statusCode)
             if (statusCode == 200) {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
-                    if let listings = json["listing"] as? [[String: AnyObject]] {
+                    if let listings = json["offer"] as? [[String: AnyObject]] {
                         for listing in listings {
                             if let title = listing["item"] as? String {
                                 if let price = listing["price"] as? String {
                                     if let picture = listing["picture"] as? String {
                                         if let descr = listing["descr"] as? String {
                                             if let owner = listing["owner"] as? String {
-                                                if let type = listing["type"] as? String {
-                                                    self.ListingsData.append([title, "$" + price, picture, descr, owner, type])
+                                                if let buyer = listing["buyer"] as? String {
+                                                    if let id = listing["id"] as? String {
+                                                        if let type = listing["type"] as? String {
+                                                            print("Type "+type)
+                                                            self.ListingsData.append([title, "$" + price, picture, descr, owner, buyer, id, type])
+                                                            print("apple")
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }
@@ -83,6 +95,7 @@ class MyListingsViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
         task.resume()
+        print("pie")
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -100,8 +113,9 @@ class MyListingsViewController: UIViewController, UITableViewDataSource, UITable
         listing.contentView.addSubview(cellStyle)
         listing.contentView.sendSubview(toBack: cellStyle)
         
-        listing.listingTitle.text = self.ListingsData[indexPath.row][0]
-        listing.listingPrice.text = self.ListingsData[indexPath.row][1]
+        listing.listingTitle.text = ListingsData[indexPath.row][0]
+        print(ListingsData[indexPath.row][0])
+        listing.listingPrice.text = ListingsData[indexPath.row][1]
         
         let imageURL = URL(string: "http://cgi.soic.indiana.edu/~team12/images/" + ListingsData[indexPath.row][2])!
         let session = URLSession(configuration: .default)
@@ -141,9 +155,11 @@ class MyListingsViewController: UIViewController, UITableViewDataSource, UITable
         selectedImage = ListingsData[indexPath.row][2] as String
         selectedDescr = ListingsData[indexPath.row][3] as String
         selectedOwner = ListingsData[indexPath.row][4] as String
-        selectedType = ListingsData[indexPath.row][5] as String
+        selectedBuyer = ListingsData[indexPath.row][5] as String
+        selectedID = ListingsData[indexPath.row][6] as String
+        selectedType = ListingsData[indexPath.row][7] as String
         
-        performSegue(withIdentifier: "myListingSegue", sender: self)
+        //performSegue(withIdentifier: "myListingSegue", sender: self)
     }
     
     
