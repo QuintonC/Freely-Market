@@ -43,15 +43,15 @@ class OffersViewController: UIViewController, UITableViewDataSource, UITableView
         if type == "Rental_Listing" {
             callURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/getRentalOffers.php")
             acceptURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/acceptRentalOffer.php")
-            declineURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/declineRentalOffer.php")
+//            //declineURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/declineRentalOffer.php")
         } else if type == "Equipment_Listing" {
             callURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/getEquipmentOffers.php")
             acceptURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/acceptEquipmentOffer.php")
-            declineURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/declineEquipmentOffer.php")
+//            //declineURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/declineEquipmentOffer.php")
         } else if type == "Buy_Listing" {
             callURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/getBuyOffers.php")
             acceptURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/acceptBuyOffer.php")
-            declineURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/declineBuyOffer.php")
+//            //declineURL = URL(string: "http://cgi.soic.indiana.edu/~team12/api/declineBuyOffer.php")
         } else {
             print ("Something went wrong, could not retrieve ID of the listing.")
         }
@@ -145,41 +145,149 @@ class OffersViewController: UIViewController, UITableViewDataSource, UITableView
         }
         decline.backgroundColor = .red
         
-        
         return [decline, accept]
     }
     
     func acceptOffer(index: Int) {
-        print("accept button tapped")
+//        print("accept button tapped")
         let username = myOffers[index]
-        print(username)
+//        print(username)
         
-//        var request = URLRequest(url:acceptURL!)
-//        request.httpMethod = "POST"
-//        
-//        // username is name of offerer id is id of listing
-//        let postString = "username=\(username)&id=\(id)"
-//        request.httpBody = postString.data(using: String.Encoding.utf8)
-//        
-//        let task = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
-//            if error != nil {
-//                print("ERROR")
-//            }
-//            
-//            do {
-//                
-//            } catch {
-//                print(error)
-//            }
-//        }
-//        task.resume()
-//        
+        let alertController = UIAlertController(title: "Are you sure?", message:"This offer will be accepted.", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
+            action -> Void in
+        }
+        let OKAction = UIAlertAction(title: "OK", style: .default) {
+            (action:UIAlertAction) in
+        
+            var request = URLRequest(url:self.acceptURL!)
+            request.httpMethod = "POST"
+            
+            // username is name of offerer id is id of listing
+            let postString = "seller=\(USER)&buyer=\(username)&id=\(self.id)"
+            request.httpBody = postString.data(using: String.Encoding.utf8)
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {
+                (data, response, error) in
+                
+                if error != nil {
+                    print("error is \(String(describing: error))")
+                    return
+                }
+                
+                var err: NSError?
+                
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                    
+                    
+                    if let parseJSON = json {
+                        
+                        let messageToDisplay:String = parseJSON["message"] as! String
+                        let myAlert = UIAlertController(title: "Alert", message:messageToDisplay, preferredStyle: .alert)
+                        
+                        if messageToDisplay == "Could not accept offer" {
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                        } else if messageToDisplay == "Offer accepted" {
+                            DispatchQueue.main.async {
+                                self.performSegue(withIdentifier: "offerAccepted", sender: self)
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                        }
+                    }
+                } catch let error as NSError {
+                    print(err = error)
+                }
+            }
+            task.resume()
+        }
+        alertController.addAction(OKAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion:nil)
     }
     
     func declineOffer(index: Int) {
-        print("decline button tapped")
+//        print("decline button tapped")
         let username = myOffers[index]
-        print(username)
+//        print(username)
+        
+        let alertController = UIAlertController(title: "Are you sure?", message:"This offer will be declined.", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
+            action -> Void in
+        }
+        let OKAction = UIAlertAction(title: "OK", style: .default) {
+            (action:UIAlertAction) in
+            
+            var request = URLRequest(url: URL(string: "http://cgi.soic.indiana.edu/~team12/api/declineOffer.php")!)
+            request.httpMethod = "POST"
+            
+            // username is name of offerer id is id of listing
+            let postString = "username=\(username)&id=\(self.id)&type=\(self.type)"
+            request.httpBody = postString.data(using: String.Encoding.utf8)
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {
+                (data, response, error) in
+                
+                if error != nil {
+                    print("error is \(String(describing: error))")
+                    return
+                }
+                
+                var err: NSError?
+                
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                    
+                    
+                    if let parseJSON = json {
+                        
+                        let messageToDisplay:String = parseJSON["message"] as! String
+                        let myAlert = UIAlertController(title: "Alert", message:messageToDisplay, preferredStyle: .alert)
+                        
+                        if messageToDisplay == "Could not decline offer" {
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                        } else if messageToDisplay == "Offer declined" {
+                            DispatchQueue.main.async {
+                                self.performSegue(withIdentifier: "offerDeclined", sender: self)
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                        }
+                    }
+                } catch let error as NSError {
+                    print(err = error)
+                }
+            }
+            task.resume()
+        }
+        alertController.addAction(OKAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion:nil)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

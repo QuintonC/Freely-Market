@@ -11,12 +11,13 @@ import UIKit
 
 class MyListingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var RentalData: [[String]] = []
+    var ListingsData: [[String]] = []
     var selectedTitle = String()
     var selectedPrice = String()
     var selectedImage = String()
     var selectedDescr = String()
     var selectedOwner = String()
+    var selectedType = String()
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
@@ -36,7 +37,7 @@ class MyListingsViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return RentalData.count
+        return ListingsData.count
     }
     
     //function to get information on all rental listings in the database
@@ -63,7 +64,9 @@ class MyListingsViewController: UIViewController, UITableViewDataSource, UITable
                                     if let picture = listing["picture"] as? String {
                                         if let descr = listing["descr"] as? String {
                                             if let owner = listing["owner"] as? String {
-                                                self.RentalData.append([title, "$" + price, picture, descr, owner])
+                                                if let type = listing["type"] as? String {
+                                                    self.ListingsData.append([title, "$" + price, picture, descr, owner, type])
+                                                }
                                             }
                                         }
                                     }
@@ -83,8 +86,8 @@ class MyListingsViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let rent = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CellData
-        rent.contentView.backgroundColor = UIColor.clear
+        let listing = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CellData
+        listing.contentView.backgroundColor = UIColor.clear
         
         let cellStyle : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 85))
         
@@ -94,13 +97,13 @@ class MyListingsViewController: UIViewController, UITableViewDataSource, UITable
         cellStyle.layer.shadowOffset = CGSize(width: 1, height: 1)
         cellStyle.layer.shadowOpacity = 0.1
         
-        rent.contentView.addSubview(cellStyle)
-        rent.contentView.sendSubview(toBack: cellStyle)
+        listing.contentView.addSubview(cellStyle)
+        listing.contentView.sendSubview(toBack: cellStyle)
         
-        rent.listingTitle.text = RentalData[indexPath.row][0]
-        rent.listingPrice.text = RentalData[indexPath.row][1]
+        listing.listingTitle.text = ListingsData[indexPath.row][0]
+        listing.listingPrice.text = ListingsData[indexPath.row][1]
         
-        let imageURL = URL(string: "http://cgi.soic.indiana.edu/~team12/images/" + RentalData[indexPath.row][2])!
+        let imageURL = URL(string: "http://cgi.soic.indiana.edu/~team12/images/" + ListingsData[indexPath.row][2])!
         let session = URLSession(configuration: .default)
         
         let downloadPicTask = session.dataTask(with: imageURL) {
@@ -112,7 +115,7 @@ class MyListingsViewController: UIViewController, UITableViewDataSource, UITable
                     if let imageData = data {
                         DispatchQueue.main.async {
                             let picture = UIImage(data: imageData)
-                            rent.listingImage.image = picture
+                            listing.listingImage.image = picture
                         }
                         
                     } else {
@@ -124,7 +127,7 @@ class MyListingsViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
         downloadPicTask.resume()
-        return rent
+        return listing
     }
     
     func dismissKeyboard() {
@@ -133,11 +136,12 @@ class MyListingsViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //Set variables to pass to IndividualListingViewController
-        selectedTitle = RentalData[indexPath.row][0] as String
-        selectedPrice = RentalData[indexPath.row][1] as String
-        selectedImage = RentalData[indexPath.row][2] as String
-        selectedDescr = RentalData[indexPath.row][3] as String
-        selectedOwner = RentalData[indexPath.row][4] as String
+        selectedTitle = ListingsData[indexPath.row][0] as String
+        selectedPrice = ListingsData[indexPath.row][1] as String
+        selectedImage = ListingsData[indexPath.row][2] as String
+        selectedDescr = ListingsData[indexPath.row][3] as String
+        selectedOwner = ListingsData[indexPath.row][4] as String
+        selectedType = ListingsData[indexPath.row][5] as String
         
         performSegue(withIdentifier: "myListingSegue", sender: self)
     }
@@ -157,6 +161,7 @@ class MyListingsViewController: UIViewController, UITableViewDataSource, UITable
             listingVC.owner = selectedOwner
             listingVC.price = selectedPrice
             listingVC.btnText = "Rent Now - " + selectedPrice
+            listingVC.listingType = selectedType
             
         }
     }
