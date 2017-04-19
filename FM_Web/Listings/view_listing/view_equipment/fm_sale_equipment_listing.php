@@ -42,7 +42,7 @@ $mysql = "SELECT e.item, e.price, e.descr, e.picture, e.owner, e.eid FROM Equipm
 $result = $conn->query($mysql);
 
 #Select Advertisements
-$sql1 = "select * from Advertisements limit 3";
+$sql1 = "select * from Advertisements WHERE confirmed = 'confirmed' limit 3";
 $data = $conn->query($sql1);
 
 ?>

@@ -42,8 +42,12 @@ $mysql = "SELECT b.item, b.price, b.descr, b.picture, b.owner, b.bid FROM Buy_Li
 $result = $conn->query($mysql);
 
 #Select Advertisements
-$sql1 = "select * from Advertisements limit 3";
+$sql1 = "select * from Advertisements WHERE confirmed = 'confirmed' limit 3";
 $data = $conn->query($sql1);
+
+$confirm = "Select confirmed FROM Advertisements";
+$con = $conn ->query($confirm);
+$array = mysqli_fetch_array($con);
 
 ?>
 
