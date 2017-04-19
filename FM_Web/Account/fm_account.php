@@ -106,7 +106,7 @@ $digit = $set['count(*)'];
 <!-- Block 3 -->
 <div class = "account">
 	<div class="my_listings">
-		<a href = "fm_my_listings.php"><img class="img-circle1" /></a><br/>My Listings
+		<a href = "fm_my_listings.php"><img class="img-circle1" src="../images/bike2.jpg" /></a><br/>My Listings
 	</div>
 	<div class="my_offers">
 		<a href = "fm_my_offers.php"><img class="img-circle1" src="../images/dollar-sign-black.jpg" height="100px" width="150px"/></a><br/>My Offers
