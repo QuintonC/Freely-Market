@@ -42,138 +42,7 @@ $digit = $set['count(*)'];
 
 <head>
 <link rel="stylesheet" type="text/css" href="../_style.css">
-
-<!--<style>
-body {
-padding: 0px;
-margin: 0px;
-}
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-li {
-    float: left;
-	border-right: 1px solid #bbb;
-}
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-li a:hover {
-    background-color: 	#00008B;
-}
-.active {
-    background-color: 	#00008B;
-}
-.title .navbar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-.title .navbar li {
-    float: left;
-	border-right: 1px solid #bbb;
-}
-.title .navbar li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-.title .navbar li a:hover {
-    background-color: 	#00008B;
-}
-.title .navbar .active {
-    background-color: 	#00008B;
-}
-table, th, td {
-	margin-left: auto;
-	margin-right: auto;
-	border-bottom: 1px solid #ddd;
-	padding: 15px;
-    text-align: left;
-}
-th {
-    background-color: 	#00008B;
-    color: white;
-}
-tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-tr:hover {
-	background-color: #f5f5f5;
-}
-.title {
-margin: auto;
-width: 100%;
-height: 150px;
-background-color: #ff4d4d;
-}
-.title .header {
-top: 10px;
-left: 42%;
-position: absolute;
-font-family: "Brush Script MT", cursive;
-font-size: 24px;
-}
-.title .search {
-top: 15px;
-left: 2%;
-position: absolute;
-}
-.title .navbar{
-top: 15px;
-right: 2%;
-position: absolute;
-font-family: Arial, Helvetica, sans-serif;
-}
-
-.num {
-	color: red;
-}
-
-.dig {
-	color: red;
-}
-
-.center {
-position: absolute;
-height: 450px;
-left: 15%;
-width: 85%;
-text-align: center;
-background-image: url("../images/shop.jpg");
-}
-
-.center ul {
-	list-style-type: none;
-    margin: 0;
-    padding: 0;
-	background-color: #333;
-}
-
-.center li {
-	display: block;
-    text-decoration: none;
-	width: 100%;
-    text-align: left;
-	color: white;
-}
-
-
-</style>-->
-
-	<title>Account Page</title>
+<title>Account Page</title>
 	
 </head>
 
@@ -236,10 +105,12 @@ background-image: url("../images/shop.jpg");
 
 <!-- Block 3 -->
 <div class = "account">
-	<ul>
-		<li><a href = "fm_my_listings.php">My Listings</a></li>
-		<li><a href = "fm_my_offers.php">My Offers</a></li>
-	</ul>
+	<div class="my_listings">
+		<a href = "fm_my_listings.php"><img class="img-circle1" src="../images/bike2.jpg" /></a><br/>My Listings
+	</div>
+	<div class="my_offers">
+		<a href = "fm_my_offers.php"><img class="img-circle1" src="../images/dollar-sign-black.jpg" height="100px" width="150px"/></a><br/>My Offers
+	</div>
 </div>
 
 <!-- Block 4 -->

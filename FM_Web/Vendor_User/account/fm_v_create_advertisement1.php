@@ -89,251 +89,9 @@ if($row_arr == $currentdate){
 
 maxLength(document.getElementById("text"));
 </script>
-
-
-<!--<style>
-	
-	body {
-		margin: 0px;
-	}
-	
-	ul { 
-		list-style-type: none;
-		margin: 0px;
-		padding: 0px;
-		overflow: visible;
-		background-color: #333;
-	}
-	
-	
-	li {	
-		float: left;
-		border: medium;
-		border-right: 1px solid white;
-		border-color:#222222;
-	}
-	
-
-	li a {
-		display: block;
-		color: white;
-		text-align: center;
-		padding: 10px 10px;
-		text-decoration: none;
-	}
-	
-	
-	li a:hover {
-		background-color: #111;
-	}	
-	
-	
-	.header {
-		width: 100%;
-		height: 135px;
-		background-color:#4B4B4B;
-		position: absolute;
-	}	
-
-	
-	.header .title {
-		position: absolute;
-		left: 40%;
-		bottom: -15px;
-		font-style: italic;
-		font-family: "Brush Script MT";
-		font-size: 30px;
-	}
-	
-	.header .search {
-		top: 14px;
-		left: 2%;
-		position: absolute;
-	}
-	
-	.header .login {
-		top: 25px;
-		right: 1%;
-		position: absolute;
-		border: solid;
-		border-color: white;
-		border-width: thin;
-		font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
-	}
-	
-	.leftsidebar {
-		font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
-		width: 18.5%;
-		height: 552px;
-		position: absolute;
-		border:medium;
-		border-color: #000000;
-		background-color: #4FAB48;
-		top: 135px;
-		padding-top: 8px;
-	}
-	
-	.leftsidebar ul {
-		font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
-		list-style-type: none;
-		margin: 0px;
-		padding: 0px;
-	}
-	
-	.leftsidebar li {
-		float: none;
-		border: 1px solid #bbb;
-	}
-	
-	.leftsidebar li a {
-		display: block;
-		color: white;
-		font-size: 17px;
-		text-align: center;
-		padding: 14px 16px;
-		text-decoration: none;
-	}
-	
-	.leftsidebar .img-circle {
-		border-radius: 50%;
-		border-style: solid;
-		border-color: white;
-		width: 150px;
-		height: 130px;
-	}
-	
-	.rightsidebar {
-		font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
-		width: 18.5%;
-		height: 552px;
-		right: 0%;
-		position: absolute;
-		border:medium;
-		border-color: #000000;
-		background-color: #4FAB48;
-		top: 135px;
-	}
-	
-	.rightsidebar ul {
-		margin: 0px;
-		padding: 2px;
-	}
-	
-	.rightsidebar li {
-		float: none;
-		border: 1px solid #bbb;
-	}
-	
-	.rightsidebar li a {
-		display: block;
-		color: white;
-		font-size: 17px;
-		text-align: center;
-		padding: 14px 16px;
-		text-decoration: none;
-	}
-	
-	.num {
-		color: red;
-	}
-
-	.dig {
-		color: red;
-	}
-	
-	.center {
-		margin: auto;
-		text-align: left;
-		padding-left: 12px;
-		padding-right: 3px;
-		left: 18.5%;
-		font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
-		width: 63%;
-		height: 600px;
-		background-color: #ffe6e6;
-		position: absolute;
-		top: 135px;
-	}
-	
-	.center ul {
-		list-style-type: none;
-		margin: 0px;
-		padding: 0px;
-	}
-	
-	.center li {
-		float: none;
-		border: 1px solid #bbb;
-	}
-	
-	.center li a {
-		display: block;
-		color: white;
-		font-size: 17px;
-		text-align:left;
-		padding: 14px 16px;
-		text-decoration: none;
-	}
-	
-	.textbox {
-		width: 700px;
-		height: 75px;
-	}
-
-	.button {
-		font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
-		background-color: #4B4B4B;
-		border: none;
-		border-radius: 3px;
-		color: white;
-		padding: 5px 15px;
-		text-align: center;
-		text-decoration: none;
-		display: inline-block;
-		font-size: 12px;
-		margin: 4px 2px;
-		cursor: pointer;
-	}
-	
-	.footer {
-		font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
-		margin: auto;
-		width: 100%;
-		background-color: #4B4B4B;
-		color: #FFFAF0;
-		position: absolute;
-		top: 688px;
-	}
-	
-
-	.footer ul {
-		list-style-type: none;
-		margin: 0;
-		padding: 0;
-		overflow: hidden;
-		background-color: #333;
-	}
-	
-	
-	.footer li {
-		float: right;
-		border-right: 1px solid #bbb;
-		border-left: 1px solid #bbb;
-	}
-	
-	
-	.footer li a {
-		display: block;
-		color: white;
-		text-align: center;
-		padding: 14px 16px;
-		text-decoration: none;
-	}
-	
-</style>
 </head>
 
-<body>-->
+<body
 
 <!-- Block 1 -->
 <div class = "title">
@@ -364,14 +122,14 @@ maxLength(document.getElementById("text"));
 			</tr>
 	</table>
 	<?php } ?>
-	<h2 align="center"> <?php echo $log; ?></h2>
+	<font color="white"><h2 align="center"> <?php echo $log; ?></h2></font>
 	<div class = "menu">
 	<ul>
-		<li><a href = "edit_account/fm_edit_account.php">Edit Account</a></li>
-		<li><a href = "edit_card/fm_edit_card.php">Edit Card Info</a></li>
-		<li><a href = "messager/fm_messager1.php">Messager <div class = "dig"><?php if ($digit != 0) { echo $digit;}?></div></a></li>
-		<li><a href = "notifications/fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
-		<li><a href = "report_issue/fm_issue_form.php">Report an Issue</a></li>
+		<li><a href = "../../account/edit_account/fm_edit_account.php">Edit Account</a></li>
+		<li><a href = "../../account/edit_card/fm_edit_card.php">Edit Card Info</a></li>
+		<li><a href = "../../account/messager/fm_messager1.php">Messager <div class = "dig"><?php if ($digit != 0) { echo $digit;}?></div></a></li>
+		<li><a href = "../../account/notifications/fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
+		<li><a href = "../../account/report_issue/fm_issue_form.php">Report an Issue</a></li>
 		<?php if ($check['typ'] == 2 ): ?>
 			<span><li><a href = '../admin/fm_admin_vendor_requests.php'>Vendor Requests</a></li>
 		<?php endif;?>
@@ -381,9 +139,7 @@ maxLength(document.getElementById("text"));
 		<?php if ($check['typ'] == 2 ): ?>
 			<span><li><a href = '../admin/fm_admin_view_issues.php'>View Issues</a></li>
 		<?php endif;?>
-		<?php if ($check['typ'] == 1 ): ?>
-			<span><li><a href = '../vendor/account_page/fm_v_create_advertisement1.php'>Advertisements</a></li>
-		<?php endif;?>
+		<li><a href = 'fm_v_create_advertisement1.php'>Advertisements</a></li>
 	</ul>
 </div>
 </div>

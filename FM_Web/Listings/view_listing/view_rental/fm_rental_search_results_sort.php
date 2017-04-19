@@ -22,7 +22,7 @@ $username = $_SESSION['username'];
 $item = $_GET['id'];
 
 
-$mysql = "SELECT count(*) FROM Rental_Listing WHERE item LIKE '%".$item."%'";
+$mysql = "SELECT count(*) FROM Rental_Listing WHERE (item LIKE '%".$item."%' OR descr LIKE '%".$item."%') AND status = 'Active' AND owner != '$username'";
 $result = $conn->query($mysql);
 $val = mysqli_fetch_array($result);
 $total = $val['count(*)'];

@@ -213,7 +213,7 @@ top: 1250px;
 <div class = "search">
 <img src = "../../../images/logo.png" height = "100px" width = "200px" /><br />
 <form name = "searchbar" action = "fm_buy_bike_search_results.php?pagenum=1" method="post">
-<input type="text" name="search" value = "~" placeholder="Search for a Listing...">
+<input type="text" name="search" placeholder="Search for a Listing...">
 
 <button type="submit" value="search">Search</button>
 </form>
