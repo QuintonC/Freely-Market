@@ -262,6 +262,33 @@ top: 600px;
 </ul>
 </div>
 
+<!-- Block 3 -->
+<div class = "center">
+
+<table>
+	<tr>
+		<th>Message</th>
+		<th>From</th>
+		<th>Date/Time</th>
+		<th>View</th>
+		<th>Delete</th>
+	</tr>
+<?php while ($row = mysqli_fetch_array($result)) { ?>
+	<tr>
+		<td><?php echo $row['message']; ?></td>
+		<td><?php echo $row['sender']; ?></td>
+		<td><?php echo $row['created']; ?></td>
+		<td><a href = "fm_view_sale_notif.php?id=<?php echo $row['bid']; ?>"><?php echo $row['bid'];?></a></td>
+		<td><a href = "fm_delete_notif.php?id=<?php echo $row['nid']; ?>">Delete</a></td>
+		<td><a href = "fm_view_rent_notif.php?id=<?php echo $row['rid']; ?>"><?php echo $row['rid'];?></a></td>
+		<td><a href = "fm_saleoffer_status_accept.php?id=<?php echo $row['btid']; ?>"><?php echo $row['btid'];?></a></td>
+		<td><a href = "fm_rentoffer_status_accept.php?id=<?php echo $row['rtid']; ?>"><?php echo $row['rtid'];?></a></td> 
+	</tr>
+<?php } ?>
+</table>
+
+</div>
+
 <!-- Block 4 -->
 <div class = "rightsidebar">
 
