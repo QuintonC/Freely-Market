@@ -265,7 +265,7 @@ ul.sub-menu li{
 }
 </style>
 </header>
-<title>View Users</title>
+<title>Issues</title>
 <body>
 
 <!-- Block 1 -->
@@ -321,21 +321,17 @@ ul.sub-menu li{
 <center><h2>Users</h2></center>
 <table>
 	<tr>
+		<th>Issue ID</th>
 		<th>User ID</th>
 		<th>Description</th>
 		<th>Action</th>
 	</tr>
 	<?php while ($row = mysqli_fetch_array($result)) { ?>
 	<tr>
+		<td><?php echo $row['iid']; ?></td>
 		<td><?php echo $row['aid']; ?></td>
 		<td><?php echo $row['description']; ?></td>
-		<td>
-		<div id = "navMenu">
-			<ul class "sub-menu">
-				<li><a href ="fm_clear_issue.php?id=<?php echo $row['aid']; ?>">Clear Issue</a></li>	
-			</ul>
-		</div>
-		</td>	
+		<td><li><a href ="fm_clear_issue.php?id=<?php echo $row['iid']; ?>">Clear Issue</a></li></td>	
 	</tr>
 	<?php } ?>
 </table>
