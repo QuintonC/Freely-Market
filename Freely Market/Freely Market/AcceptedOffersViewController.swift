@@ -9,7 +9,17 @@
 import Foundation
 import UIKit
 
-class AcceptedOffersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class AcceptedOffersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, PayPalPaymentDelegate {
+    
+    var environment:String = PayPalEnvironmentNoNetwork {
+        willSet(newEnvironment) {
+            if (newEnvironment != environment) {
+                PayPalMobile.preconnect(withEnvironment: newEnvironment)
+            }
+        }
+    }
+    
+    
     
     var ListingsData: [[String]] = []
     var selectedTitle = String()
@@ -25,6 +35,7 @@ class AcceptedOffersViewController: UIViewController, UITableViewDataSource, UIT
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     
+    var payPalConfig = PayPalConfiguration()
     override func viewDidLoad() {
         
         if self.revealViewController() != nil {
@@ -38,10 +49,24 @@ class AcceptedOffersViewController: UIViewController, UITableViewDataSource, UIT
         
         offerListings()
         
+        // Set up payPalConfig
+        payPalConfig.acceptCreditCards = false
+        payPalConfig.merchantName = "Freely Market"
+        payPalConfig.merchantPrivacyPolicyURL = URL(string: "https://www.paypal.com/webapps/mpp/ua/privacy-full")
+        payPalConfig.merchantUserAgreementURL = URL(string: "https://www.paypal.com/webapps/mpp/ua/useragreement-full")
+        
+        payPalConfig.languageOrLocale = Locale.preferredLanguages[0]
+        
+        payPalConfig.payPalShippingAddressOption = .both
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        PayPalMobile.preconnect(withEnvironment: environment)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(ListingsData.count)
         return ListingsData.count
     }
     
@@ -59,33 +84,24 @@ class AcceptedOffersViewController: UIViewController, UITableViewDataSource, UIT
             
             let httpResponse = response as! HTTPURLResponse
             let statusCode = httpResponse.statusCode
-            print(statusCode)
             if (statusCode == 200) {
-                print("Starting...")
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
                     if let listings = json["offer"] as? [[String: AnyObject]] {
                         for listing in listings {
                             if let title = listing["item"] as? String {
-                                print("title "+title)
                                 if let price = listing["price"] as? String {
-                                    print("price "+price)
                                     if let picture = listing["picture"] as? String {
-                                        print("picture "+picture)
                                         if let descr = listing["descr"] as? String {
-                                            print("descr "+descr)
                                             if let owner = listing["owner"] as? String {
-                                                print("owner "+owner)
                                                 if let buyer = listing["buyer"] as? String {
-                                                    print("buyer "+buyer)
-//                                                    if let testID = listing["id"] as? String {
-//                                                        print("id "+testID)
-                                                        if let type = listing["type"] as? String {
-                                                            print("Type "+type)
-                                                            self.ListingsData.append([title, "$" + price, picture, descr, owner, buyer, type])
-                                                            print("apple")
+                                                    if let type = listing["type"] as? String {
+                                                        if let listingID = listing["id"] as Optional {
+                                                            let testID = String(describing: listingID)
+                                                            self.ListingsData.append([title, "$" + price, picture, descr, owner, buyer, type, testID])
+                                                            
                                                         }
-                                                    //}
+                                                    }
                                                 }
                                             }
                                         }
@@ -94,7 +110,6 @@ class AcceptedOffersViewController: UIViewController, UITableViewDataSource, UIT
                             }
                         }
                     }
-                    print("...END")
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
@@ -104,7 +119,6 @@ class AcceptedOffersViewController: UIViewController, UITableViewDataSource, UIT
             }
         }
         task.resume()
-        print("pie")
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -165,8 +179,8 @@ class AcceptedOffersViewController: UIViewController, UITableViewDataSource, UIT
         selectedDescr = ListingsData[indexPath.row][3] as String
         selectedOwner = ListingsData[indexPath.row][4] as String
         selectedBuyer = ListingsData[indexPath.row][5] as String
-        //selectedID = ListingsData[indexPath.row][6] as String
         selectedType = ListingsData[indexPath.row][6] as String
+        selectedID = ListingsData[indexPath.row][7] as String
         
         //performSegue(withIdentifier: "myListingSegue", sender: self)
     }
@@ -181,7 +195,42 @@ class AcceptedOffersViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func pay(index: Int) {
+        let title = ListingsData[index][0]
+        let price = ListingsData[index][1].replacingOccurrences(of: "$", with: "", options: .literal, range: nil)
+        let type = ListingsData[index][6]
+        let id = ListingsData[index][7]
         
+        let sku = type+"&"+id
+        
+        let item1 = PayPalItem(name: title, withQuantity: 1, withPrice: NSDecimalNumber(string: price), withCurrency: "USD", withSku: sku)
+        
+        
+        let items = [item1]
+        let subtotal = PayPalItem.totalPrice(forItems: items)
+        
+        // Optional: include payment details
+        let shipping = NSDecimalNumber(string: "0.00")
+        let tax = NSDecimalNumber(string: "0.00")
+        let paymentDetails = PayPalPaymentDetails(subtotal: subtotal, withShipping: shipping, withTax: tax)
+        
+        let total = subtotal.adding(shipping).adding(tax)
+        
+        let payment = PayPalPayment(amount: total, currencyCode: "USD", shortDescription: title, intent: .sale)
+        
+        payment.items = items
+        payment.paymentDetails = paymentDetails
+        
+        if (payment.processable) {
+            let paymentViewController = PayPalPaymentViewController(payment: payment, configuration: payPalConfig, delegate: self)
+            present(paymentViewController!, animated: true, completion: nil)
+        }
+        else {
+            // This particular payment will always be processable. If, for
+            // example, the amount was negative or the shortDescription was
+            // empty, this payment wouldn't be processable, and you'd want
+            // to handle that here.
+            print("Payment not processalbe: \(payment)")
+        }
     }
     
     
@@ -223,6 +272,90 @@ class AcceptedOffersViewController: UIViewController, UITableViewDataSource, UIT
         // Dispose of any resources that can be recreated.
     }
     
+    func payPalPaymentDidCancel(_ paymentViewController: PayPalPaymentViewController) {
+        print("PayPal Payment Cancelled")
+        
+        paymentViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    func payPalPaymentViewController(_ paymentViewController: PayPalPaymentViewController, didComplete completedPayment: PayPalPayment) {
+        print("PayPal Payment Success !")
+        paymentViewController.dismiss(animated: true, completion: { () -> Void in
+            // send completed confirmaion to your server
+            print("Here is your proof of payment:\n\n\(completedPayment.confirmation)\n\nSend this to your server for confirmation and fulfillment.")
+            //get id of listing
+            let item = completedPayment.items?[0] as! PayPalItem
+            var identity = item.sku!.components(separatedBy: "&")
+            let type = identity[0]
+            let id = identity[1]
+            
+//##########################//##########################//##########################//##########################//##########################//##########################//##########################
+//##########################//##########################//##########################//##########################//##########################//##########################//##########################
+//##########################//##########################//##########################//##########################//##########################//##########################//##########################
+
+            var request = URLRequest(url: URL(string: "http://cgi.soic.indiana.edu/~team12/api/updateTransaction.php")!)
+            request.httpMethod = "POST"
+            let postString = "id=\(id)&type=\(type)"
+            
+            request.httpBody = postString.data(using: String.Encoding.utf8)
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {
+                (data, response, error) in
+                
+                if error != nil {
+                    print("error is \(String(describing: error))")
+                    return
+                }
+                
+                var err: NSError?
+                
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                    
+                    
+                    if let parseJSON = json {
+                        
+                        let messageToDisplay:String = parseJSON["message"] as! String
+                        let myAlert = UIAlertController(title: "Alert", message:messageToDisplay, preferredStyle: .alert)
+                        
+                        if messageToDisplay == "Could not update table" {
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                        } else if messageToDisplay == "Update Success" {
+                            DispatchQueue.main.async {
+                                self.performSegue(withIdentifier: "transactionComplete", sender: self)
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                let OKAction = UIAlertAction(title: "OK", style: .default) {
+                                    (action:UIAlertAction) in
+                                }
+                                myAlert.addAction(OKAction)
+                                self.present(myAlert, animated: true, completion: nil)
+                            }
+                        }
+                    }
+                } catch let error as NSError {
+                    print(err = error)
+                }
+            }
+            task.resume()
+            
+//##########################//##########################//##########################//##########################//##########################//##########################//##########################
+//##########################//##########################//##########################//##########################//##########################//##########################//##########################
+//##########################//##########################//##########################//##########################//##########################//##########################//##########################
+            
+            
+
+        })
+    }
+    
+
     
     
 }
