@@ -23,6 +23,9 @@ $adminCheck = $conn->query($adminsql);
 $check = mysqli_fetch_array($adminCheck);
 
 ?>
+<!-- Source -->
+<!-- 1. Javascript validation for empty input field. (n.d.). Retrieved April 19, 2017, from http://stackoverflow.com/questions/3937513/javascript-validation-for-empty-input-field -->
+
 
 <html>
 <head>
