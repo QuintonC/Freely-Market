@@ -1,62 +1,94 @@
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="_style.css">
-<title>Freely Market Home</title>
+	<link rel="stylesheet" type="text/css" href="_style.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+	<script type="text/javascript">
+	$(function() {
+  		$('a').click(function() {
+    		var target = $(this.hash);
+    		$('html, body').animate({
+      			scrollTop: target.offset().top
+    		}, 750, function() {
+      			window.location.hash = href;
+    		});
+    		return false;
+  		});
+	});
+	</script>
+	<script type="text/javascript">
+	var height = window.innerHeight;
+
+	$(window).bind('scroll', function() {
+  		if ($(window).scrollTop() > height) {
+    		$('.title').addClass('fixed');
+  		} else {
+    		$('.title').removeClass('fixed');
+  		}
+	});
+	</script>
+	<title>Freely Market | Home</title>
 </head>
 
 <body>
 
+<div class="landing">
+	<a href="#info"><div class="downArrow bounce">
+    </div></a>
+</div>
+
 <!-- Block 1 -->
-<div class = "title">
-	<div class = "search">
-		<h3 align="center"><img src = "images/logo.png" height = "90px" width = "160px" /></h3><br />
+<div class="title">
+	<div class="titleCenter">
+		<img class="titleLogo" src="images/freelyMarketLogo.png"/>
 	</div>
 
-	<div class = "header">
-		<h1 align="center">Freely Market</h1>
-	</div>
-
-	<div class = "login">
-		<ul>
-			<li><a href="register_login/fm_create_account.html">Create Account</a></li>
-			<li><a href = "register_login/fm_login.html">Log In</a></li>
-		</ul>
+	<div class="login">
+		<div class="titleButton">
+			<a href = "register_login/fm_login.html">Log In</a>
+		</div>
+		<div class="titleButton">
+			<a href="register_login/fm_create_account.html">Register</a>
+		</div>
 	</div>
 </div>
 
 
 <!-- Block 2 -->
-<div class = "information">
-<div class="img1">
-	<h1>Mission</h1>
-	<h4><p>Freely Market is a place where people in the Bloomington, Indiana area can rent or sell bicycles and equipment.</p></h4>
-</div>
+<div class = "information" id="info">
+	<div class="infoMain">	
+		<div class="infoTitle">What is Freely Market?</div>
+		<p class="addMargin">Freely Market is a bicycle sharing platform based out of Bloomington, Indiana. What we provide is a platform where individuals can buy, rent, or sell bicycles and bicycling equipment to other individuals.</p>
+
+		<a class="infoButton" href="">Download the iOS app here!</a>
+	</div>
+
+	<div class="infoPreviewContainer">
+		<img class="infoPreview" src="images/appPreview.png">
+	</div>
+
+
+
+	<!-- <h2 class="infoTitle">What is Freely Market?</h2>
+	<p>Freely Market is a bicycle sharing platform based out of Bloomington, Indiana. What we provide is a platform where individuals can buy, rent, or sell bicycles and bicycling equipment to other individuals.</p> -->
 </div>
 
 <!-- Block 3 -->
-<div class = "mobile">
-	<h2 align>Are you a vendor?</h2>
-	<p>Apply for our <a href="vendor/application/fm_v_application.html">vendor account</a> if you are interested in having your inventory available on Freely Market.</p>
-	<p>Please apply first!</p>
-	<div class="vendorcreate">
-		<ul>
-			<li><a href = "vendor/register_login/fm_v_account_number.html">Create Vendor Account</a></li>
-		</ul>
-	</div>
+<div class="vendor">
+	<h2 class="vendorTitle">Are you a vendor?</h2>
+	<p>Interested in advertising your inventory and specials on Freely Market? Apply for a vendor account <a class="vendorUnderline" href="vendor/application/fm_v_application.html">here.</a>
+	
+	<p>If you have already applied for your vendor account and have received your confirmation code, please finish setting up your account <a class="vendorUnderline" href="vendor/register_login/fm_v_account_number.html">here.</a>
 </div>
 
 <!-- Block 4 -->
 <div class = "footer">
-	<ul>
-		<li><a href = "">Privacy Policy</a></li>
-		<li><a href = "">About</a></li>
-		<li><a href = "">Contact</a></li>
-	</ul>
-</div>
+	<a class="footerElement" href="">About</a>
+	<a class="footerElement" href="">Contact</a>
+	<a class="footerElement" href="">Privacy Policy</a>
 
-<!-- Block 4 -->
-<div class = "copyright">
-	<p>2017 Freely Market</p>
+	<div class = "copyright">
+		(c) 2017 Freely Market
+	</div>
 </div>
 
 </body>

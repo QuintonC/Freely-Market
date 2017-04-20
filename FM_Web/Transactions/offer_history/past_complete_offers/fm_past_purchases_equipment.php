@@ -38,7 +38,7 @@ $prevpage = $pagenum - 1;
 $offset = ($pagenum - 1)  * $limit;
 
 
-$mysql = "SELECT t.seller, t.occured, e.item, b.price FROM Equipment_Transactions AS t, Equipment_Listing AS e WHERE e.eid = t.eid AND t.buyer = '$username' LIMIT $limit OFFSET $offset";
+$mysql = "SELECT t.seller, t.occured, e.item, e.price, a.email FROM Equipment_Transactions AS t, Equipment_Listing AS e, User_Accounts AS a WHERE e.eid = t.eid AND a.aid = e.aid AND t.buyer = '$username' LIMIT $limit OFFSET $offset";
 $result = $conn->query($mysql);
 
 ?>
@@ -282,6 +282,7 @@ top: 1250px;
 		<th>Occured</th>
 		<th>Item</th>
 		<th>Price</th>
+		<th>Buy</th>
 	</tr>
 	<?php while ($row = mysqli_fetch_array($result)) { ?>
 	<tr>
@@ -289,6 +290,14 @@ top: 1250px;
 		<td><?php echo $row['occured']; ?></td>
 		<td><?php echo $row['item']; ?></td> 
 		<td><?php echo $row['price']; ?></td>
+		<td><form name="_xclick" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+		<input type="hidden" name="cmd" value="_xclick">
+		<input type="hidden" name="business" value="<?php echo $row['email']; ?>">
+		<input type="hidden" name="currency_code" value="USD">
+		<input type="hidden" name="item_name" value="<?php echo $row['item']; ?>">
+		<input type="hidden" name="amount" value="<?php echo $row['price']; ?>">
+		<input type="image" src="http://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+	</form></td>
 	</tr>
 	<?php } ?>
 </table>

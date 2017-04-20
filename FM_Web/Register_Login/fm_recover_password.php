@@ -24,77 +24,108 @@ if($_GET['token'])
 	$da = $conn->query($query3);
 	$numrows1 = $da->num_rows;
 	
-	if($numrows1 == 1)
-	{
+	if($numrows1 == 1) {
 ?>	
 		<html>
 		<head>
 		<link rel="stylesheet" type="text/css" href="../_style.css">
-		<title>Reset Password</title>
+		<title>Freely Market | Recover Password</title>
+		<link rel="stylesheet" type="text/css" href="../_style.css">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
 		</head>
 		<body>
-		<!-- Header -->
-		<!-- Block 1 -->
-		<div class = "title">
-			<div class = "search">
-				<h3 align="center"><a href="../fm_homepage.html"><img src = "../images/logo.png" height = "90px" width = "160px" /></a></h3><br/>
+		
+		<div class="landing">
+			<!-- Block 1 -->
+			<div class="titleAlt">
+				<div class="titleCenter">
+					<img class="titleLogo" src="../images/freelyMarketLogo.png"/>
+				</div>
+
+				<div class="login">
+					<div class="titleButton">
+						<a href = "../fm_homepage.html">Home</a>
+					</div>
+
+					<div class="titleButton">
+						<a href="fm_login.html">Login</a>
+					</div>
+				</div>
 			</div>
 
-			<div class = "header">
-				<h1 align="center">Freely Market</h1>
-			</div>
-		</div>
-		<!-- End Header -->
-
-		<!-- Center Page -->
-		<div class = "forms">
-			<div class = "user_pass">
-				<center>
-					<form action='fm_password_reset.php?token=<?php echo $get_token?>' method='POST'>
-						<p>Enter a new password<br><input type='password' name='newpass'><br>
-						<p>Re-enter your password<br><input type='password' name='newpass1'><p>
+			<!-- Block 2 -->
+			<div class="forms">
+				<div class="user_pass">
+					<form class="glow" action='fm_password_reset.php?token=<?php echo $get_token?>' method='POST'>
+						<input type='text' class="password" name='newpass' placeholder="Enter a new password" autocomplete="off">
+						<input type='text' class="password" name='newpass1' placeholder="Re-enter your password" autocomplete="off">
 						<input type='hidden' name='username' value='<? echo $get_username ?>'>
-						<input class='button' type='submit' value='Update Password'>
+						<input class='buttonAlt' type='submit' value='Update Password'>
 					</form>
-				</center>		
+				</div>
 			</div>
+		
+			<div class = "footer">
+				<a class="footerElement" href="">About</a>
+				<a class="footerElement" href="">Contact</a>
+				<a class="footerElement" href="">Privacy Policy</a>
+
+				<div class = "copyright">
+					(c) 2017 Freely Market
+				</div>
+			</div>
+
 		</div>
-		<!-- End Center Page -->
 		</body>
 		</html>
 <?php	
-	}
-	else
-	{?>
+	} else { ?>
 		<html>
 		<head>
 		<link rel="stylesheet" type="text/css" href="../_style.css">
-		<title>Reset Password</title>
+		<title>Freely Market | Recover Password</title>
+		<link rel="stylesheet" type="text/css" href="../_style.css">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
 		</head>
 		<body>
-		<!-- Header -->
+		
+		<div class="landing">
+
 		<!-- Block 1 -->
-		<div class = "title">
-			<div class = "search">
-				<h3 align="center"><a href="../fm_homepage.html"><img src = "../images/logo.png" height = "90px" width = "160px" /></a></h3><br/>
+			<div class="titleAlt">
+				<div class="titleCenter">
+					<img class="titleLogo" src="../images/freelyMarketLogo.png"/>
+				</div>
+
+				<div class="login">
+					<div class="titleButton">
+						<a href = "../fm_homepage.html">Home</a>
+					</div>
+
+					<div class="titleButton">
+						<a href="fm_login.html">Login</a>
+					</div>
+				</div>
 			</div>
 
-			<div class = "header">
-				<h1 align="center">Freely Market</h1>
+			<!-- Center Page -->
+			<div class="forms">
+				<div class="fourohfour">
+					Something went wrong. Perhaps the link you've clicked has expired?
+				</div>
 			</div>
-		</div>
-		<!-- End Header -->
 
-		<!-- Center Page -->
-		<div class = "forms">
-			<div class="error">
-			<br>
-			<br>
-			<br>
-				<font color="white"><h1 align="center">404 Page not found</h1></font>
+			<div class = "footer">
+				<a class="footerElement" href="">About</a>
+				<a class="footerElement" href="">Contact</a>
+				<a class="footerElement" href="">Privacy Policy</a>
+
+				<div class = "copyright">
+					(c) 2017 Freely Market
+				</div>
 			</div>
+
 		</div>
-		<!-- End Center Page -->
 		</body>
 		</html>
 <?php
@@ -106,41 +137,61 @@ else
 	<html>
 	<head>
 	<link rel="stylesheet" type="text/css" href="../_style.css">
-	<title>Recover Password</title>
+	<title>Freely Market | Recover Password</title>
+	<link rel="stylesheet" type="text/css" href="../_style.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
 	</head>
 	<body>
-	<!-- Block 1 -->
-	<div class = "title">
-		<div class = "search">
-			<h3 align="center"><a href="../fm_homepage.html"><img src = "../images/logo.png" height = "90px" width = "160px" /></a></h3><br/>
+	
+	<div class="landing">
+
+		<!-- Block 1 -->
+		<div class="titleAlt">
+			<div class="titleCenter">
+				<img class="titleLogo" src="../images/freelyMarketLogo.png"/>
+			</div>
+
+			<div class="login">
+				<div class="titleButton">
+					<a href = "../fm_homepage.html">Home</a>
+				</div>
+
+				<div class="titleButton">
+					<a href="fm_login.html">Login</a>
+				</div>
+			</div>
 		</div>
 
-		<div class = "header">
-			<h1 align="center">Freely Market</h1>
-		</div>
-	</div>
-	<!-- End Header -->
-
-	<!-- Center Page -->
-	<div class = "forms">
-	  <div class = "user_pass">
-			<center>
-				<form action='fm_recover_password.php' method='POST'>
-					<p>Enter your username<br><input type='text' name='username'><p>
-					<p>Enter your email<br><input type='text' name='email'><p>
-					<input class='button' type='submit' value='Submit' name='submit'>
+		<!-- Block 2 -->
+		<div class="forms">
+		  <div class="user_pass">
+				<form class="glow" action='fm_recover_password.php' method='POST'>
+					<input type='text' name='username' placeholder="Enter your username" autocomplete="off">
+					<input type='text' name='email' placeholder="Enter your email" autocomplete="off">
+					<input class='buttonAlt' type='submit' value='Submit' name='submit'>
 				</form>
-			</center>		
+			</div>
 		</div>
+
+		<div class = "footer">
+			<a class="footerElement" href="">About</a>
+			<a class="footerElement" href="">Contact</a>
+			<a class="footerElement" href="">Privacy Policy</a>
+
+			<div class = "copyright">
+				(c) 2017 Freely Market
+			</div>
+		</div>
+
 	</div>
-	<!-- End Center Page -->
+	
 	</body>
 	</html>
 	
 <?php
 		
-	if(isset($_POST['submit']))
-	{
+	if(isset($_POST['submit'])) {
+		
 		$username = $_POST['username'];
 		$email = $_POST['email'];
 		
@@ -155,8 +206,7 @@ else
 		$runquery = $conn->query($query1);
 		$numrow = $runquery->num_rows;
 		
-		if($numrow!=0)
-		{
+		if($numrow!=0) {
 			$token = rand(10000,1000000);
 
 			$to = $email;
