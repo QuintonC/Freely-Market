@@ -324,7 +324,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="0b6-aO-MC0" kind="show" id="eCf-Ra-puC"/>
+                                    <action selector="forgotPass:" destination="cP5-Bk-4dx" eventType="touchUpInside" id="Lgi-R2-IiU"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mo7-r2-nwh">
@@ -2583,10 +2583,10 @@ Password must contain at least one letter, at least one number, and be at least 
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="cKi-KO-eLK"/>
+        <segue reference="ITL-Pq-XeZ"/>
         <segue reference="Mw4-QG-wnN"/>
         <segue reference="up8-nE-ebJ"/>
         <segue reference="CY8-II-rwR"/>
         <segue reference="uGr-uf-BNo"/>
-        <segue reference="ita-cW-69Q"/>
     </inferredMetricsTieBreakers>
 </document>
