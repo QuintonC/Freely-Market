@@ -72,22 +72,24 @@ else {
 	$sql = "INSERT INTO User_Accounts (username,password,first_name,last_name,email,phone,typ,picture,active,created) VALUES ('$username','$encpw','$fname','$lname','$email','$phone','$type','$name','$active','$date')";
 }
 
-if (!$conn->query($sql) === TRUE) {
-	echo "Error: " . $sql . "<br>" . $conn->error;
+if ($conn->query($sql) === TRUE) {
+	echo '<script type="text/javascript"> alert("Your account has been created."); location="fm_login.html";</script>';
 	exit;
+} else {
+	echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
 ?>
 
 
-<html>
+<!--<html>
 <head>
 <link rel="stylesheet" type="text/css" href="../_style.css">
 	<title>Card Info</title>
 	
-<script type="text/javascript">
+<script type="text/javascript">-->
 <!-- ensures froms are not blank -->
-    function blank()
+    <!--function blank()
     {
     var a=document.forms["myForm"]["name"].value;
     var b=document.forms["myForm"]["number"].value;
@@ -116,7 +118,7 @@ maxLength(document.getElementById("text"));
 <body>
 
 <!-- Block 1 -->
-<div class = "title">
+<!--<div class = "title">
 	<div class = "search">
 		<h3 align="center"><img src = "../images/logo.png" height = "90px" width = "160px" /></h3><br />
 	</div>
@@ -127,7 +129,7 @@ maxLength(document.getElementById("text"));
 </div>
 
 <!-- Block 2 -->
-<div class = "center">
+<!--<div class = "center">
 	<div class = "addcard">
 		<form name = "myForm" action="fm_add_card.php" method="post" onsubmit = "return blank()">
 			<input type="hidden" value="add" name="choice">
@@ -141,7 +143,7 @@ maxLength(document.getElementById("text"));
 </div>
 
 </body>
-</html>
+</html>-->
 
 <?php
 
