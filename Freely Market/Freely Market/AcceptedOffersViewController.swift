@@ -61,23 +61,31 @@ class AcceptedOffersViewController: UIViewController, UITableViewDataSource, UIT
             let statusCode = httpResponse.statusCode
             print(statusCode)
             if (statusCode == 200) {
+                print("Starting...")
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
                     if let listings = json["offer"] as? [[String: AnyObject]] {
                         for listing in listings {
                             if let title = listing["item"] as? String {
+                                print("title "+title)
                                 if let price = listing["price"] as? String {
+                                    print("price "+price)
                                     if let picture = listing["picture"] as? String {
+                                        print("picture "+picture)
                                         if let descr = listing["descr"] as? String {
+                                            print("descr "+descr)
                                             if let owner = listing["owner"] as? String {
+                                                print("owner "+owner)
                                                 if let buyer = listing["buyer"] as? String {
-                                                    if let id = listing["id"] as? String {
+                                                    print("buyer "+buyer)
+//                                                    if let testID = listing["id"] as? String {
+//                                                        print("id "+testID)
                                                         if let type = listing["type"] as? String {
                                                             print("Type "+type)
-                                                            self.ListingsData.append([title, "$" + price, picture, descr, owner, buyer, id, type])
+                                                            self.ListingsData.append([title, "$" + price, picture, descr, owner, buyer, type])
                                                             print("apple")
                                                         }
-                                                    }
+                                                    //}
                                                 }
                                             }
                                         }
@@ -86,6 +94,7 @@ class AcceptedOffersViewController: UIViewController, UITableViewDataSource, UIT
                             }
                         }
                     }
+                    print("...END")
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
@@ -156,10 +165,23 @@ class AcceptedOffersViewController: UIViewController, UITableViewDataSource, UIT
         selectedDescr = ListingsData[indexPath.row][3] as String
         selectedOwner = ListingsData[indexPath.row][4] as String
         selectedBuyer = ListingsData[indexPath.row][5] as String
-        selectedID = ListingsData[indexPath.row][6] as String
-        selectedType = ListingsData[indexPath.row][7] as String
+        //selectedID = ListingsData[indexPath.row][6] as String
+        selectedType = ListingsData[indexPath.row][6] as String
         
         //performSegue(withIdentifier: "myListingSegue", sender: self)
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let pay = UITableViewRowAction(style: .normal, title: "Pay Now") { action, index in
+            self.pay(index: indexPath.row)
+        }
+        pay.backgroundColor = UIColor(red: 0.33, green: 0.85, blue: 0.5, alpha: 1.0)
+        
+        return [pay]
+    }
+    
+    func pay(index: Int) {
+        
     }
     
     
