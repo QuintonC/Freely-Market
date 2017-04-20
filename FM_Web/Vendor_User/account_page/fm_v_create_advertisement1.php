@@ -57,7 +57,7 @@ if($row_arr == $currentdate){
 <!doctype html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="../../_style.css">
+
 <meta charset="utf-8">
 <link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon" />
 <title>Create Advertisement</title>
@@ -89,6 +89,254 @@ if($row_arr == $currentdate){
 
 maxLength(document.getElementById("text"));
 </script>
+<style>
+	body {
+	padding: 0px;
+	margin: 0px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+	border-right: 1px solid #bbb;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: black;
+}
+
+a:link {
+    color: green;
+}
+
+a:visited {
+    color: white;
+}
+
+a:hover {
+    color: #13A61B;
+}
+
+
+.active {
+    background-color: #4CAF50;
+}
+
+.title {
+	margin: auto;
+	width: 100%;
+	height: 15%;
+	background-color: #13A61B;
+	position: absolute;
+}
+
+
+.title .header {
+	width: 100%;
+	position: absolute;
+	height: 15%;
+	font-family: "Brush Script MT", cursive;
+	font-size: 24px;
+}
+
+.title .search {
+	left: 1%;
+	width: 10%;
+	height: 15%;
+	position: absolute;
+}
+
+
+.title .login{
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	border-radius: 5px;
+	position: inherit;
+	top: 15%;
+	right: 1%;
+	font-size: 14px;
+	border-style: solid;
+	border-color: white;
+}
+
+.title .navbar{
+	left: 85%;
+	position: relative;
+	font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+}
+
+.leftsidebar {
+	font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	top: 15%;
+	width: 15%;
+	height: 100%;
+	position: absolute;
+	border-top: solid;
+	border-top-color: white;
+	background-color: #333;
+	padding-top: 8px;
+}
+	
+.leftsidebar .menu ul {
+	font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	list-style-type: none;
+	background-color: #13A61B;
+	margin: 0px;
+	padding: 0px;
+}
+	
+.leftsidebar .menu li {
+	float: none;
+	border: 1px solid #bbb;
+	border:solid;
+	border-color: #333;
+	border-radius: 1px;
+}
+	
+.leftsidebar .menu li a {
+	display: block;
+	color: white;
+	font-size: 14px;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+	
+.leftsidebar .img-circle {
+	border-radius: 50%;
+	border-style: solid;
+	border-color: white;
+	width: 150px;
+	height: 130px;
+}
+
+.leftsidebar .menu li a:hover {
+    background-color: black;
+    color: white;
+}
+.leftsidebar .menu .active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.rightsidebar {
+	font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	width: 15%;
+	height: 100%;
+	right: 0%;
+	position: absolute;
+	border-top: thick;
+	border-top-color: white;
+	background-color: #333;
+	top: 15%;
+	color: white;
+}
+	
+.rightsidebar ul {
+	margin: 0px;
+	padding: 2px;
+}
+	
+.rightsidebar li {
+	float: none;
+	border: 1px solid #bbb;
+}
+	
+.rightsidebar li a {
+	display: block;
+	color: white;
+	font-size: 14px;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+.center1 {
+	margin: auto;
+	text-align: left;
+	padding: 3px;
+	left: 15%;
+	font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	width: 70%;
+	height: 100%;
+	background-color: #ffe6e6;
+	position: absolute;
+	top: 15%;
+	border-top: solid;
+	border-color: white;
+}
+	
+.center1 ul {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+	
+.center1 li {
+	float: none;
+	border: 1px solid #bbb;
+}
+	
+.center1 li a {
+	display: block;
+	color: white;
+	font-size: 14px;
+	text-align:left;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+
+.footer {
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	margin: auto;
+	width: 100%;
+	height: 25%;
+	border-top: solid;
+	border-color: white;
+	background-color: #000000;
+	color: #FFFAF0;
+	position: absolute;
+	top: 105%;
+}
+
+.footer ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000000;
+}
+
+.footer li {
+    width: 33%;
+	text-align: justify;
+	border: none !important;
+}
+
+.footer li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+	
+</style>
 </head>
 
 <body
