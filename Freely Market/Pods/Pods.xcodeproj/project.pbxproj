@@ -1,0 +1,748 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		15E838183ACB75049258C4ACD7D5E028 /* Pods-Freely MarketTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8766596395E47FB22A817F54D535D3BC /* Pods-Freely MarketTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		23985A9776FAF93BCD0CC34E2BE1AE9D /* Pods-Freely Market-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EBD7CAEBC48E66F0697C00E8D30E0A /* Pods-Freely Market-dummy.m */; };
+		307213C61AA76F7AB1EEBFDC59E4032F /* Pods-Freely MarketUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50340BFD0277F2DB57C5B6228D125EFC /* Pods-Freely MarketUITests-dummy.m */; };
+		4E6E75D06669D14E1F46D9ABDE512301 /* Pods-Freely Market-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 79BF4E6B3F3A4CE9087CAB14B0FEBA71 /* Pods-Freely Market-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		57E2382881A44277E3E4541BDF5928D7 /* Pods-Freely MarketUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BB36B74F6D06D0309B7794A91B762D48 /* Pods-Freely MarketUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5A59D294FF686C0CB412EE7C7074315D /* Pods-Freely MarketTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 32ED476048822BB1FD3B1CE3DD39DA0F /* Pods-Freely MarketTests-dummy.m */; };
+		D95D313312174625B30AAF523E4FA4B4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		F7A6AEE41790D688648DA7CB9D46459F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		F8EF6F5953BDD0436333F4ADB516A8CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0097A88055272DF16D4B97485711D2A6 /* Pods-Freely Market-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Freely Market-frameworks.sh"; sourceTree = "<group>"; };
+		01FB222313EC50136CF28EF98AFA143D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09745A7D78F7F3CD0165FE6D30033229 /* PayPalPaymentViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalPaymentViewController.h; path = PayPalMobile/PayPalPaymentViewController.h; sourceTree = "<group>"; };
+		0AE8B994BB60E3D4637E7A1EA630DE13 /* PayPalConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalConfiguration.h; path = PayPalMobile/PayPalConfiguration.h; sourceTree = "<group>"; };
+		104F7E185D6BC110425C96692DB1A405 /* Pods-Freely MarketTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Freely MarketTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		113B352EE94E15CDEFBC35AE4A8C0E4D /* CardIOViewDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOViewDelegate.h; path = CardIO/CardIOViewDelegate.h; sourceTree = "<group>"; };
+		17B2707960EE4D2CCD7C2B912CC9A865 /* Pods-Freely MarketUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Freely MarketUITests-resources.sh"; sourceTree = "<group>"; };
+		1DD6E5088C1231FEA97F14D10C894BCF /* Pods-Freely MarketUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Freely MarketUITests.modulemap"; sourceTree = "<group>"; };
+		21E7CD325F79523F8FBAE093C3EC4D8C /* Pods_Freely_MarketTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Freely_MarketTests.framework; path = "Pods-Freely MarketTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		241BD3933098490A9955F7334BE0B297 /* Pods-Freely MarketTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Freely MarketTests.release.xcconfig"; sourceTree = "<group>"; };
+		2C0BA7246E7413AEAF58B5637474330F /* CardIOPaymentViewControllerDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOPaymentViewControllerDelegate.h; path = CardIO/CardIOPaymentViewControllerDelegate.h; sourceTree = "<group>"; };
+		2E4CCF050FBE7084095EECBEB422CFD1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32ED476048822BB1FD3B1CE3DD39DA0F /* Pods-Freely MarketTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Freely MarketTests-dummy.m"; sourceTree = "<group>"; };
+		347886179A5F69AADE67CE2E361E6939 /* Pods_Freely_MarketUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Freely_MarketUITests.framework; path = "Pods-Freely MarketUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35CEBB51C3D1854A4EA05B8E6C934089 /* PayPalFuturePaymentViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalFuturePaymentViewController.h; path = PayPalMobile/PayPalFuturePaymentViewController.h; sourceTree = "<group>"; };
+		37764309BDEA30A7E684A7BB0F50498B /* PayPalProfileSharingViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalProfileSharingViewController.h; path = PayPalMobile/PayPalProfileSharingViewController.h; sourceTree = "<group>"; };
+		3DCA4301E540C6A831E3B8E6F120CF30 /* Pods-Freely MarketUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Freely MarketUITests-frameworks.sh"; sourceTree = "<group>"; };
+		421391E3B4D7A04A8288129E455D3372 /* libPayPalMobile.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libPayPalMobile.a; path = PayPalMobile/libPayPalMobile.a; sourceTree = "<group>"; };
+		50340BFD0277F2DB57C5B6228D125EFC /* Pods-Freely MarketUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Freely MarketUITests-dummy.m"; sourceTree = "<group>"; };
+		52F0295521751B4F97A4C6575E38D9AB /* Pods-Freely Market.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Freely Market.release.xcconfig"; sourceTree = "<group>"; };
+		56CCCD3E32FC6C5FBEB10007F324627C /* libopencv_imgproc.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libopencv_imgproc.a; path = CardIO/libopencv_imgproc.a; sourceTree = "<group>"; };
+		5F98818BB53D654FD4728438F8CA5034 /* Pods-Freely MarketUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Freely MarketUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		60EBD7CAEBC48E66F0697C00E8D30E0A /* Pods-Freely Market-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Freely Market-dummy.m"; sourceTree = "<group>"; };
+		62859835CB824CBF765BBC2065E7FA1C /* CardIODetectionMode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIODetectionMode.h; path = CardIO/CardIODetectionMode.h; sourceTree = "<group>"; };
+		6CC90660B1E3A6A7D5E899389E7874DF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6F08F3D8AC4EA4194BF7D2E18B2DFC8B /* Pods-Freely MarketUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Freely MarketUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		7125F9F7887666766A4BABD88B0EEB89 /* CardIOPaymentViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOPaymentViewController.h; path = CardIO/CardIOPaymentViewController.h; sourceTree = "<group>"; };
+		76CB8E4E507A876EA61F100E003235A8 /* libCardIO.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libCardIO.a; path = CardIO/libCardIO.a; sourceTree = "<group>"; };
+		7869D5B4AAD7B0DDCA10986F7EEDAB6E /* Pods-Freely MarketTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Freely MarketTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		79BF4E6B3F3A4CE9087CAB14B0FEBA71 /* Pods-Freely Market-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Freely Market-umbrella.h"; sourceTree = "<group>"; };
+		85C80A81739F6D44232A572EC0603CC5 /* Pods-Freely Market-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Freely Market-resources.sh"; sourceTree = "<group>"; };
+		8766596395E47FB22A817F54D535D3BC /* Pods-Freely MarketTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Freely MarketTests-umbrella.h"; sourceTree = "<group>"; };
+		891DA4C5928B11FAB37EB9B2C79A0BE9 /* PayPalOAuthScopes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalOAuthScopes.h; path = PayPalMobile/PayPalOAuthScopes.h; sourceTree = "<group>"; };
+		92D6B7DDEA0B77CC92ABF9FA5BF4AC84 /* PayPalPayment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalPayment.h; path = PayPalMobile/PayPalPayment.h; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93E93B0EA72F1F20388FB593FDD5C827 /* Pods-Freely MarketTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Freely MarketTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9AA5FCC08A834406790E5E27DA691443 /* CardIOView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOView.h; path = CardIO/CardIOView.h; sourceTree = "<group>"; };
+		A94C620EB2B59AE1E102FFE5D6DEBBC3 /* Pods-Freely Market-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Freely Market-acknowledgements.plist"; sourceTree = "<group>"; };
+		A9A501B1414BF4E052BA1CC6D0B3952C /* Pods-Freely MarketUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Freely MarketUITests.release.xcconfig"; sourceTree = "<group>"; };
+		ADB76826A2CD12511C84836BF2342BA2 /* Pods-Freely Market.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Freely Market.debug.xcconfig"; sourceTree = "<group>"; };
+		AF6E95207E31060526FCCC892671D06A /* CardIOUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOUtilities.h; path = CardIO/CardIOUtilities.h; sourceTree = "<group>"; };
+		AFCAE9F16CCBF7A50FA2F8E19CDB8118 /* Pods-Freely MarketTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Freely MarketTests.modulemap"; sourceTree = "<group>"; };
+		B0CB53A0D430B25B5914FC2C55EB0ECA /* PayPalMobile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalMobile.h; path = PayPalMobile/PayPalMobile.h; sourceTree = "<group>"; };
+		B2907077D29B7740B75AB07B1737CF82 /* Pods-Freely MarketTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Freely MarketTests-frameworks.sh"; sourceTree = "<group>"; };
+		B70F613972299416CD53FD02866B4BAD /* CardIOCreditCardInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOCreditCardInfo.h; path = CardIO/CardIOCreditCardInfo.h; sourceTree = "<group>"; };
+		BB36B74F6D06D0309B7794A91B762D48 /* Pods-Freely MarketUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Freely MarketUITests-umbrella.h"; sourceTree = "<group>"; };
+		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		CC4EF17FA0D09BB5A7590D0B21903672 /* libopencv_core.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libopencv_core.a; path = CardIO/libopencv_core.a; sourceTree = "<group>"; };
+		D8253D80991489D0143BB52AEF3DE7E8 /* Pods-Freely Market-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Freely Market-acknowledgements.markdown"; sourceTree = "<group>"; };
+		E2A77814E3D3770E8D71BA3B353AF78F /* CardIO.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIO.h; path = CardIO/CardIO.h; sourceTree = "<group>"; };
+		E63D0AC37DA43AF04A6BBED6AC6F1A29 /* Pods-Freely Market.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Freely Market.modulemap"; sourceTree = "<group>"; };
+		E7568E33BF24D81752D728737AFC8989 /* Pods-Freely MarketUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Freely MarketUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		EA7BB52BB24610111B3492CD16638C0E /* Pods_Freely_Market.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Freely_Market.framework; path = "Pods-Freely Market.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED5A1619A931598DC970C550EA4888A9 /* Pods-Freely MarketTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Freely MarketTests-resources.sh"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C79B1CD3AAFD246F0045424157BAF72F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7A6AEE41790D688648DA7CB9D46459F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C885F3FCBD0B88880B038E241459D37A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8EF6F5953BDD0436333F4ADB516A8CE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D19A21386DE518ED1A63A3159FDE19EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D95D313312174625B30AAF523E4FA4B4 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1FE535F6B24C9B800AD9DB35D8A39D1F /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				9AA354AF6BAE25F5BFFA8B1E60D47790 /* Pods-Freely Market */,
+				EFE7EC55A8440846C58246E74844EDB6 /* Pods-Freely MarketTests */,
+				D02CC337D5A1488FB2445B4F5B0BE2C2 /* Pods-Freely MarketUITests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		3C5C0725C39A23410187C2BB6795ABE3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				421391E3B4D7A04A8288129E455D3372 /* libPayPalMobile.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		505C641A0EF1EF7D760889DE743E344B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				76CB8E4E507A876EA61F100E003235A8 /* libCardIO.a */,
+				CC4EF17FA0D09BB5A7590D0B21903672 /* libopencv_core.a */,
+				56CCCD3E32FC6C5FBEB10007F324627C /* libopencv_imgproc.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		627A7B4891EC456E78C62E591028016B /* CardIO */ = {
+			isa = PBXGroup;
+			children = (
+				E2A77814E3D3770E8D71BA3B353AF78F /* CardIO.h */,
+				B70F613972299416CD53FD02866B4BAD /* CardIOCreditCardInfo.h */,
+				62859835CB824CBF765BBC2065E7FA1C /* CardIODetectionMode.h */,
+				7125F9F7887666766A4BABD88B0EEB89 /* CardIOPaymentViewController.h */,
+				2C0BA7246E7413AEAF58B5637474330F /* CardIOPaymentViewControllerDelegate.h */,
+				AF6E95207E31060526FCCC892671D06A /* CardIOUtilities.h */,
+				9AA5FCC08A834406790E5E27DA691443 /* CardIOView.h */,
+				113B352EE94E15CDEFBC35AE4A8C0E4D /* CardIOViewDelegate.h */,
+				505C641A0EF1EF7D760889DE743E344B /* Frameworks */,
+			);
+			name = CardIO;
+			path = CardIO;
+			sourceTree = "<group>";
+		};
+		6D454632D5E3E833E7140F4F9E7C6E29 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				627A7B4891EC456E78C62E591028016B /* CardIO */,
+				C5CFBF95A89818BB072D4234555D96DD /* PayPal-iOS-SDK */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		7B6275AEE37E029A741E99061393550C /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				0AE8B994BB60E3D4637E7A1EA630DE13 /* PayPalConfiguration.h */,
+				35CEBB51C3D1854A4EA05B8E6C934089 /* PayPalFuturePaymentViewController.h */,
+				B0CB53A0D430B25B5914FC2C55EB0ECA /* PayPalMobile.h */,
+				891DA4C5928B11FAB37EB9B2C79A0BE9 /* PayPalOAuthScopes.h */,
+				92D6B7DDEA0B77CC92ABF9FA5BF4AC84 /* PayPalPayment.h */,
+				09745A7D78F7F3CD0165FE6D30033229 /* PayPalPaymentViewController.h */,
+				37764309BDEA30A7E684A7BB0F50498B /* PayPalProfileSharingViewController.h */,
+				3C5C0725C39A23410187C2BB6795ABE3 /* Frameworks */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				6D454632D5E3E833E7140F4F9E7C6E29 /* Pods */,
+				805B9545C77832CCFFEF01C16FFCE731 /* Products */,
+				1FE535F6B24C9B800AD9DB35D8A39D1F /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		805B9545C77832CCFFEF01C16FFCE731 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EA7BB52BB24610111B3492CD16638C0E /* Pods_Freely_Market.framework */,
+				21E7CD325F79523F8FBAE093C3EC4D8C /* Pods_Freely_MarketTests.framework */,
+				347886179A5F69AADE67CE2E361E6939 /* Pods_Freely_MarketUITests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9AA354AF6BAE25F5BFFA8B1E60D47790 /* Pods-Freely Market */ = {
+			isa = PBXGroup;
+			children = (
+				01FB222313EC50136CF28EF98AFA143D /* Info.plist */,
+				E63D0AC37DA43AF04A6BBED6AC6F1A29 /* Pods-Freely Market.modulemap */,
+				D8253D80991489D0143BB52AEF3DE7E8 /* Pods-Freely Market-acknowledgements.markdown */,
+				A94C620EB2B59AE1E102FFE5D6DEBBC3 /* Pods-Freely Market-acknowledgements.plist */,
+				60EBD7CAEBC48E66F0697C00E8D30E0A /* Pods-Freely Market-dummy.m */,
+				0097A88055272DF16D4B97485711D2A6 /* Pods-Freely Market-frameworks.sh */,
+				85C80A81739F6D44232A572EC0603CC5 /* Pods-Freely Market-resources.sh */,
+				79BF4E6B3F3A4CE9087CAB14B0FEBA71 /* Pods-Freely Market-umbrella.h */,
+				ADB76826A2CD12511C84836BF2342BA2 /* Pods-Freely Market.debug.xcconfig */,
+				52F0295521751B4F97A4C6575E38D9AB /* Pods-Freely Market.release.xcconfig */,
+			);
+			name = "Pods-Freely Market";
+			path = "Target Support Files/Pods-Freely Market";
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C5CFBF95A89818BB072D4234555D96DD /* PayPal-iOS-SDK */ = {
+			isa = PBXGroup;
+			children = (
+				7B6275AEE37E029A741E99061393550C /* Core */,
+			);
+			name = "PayPal-iOS-SDK";
+			path = "PayPal-iOS-SDK";
+			sourceTree = "<group>";
+		};
+		D02CC337D5A1488FB2445B4F5B0BE2C2 /* Pods-Freely MarketUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2E4CCF050FBE7084095EECBEB422CFD1 /* Info.plist */,
+				1DD6E5088C1231FEA97F14D10C894BCF /* Pods-Freely MarketUITests.modulemap */,
+				6F08F3D8AC4EA4194BF7D2E18B2DFC8B /* Pods-Freely MarketUITests-acknowledgements.markdown */,
+				E7568E33BF24D81752D728737AFC8989 /* Pods-Freely MarketUITests-acknowledgements.plist */,
+				50340BFD0277F2DB57C5B6228D125EFC /* Pods-Freely MarketUITests-dummy.m */,
+				3DCA4301E540C6A831E3B8E6F120CF30 /* Pods-Freely MarketUITests-frameworks.sh */,
+				17B2707960EE4D2CCD7C2B912CC9A865 /* Pods-Freely MarketUITests-resources.sh */,
+				BB36B74F6D06D0309B7794A91B762D48 /* Pods-Freely MarketUITests-umbrella.h */,
+				5F98818BB53D654FD4728438F8CA5034 /* Pods-Freely MarketUITests.debug.xcconfig */,
+				A9A501B1414BF4E052BA1CC6D0B3952C /* Pods-Freely MarketUITests.release.xcconfig */,
+			);
+			name = "Pods-Freely MarketUITests";
+			path = "Target Support Files/Pods-Freely MarketUITests";
+			sourceTree = "<group>";
+		};
+		EFE7EC55A8440846C58246E74844EDB6 /* Pods-Freely MarketTests */ = {
+			isa = PBXGroup;
+			children = (
+				6CC90660B1E3A6A7D5E899389E7874DF /* Info.plist */,
+				AFCAE9F16CCBF7A50FA2F8E19CDB8118 /* Pods-Freely MarketTests.modulemap */,
+				104F7E185D6BC110425C96692DB1A405 /* Pods-Freely MarketTests-acknowledgements.markdown */,
+				7869D5B4AAD7B0DDCA10986F7EEDAB6E /* Pods-Freely MarketTests-acknowledgements.plist */,
+				32ED476048822BB1FD3B1CE3DD39DA0F /* Pods-Freely MarketTests-dummy.m */,
+				B2907077D29B7740B75AB07B1737CF82 /* Pods-Freely MarketTests-frameworks.sh */,
+				ED5A1619A931598DC970C550EA4888A9 /* Pods-Freely MarketTests-resources.sh */,
+				8766596395E47FB22A817F54D535D3BC /* Pods-Freely MarketTests-umbrella.h */,
+				93E93B0EA72F1F20388FB593FDD5C827 /* Pods-Freely MarketTests.debug.xcconfig */,
+				241BD3933098490A9955F7334BE0B297 /* Pods-Freely MarketTests.release.xcconfig */,
+			);
+			name = "Pods-Freely MarketTests";
+			path = "Target Support Files/Pods-Freely MarketTests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8FE99546549A8CB284C7C007A97AE9D7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E6E75D06669D14E1F46D9ABDE512301 /* Pods-Freely Market-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2A8DB5B0E1CD216B417413B0A044A02 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57E2382881A44277E3E4541BDF5928D7 /* Pods-Freely MarketUITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8833188AC19D3C696FB6A8BB599401F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15E838183ACB75049258C4ACD7D5E028 /* Pods-Freely MarketTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2623A095D7F5A465FDF975EA4B43C166 /* Pods-Freely MarketUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2704380BFE75081D56BB0E312876850B /* Build configuration list for PBXNativeTarget "Pods-Freely MarketUITests" */;
+			buildPhases = (
+				D0FA8FCCEC9261ADCF39B60E8641752D /* Sources */,
+				C79B1CD3AAFD246F0045424157BAF72F /* Frameworks */,
+				A2A8DB5B0E1CD216B417413B0A044A02 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-Freely MarketUITests";
+			productName = "Pods-Freely MarketUITests";
+			productReference = 347886179A5F69AADE67CE2E361E6939 /* Pods_Freely_MarketUITests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A34CADBB2FCAA73711799D196A76EA33 /* Pods-Freely Market */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4C9F368594E173809710388679B9609 /* Build configuration list for PBXNativeTarget "Pods-Freely Market" */;
+			buildPhases = (
+				B7CD476779F62ACBB66320EB5F2D2677 /* Sources */,
+				D19A21386DE518ED1A63A3159FDE19EE /* Frameworks */,
+				8FE99546549A8CB284C7C007A97AE9D7 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-Freely Market";
+			productName = "Pods-Freely Market";
+			productReference = EA7BB52BB24610111B3492CD16638C0E /* Pods_Freely_Market.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E5171A863300B09D5307A5A9D3563322 /* Pods-Freely MarketTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 369804F28C88D99AC6911EDC14DD245E /* Build configuration list for PBXNativeTarget "Pods-Freely MarketTests" */;
+			buildPhases = (
+				7BFAAB13FCED72968FA29344D6F36FF7 /* Sources */,
+				C885F3FCBD0B88880B038E241459D37A /* Frameworks */,
+				C8833188AC19D3C696FB6A8BB599401F /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-Freely MarketTests";
+			productName = "Pods-Freely MarketTests";
+			productReference = 21E7CD325F79523F8FBAE093C3EC4D8C /* Pods_Freely_MarketTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 805B9545C77832CCFFEF01C16FFCE731 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A34CADBB2FCAA73711799D196A76EA33 /* Pods-Freely Market */,
+				E5171A863300B09D5307A5A9D3563322 /* Pods-Freely MarketTests */,
+				2623A095D7F5A465FDF975EA4B43C166 /* Pods-Freely MarketUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7BFAAB13FCED72968FA29344D6F36FF7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A59D294FF686C0CB412EE7C7074315D /* Pods-Freely MarketTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7CD476779F62ACBB66320EB5F2D2677 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23985A9776FAF93BCD0CC34E2BE1AE9D /* Pods-Freely Market-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0FA8FCCEC9261ADCF39B60E8641752D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				307213C61AA76F7AB1EEBFDC59E4032F /* Pods-Freely MarketUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		12914D756594D15C6F2CA12FE5F89F1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		1F52E863752BE7C1777E2D446BA7AD14 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A9A501B1414BF4E052BA1CC6D0B3952C /* Pods-Freely MarketUITests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Freely MarketUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Freely MarketUITests/Pods-Freely MarketUITests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Freely_MarketUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8BBA524FC4805670210A138E0EAC15BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 241BD3933098490A9955F7334BE0B297 /* Pods-Freely MarketTests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Freely MarketTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Freely MarketTests/Pods-Freely MarketTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Freely_MarketTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		92BC1E27BB4CBB1385087BFFEB87483A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52F0295521751B4F97A4C6575E38D9AB /* Pods-Freely Market.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Freely Market/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Freely Market/Pods-Freely Market.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Freely_Market;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9C4DBEC9BE519E533E1A0AC1FA16E6AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADB76826A2CD12511C84836BF2342BA2 /* Pods-Freely Market.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Freely Market/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Freely Market/Pods-Freely Market.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Freely_Market;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B0EF458D850ABD8A1C670C53CFAA8432 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93E93B0EA72F1F20388FB593FDD5C827 /* Pods-Freely MarketTests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Freely MarketTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Freely MarketTests/Pods-Freely MarketTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Freely_MarketTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E72E7977875C2D251FC62736BBDDC389 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F6521FF4122FC0C07545AFB0A33C32D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F98818BB53D654FD4728438F8CA5034 /* Pods-Freely MarketUITests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Freely MarketUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Freely MarketUITests/Pods-Freely MarketUITests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Freely_MarketUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2704380BFE75081D56BB0E312876850B /* Build configuration list for PBXNativeTarget "Pods-Freely MarketUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6521FF4122FC0C07545AFB0A33C32D6 /* Debug */,
+				1F52E863752BE7C1777E2D446BA7AD14 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12914D756594D15C6F2CA12FE5F89F1B /* Debug */,
+				E72E7977875C2D251FC62736BBDDC389 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		369804F28C88D99AC6911EDC14DD245E /* Build configuration list for PBXNativeTarget "Pods-Freely MarketTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0EF458D850ABD8A1C670C53CFAA8432 /* Debug */,
+				8BBA524FC4805670210A138E0EAC15BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4C9F368594E173809710388679B9609 /* Build configuration list for PBXNativeTarget "Pods-Freely Market" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C4DBEC9BE519E533E1A0AC1FA16E6AB /* Debug */,
+				92BC1E27BB4CBB1385087BFFEB87483A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

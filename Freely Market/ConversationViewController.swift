@@ -19,11 +19,15 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     var conversation: [[String]] = []
     var height = 255
     
+    var numOfChars = 0
+    
     @IBOutlet var messageTextField: UITextField!
     @IBOutlet var tableView: UITableView!
     @IBOutlet var scrollView1: UIScrollView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var sendBtn: UIButton!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,11 +135,20 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
         cell.contentView.addSubview(cellStyle)
         cell.contentView.sendSubview(toBack: cellStyle)
         cell.sMessage.text = message
+        numOfChars = message.characters.count
         cell.lblSender.text = status
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        var x = Int(numOfChars / 33)
+//        x = x + 1
+//        x = x * 32
+//        x = x + 21
+//        return CGFloat(x)
+        
+        
+        //return 32*((numOfChars / 33)+1)+21)
         return 85
     }
     
