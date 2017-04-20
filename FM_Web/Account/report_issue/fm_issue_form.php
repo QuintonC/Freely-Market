@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 session_start();
 require_once("../../db_constant.php");
@@ -14,6 +13,9 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 		echo "<p>MySQL error no {$mysqli->connect_errno} : {$mysqli->connect_error}</p>";
 		exit();
 	}
+
+$username = $_SESSION['username'];
+
 #Check if user is admin
 $adminsql = "select typ from User_Accounts where aid = '$aid'";
 $adminCheck = $conn->query($adminsql);
@@ -120,10 +122,6 @@ maxLength(document.getElementById("text"));
 				
 			<div class="menuLink">
 				<a href="../../account/edit_account/fm_edit_account.php">Edit Account</a>
-			</div>
-
-			<div class="menuLink">
-				<a href="../../account/edit_card/fm_edit_card.php">Payment Info</a>
 			</div>
 
 			<div class="menuLink">
