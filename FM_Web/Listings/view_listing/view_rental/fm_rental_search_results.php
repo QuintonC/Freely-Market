@@ -17,7 +17,29 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 		exit();
 	}
 	
+#Call session variables
 $username = $_SESSION['username'];
+$aid = $_SESSION['uid'];
+
+#Check if user is admin
+$adminsql = "select typ from User_Accounts where aid = '$aid'";
+$adminCheck = $conn->query($adminsql);
+$check = mysqli_fetch_array($adminCheck);
+
+//Select User Photo
+$sql2 = "select * from User_Accounts WHERE username ='$username'";
+$user = $conn->query($sql2);
+
+#Get number of notifications
+$sql3 = "select count(*) from Notifications where recipient = '$username'";
+$num = $conn->query($sql3);
+$set = mysqli_fetch_array($num);
+$number = $set['count(*)'];
+
+$sql4 = "select count(*) from Msg_Notifications where recipient = '$username'";
+$dig = $conn->query($sql4);
+$set = mysqli_fetch_array($dig);
+$digit = $set['count(*)'];
 
 $item = $_POST['search'];
 
@@ -48,260 +70,205 @@ $data = $conn->query($sql1);
 ?>
 
 <html>
-
 <head>
-
-<title>Listings Page</title>
-<style>
-
-body {
-padding: 0px;
-margin: 0px;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-
-li {
-    float: left;
-	border-right: 1px solid #bbb;
-}
-
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-li a:hover {
-    background-color: 	#00008B;
-}
-
-.active {
-    background-color: 	#00008B;
-}
-
-.title {
-margin: auto;
-width: 100%;
-height: 150px;
-background-color: #ff4d4d;
-}
-
-
-.title .header {
-top: 10px;
-left: 42%;
-position: absolute;
-font-family: "Brush Script MT", cursive;
-font-size: 24px;
-}
-
-.title .search {
-top: 15px;
-left: 2%;
-position: absolute;
-}
-
-.title .navbar{
-top: 15px;
-right: 2%;
-position: absolute;
-font-family: Arial, Helvetica, sans-serif;
-}
-
-
-.leftsidebar {
-position: absolute;
-height: 1100px;
-left: 0%;
-background-color: #808080;
-}
-
-.center {
-position: absolute;
-height: 1100px;
-left: 0%;
-width: 66%;
-text-align: center;
-}
-
-.center table, th, td {
-	margin-left: auto;
-	margin-right: auto;
-	border-bottom: 1px solid #ddd;
-	padding-top: 15px;
-	padding-bottom: 15px;
-	padding-left: 50px;
-	padding-right: 50px;
-    text-align: left;
-}
-
-.center th {
-    background-color: 	#00008B;
-    color: white;
-}
-
-.center tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-
-.center tr:hover {
-	background-color: #f5f5f5;
-}
-
-.rightsidebar {
-position: absolute;
-height: 1100px;
-left: 75%;
-width: 25%;
-background-color: #808080;
-}
-
-
-.footer {
-margin: auto;
-width: 100%;
-background-color: #000000;
-color: #FFFAF0;
-position: absolute;
-top: 1250px;
-}
-
-.footer ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-
-.footer li {
-    float: right;
-	border-right: 1px solid #bbb;
-}
-
-.footer li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-</style>
-
-
+	<title>Freely Market | Rental Listings</title>
+	<link rel="stylesheet" type="text/css" href="../../../_style.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
 </head>
 
 <body>
+<div class="landing" style="overflow-y: scroll;">
 
-<!-- Block 1 -->
-<div class = "title">
+	<!-- Block 1 -->
+	<div class = "titleAlt">
+		<div class="titleCenter">
+			<img class="titleLogo" src="../../../images/freelyMarketLogo.png"/>
+		</div>
 
-<div class = "search">
-<img src = "../../../images/logo.png" height = "100px" width = "200px" /><br />
-<form name = "searchbar" action = "fm_rental_search_results.php?pagenum=1" method="post">
-<input type="text" name="search" placeholder="Search for a Listing...">
-<button type="submit" value="search">Search</button>
-</form>
-</div>
+		<div class = "login">
+			<div class="titleButton">
+				<a href = "../../../listings/fm_listings.php">Listings</a>
+			</div>
 
-<div class = "header">
-<h1>Listings</h1>
-</div>
+			<div class="titleButton">
+				<a href = "../../../transactions/fm_transactions.php">Transactions</a>
+			</div>
 
-<div class = "navbar">
+			<div class="titleButton">
+				<a href="../../../account/fm_account.php" class = "active">My Account</a>
+			</div>
 
-<ul>
-<li><a href = "../../../listings/fm_listings.php" class = "active">Listings</a></li>
-<li><a href="../../../account/fm_account.php">My Account</a></li>
-<li><a href = "../../../transactions/fm_transactions.php">Transactions</a></li>
-<li><a href = "../../../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
-</ul>
-</div>
+			<div class="titleButton">
+				<a href = "../../../fm_homepage.html">Logout</a>
+			</div>
+		</div>
+		<div class="search">
+			<form class="glow" name = "searchbar" action ="fm_rental_search_results.php?pagenum=1" method="post">
+				<input type="text" name="search" placeholder="Search for a Listing...">
 
+				<button class="buttonAlt" type="submit" value="search">Search</button>
+			</form>
+		</div>
+	</div>
 
-</div>
+	<!-- Block 2 -->
+	<div class = "leftsidebar">
+		<?php while ($row = mysqli_fetch_array($user)) { ?>
+			<table>
+					<tr>
+						<td><img class="img-circle" src="../../../images/<?php echo $row['picture'];?>"/></td>
+					</tr>
+			</table>
+		<?php } ?>
+		
+		<div class="username">
+			Logged in as: <?php echo $log; ?>
+		</div>
+	
 
-<!-- Block 2 -->
-<div class = "leftsidebar">
+		<div class="brackets">
+				
+			<div class="menuLink">
+				<a href="../../../account/edit_account/fm_edit_account.php">Edit Account</a>
+			</div>
 
+			<div class="menuLink">
+				<a href="../../../account/edit_card/fm_edit_card.php">Payment Info</a>
+			</div>
 
-</div>
+			<div class="menuLink">
+				
+				<a href="../../../account/messager/fm_messager1.php">Messenger <?php if ($digit != 0) { echo "(" . $digit . ")";}?></a>
+			</div>
+
+			<div class="menuLink">
+				<a href="../../../account/notifications/fm_notifications.php">Notifications <?php if ($number != 0) { echo "(" . $number . ")";}?></a>
+			</div>
+
+			<div class="menuLink">
+				<a href = "../../../account/fm_my_listings.php">My Listings</a>
+			</div>
+
+			<div class="menuLink">
+				<a href = "../../../account/fm_my_offers.php">My Offers</a>
+			</div>
+
+			<div class="menuLink">
+				<?php if ($check['typ'] == 2 ): ?>
+					<a href='../../../admin/fm_admin_view_users.php'>View Users</a>
+				<?php endif;?>
+			</div>
+
+			<div class="menuLink">
+				<?php if ($check['typ'] == 2 ): ?>
+					<a href='../../../admin/fm_admin_view_issues.php'>View Issues</a>
+				<?php endif;?>
+			</div>
+
+			<div class="menuLink">
+				<?php if ($check['typ'] == 1 ): ?>
+					<a href='../../../vendor/account_page/fm_v_create_advertisement1.php'>Advertisements</a>
+				<?php endif;?>
+			</div>
+
+			<div class="menuLink">
+				<?php if ($check['typ'] == 2 ): ?>
+					<a href='../../../admin/fm_admin_ad_requests.php'>Ad Requests</a>
+				<?php endif;?>
+			</div>
+
+			<div class="menuLink">
+				<?php if ($check['typ'] == 2 ): ?>
+					<a href='../../../admin/fm_admin_vendor_requests.php'>Vendor Requests</a>
+				<?php endif;?>
+			</div>
+
+			<div class="menuLink">
+				<a href="../../../account/report_issue/fm_issue_form.php">Report an Issue</a>
+			</div>
+		</div>
+	</div>
 
 <!-- Block 3 -->
-<div class = "center">
+	<div class="listingOuter">
+	
+	<?php if ($pagenum == 1 and $lastpage != 1) { ?>
+	
+		<a href="fm_rental_search_results.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
+		<a href="fm_rental_search_results.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
+		
+	<?php } elseif ($pagenum == $lastpage and $pagenum != 1) { ?>
+	
+		<a href="fm_rental_search_results.php?pagenum=1">FIRST</a>
+		<a href="fm_rental_search_results.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+	
+	<?php } elseif ($pagenum != 1 and $lastpage != 1) { ?>
 
-<center><h2>Rentals</h2></center>
-<?php echo "Page " . $pagenum . "of " . $lastpage;?><br />
-<?php if ($pagenum == 1 and $lastpage != 1) { ?>
-<a href="fm_rental_search_results.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_rental_search_results.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
-<?php } elseif ($pagenum == $lastpage and $pagenum != 1) { ?>
-<a href="fm_rental_search_results.php?pagenum=1">FIRST</a>
-<a href="fm_rental_search_results.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
-<?php } elseif ($pagenum != 1 and $lastpage != 1) { ?>
-<a href="fm_rental_search_results.php?pagenum=1">FIRST</a>
-<a href="fm_rental_search_results.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
-<a href="fm_rental_search_results.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
-<a href="fm_rental_search_results.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
-<?php } ?>
-<table>
-	<tr>
-		<th>Item</th>
-		<th><a href="fm_rental_search_results_sort.php?pagenum=1&id=<?php echo $item; ?>">Price</th>
-		<th>Duration</th>
-		<th>Description</th>
-		<th>Picture</th>
-		<th>Id</th>
-	</tr>
-	<?php while ($row = mysqli_fetch_array($content)) { ?>
-	<tr>
-		<td><a href = "fm_viewrental.php?id=<?php echo $row['rid'];?>"><?php echo $row['item']; ?></a></td>
-		<td><?php echo $row['price']; ?></td>
-		<td><?php echo $row['duration']; ?></td>
-		<td><?php echo $row['descr']; ?></td>
-		<td><a href = "fm_viewrental.php?id=<?php echo $row['rid'];?>"><img src ="../../../images/<?php echo $row['picture']; ?>" height = '75px' width = '75px' /></a></td> 
-		<td><a href = "fm_view_user_rental_listings.php?id=<?php echo $row['owner'];?>&pagenum=1"><?php echo $row['owner']; ?></a></td>
-	</tr>
+		<a href="fm_rental_search_results.php?pagenum=1">FIRST</a>
+		<a href="fm_rental_search_results.php?pagenum=<?php echo $prevpage; ?>">PREV</a>
+		<a href="fm_rental_search_results.php?pagenum=<?php echo $nextpage; ?>">NEXT</a>
+		<a href="fm_rental_search_results.php?pagenum=<?php echo $lastpage; ?>">LAST</a>
 	<?php } ?>
-</table>
+	
+		<div class="listings">
+			
+			<?php while ($row = mysqli_fetch_array($content)) : ?>
+			
+			<div class="item">
+				
+				<div class="listingTitle">
+					<a href = "fm_viewrental.php?id=<?php echo $row['rid'];?>"><?php echo $row['item']; ?></a>
+				</div>
 
+				<div class="listingImage">
+					<img src ="../../../images/<?php echo $row['picture']; ?>" class="listingImageConstraints">
+				</div>
 
-</div>
+				<div class="listingPrice">
+					<?php echo "$" . $row['price']; ?>
+				</div>
+				
+				<a href = "fm_viewrental.php?id=<?php echo $row['rid'];?>">
+					<div class="moreButton">
+						More Info
+					</div>
+				</a>
+			</div>
+	
+		<?php endwhile; ?>
+		</div>
+
+		<!-- <?php echo "Page " . $pagenum . " of " . $lastpage;?><br /> -->
+	</div>
 
 <!-- Block 4 -->
-<div class = "rightsidebar">
+	<div class = "rightsidebar">
 
-<table>
-<?php while ($ad = mysqli_fetch_array($data)) { ?>
-	<tr>
-		<td><img src = "../../../images/<?php echo $ad['file']; ?>" height = '250x' width = '230px' /></td>
-	</tr>
-	<?php } ?>
-</table>
+	<div class="">Vendor Advertisements</div>
 
+		<table>
+		<?php while ($ad = mysqli_fetch_array($data)) { ?>
+			<tr>
+				<td><img src = "../../../images/<?php echo $ad['file']; ?>" height = '250x' width = '230px' /></td>
+			</tr>
+			<?php } ?>
+		</table>
+
+	</div>
+
+	<!-- Block 5 -->
+	<div class = "footer" style="position: relative !important;">
+		<a class="footerElement" href="">About</a>
+		<a class="footerElement" href="">Contact</a>
+		<a class="footerElement" href="">Privacy Policy</a>
+
+		<div class = "copyright">
+			(c) 2017 Freely Market
+		</div>
+	</div>
 </div>
-
-<!-- Block 5 -->
-<div class = "footer">
-
-<ul>
-<li><a href = "">Privacy Policy</a></li>
-<li><a href = "">About</a></li>
-<li><a href = "">Contact</a></li>
-<li style = "float:left"><a href = "">Social Links</a></li>
-</ul>
-
-</div>
-
 </body>
+
+
+
 </html>

@@ -20,6 +20,27 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 $username = $_SESSION['username'];
 $aid = $_SESSION['uid'];
 
+#Check if user is admin
+$adminsql = "select typ from User_Accounts where aid = '$aid'";
+$adminCheck = $conn->query($adminsql);
+$check = mysqli_fetch_array($adminCheck);
+
+//Select User Photo
+$sql2 = "select * from User_Accounts WHERE username ='$username'";
+$user = $conn->query($sql2);
+
+#Get number of notifications
+$sql3 = "select count(*) from Notifications where recipient = '$username'";
+$num = $conn->query($sql3);
+$set = mysqli_fetch_array($num);
+$number = $set['count(*)'];
+
+$sql4 = "select count(*) from Msg_Notifications where recipient = '$username'";
+$dig = $conn->query($sql4);
+$set = mysqli_fetch_array($dig);
+$digit = $set['count(*)'];
+
+
 #Show User Info 
 $sql = "SELECT * FROM Issue WHERE status = 'active'";
 $result = $conn->query($sql);
@@ -32,85 +53,154 @@ $check = mysqli_fetch_array($adminCheck);
 
 ?>
 <html>
-<header>
-<link rel="stylesheet" type="text/css" href="../_style.css">
-<style>
-
-</style>
-</header>
-<title>Issues</title>
+<head>
+<link rel="stylesheet" type="text/css" href="../_style.css"><link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+<title>Freely Market | View Issues</title>
+</head>
 <body>
 
-<!-- Block 1 -->
-<div class = "title">
+<div class="landing" style="overflow-y: scroll;">
 
-<div class = "search">
-<img src = "../images/logo.png" height = "100px" width = "200px" /><br />
-<input type="text" name="search" placeholder="Search..">
-</div>
+    <!-- Block 1 -->
+    <div class = "titleAlt">
+        <div class="titleCenter">
+            <img class="titleLogo" src="../images/freelyMarketLogo.png"/>
+        </div>
 
-<div class = "header">
-</div>
+        <div class = "login">
+            <div class="titleButton">
+                <a href = "../listings/fm_listings.php">Listings</a>
+            </div>
 
-<div class = "navbar">
-<ul>
-<li><a href = "../listings/fm_listings.php">Listings</a></li>
-<li><a href="../account/fm_account.php"  class = "active">My Account</a></li>
-<li><a href = "../transactions/fm_transactions.php">Transactions</a></li>
-<li><a href = "../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
-</ul>
-</div>
-</div>
+            <div class="titleButton">
+                <a href = "../transactions/fm_transactions.php">Transactions</a>
+            </div>
+
+            <div class="titleButton">
+                <a href="../account/fm_account.php" class = "active">My Account</a>
+            </div>
+
+            <div class="titleButton">
+                <a href = "../fm_homepage.html">Logout</a>
+            </div>
+        </div>
+    </div>
+
+	<!-- Block 2 -->
+    <div class = "leftsidebar">
+        <?php while ($row = mysqli_fetch_array($user)) { ?>
+            <table>
+                    <tr>
+                        <td><img class="img-circle" src="../images/<?php echo $row['picture'];?>"/></td>
+                    </tr>
+            </table>
+        <?php } ?>
+        
+        <div class="username">
+            Logged in as: <?php echo $log; ?>
+        </div>
+    
+
+        <div class="brackets">
+                
+            <div class="menuLink">
+                <a href="../account/edit_account/fm_edit_account.php">Edit Account</a>
+            </div>
+
+            <div class="menuLink">
+                <a href="../account/edit_card/fm_edit_card.php">Payment Info</a>
+            </div>
+
+            <div class="menuLink">
+                
+                <a href="../account/messager/fm_messager1.php">Messenger <?php if ($digit != 0) { echo "(" . $digit . ")";}?></a>
+            </div>
+
+            <div class="menuLink">
+                <a href="../account/notifications/fm_notifications.php">Notifications <?php if ($number != 0) { echo "(" . $number . ")";}?></a>
+            </div>
+
+            <div class="menuLink">
+                <a href = "../account/fm_my_listings.php">My Listings</a>
+            </div>
+
+            <div class="menuLink">
+                <a href = "../account/fm_my_offers.php">My Offers</a>
+            </div>
+
+            <div class="menuLink">
+                <?php if ($check['typ'] == 2 ): ?>
+                    <a href='../admin/fm_admin_view_users.php'>View Users</a>
+                <?php endif;?>
+            </div>
+
+            <div class="menuLink">
+                <?php if ($check['typ'] == 2 ): ?>
+                    <a href='../admin/fm_admin_view_issues.php'>View Issues</a>
+                <?php endif;?>
+            </div>
+
+            <div class="menuLink">
+                <?php if ($check['typ'] == 1 ): ?>
+                    <a href='../vendor/account_page/fm_v_create_advertisement1.php'>Advertisements</a>
+                <?php endif;?>
+            </div>
+
+            <div class="menuLink">
+                <?php if ($check['typ'] == 2 ): ?>
+                    <a href='../admin/fm_admin_ad_requests.php'>Ad Requests</a>
+                <?php endif;?>
+            </div>
+
+            <div class="menuLink">
+                <?php if ($check['typ'] == 2 ): ?>
+                    <a href='../admin/fm_admin_vendor_requests.php'>Vendor Requests</a>
+                <?php endif;?>
+            </div>
+
+            <div class="menuLink">
+                <a href="../account/report_issue/fm_issue_form.php">Report an Issue</a>
+            </div>
+        </div>
+    </div>
 
 
-<!-- Block 2 -->
-<div class = "leftsidebar">
+	<!--Block 3 -->
+	<div class="listingOuter">
+	
+		<?php while ($row = mysqli_fetch_array($result)) { ?>
+		<div class="users">
+			<div class="listingTitle">
+				<?php echo $row['iid']; ?>
+			</div>
 
-<div class = "menu">
-<ul>
-<li><a href = "../account/edit_account/fm_edit_account.php">Edit Account</a></li>
-<li><a href = "../account/edit_card/fm_edit_card.php">Edit Card Info</a></li>
-<li><a href = "../account/messager/fm_messager1.php">Messager <div class = "dig"><?php if ($digit != 0) { echo $digit;}?></div></a></li>
-<li><a href = "../account/notifications/fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
-<li><a href = "../account/report_issue/fm_issue_form.php">Report an Issue</a></li>
-<?php if ($check['typ'] == 2 ): ?>
-	<span><li><a href = '../admin/fm_admin_vendor_requests.php'>Vendor Requests</a></li>
-<?php endif;?>
-<?php if ($check['typ'] == 2 ): ?>
-	<span><li><a href = '../admin/fm_admin_view_users.php'>View Users</a></li>
-<?php endif;?>
-<?php if ($check['typ'] == 2 ): ?>
-	<span><li><a href = '../admin/fm_admin_view_issues.php'>View Issues</a></li>
-<?php endif;?>
-<?php if ($check['typ'] == 1 ): ?>
-	<span><li><a href = '../vendor/account_page/fm_v_create_advertisement1.php'>View Users</a></li>
-<?php endif;?>
-<?php if ($check['typ'] == 2 ): ?>
-	<span><li><a href = '../admin/fm_admin_ad_requests.php'>Ad Requests</a></li>
-<?php endif;?>
-</ul>
-</div>
+			<div class="listingTitle">
+				<?php echo $row['aid']; ?>
+			</div>
+
+			<div class="listingTitle">
+				<?php echo $row['description']; ?>
+			</div>
+
+			<div class="listingTitle">
+				<br><a class="infoButton" href ="fm_clear_issue.php?id=<?php echo $row['iid']; ?>">Clear Issue</a>		
+			</div>
+		</div>
+
+		<?php } ?>
+	</div>
 
 
-<!--Block 3 -->
-<div class = "center">
-<center><h2>Issues</h2></center>
-<table>
-	<tr>
-		<th>Issue ID</th>
-		<th>User ID</th>
-		<th>Description</th>
-		<th>Action</th>
-	</tr>
-	<?php while ($row = mysqli_fetch_array($result)) { ?>
-	<tr>
-		<td><?php echo $row['iid']; ?></td>
-		<td><?php echo $row['aid']; ?></td>
-		<td><?php echo $row['description']; ?></td>
-		<td><li><a href ="fm_clear_issue.php?id=<?php echo $row['iid']; ?>">Clear Issue</a></li></td>	
-	</tr>
-	<?php } ?>
-</table>
+	<!-- Block 3 -->
+	<div class = "footer">
+		<a class="footerElement" href="">About</a>
+		<a class="footerElement" href="">Contact</a>
+		<a class="footerElement" href="">Privacy Policy</a>
+
+		<div class = "copyright">
+			(c) 2017 Freely Market
+		</div>
+	</div>
 </div>
 </body>
 </html>
