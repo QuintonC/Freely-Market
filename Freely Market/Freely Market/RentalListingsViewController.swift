@@ -8,17 +8,24 @@
 
 import UIKit
 
-class RentalListingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class RentalListingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     var RentalData: [[String]] = []
+    
     var selectedTitle = String()
     var selectedPrice = String()
     var selectedImage = String()
     var selectedDescr = String()
     var selectedOwner = String()
     
+    var dataTitles: [String] = []
+    var searchingTitles: [String] = []
+    var searchText = String()
+    var searching:Bool! = false
+    
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +33,51 @@ class RentalListingsViewController: UIViewController, UITableViewDataSource, UIT
         
         print("User: " + USER)
         print("User Type: " + USERTYP)
+        
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return RentalData.count
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchingTitles = dataTitles.filter({ (text) -> Bool in
+            let tmp: NSString = text as NSString
+            let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+            return range.location != NSNotFound
+        })
+        
+        
+        if(searchingTitles.count == 0){
+            searching = false
+        } else {
+            searching = true
+        }
+        self.tableView.reloadData()
     }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        searching = false
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        searching = false
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searching == true {
+            return searchingTitles.count
+        } else {
+            return RentalData.count
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.contentOffset = CGPoint(x: 0, y: self.searchBar.frame.size.height)
+    }
+    
+    
     
     //function to get information on all rental listings in the database
     func rentListings() {
@@ -53,6 +100,7 @@ class RentalListingsViewController: UIViewController, UITableViewDataSource, UIT
                                         if let descr = listing["descr"] as? String {
                                             if let owner = listing["owner"] as? String {
                                                 self.RentalData.append([title, "$" + price, picture, descr, owner])
+                                                self.dataTitles.append(title)
                                             }
                                         }
                                     }
@@ -86,33 +134,67 @@ class RentalListingsViewController: UIViewController, UITableViewDataSource, UIT
         rent.contentView.addSubview(cellStyle)
         rent.contentView.sendSubview(toBack: cellStyle)
         
-        rent.listingTitle.text = RentalData[indexPath.row][0]
-        rent.listingPrice.text = RentalData[indexPath.row][1]
         
-        let imageURL = URL(string: "http://cgi.soic.indiana.edu/~team12/images/" + RentalData[indexPath.row][2])!
-        let session = URLSession(configuration: .default)
-        
-        let downloadPicTask = session.dataTask(with: imageURL) {
-            (data, response, error) in
-            if let e = error {
-                print("Error download image: \(e)")
-            } else {
-                if (response as? HTTPURLResponse) != nil {
-                    if let imageData = data {
-                        DispatchQueue.main.async {
-                            let picture = UIImage(data: imageData)
-                            rent.listingImage.image = picture
-                        }
-                        
-                    } else {
-                        print("Couldn't get image: Image is nil")
-                    }
+        if searching == true {
+            rent.listingTitle.text = searchingTitles[indexPath.row]
+            //rent.listingPrice.text = SearchingData[indexPath.row][1]
+            
+            let imageURL = URL(string: "http://cgi.soic.indiana.edu/~team12/images/" + RentalData[indexPath.row][2])!
+            let session = URLSession(configuration: .default)
+            
+            let downloadPicTask = session.dataTask(with: imageURL) {
+                (data, response, error) in
+                if let e = error {
+                    print("Error download image: \(e)")
                 } else {
-                    print("Couldn't get response code for some reason")
+                    if (response as? HTTPURLResponse) != nil {
+                        if let imageData = data {
+                            DispatchQueue.main.async {
+                                let picture = UIImage(data: imageData)
+                                rent.listingImage.image = picture
+                            }
+                            
+                        } else {
+                            print("Couldn't get image: Image is nil")
+                        }
+                    } else {
+                        print("Couldn't get response code for some reason")
+                    }
                 }
             }
+            downloadPicTask.resume()
+            //return rent
+            
+        } else {
+            rent.listingTitle.text = RentalData[indexPath.row][0]
+            rent.listingPrice.text = RentalData[indexPath.row][1]
+            
+            let imageURL = URL(string: "http://cgi.soic.indiana.edu/~team12/images/" + RentalData[indexPath.row][2])!
+            let session = URLSession(configuration: .default)
+            
+            let downloadPicTask = session.dataTask(with: imageURL) {
+                (data, response, error) in
+                if let e = error {
+                    print("Error download image: \(e)")
+                } else {
+                    if (response as? HTTPURLResponse) != nil {
+                        if let imageData = data {
+                            DispatchQueue.main.async {
+                                let picture = UIImage(data: imageData)
+                                rent.listingImage.image = picture
+                            }
+                            
+                        } else {
+                            print("Couldn't get image: Image is nil")
+                        }
+                    } else {
+                        print("Couldn't get response code for some reason")
+                    }
+                }
+            }
+            downloadPicTask.resume()
+            //return rent
         }
-        downloadPicTask.resume()
         return rent
     }
     

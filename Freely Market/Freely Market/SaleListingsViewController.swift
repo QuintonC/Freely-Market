@@ -8,17 +8,24 @@
 
 import UIKit
 
-class SaleListingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SaleListingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     var BuyData: [[String]] = []
+    
     var selectedTitle = String()
     var selectedPrice = String()
     var selectedImage = String()
     var selectedDescr = String()
     var selectedOwner = String()
     
+    var dataTitles: [String] = []
+    var searchingTitles: [String] = []
+    var searchText = String()
+    var searching:Bool! = false
+    
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +43,42 @@ class SaleListingsViewController: UIViewController, UITableViewDataSource, UITab
         buyListings()
     }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchingTitles = dataTitles.filter({ (text) -> Bool in
+            let tmp: NSString = text as NSString
+            let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+            return range.location != NSNotFound
+        })
+        
+        
+        if(searchingTitles.count == 0){
+            searching = false
+        } else {
+            searching = true
+        }
+        self.tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        searching = false
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        searching = false
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return BuyData.count
+        if searching == true {
+            return searchingTitles.count
+        } else {
+            return BuyData.count
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.contentOffset = CGPoint(x: 0, y: self.searchBar.frame.size.height)
     }
     
     //function to get information on all buy listings in the database
@@ -51,6 +92,7 @@ class SaleListingsViewController: UIViewController, UITableViewDataSource, UITab
             let httpResponse = response as! HTTPURLResponse
             let statusCode = httpResponse.statusCode
             if (statusCode == 200) {
+                print("YAYAYAYAYAYAYAYA")
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
                     if let listings = json["listing"] as? [[String: AnyObject]] {
@@ -61,6 +103,7 @@ class SaleListingsViewController: UIViewController, UITableViewDataSource, UITab
                                         if let descr = listing["descr"] as? String {
                                             if let owner = listing["owner"] as? String {
                                                 self.BuyData.append([title, "$" + price, picture, descr, owner])
+                                                self.dataTitles.append(title)
                                             }
                                         }
                                     }
@@ -90,32 +133,64 @@ class SaleListingsViewController: UIViewController, UITableViewDataSource, UITab
         cellStyle.layer.shadowOpacity = 0.1
         buy.contentView.addSubview(cellStyle)
         buy.contentView.sendSubview(toBack: cellStyle)
-        buy.listingTitle.text = BuyData[indexPath.row][0]
-        buy.listingPrice.text = BuyData[indexPath.row][1]
-        let imageURL = URL(string: "http://cgi.soic.indiana.edu/~team12/images/" + BuyData[indexPath.row][2])!
-        let session = URLSession(configuration: .default)
-        let downloadPicTask = session.dataTask(with: imageURL) {
-            (data, response, error) in
-            if let e = error {
-                print("Error download image: \(e)")
-            } else {
-                if (response as? HTTPURLResponse) != nil {
-                    //print("Downloaded image with response code \(res.statusCode)")
-                    if let imageData = data {
-                        DispatchQueue.main.async {
-                            let picture = UIImage(data: imageData)
-                            buy.listingImage.image = picture
-                        }
-                        
-                    } else {
-                        print("Couldn't get image: Image is nil")
-                    }
+        
+        if searching == true {
+            buy.listingTitle.text = searchingTitles[indexPath.row]
+            //buy.listingPrice.text = BuyData[indexPath.row][1]
+            let imageURL = URL(string: "http://cgi.soic.indiana.edu/~team12/images/" + BuyData[indexPath.row][2])!
+            let session = URLSession(configuration: .default)
+            let downloadPicTask = session.dataTask(with: imageURL) {
+                (data, response, error) in
+                if let e = error {
+                    print("Error download image: \(e)")
                 } else {
-                    print("Couldn't get response code for some reason")
+                    if (response as? HTTPURLResponse) != nil {
+                        //print("Downloaded image with response code \(res.statusCode)")
+                        if let imageData = data {
+                            DispatchQueue.main.async {
+                                let picture = UIImage(data: imageData)
+                                buy.listingImage.image = picture
+                            }
+                            
+                        } else {
+                            print("Couldn't get image: Image is nil")
+                        }
+                    } else {
+                        print("Couldn't get response code for some reason")
+                    }
                 }
             }
+            downloadPicTask.resume()
+            //return buy
+        } else {
+            buy.listingTitle.text = BuyData[indexPath.row][0]
+            buy.listingPrice.text = BuyData[indexPath.row][1]
+            let imageURL = URL(string: "http://cgi.soic.indiana.edu/~team12/images/" + BuyData[indexPath.row][2])!
+            let session = URLSession(configuration: .default)
+            let downloadPicTask = session.dataTask(with: imageURL) {
+                (data, response, error) in
+                if let e = error {
+                    print("Error download image: \(e)")
+                } else {
+                    if (response as? HTTPURLResponse) != nil {
+                        //print("Downloaded image with response code \(res.statusCode)")
+                        if let imageData = data {
+                            DispatchQueue.main.async {
+                                let picture = UIImage(data: imageData)
+                                buy.listingImage.image = picture
+                            }
+                            
+                        } else {
+                            print("Couldn't get image: Image is nil")
+                        }
+                    } else {
+                        print("Couldn't get response code for some reason")
+                    }
+                }
+            }
+            downloadPicTask.resume()
+            //return buy
         }
-        downloadPicTask.resume()
         return buy
     }
     

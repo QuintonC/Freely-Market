@@ -129,6 +129,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
         }
     }
+    
+    
+    @IBAction func forgotPass(_ sender: Any) {
+        if let url = URL(string: "http://cgi.soic.indiana.edu/~team12/register_login/fm_recover_password.php") {
+            UIApplication.shared.open(url, options: [:])
+        }
+    }
+    
 
     /*
     // MARK: - Navigation
