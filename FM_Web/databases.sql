@@ -1,3 +1,13 @@
+CREATE TABLE Advertisements(
+adid int(11) NOT NULL AUTO_INCREMENT,
+username varchar(30) NOT NULL,
+title varchar(30) NOT NULL,
+description varchar(200) NOT NULL,
+file longblob NOT NULL,
+createdate date NULL,
+expirdate date NOT NULL,
+PRIMARY KEY (adid))
+engine=innodb;
 
 create table Bike_Transactions(
 btid int NOT NULL AUTO_INCREMENT,
