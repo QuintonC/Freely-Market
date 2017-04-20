@@ -62,7 +62,7 @@ $digit = $set['count(*)'];
 
         <div class = "login">
             <div class="titleButton">
-                <a href="fm_listings.php">Listings</a>
+                <a href="../listings/fm_listings.php">Listings</a>
             </div>
 
             <div class="titleButton">

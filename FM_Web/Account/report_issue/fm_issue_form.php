@@ -119,62 +119,62 @@ maxLength(document.getElementById("text"));
 		<div class="brackets">
 				
 			<div class="menuLink">
-				<a href="../account/edit_account/fm_edit_account.php">Edit Account</a>
+				<a href="../../account/edit_account/fm_edit_account.php">Edit Account</a>
 			</div>
 
 			<div class="menuLink">
-				<a href="../account/edit_card/fm_edit_card.php">Payment Info</a>
+				<a href="../../account/edit_card/fm_edit_card.php">Payment Info</a>
 			</div>
 
 			<div class="menuLink">
 				
-				<a href="../account/messager/fm_messager1.php">Messenger <?php if ($digit != 0) { echo "(" . $digit . ")";}?></a>
+				<a href="../../account/messager/fm_messager1.php">Messenger <?php if ($digit != 0) { echo "(" . $digit . ")";}?></a>
 			</div>
 
 			<div class="menuLink">
-				<a href="../account/notifications/fm_notifications.php">Notifications <?php if ($number != 0) { echo "(" . $number . ")";}?></a>
+				<a href="../../account/notifications/fm_notifications.php">Notifications <?php if ($number != 0) { echo "(" . $number . ")";}?></a>
 			</div>
 
 			<div class="menuLink">
-				<a href = "../account/fm_my_listings.php">My Listings</a>
+				<a href = "../../account/fm_my_listings.php">My Listings</a>
 			</div>
 
 			<div class="menuLink">
-				<a href = "../account/fm_my_offers.php">My Offers</a>
+				<a href = "../../account/fm_my_offers.php">My Offers</a>
 			</div>
 
 			<div class="menuLink">
 				<?php if ($check['typ'] == 2 ): ?>
-					<a href='../admin/fm_admin_view_users.php'>View Users</a>
+					<a href='../../admin/fm_admin_view_users.php'>View Users</a>
 				<?php endif;?>
 			</div>
 
 			<div class="menuLink">
 				<?php if ($check['typ'] == 2 ): ?>
-					<a href='../admin/fm_admin_view_issues.php'>View Issues</a>
+					<a href='../../admin/fm_admin_view_issues.php'>View Issues</a>
 				<?php endif;?>
 			</div>
 
 			<div class="menuLink">
 				<?php if ($check['typ'] == 1 ): ?>
-					<a href='../vendor/account_page/fm_v_create_advertisement1.php'>Advertisements</a>
+					<a href='../../vendor/account_page/fm_v_create_advertisement1.php'>Advertisements</a>
 				<?php endif;?>
 			</div>
 
 			<div class="menuLink">
 				<?php if ($check['typ'] == 2 ): ?>
-					<a href='../admin/fm_admin_ad_requests.php'>Ad Requests</a>
+					<a href='../../admin/fm_admin_ad_requests.php'>Ad Requests</a>
 				<?php endif;?>
 			</div>
 
 			<div class="menuLink">
 				<?php if ($check['typ'] == 2 ): ?>
-					<a href='../admin/fm_admin_vendor_requests.php'>Vendor Requests</a>
+					<a href='../../admin/fm_admin_vendor_requests.php'>Vendor Requests</a>
 				<?php endif;?>
 			</div>
 
 			<div class="menuLink">
-				<a href="../account/report_issue/fm_issue_form.php">Report an Issue</a>
+				<a href="../../account/report_issue/fm_issue_form.php">Report an Issue</a>
 			</div>
 		</div>
 	</div>
