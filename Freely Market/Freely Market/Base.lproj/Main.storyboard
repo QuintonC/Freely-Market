@@ -908,7 +908,7 @@ Password must contain at least one letter, at least one number, and be at least 
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accepted Offers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnM-dX-MNH" userLabel="My Accepted Offers">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Offers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnM-dX-MNH" userLabel="My Accepted Offers">
                                                     <rect key="frame" x="8" y="8" width="359" height="27.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1038,9 +1038,18 @@ Password must contain at least one letter, at least one number, and be at least 
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x56-a0-mtk">
                                 <rect key="frame" x="0.0" y="78" width="375" height="589"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" placeholder="Search Rentals" showsCancelButton="YES" id="E9h-gq-CNs">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="Mc9-IO-7Jl" id="YT9-VY-MYm"/>
+                                    </connections>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="100" id="xsy-LW-hIv" customClass="CellData" customModule="Freely_Market" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                        <rect key="frame" x="0.0" y="72" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xsy-LW-hIv" id="axG-p5-Ewr" customClass="CellData" customModule="Freely_Market" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
@@ -1106,6 +1115,7 @@ Password must contain at least one letter, at least one number, and be at least 
                         <barButtonItem key="leftBarButtonItem" image="menu" id="fA4-WK-kvX"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchBar" destination="E9h-gq-CNs" id="umW-2I-SM7"/>
                         <outlet property="tableView" destination="x56-a0-mtk" id="7zB-UN-CL9"/>
                         <segue destination="opi-jG-y3i" kind="custom" identifier="passSegue" customClass="SWRevealViewControllerSeguePushController" id="TRM-Ep-dyG"/>
                     </connections>
@@ -1208,9 +1218,17 @@ Password must contain at least one letter, at least one number, and be at least 
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RT3-Lq-lGp">
                                 <rect key="frame" x="0.0" y="78" width="375" height="589"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" placeholder="Search Bikes" showsCancelButton="YES" id="epj-wJ-uIA">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="tR7-LC-pZ9" id="HuD-Ig-dnx"/>
+                                    </connections>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="100" id="5B1-K7-9Jw" customClass="CellData" customModule="Freely_Market" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                        <rect key="frame" x="0.0" y="72" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5B1-K7-9Jw" id="jzE-bk-mIK" customClass="CellData" customModule="Freely_Market" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
@@ -1277,6 +1295,7 @@ Password must contain at least one letter, at least one number, and be at least 
                     </navigationItem>
                     <connections>
                         <outlet property="menuButton" destination="a0K-df-5qg" id="wRO-yc-Uow"/>
+                        <outlet property="searchBar" destination="epj-wJ-uIA" id="g2w-uh-kt2"/>
                         <outlet property="tableView" destination="RT3-Lq-lGp" id="kJ1-Wu-x4s"/>
                         <segue destination="opi-jG-y3i" kind="custom" identifier="passSegue" customClass="SWRevealViewControllerSeguePushController" id="CY8-II-rwR"/>
                     </connections>
@@ -1472,9 +1491,17 @@ Password must contain at least one letter, at least one number, and be at least 
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="THw-z8-de7">
                                 <rect key="frame" x="0.0" y="78" width="375" height="589"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" placeholder="Search Equipment" showsCancelButton="YES" id="w5w-zx-e7f">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="eVL-bb-fq5" id="ndW-Xp-xdk"/>
+                                    </connections>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="100" id="oTX-jR-xT6" customClass="CellData" customModule="Freely_Market" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                        <rect key="frame" x="0.0" y="72" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oTX-jR-xT6" id="TD7-uf-cJI" customClass="CellData" customModule="Freely_Market" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
@@ -1541,6 +1568,7 @@ Password must contain at least one letter, at least one number, and be at least 
                     </navigationItem>
                     <connections>
                         <outlet property="menuButton" destination="5Kt-qr-YbY" id="zgP-gO-ulf"/>
+                        <outlet property="searchBar" destination="w5w-zx-e7f" id="r4y-CW-ezf"/>
                         <outlet property="tableView" destination="THw-z8-de7" id="l48-Sq-Y5B"/>
                         <segue destination="opi-jG-y3i" kind="custom" identifier="passSegue" customClass="SWRevealViewControllerSeguePushController" id="GrT-cH-ID5"/>
                     </connections>
@@ -2376,7 +2404,7 @@ Password must contain at least one letter, at least one number, and be at least 
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pun-48-Sww" id="obA-92-fVL" customClass="CellData" customModule="Freely_Market" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2556,9 +2584,9 @@ Password must contain at least one letter, at least one number, and be at least 
     <inferredMetricsTieBreakers>
         <segue reference="cKi-KO-eLK"/>
         <segue reference="Mw4-QG-wnN"/>
-        <segue reference="yXz-hf-HeT"/>
-        <segue reference="uGr-uf-BNo"/>
         <segue reference="up8-nE-ebJ"/>
+        <segue reference="CY8-II-rwR"/>
+        <segue reference="uGr-uf-BNo"/>
         <segue reference="ita-cW-69Q"/>
     </inferredMetricsTieBreakers>
 </document>
