@@ -37,7 +37,7 @@ class MyListingsViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ListingsData.count
+        return self.ListingsData.count
     }
     
     //function to get information on all rental listings in the database
@@ -100,8 +100,8 @@ class MyListingsViewController: UIViewController, UITableViewDataSource, UITable
         listing.contentView.addSubview(cellStyle)
         listing.contentView.sendSubview(toBack: cellStyle)
         
-        listing.listingTitle.text = ListingsData[indexPath.row][0]
-        listing.listingPrice.text = ListingsData[indexPath.row][1]
+        listing.listingTitle.text = self.ListingsData[indexPath.row][0]
+        listing.listingPrice.text = self.ListingsData[indexPath.row][1]
         
         let imageURL = URL(string: "http://cgi.soic.indiana.edu/~team12/images/" + ListingsData[indexPath.row][2])!
         let session = URLSession(configuration: .default)
