@@ -17,12 +17,29 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 		exit();
 	}
 	
-$username = $_SESSION['username'];
-
 #Call session variables
-$aid = $_SESSION['uid'];	
 $username = $_SESSION['username'];
+$aid = $_SESSION['uid'];
 
+#Check if user is admin
+$adminsql = "select typ from User_Accounts where aid = '$aid'";
+$adminCheck = $conn->query($adminsql);
+$check = mysqli_fetch_array($adminCheck);
+
+//Select User Photo
+$sql2 = "select * from User_Accounts WHERE username ='$username'";
+$user = $conn->query($sql2);
+
+#Get number of notifications
+$sql3 = "select count(*) from Notifications where recipient = '$username'";
+$num = $conn->query($sql3);
+$set = mysqli_fetch_array($num);
+$number = $set['count(*)'];
+
+$sql4 = "select count(*) from Msg_Notifications where recipient = '$username'";
+$dig = $conn->query($sql4);
+$set = mysqli_fetch_array($dig);
+$digit = $set['count(*)'];
 
 #Check if user is restricted
 $rsql = "select active from User_Accounts where aid = '$aid'";
@@ -33,201 +50,145 @@ $rcheck = mysqli_fetch_array($restrictedCheck);
 <html>
 
 <head>
-<link rel="stylesheet" type="text/css" href="../_style.css">
-<title>Listings Page</title>
-<!--<style>
-
-body {
-padding: 0px;
-margin: 0px;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-
-li {
-    float: left;
-	border-right: 1px solid #bbb;
-}
-
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-li a:hover {
-    background-color: 	#00008B;
-}
-
-.active {
-    background-color: 	#00008B;
-}
-
-table, th, td {
-	margin-left: auto;
-	margin-right: auto;
-	border-bottom: 1px solid #ddd;
-	padding: 15px;
-    text-align: left;
-}
-
-th {
-    background-color: 	#00008B;
-    color: white;
-}
-
-tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-
-tr:hover {
-	background-color: #f5f5f5;
-}
-
-.title {
-margin: auto;
-width: 100%;
-height: 150px;
-background-color: #ff4d4d;
-}
-
-
-.title .header {
-top: 10px;
-left: 42%;
-position: absolute;
-font-family: "Brush Script MT", cursive;
-font-size: 24px;
-}
-
-.title .search {
-top: 15px;
-left: 2%;
-position: absolute;
-}
-
-.title .navbar{
-top: 15px;
-right: 2%;
-position: absolute;
-font-family: Arial, Helvetica, sans-serif;
-}
-
-.center {
-position: absolute;
-height: 450px;
-left: 0%;
-width: 100%;
-background-image: url("../images/bw_rack.jpg");
-}
-
-.center ul {
-	list-style-type: none;
-    margin: 0;
-    padding: 0;
-	background-color: #333;
-}
-
-.center li {
-	display: block;
-    text-decoration: none;
-	width: 100%;
-    text-align: left;
-	color: white;
-}
-
-.footer {
-margin: auto;
-width: 100%;
-background-color: #000000;
-color: #FFFAF0;
-position: absolute;
-top: 600px;
-}
-
-.footer ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-
-.footer li {
-    float: right;
-	border-right: 1px solid #bbb;
-}
-
-.footer li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-</style>-->
-
-
+	<link rel="stylesheet" type="text/css" href="../_style.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+	<title>Freely Market | Listings</title>
 </head>
 
 <body>
 
-<!-- Block 1 -->
-<div class = "title">
-	<div class = "search">
-		<h3 align="center"><a href="../fm_homepage.html"><img src = "../images/logo.png" height = "90px" width = "160px" /></a></h3>
+<div class="landing">
+
+	<!-- Block 1 -->
+	<div class = "titleAlt">
+		<div class="titleCenter">
+			<img class="titleLogo" src="../images/freelyMarketLogo.png"/>
+		</div>
+
+		<div class = "login">
+			<div class="titleButton">
+				<a href="fm_listings.php">Listings</a>
+			</div>
+
+			<div class="titleButton">
+				<a href = "../transactions/fm_transactions.php">Transactions</a>
+			</div>
+
+			<div class="titleButton">
+				<a href="../account/fm_account.php" class = "active">My Account</a>
+			</div>
+
+			<div class="titleButton">
+				<a href = "../fm_homepage.html">Logout</a>
+			</div>
+		</div>
 	</div>
 
-	<div class = "header">
-		<h1 align="center">Listings</h1>
+
+	<!-- Block 2 -->
+	<div class = "leftsidebar">
+		<?php while ($row = mysqli_fetch_array($user)) { ?>
+			<table>
+					<tr>
+						<td><img class="img-circle" src="../images/<?php echo $row['picture'];?>"/></td>
+					</tr>
+			</table>
+		<?php } ?>
+		
+		<div class="username">
+			Logged in as: <?php echo $log; ?>
+		</div>
+	
+
+		<div class="brackets">
+				
+			<div class="menuLink">
+				<a href="../account/edit_account/fm_edit_account.php">Edit Account</a>
+			</div>
+
+			<div class="menuLink">
+				<a href="../account/edit_card/fm_edit_card.php">Payment Info</a>
+			</div>
+
+			<div class="menuLink">
+				
+				<a href="../account/messager/fm_messager1.php">Messenger <?php if ($digit != 0) { echo "(" . $digit . ")";}?></a>
+			</div>
+
+			<div class="menuLink">
+				<a href="../account/notifications/fm_notifications.php">Notifications <?php if ($number != 0) { echo "(" . $number . ")";}?></a>
+			</div>
+
+			<div class="menuLink">
+				<a href = "../account/fm_my_listings.php">My Listings</a>
+			</div>
+
+			<div class="menuLink">
+				<a href = "../account/fm_my_offers.php">My Offers</a>
+			</div>
+
+			<div class="menuLink">
+				<?php if ($check['typ'] == 2 ): ?>
+					<a href='../admin/fm_admin_view_users.php'>View Users</a>
+				<?php endif;?>
+			</div>
+
+			<div class="menuLink">
+				<?php if ($check['typ'] == 2 ): ?>
+					<a href='../admin/fm_admin_view_issues.php'>View Issues</a>
+				<?php endif;?>
+			</div>
+
+			<div class="menuLink">
+				<?php if ($check['typ'] == 1 ): ?>
+					<a href='../vendor/account_page/fm_v_create_advertisement1.php'>Advertisements</a>
+				<?php endif;?>
+			</div>
+
+			<div class="menuLink">
+				<?php if ($check['typ'] == 2 ): ?>
+					<a href='../admin/fm_admin_ad_requests.php'>Ad Requests</a>
+				<?php endif;?>
+			</div>
+
+			<div class="menuLink">
+				<?php if ($check['typ'] == 2 ): ?>
+					<a href='../admin/fm_admin_vendor_requests.php'>Vendor Requests</a>
+				<?php endif;?>
+			</div>
+
+			<div class="menuLink">
+				<a href="../account/report_issue/fm_issue_form.php">Report an Issue</a>
+			</div>
+		</div>
 	</div>
 
-	<div class = "login">
-		<ul>
-			<li><a href = "fm_listings.php">Listings</a></li>
-			<li><a href = "../transactions/fm_transactions.php">Transactions</a></li>
-			<li><a href="../account/fm_account.php"  class = "active">My Account</a></li>
-			<li><a href = "../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
-		</ul>
+
+	<div class="rightsidebar">
+
+		<?php if ($rcheck['active'] == "0" ): ?>
+				<p><a href = "fm_post_listing.php">Post Listings</a></p>
+				<p><a href = "fm_view_listings.php">View Listings</a></p>
+		<?php endif;?>
+
+		<?php if ($rcheck['active'] == "2" ): ?>
+			<ul>
+				<li><a href = "restricted_warning.php">Post Listings</a></li>
+				<li><a href = "restricted_warning.php">View Listings</a></li>
+			</ul>
+		<?php endif;?>
 	</div>
-</div>
-</div>
-
-
-<!-- Block 2 -->
-<div class = "forms">
-<div class="listing">
-
-<?php if ($rcheck['active'] == "0" ): ?>
-		<p><a href = "fm_post_listing.php">Post Listings</a></p>
-		<p><a href = "fm_view_listings.php">View Listings</a></p>
-<?php endif;?>
-
-<?php if ($rcheck['active'] == "2" ): ?>
-	<ul>
-		<li><a href = "restricted_warning.php">Post Listings</a></li>
-		<li><a href = "restricted_warning.php">View Listings</a></li>
-	</ul>
-<?php endif;?>
-</div>
-</div>
 
 <!-- Block 3 -->
-<div class = "footer">
-	<ul>
-		<li><a href = "">Privacy Policy</a></li>
-		<li><a href = "">About</a></li>
-		<li><a href = "">Contact</a></li>
-	</ul>
+	<div class = "footer">
+		<a class="footerElement" href="">About</a>
+		<a class="footerElement" href="">Contact</a>
+		<a class="footerElement" href="">Privacy Policy</a>
+
+		<div class = "copyright">
+			(c) 2017 Freely Market
+		</div>
+	</div>
 </div>
 
 </body>

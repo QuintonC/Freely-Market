@@ -29,284 +29,208 @@ $adminsql = "select typ from User_Accounts where aid = '$aid'";
 $adminCheck = $conn->query($adminsql);
 $check = mysqli_fetch_array($adminCheck);
 
+//Select User Photo
+$sql2 = "select * from User_Accounts WHERE username ='$username'";
+$user = $conn->query($sql2);
+
+#Get number of notifications
+$sql3 = "select count(*) from Notifications where recipient = '$username'";
+$num = $conn->query($sql3);
+$set = mysqli_fetch_array($num);
+$number = $set['count(*)'];
+
+$sql4 = "select count(*) from Msg_Notifications where recipient = '$username'";
+$dig = $conn->query($sql4);
+$set = mysqli_fetch_array($dig);
+$digit = $set['count(*)'];
+
+
 	
 ?>
 
 <html>
-
 <head>
+<title>Freely Market | Notifications</title>
+<link rel="stylesheet" type="text/css" href="../../_style.css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+<script type="text/javascript">
+    function blank()
+    {
+    var a=document.forms["messager"]["reciever"].value;
+    var b=document.forms["messager"]["message"].value;
+    if (a==null || a=="",b==null || b=="")
+      {
+      alert("Please Fill All Required Field");
+      return false;
+      }
+    }
 
-<style>
-
-body {
-padding: 0px;
-margin: 0px;
+    function maxLength(char) {    
+    if (!('maxLength' in char)) {
+        var max = char.attributes.maxLength.value;
+        char.onkeypress = function () {
+            if (this.value.length >= max) return false;
+        };
+    }
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-
-li {
-    float: left;
-	border-right: 1px solid #bbb;
-}
-
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-li a:hover {
-    background-color: 	#00008B;
-}
-
-.active {
-    background-color: 	#00008B;
-}
-
-table, th, td {
-	margin-left: auto;
-	margin-right: auto;
-	border-bottom: 1px solid #ddd;
-	padding: 15px;
-    text-align: left;
-}
-
-th {
-    background-color: 	#00008B;
-    color: white;
-}
-
-tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-
-tr:hover {
-	background-color: #f5f5f5;
-}
-
-
-.title {
-margin: auto;
-width: 100%;
-height: 150px;
-background-color: #ff4d4d;
-}
-
-
-.title .header {
-top: 10px;
-left: 42%;
-position: absolute;
-font-family: "Brush Script MT", cursive;
-font-size: 24px;
-}
-
-.title .search {
-top: 15px;
-left: 2%;
-position: absolute;
-}
-
-.title .navbar{
-top: 15px;
-right: 2%;
-position: absolute;
-font-family: Arial, Helvetica, sans-serif;
-}
-
-
-.leftsidebar {
-position: absolute;
-height: 450px;
-left: 0%;
-width: 15%;
-background-color: #808080;
-}
-
-.leftsidebar .menu ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 200px;
-    background-color: #f1f1f1;
-}
-.leftsidebar .menu li a {
-   display: block;
-   color: #000;
-   padding: 8px 16px;
-   text-decoration: none;
-   width: 200px;
-   text-align: left;
-}
-.leftsidebar .menu li a:hover {
-    background-color: #555;
-    color: white;
-}
-.leftsidebar .menu li a:hover {
-    background-color: #555;
-    color: white;
-}
-.leftsidebar .menu .active {
-    background-color: #4CAF50;
-    color: white;
-}
-.num {
-	color: red;
-}
-
-.center {
-position: absolute;
-height: 450px;
-left: 15%;
-width: 85%;
-overflow: scroll;
-}
-
-
-
-.footer {
-margin: auto;
-width: 100%;
-background-color: #000000;
-color: #FFFAF0;
-position: absolute;
-top: 600px;
-}
-
-.footer ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-
-.footer li {
-    float: right;
-	border-right: 1px solid #bbb;
-}
-
-.footer li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-</style>
-
-	<title>Notifications Page</title>
-	
+maxLength(document.getElementById("text"));
+</script>
+    
 </head>
 
-<body>
+<div class="landing">
 
-<!-- Block 1 -->
-<div class = "title">
+    <!-- Block 1 -->
+    <div class = "titleAlt">
+        <div class="titleCenter">
+            <img class="titleLogo" src="../../images/freelyMarketLogo.png"/>
+        </div>
 
-<div class = "search">
-<img src = "../../images/logo.png" height = "100px" width = "200px" /><br />
-<input type="text" name="search" placeholder="Search..">
-</div>
+        <div class = "login">
+            <div class="titleButton">
+                <a href="../../listings/fm_listings.php">Listings</a>
+            </div>
 
-<div class = "header">
-<h1>Notifications</h1>
-</div>
+            <div class="titleButton">
+                <a href = "../../transactions/fm_transactions.php">Transactions</a>
+            </div>
 
-<div class = "navbar">
+            <div class="titleButton">
+                <a href="../../account/fm_account.php" class = "active">My Account</a>
+            </div>
 
-<ul>
-<li><a href = "../../listings/fm_listings.php">Listings</a></li>
-<li><a href="../../account/fm_account.php" class = "active">My Account</a></li>
-<li><a href = "../../transactions/fm_transactions.php">Transactions</a></li>
-<li><a href = "../../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
-</ul>
-
-</div>
+            <div class="titleButton">
+                <a href = "../../fm_homepage.html">Logout</a>
+            </div>
+        </div>
+    </div>
 
 
-</div>
+    <!-- Block 2 -->
+    <div class = "leftsidebar">
+        <?php while ($row = mysqli_fetch_array($user)) { ?>
+            <table>
+                    <tr>
+                        <td><img class="img-circle" src="../../images/<?php echo $row['picture'];?>"/></td>
+                    </tr>
+            </table>
+        <?php } ?>
+        
+        <div class="username">
+            Logged in as: <?php echo $log; ?>
+        </div>
+    
 
-<!-- Block 2 -->
-<div class = "leftsidebar">
+        <div class="brackets">
+                
+            <div class="menuLink">
+                <a href="../../account/edit_account/fm_edit_account.php">Edit Account</a>
+            </div>
 
-<div class = "menu">
-<ul>
-<li><a href = "../../account/edit_account/fm_edit_account.php">Edit Account</a></li>
-<li><a href = "../../account/edit_card/fm_edit_card.php">Edit Card Info</a></li>
-<li><a href = "../../account/messager/fm_messager1.php">Messager <div class = "dig"><?php if ($digit != 0) { echo $digit;}?></div></a></li>
-<li><a href = "../../account/notifications/fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
-<li><a href = "../../account/report_issue/fm_issue_form.php">Report an Issue</a></li>
-<?php if ($check['typ'] == 2 ): ?>
-	<span><li><a href = '../../admin/fm_admin_vendor_requests.php'>Vendor Requests</a></li>
-<?php endif;?>
-<?php if ($check['typ'] == 2 ): ?>
-	<span><li><a href = '../../admin/fm_admin_view_users.php'>View Users</a></li>
-<?php endif;?>
-<?php if ($check['typ'] == 2 ): ?>
-	<span><li><a href = '../../admin/fm_admin_view_issues.php'>View Issues</a></li>
-<?php endif;?>
-<?php if ($check['typ'] == 1 ): ?>
-	<span><li><a href = '../../vendor/account_page/fm_v_create_advertisement1.php'>View Users</a></li>
-<?php endif;?>
-<?php if ($check['typ'] == 2 ): ?>
-	<span><li><a href = '../../admin/fm_admin_ad_requests.php'>Ad Requests</a></li>
-<?php endif;?>
-</ul>
-</div>
+            <div class="menuLink">
+                <a href="../../account/edit_card/fm_edit_card.php">Payment Info</a>
+            </div>
+
+            <div class="menuLink">
+                
+                <a href="../../account/messager/fm_messager1.php">Messenger <?php if ($digit != 0) { echo "(" . $digit . ")";}?></a>
+            </div>
+
+            <div class="menuLink">
+                <a href="../../account/notifications/fm_notifications.php">Notifications <?php if ($number != 0) { echo "(" . $number . ")";}?></a>
+            </div>
+
+            <div class="menuLink">
+                <a href = "../../account/fm_my_listings.php">My Listings</a>
+            </div>
+
+            <div class="menuLink">
+                <a href = "../../account/fm_my_offers.php">My Offers</a>
+            </div>
+
+            <div class="menuLink">
+                <?php if ($check['typ'] == 2 ): ?>
+                    <a href='../../admin/fm_admin_view_users.php'>View Users</a>
+                <?php endif;?>
+            </div>
+
+            <div class="menuLink">
+                <?php if ($check['typ'] == 2 ): ?>
+                    <a href='../../admin/fm_admin_view_issues.php'>View Issues</a>
+                <?php endif;?>
+            </div>
+
+            <div class="menuLink">
+                <?php if ($check['typ'] == 1 ): ?>
+                    <a href='../../vendor/account_page/fm_v_create_advertisement1.php'>Advertisements</a>
+                <?php endif;?>
+            </div>
+
+            <div class="menuLink">
+                <?php if ($check['typ'] == 2 ): ?>
+                    <a href='../../admin/fm_admin_ad_requests.php'>Ad Requests</a>
+                <?php endif;?>
+            </div>
+
+            <div class="menuLink">
+                <?php if ($check['typ'] == 2 ): ?>
+                    <a href='../../admin/fm_admin_vendor_requests.php'>Vendor Requests</a>
+                <?php endif;?>
+            </div>
+
+            <div class="menuLink">
+                <a href="../../account/report_issue/fm_issue_form.php">Report an Issue</a>
+            </div>
+        </div>
+    </div>
 
 <!-- Block 3 -->
-<div class = "center">
+<div class = "listingOuter">
 
-<table>
-	<tr>
-		<th>Message</th>
-		<th>From</th>
-		<th>Date/Time</th>
-		<th>View</th>
-		<th>Delete</th>
-	</tr>
-<?php while ($row = mysqli_fetch_array($result)) { ?>
-	<tr>
-		<td><?php echo $row['message']; ?></td>
-		<td><?php echo $row['sender']; ?></td>
-		<td><?php echo $row['created']; ?></td>
-		<td><a href = "fm_view_sale_notif.php?id=<?php echo $row['bid']; ?>"><?php echo $row['bid'];?></a></td>
-		<td><a href = "fm_delete_notif.php?id=<?php echo $row['nid']; ?>">Delete</a></td>
-		<td><a href = "fm_view_rent_notif.php?id=<?php echo $row['rid']; ?>"><?php echo $row['rid'];?></a></td>
-		<td><a href = "fm_saleoffer_status_accept.php?id=<?php echo $row['btid']; ?>"><?php echo $row['btid'];?></a></td>
-		<td><a href = "fm_rentoffer_status_accept.php?id=<?php echo $row['rtid']; ?>"><?php echo $row['rtid'];?></a></td> 
-	</tr>
-<?php } ?>
-</table>
+    <div class="listings">
+
+    <?php while ($row = mysqli_fetch_array($result)) : ?>
+
+	   <div class="item">
+
+       <div class="listingTitle">
+            <?php echo $row['message']; ?>    
+       </div>
+
+
+        <div class="listingTitle">
+            <?php echo $row['sender']; ?>    
+       </div>
+
+       <div class="listingTitle">
+            <?php echo $row['created']; ?>    
+       </div>
+		
+		<a class="infoButton" href = "fm_view_sale_notif.php?id=<?php echo $row['bid']; ?>"><?php echo $row['bid'];?></a><br><br>
+		<a class="infoButton" href = "fm_delete_notif.php?id=<?php echo $row['nid']; ?>">Delete</a><br><br>
+		<a class="infoButton" href = "fm_view_rent_notif.php?id=<?php echo $row['rid']; ?>"><?php echo $row['rid'];?></a><br><br>
+		<a class="infoButton" href = "fm_saleoffer_status_accept.php?id=<?php echo $row['btid']; ?>"><?php echo $row['btid'];?></a><br><br>
+		<a class="infoButton" href = "fm_rentoffer_status_accept.php?id=<?php echo $row['rtid']; ?>"><?php echo $row['rtid'];?></a>
+
+        </div>
+
+    <?php endwhile; ?>
+
+
+    </div>
 
 </div>
 
-<!-- Block 4 -->
-<div class = "rightsidebar">
+    <div class = "footer">
+        <a class="footerElement" href="">About</a>
+        <a class="footerElement" href="">Contact</a>
+        <a class="footerElement" href="">Privacy Policy</a>
 
-</div>
-
-<!-- Block 4 -->
-<div class = "footer">
-
-<ul>
-<li><a href = "">Privacy Policy</a></li>
-<li><a href = "">About</a></li>
-<li><a href = "">Contact</a></li>
-<li style = "float:left"><a href = "">Social Links</a></li>
-</ul>
-
+        <div class = "copyright">
+            (c) 2017 Freely Market
+        </div>
+    </div>
 </div>
 
 </body>
