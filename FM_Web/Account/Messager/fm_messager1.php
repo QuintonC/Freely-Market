@@ -131,10 +131,6 @@ maxLength(document.getElementById("text"));
             </div>
 
             <div class="menuLink">
-                <a href="../../account/edit_card/fm_edit_card.php">Payment Info</a>
-            </div>
-
-            <div class="menuLink">
                 
                 <a href="../../account/messager/fm_messager1.php">Messenger <?php if ($digit != 0) { echo "(" . $digit . ")";}?></a>
             </div>

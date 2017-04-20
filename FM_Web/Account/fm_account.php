@@ -42,87 +42,123 @@ $digit = $set['count(*)'];
 
 <head>
 <link rel="stylesheet" type="text/css" href="../_style.css">
-<title>Account Page</title>
-	
+<title>Freely Market | Dashboard</title>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- Block 1 -->
-<div class = "title">
-	<div class = "search">
-		<h3 align="center"><a href="../fm_homepage.html"><img src = "../images/logo.png" height = "90px" width = "160px" /></a></h3>
-	</div>
+<div class="landing">
 
-	<div class = "header">
-		<h1 align="center">Account</h1>
-	</div>
+    <!-- Block 1 -->
+    <div class = "titleAlt">
+        <div class="titleCenter">
+            <img class="titleLogo" src="../images/freelyMarketLogo.png"/>
+        </div>
 
-	<div class = "login">
-		<ul>
-			<li><a href = "../listings/fm_listings.php">Listings</a></li>
-			<li><a href = "../transactions/fm_transactions.php">Transactions</a></li>
-			<li><a href="fm_account.php"  class = "active">My Account</a></li>
-			<li><a href = "../fm_homepage.html">Logged In: <?php echo $log; ?></a></li>
-		</ul>
-	</div>
-</div>
+        <div class = "login">
+            <div class="titleButton">
+                <a href="../listings/fm_listings.php">Listings</a>
+            </div>
 
-<!-- Block 2 -->
-<div class = "leftsidebar">
-	<?php while ($row = mysqli_fetch_array($user)) { ?>
-		<table align="center">
-				<tr>
-					<td align="center"><img class="img-circle" src="../images/<?php echo $row['picture'];?>"/></td>
-				</tr>
-		</table>
-	<?php } ?>
-	<font color="white"><h2 align="center"> <?php echo $log; ?></h2></font>
-<div class = "menu">
-	<ul>
-		<li><a href = "edit_account/fm_edit_account.php">Edit Account</a></li>
-		<li><a href = "edit_card/fm_edit_card.php">Edit Card Info</a></li>
-		<li><a href = "messager/fm_messager1.php">Messager <div class = "dig"><?php if ($digit != 0) { echo $digit;}?></div></a></li>
-		<li><a href = "notifications/fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
-		<li><a href = "report_issue/fm_issue_form.php">Report an Issue</a></li>
-		<?php if ($check['typ'] == 2 ): ?>
-			<span><li><a href = '../admin/fm_admin_vendor_requests.php'>Vendor Requests</a></li>
-		<?php endif;?>
-		<?php if ($check['typ'] == 2 ): ?>
-			<span><li><a href = '../admin/fm_admin_view_users.php'>View Users</a></li>
-		<?php endif;?>
-		<?php if ($check['typ'] == 2 ): ?>
-			<span><li><a href = '../admin/fm_admin_view_issues.php'>View Issues</a></li>
-		<?php endif;?>
-		<?php if ($check['typ'] == 1 ): ?>
-			<span><li><a href = '../vendor/account_page/fm_v_create_advertisement1.php'>Advertisements</a></li>
-		<?php endif;?>
-		<?php if ($check['typ'] == 2 ): ?>
-			<span><li><a href = '../admin/fm_admin_ad_requests.php'>Ad Requests</a></li>
-		<?php endif;?>
-	</ul>
-</div>
+            <div class="titleButton">
+                <a href = "../transactions/fm_transactions.php">Transactions</a>
+            </div>
+
+            <div class="titleButton">
+                <a href="../account/fm_account.php" class = "active">My Account</a>
+            </div>
+
+            <div class="titleButton">
+                <a href = "../fm_homepage.html">Logout</a>
+            </div>
+        </div>
+    </div>
 
 
-</div>
+    <!-- Block 2 -->
+    <div class = "leftsidebar">
+        <?php while ($row = mysqli_fetch_array($user)) { ?>
+            <table>
+                    <tr>
+                        <td><img class="img-circle" src="../images/<?php echo $row['picture'];?>"/></td>
+                    </tr>
+            </table>
+        <?php } ?>
+        
+        <div class="username">
+            Logged in as: <?php echo $log; ?>
+        </div>
+    
 
-<!-- Block 3 -->
-<div class = "account">
-	<div class="my_listings">
-		<a href = "fm_my_listings.php"><img class="img-circle1" src="../images/bike2.jpg" /></a><br/>My Listings
-	</div>
-	<div class="my_offers">
-		<a href = "fm_my_offers.php"><img class="img-circle1" src="../images/dollar-sign-black.jpg" height="100px" width="150px"/></a><br/>My Offers
-	</div>
-</div>
+        <div class="brackets">
+                
+            <div class="menuLink">
+                <a href="../account/edit_account/fm_edit_account.php">Edit Account</a>
+            </div>
 
-<!-- Block 4 -->
-<div class = "footer">
-	<ul>
-		<li><a href = "">Privacy Policy</a></li>
-		<li><a href = "">About</a></li>
-		<li><a href = "">Contact</a></li>
-	</ul>
+            <div class="menuLink">
+                
+                <a href="../account/messager/fm_messager1.php">Messenger <?php if ($digit != 0) { echo "(" . $digit . ")";}?></a>
+            </div>
+
+            <div class="menuLink">
+                <a href="../account/notifications/fm_notifications.php">Notifications <?php if ($number != 0) { echo "(" . $number . ")";}?></a>
+            </div>
+
+            <div class="menuLink">
+                <a href = "../account/fm_my_listings.php">My Listings</a>
+            </div>
+
+            <div class="menuLink">
+                <a href = "../account/fm_my_offers.php">My Offers</a>
+            </div>
+
+            <div class="menuLink">
+                <?php if ($check['typ'] == 2 ): ?>
+                    <a href='../admin/fm_admin_view_users.php'>View Users</a>
+                <?php endif;?>
+            </div>
+
+            <div class="menuLink">
+                <?php if ($check['typ'] == 2 ): ?>
+                    <a href='../admin/fm_admin_view_issues.php'>View Issues</a>
+                <?php endif;?>
+            </div>
+
+            <div class="menuLink">
+                <?php if ($check['typ'] == 1 ): ?>
+                    <a href='../vendor/account_page/fm_v_create_advertisement1.php'>Advertisements</a>
+                <?php endif;?>
+            </div>
+
+            <div class="menuLink">
+                <?php if ($check['typ'] == 2 ): ?>
+                    <a href='../admin/fm_admin_ad_requests.php'>Ad Requests</a>
+                <?php endif;?>
+            </div>
+
+            <div class="menuLink">
+                <?php if ($check['typ'] == 2 ): ?>
+                    <a href='../admin/fm_admin_vendor_requests.php'>Vendor Requests</a>
+                <?php endif;?>
+            </div>
+
+            <div class="menuLink">
+                <a href="../account/report_issue/fm_issue_form.php">Report an Issue</a>
+            </div>
+        </div>
+    </div>
+
+    <div class = "footer">
+        <a class="footerElement" href="">About</a>
+        <a class="footerElement" href="">Contact</a>
+        <a class="footerElement" href="">Privacy Policy</a>
+
+        <div class = "copyright">
+            (c) 2017 Freely Market
+        </div>
+    </div>
 </div>
 
 </body>

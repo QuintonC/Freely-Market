@@ -263,7 +263,6 @@ top: 600px;
 <div class = "menu">
 <ul>
 	<li><a href = "edit_account/fm_edit_account.php">Edit Account</a></li>
-		<li><a href = "edit_card/fm_edit_card.php">Edit Card Info</a></li>
 		<li><a href = "messager/fm_messager1.php">Messager <div class = "dig"><?php if ($digit != 0) { echo $digit;}?></div></a></li>
 		<li><a href = "notifications/fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
 		<li><a href = "report_issue/fm_issue_form.php">Report an Issue</a></li>

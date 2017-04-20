@@ -374,7 +374,6 @@ a:hover {
 	<div class = "menu">
 	<ul>
 		<li><a href = "../../account/edit_account/fm_edit_account.php">Edit Account</a></li>
-		<li><a href = "../../account/edit_card/fm_edit_card.php">Edit Card Info</a></li>
 		<li><a href = "../../account/messager/fm_messager1.php">Messager <div class = "dig"><?php if ($digit != 0) { echo $digit;}?></div></a></li>
 		<li><a href = "../../account/notifications/fm_notifications.php">Notifications <div class = "num"><?php if ($number != 0) { echo $number;}?></div></a></li>
 		<li><a href = "../../account/report_issue/fm_issue_form.php">Report an Issue</a></li>
